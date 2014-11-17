@@ -1,0 +1,26 @@
+<html ng-app="app">
+<head>
+	<title>Angular Demo</title>
+	<link rel="stylesheet" href="../css/bootstrap.css">
+</head>
+<body>
+
+<h1>Nachrichtenbus</h1>
+
+<div class="viewContainer" ng-controller="ParentCtrl">
+	<h2>Container</h2>
+	<div class="left" ng-controller="ChildCtrl">
+			<h2>Child</h2>
+			<button class="btn" ng-click="add()"><i class="icon-add">add</i></button>
+	</div>
+</div>
+
+
+
+<script type="text/javascript" src="../libs/angular.min.js"></script>
+<script type="text/javascript" src="js/ctrl/CtrlModule.js"></script>
+<script type="text/javascript" src="js/MainModule.js"></script>
+
+
+</body>
+</html>

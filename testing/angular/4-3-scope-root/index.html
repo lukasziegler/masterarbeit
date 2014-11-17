@@ -1,0 +1,36 @@
+<html ng-app="app">
+<head>
+	<title>Angular Demo</title>
+	<link rel="stylesheet" href="../css/bootstrap.css">
+</head>
+<body>
+
+<h1>Root Scope</h1>
+<p>{{version}}</p>
+
+
+<div ng-controller="Controller">
+	Meine erste Angular.JS View
+
+	<h2>{{sayHello}}</h2>
+
+	<div ng-bind="sayHello"></div>
+
+	<button ng-click="click()" ng-controller="ButtonController">{{label}}</button>
+
+	<h2>{{sayHelloExpression()}}</h2>
+
+</div>
+
+
+
+<script type="text/javascript" src="../libs/angular.min.js"></script>
+
+<script type="text/javascript" src="js/model/ModelModule.js"></script>
+<script type="text/javascript" src="js/ctrl/CtrlModule.js"></script>
+
+<script type="text/javascript" src="js/MainModule.js"></script>
+
+
+</body>
+</html>
