@@ -2,6 +2,7 @@ var fs = require('fs');
 var express = require('express');
 var mongoose = require('mongoose');
 var config = require('config');
+var path = require('path');
 
 var app = express();
 var controllers = require('./app/controllers')
@@ -10,13 +11,12 @@ var controllers = require('./app/controllers')
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/app/views');
 app.set('view engine', 'jade');
-//app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 /** Load all outsourced files **/
 
-// Bootstrap models
+// dynamically include Models (NOT controllers)
 fs.readdirSync(__dirname + '/app/models').forEach(function (file) {
   if (~file.indexOf('.js')) require(__dirname + '/app/models/' + file);
 });
@@ -31,6 +31,5 @@ app.get('/ping', controllers.index)
 
 /** Launch server **/
 var server = app.listen(app.get('port'), function () {
-  var port = server.address().port
-  console.log('Server listening on port :%s', port)
-})
+  console.log('Server listening on port '+ app.get('port'));
+});
