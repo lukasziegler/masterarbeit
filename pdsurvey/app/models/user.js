@@ -39,7 +39,6 @@ UserSchema.methods.getOrders = function(){
 
 
 
-var Users = mongoose.model('Users', UserSchema
+var Users = mongoose.model('Users', UserSchema);
 
-);
-// modules.export = Users;
+module.exports = Users;
