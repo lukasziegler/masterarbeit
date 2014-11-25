@@ -5,10 +5,6 @@ var config = require('config');
 var app = express();
 
 
-
-
-
-
 // accept GET requests
 app.get('/', function (req, res) {
   res.send('Hello World!')
