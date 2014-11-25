@@ -1,1 +1,5 @@
-/node_modules/
+node_modules/
+Makefile
+config/env/env.json
+.DS_Store
+.git/
