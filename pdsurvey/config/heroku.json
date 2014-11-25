@@ -1,7 +1,7 @@
 {
   "Customer": {
     "dbConfig": {
-      "host": "prod-db-server"
+      "host": "pdsurvey"
     },
     "credit": {
       "initialDays": 30

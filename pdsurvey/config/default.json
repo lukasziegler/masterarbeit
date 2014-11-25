@@ -1,5 +1,4 @@
 {
-  // Customer module configs
   "Customer": {
     "dbConfig": {
       "host": "localhost",

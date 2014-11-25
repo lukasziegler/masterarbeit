@@ -1,30 +1,18 @@
+var fs = require('fs');
 var express = require('express');
 var mongoose = require('mongoose');
 var config = require('config');
 
 var app = express();
 
+// Bootstrap models
+fs.readdirSync(__dirname + '/app/models').forEach(function (file) {
+  if (~file.indexOf('.js')) require(__dirname + '/app/models/' + file);
+});
 
-// accept GET requests
-app.get('/', function (req, res) {
-  res.send('Hello World!')
-})
 
-// accept POST request on the homepage
-app.post('/', function (req, res) {
-  res.send('Got a POST request');
-})
-
-// accept PUT request at /user
-app.put('/user', function (req, res) {
-  res.send('Got a PUT request at /user');
-})
-
-// accept DELETE request at /user
-app.delete('/user', function (req, res) {
-  res.send('Got a DELETE request at /user');
-})
-
+// Bootstrap routes
+require('./config/routes')(app);
 
 
 // launch server
