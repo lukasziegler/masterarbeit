@@ -7,7 +7,24 @@ var path = require('path');
 var app = express();
 var controllers = require('./app/controllers')
 
-// configure
+// Database connection
+mongoose.connect('mongodb://localhost/test');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback () {
+  // yay!!
+  console.log("Connected to MongoDB");
+});
+
+
+// testing Mongoose
+var mongooseTesting = require('./mongoose');
+mongooseTesting(app);
+
+
+
+
+// Configure
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/app/views');
 app.set('view engine', 'jade');
@@ -16,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /** Load all outsourced files **/
 
-// dynamically include Models (NOT controllers)
+// Dynamically include Models (NOT controllers)
 fs.readdirSync(__dirname + '/app/models').forEach(function (file) {
   if (~file.indexOf('.js')) require(__dirname + '/app/models/' + file);
 });
@@ -28,7 +45,7 @@ require('./app/routes')(app);
 app.get('/ping', controllers.index)
 
 
-/// catch 404 and forwarding to error handler
+/// Catch 404 and forwarding to error handler
 if (app.get('env') === 'development') {
 	app.use(function(req, res, next) {
 	    var err = new Error('Not Found');
