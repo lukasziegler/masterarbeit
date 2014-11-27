@@ -7,12 +7,20 @@
 
 currently inspired by Google Analytics and Piwik embed code
 
+
+<!-- PDSurvey code starts here -->
+<script src="http://localhost:3000/tracking/jQl.min.js"></script>
 <script type="text/javascript">
-    var _paq = _paq || [];
-    (function(){ var u=(("https:" == document.location.protocol) ? "https://localhost/" : "http://localhost/");
-    // _paq.push(['enableLinkTracking']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.defer=true; g.async=true; g.src=u+'pdsurvey_apache/tracking.js';
-    s.parentNode.insertBefore(g,s); })();
+// asynchronous jQuery Loader (optional)
+jQl.loadjQ('http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
+
+// loading pdsurvey
+var _paq = _paq || [];
+(function(){ 
+	var u=(("https:" == document.location.protocol) ? "https://localhost:3000/" : "http://localhost:3000/");
+// _paq.push(['enableLinkTracking']);
+var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.defer=true; g.async=true; g.src=u+'tracking/survey.js';
+s.parentNode.insertBefore(g,s); })();
 </script>
 
 </body>
