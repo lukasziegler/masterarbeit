@@ -9,11 +9,11 @@ var mongoose = require('mongoose');
  */
 
 var UserSchema = mongoose.Schema({ 
-        username: String,
-        fullname: String,
-        email: String,
+        username: { type: String, required: true },
+        fullname: { type: String, required: true },
+        email: { type: String, required: true },
         rights: String,
-        dateRegistered: String,
+        dateRegistered: { type: Date, default: Date.now },
         hashed_password: String,
         salt: String,
         authToken: String
@@ -23,9 +23,11 @@ var UserSchema = mongoose.Schema({
  * Virtuals
  */
 
+
 /**
  * Validations
  */
+
 
 /**
  * Methods
@@ -33,12 +35,4 @@ var UserSchema = mongoose.Schema({
 
 
 
-UserSchema.methods.getOrders = function(){ 
-    return Orders.find({ UserId: this._id });
-};
-
-
-
-var Users = mongoose.model('Users', UserSchema);
-
-module.exports = Users;
+module.exports = mongoose.model('Users', UserSchema);

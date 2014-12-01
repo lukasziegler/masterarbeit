@@ -3,7 +3,10 @@
  */
 
 var mongoose = require('mongoose');
-var User = mongoose.model('User');
+var UserModel = mongoose.model('User');
+
+
+var ProductModel = mongoose.model('Product', Product);  
 
 /**
  * Load
@@ -13,7 +16,7 @@ exports.load = function (req, res, next, id) {
   var options = {
     criteria: { _id : id }
   };
-  User.load(options, function (err, user) {
+  UserModel.load(options, function (err, user) {
     if (err) return next(err);
     if (!user) return next(new Error('Failed to load User ' + id));
     req.profile = user;
@@ -26,7 +29,7 @@ exports.load = function (req, res, next, id) {
  */
 
 exports.create = function (req, res) {
-  var user = new User(req.body);
+  var user = new UserModel(req.body);
   user.provider = 'local';
   user.save(function (err) {
     if (err) {
