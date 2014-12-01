@@ -1,28 +1,84 @@
+// "use strict";
 
-/**
- * Expose routes
+	// TODO: Linter verwenden
+
+
+/** 
+ * Embed Models
  */
 
-module.exports = function (app) {
+var Question = require('./models/question');
 
-	// accept GET requests
-	app.get('/', function (req, res) {
-	  res.send('Hello World!')
-	})
 
-	// accept POST request on the homepage
-	app.post('/', function (req, res) {
-	  res.send('Got a POST request');
-	})
+/**
+ * Define Routes
+ */
 
-	// accept PUT request at /user
-	app.put('/user', function (req, res) {
-	  res.send('Got a PUT request at /user');
-	})
+app.get('/', function (req, res, next) {
+  res.send('Welcome to PDSurvey\'s REST API');
+})
 
-	// accept DELETE request at /user
-	app.delete('/user', function (req, res) {
-	  res.send('Got a DELETE request at /user');
-	})
 
-}
+/** 
+ * QUESTIONS
+ */ 
+
+// accept GET requests
+app.get('/question', function (req, res, next) {
+
+	Question.find({}, function (err, questions) {
+		if (err) return console.error(err);
+		console.log(questions);
+		res.send(questions);
+	});
+
+});
+
+// accept PUT request at /user
+app.put('/question', function (req, res, next) {
+  // res.send('Got a PUT request at /question');
+
+  Question.add(function(err, created) {
+	if (err) return console.error(err);
+		console.log(created);
+		res.send(created);
+
+  });
+  // question.add(req.params.question, function() {
+  		// if(err) next(err);
+  		// else {
+  		// }
+
+  // })
+})
+
+// accept DELETE request at /user
+app.delete('/question', function (req, res, next) {
+  res.send('Got a DELETE request at /question');
+})
+
+
+/** 
+ * USERS
+ */ 
+
+
+
+
+	// model.bla(function(err, result) {
+	// 	if(err) next(new MyError("Bluberror", 401)
+	// 	else res.send(result)
+	// })
+	
+	// TODO: Think about creating my own type of errors
+	// e.g. look at GitHub > Mongoose/libs/error.js
+
+
+/** 
+ * TESTING
+ */ 
+
+// sample GET request
+app.get('/ping', function (req, res, next) {
+    res.render('index', { title: 'Pong', software: 'Express' });
+});

@@ -3,29 +3,25 @@ var express = require('express');
 var mongoose = require('mongoose');
 var logger = require('morgan');
 //var config = require('config');
+var bodyParser = require('body-parser');
 var path = require('path');
-var app = express();
 
-// Routes
-var controllers = require('./app/controllers')
-var questions = require('./app/models/question');
+//globals
+app = express();
+
+"use strict";
 
 // Database connection
+// TODO: mongoose.connect('mongodb://username:password@localhost/test');
 mongoose.connect('mongodb://localhost/test');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
+// Configure app to use bodyParser() - for POST
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-// Make our db accessible to our router
-// TODO -  NEEDED?
-app.use(function(req,res,next){
-    req.db = db;
-    next();
-});
-
-
-// Configure Port + View Engine
-app.set('port', process.env.PORT || 3000);
+// Configure View Engine
 app.set('views', __dirname + '/app/views');
 app.set('view engine', 'jade');
 
@@ -36,21 +32,14 @@ if (app.get('env') !== 'production') {
 }
 
 // Bootstrap routes
-require('./app/routes')(app);
+require('./app/routes');
 
 // Bootstrap Error Handling
-require('./app/error-handling')(app);
-
-// sample GET request
-// TODO: Obsolete - can be removed
-app.get('/ping', controllers.index);
-/* app.get('/ping', function(req, res) {
-    res.render('index', { title: 'Pong', software: 'Express' });
-});*/
-
+// require('./app/error-handling');
 
 
 /** Launch server **/
-var server = app.listen(app.get('port'), function () {
-  console.log('Server listening on port '+ app.get('port'));
+var port = process.env.PORT || 3000;
+var server = app.listen(port, function () {
+  console.log('Server listening on port', port);
 });
