@@ -2,7 +2,7 @@ var fs = require('fs');
 var express = require('express');
 var mongoose = require('mongoose');
 var logger = require('morgan');
-var config = require('config');
+//var config = require('config');
 var path = require('path');
 
 var app = express();
@@ -21,18 +21,16 @@ app.use(function(req,res,next){
 });
 
 
-// testing Mongoose
-// var mongooseTesting = require('./mongoose');
-// mongooseTesting(app);
-
-
-
-// Configure
+// Configure Port + View Engine
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/app/views');
 app.set('view engine', 'jade');
+
+// Configure Logging
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(logger('dev'));
+if (app.get('env') !== 'production') {
+    app.use(logger('dev'));
+}
 
 
 /** Load all outsourced files **/
