@@ -1,26 +1,29 @@
 var fs = require('fs');
 var express = require('express');
 var mongoose = require('mongoose');
+var logger = require('morgan');
 var config = require('config');
 var path = require('path');
 
 var app = express();
 var controllers = require('./app/controllers')
 
+
 // Database connection
 mongoose.connect('mongodb://localhost/test');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function callback () {
-  // yay!!
-  console.log("Connected to MongoDB");
+
+// Make our db accessible to our router
+app.use(function(req,res,next){
+    req.db = db;
+    next();
 });
 
 
 // testing Mongoose
-var mongooseTesting = require('./mongoose');
-mongooseTesting(app);
-
+// var mongooseTesting = require('./mongoose');
+// mongooseTesting(app);
 
 
 
@@ -29,6 +32,7 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/app/views');
 app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(logger('dev'));
 
 
 /** Load all outsourced files **/
