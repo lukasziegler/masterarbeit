@@ -44,6 +44,9 @@ require('./app/error-handling')(app);
 // sample GET request
 // TODO: Obsolete - can be removed
 app.get('/ping', controllers.index);
+/* app.get('/ping', function(req, res) {
+    res.render('index', { title: 'Pong', software: 'Express' });
+});*/
 
 
 
