@@ -34,3 +34,9 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+
+// TODO
+// think about logging my errors depending on the 
+// development environment
+// production -> save it to file or separate DB 
+// development -> console log!

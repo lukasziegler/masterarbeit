@@ -12,10 +12,7 @@ app = express();
 "use strict";
 
 // Database connection
-// TODO: mongoose.connect('mongodb://username:password@localhost/test');
-mongoose.connect('mongodb://localhost/test');
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+require('./app/db');
 
 // Configure app to use bodyParser() - for POST
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -41,5 +38,5 @@ require('./app/routes');
 /** Launch server **/
 var port = process.env.PORT || 3000;
 var server = app.listen(port, function () {
-  console.log('Server listening on port', port);
+  console.log('Node-Server listening on port', port);
 });

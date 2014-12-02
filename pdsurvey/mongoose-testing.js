@@ -35,15 +35,18 @@ module.exports = function (app) {
 	var verdufti = new Kitten({ name: 'Verdufti' })
 	var mucki = new Kitten({ name: 'Mucki' })
 
+	// Save new object to MongoDB
 	verdufti.save(function (err, fluffy) {
 	  if (err) return console.error(err);
 	  console.log("Saved "+fluffy.name+" to MongoDB")
 	});
 
+	// Save new object to MongoDB
 	mucki.save(function (err, fluffy) {
 	  if (err) return console.error(err);
 	  console.log("Saved "+fluffy.name+" to MongoDB")
 	});
+
 
 	// Loading all Documents from MongoDB
 	Kitten.find(function (err, kittens) {

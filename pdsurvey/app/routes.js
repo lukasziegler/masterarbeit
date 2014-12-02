@@ -7,7 +7,8 @@
  * Embed Models
  */
 
-var Question = require('./models/question');
+var QuestionModel = require('./models/question');
+var UserModel = require('./models/user');
 
 
 /**
@@ -26,7 +27,7 @@ app.get('/', function (req, res, next) {
 // accept GET requests
 app.get('/question', function (req, res, next) {
 
-	Question.find({}, function (err, questions) {
+	QuestionModel.find({}, function (err, questions) {
 		if (err) return console.error(err);
 		console.log(questions);
 		res.send(questions);
@@ -38,7 +39,7 @@ app.get('/question', function (req, res, next) {
 app.put('/question', function (req, res, next) {
   // res.send('Got a PUT request at /question');
 
-  Question.add(function(err, created) {
+  QuestionModel.add(req.body , function(err, created) {
 	if (err) return console.error(err);
 		console.log(created);
 		res.send(created);
@@ -61,6 +62,29 @@ app.delete('/question', function (req, res, next) {
 /** 
  * USERS
  */ 
+app.get('/user', function (req, res, next){
+  return UserModel.find(function (err, products) {
+    if (err) next(err);
+  });
+});
+
+// POST to CREATE
+app.post('/user', function (req, res, next) {
+	// UserModel.add
+  var user = new UserModel({
+    username: req.body.username,
+    fullname: req.body.fullname,
+    email: req.body.email
+  });
+  user.save(function (err) {
+    if (!err) {
+      return console.log("User created");
+    } else {
+      return console.log(err);
+    }
+  });
+  return res.send(user);
+});
 
 
 

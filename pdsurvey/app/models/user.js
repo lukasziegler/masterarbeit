@@ -1,13 +1,8 @@
-/**
- * Module dependencies.
- */
-
 var mongoose = require('mongoose');
 
 /**
- * User Schema
+ * Schema
  */
-
 var UserSchema = mongoose.Schema({ 
         username: { type: String, required: true },
         fullname: { type: String, required: true },
@@ -18,6 +13,12 @@ var UserSchema = mongoose.Schema({
         salt: String,
         authToken: String
 });
+
+/**
+ * Model for the Schema
+ */
+var User = mongoose.model('users', UserSchema);
+module.exports = User;
 
 /**
  * Virtuals
@@ -33,6 +34,19 @@ var UserSchema = mongoose.Schema({
  * Methods
  */
 
+exports.find = function(query, callback) {
+	User.find(query, function(err, user) {
+		if(err) return callback(err);
+		callback(null, user);
+	});
+}
 
+exports.add = function(newUser, callback) {
+	// var newUser = new User({ shortName: 'Mucki' })
+	// Save new object to MongoDB
+	newUser.save(function (err, created) {
+		if(err) return callback(err);
+		callback(null, created);
+	});
+};
 
-module.exports = mongoose.model('Users', UserSchema);
