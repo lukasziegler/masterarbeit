@@ -56,7 +56,10 @@ app.post('/question', function (req, res, next) {
 app.put('/question/:id', function (req, res, next) {
 
 	QuestionModel.findById( req.params.id, function (err, question) {
-		if (err) return console.error(err);
+		if (err) {
+			res.send('error updating');
+			return console.error(err);
+		}
 
 		// update object
 		question.type = req.body.type;
@@ -66,14 +69,15 @@ app.put('/question/:id', function (req, res, next) {
 		question.status = req.body.status;
 
 		question.save(function(err) {
-			if (err) return console.error(err);
+			if (err) {
+			res.send('Error updating, e.g. invalid mapping');
+			return console.error(err);
+			// return next(err);
+		}
 			res.json(question);
 		})
 	});
 });
-
-
-
 
 // DELETE
 app.delete('/question/:id', function (req, res, next) {

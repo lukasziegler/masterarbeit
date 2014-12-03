@@ -4,14 +4,15 @@
  */ 
 
 /// Catch 404 and forwarding to error handler
-if (app.get('env') === 'development') {
-	app.use(function(req, res, next) {
-        console.log("DEBUG", req, res);
-	    var err = new Error('Not Found');
-	    err.status = 404;
-	    next(err);
-	});
-}
+
+// if (app.get('env') === 'development') {
+// 	app.use(function(req, res, next) {
+// 	    var err = new Error('Not Found');
+// 	    err.status = 404;
+// 	    next(err);
+// 	});
+// }
+
 
 // development error handler
 // will print stacktrace

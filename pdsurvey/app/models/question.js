@@ -4,8 +4,8 @@ var mongoose = require('mongoose');
  * Schema
  */
 var QuestionSchema = mongoose.Schema({ 
-        type: String,
-        shortName: String,
+        type: { type: String, required: true },
+        shortName: { type: String, required: true },
         description: String,
         explanation: String,
         category: String,
