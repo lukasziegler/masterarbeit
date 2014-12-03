@@ -28,9 +28,11 @@ exports.find = function(query, callback) {
 		callback(null, questions);
 	});
 }
+// if(questions.length > 0) callback(null, questions)
+// 	else {callback(new Error("No questions found"))}
+
 
 exports.add = function(req, callback) {
-
 	var newQuestion = new QuestionModel({
 		type: req.body.type,
 		shortName: req.body.shortName,
@@ -44,19 +46,13 @@ exports.add = function(req, callback) {
 		if(err) return callback(err);
 		callback(null, created);
 	});
+};
 
-	// Question.create({ type: 'jelly bean' }, function(err, created) {
-		
-		// FRAGE: was ist effizienter, ein manuelles Mapping zu machen, 
-		// oder auf sowas wie JSONify zurückgreifen?
+exports.update = function(req, callback) {
+	// TODO
 };
 
 
-// 	if(err) return callback(err);
-// //TODO überlegen ob in DB, in Console oder in File, oder in Error Handling
-// if(questions.length > 0) callback(null, questions)
-// 	else {callback(new Error("No questions found"))}
-// 		// TODO überlegen ob leere Arrays oder Errors zurücksenden
 
 
 /**
@@ -66,8 +62,6 @@ exports.add = function(req, callback) {
 /**
  * Validations
  */
-
-//exports = QuestionModel;
 
 
 module.exports = QuestionModel;
