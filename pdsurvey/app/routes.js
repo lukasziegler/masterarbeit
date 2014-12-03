@@ -50,9 +50,30 @@ app.post('/question', function (req, res, next) {
   		// else {
   		// }
   // })
-})
+});
 
 // PUT to update
+app.put('/question/:id', function (req, res, next) {
+
+	QuestionModel.findById( req.params.id, function (err, question) {
+		if (err) return console.error(err);
+
+		// update object
+		question.type = req.body.type;
+		question.shortName = req.body.shortName;
+		question.explanation = req.body.explanation;
+		question.category = req.body.category;
+		question.status = req.body.status;
+
+		question.save(function(err) {
+			if (err) return console.error(err);
+			res.json(question);
+		})
+	});
+});
+
+
+
 
 // DELETE
 app.delete('/question/:id', function (req, res, next) {
@@ -64,8 +85,8 @@ app.delete('/question/:id', function (req, res, next) {
 		
 		res.send({ message: 'Successfully deleted' });
 	});
+});
 
-})
 
 
 
