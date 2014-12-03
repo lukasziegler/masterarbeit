@@ -21,75 +21,81 @@ router.get('/', function (req, res, next) {
  * QUESTIONS
  */ 
 
-// accept GET requests
-router.get('/question', function (req, res, next) {
-	QuestionModel.find({}, function (err, questions) {
-		if (err) return console.error(err);
-		res.send(questions);
-	});
-});
+router.route('/question')
 
-router.get('/question/:id', function (req, res, next) {
-	QuestionModel.findOne({ '_id': req.params.id }, function (err, question) {
-		if (err) return console.error(err);
-		res.send(question);
-	});
-});
+	// GET 
+	.get(function (req, res, next) {
+		QuestionModel.find({}, function (err, questions) {
+			if (err) return console.error(err);
+			res.send(questions);
+		});
+	})
+
+	// POST to create
+	.post(function (req, res, next) {
+
+		QuestionModel.add(req, function (err, created) {
+			if (err) return console.error(err);
+			res.send(created);
+		});
+
+	  // question.add(req.params.question, function() {
+	  		// if(err) next(err);
+	  		// else {
+	  		// }
+	  // })
+	})
 
 
-// POST to create
-router.post('/question', function (req, res, next) {
 
-	QuestionModel.add(req, function (err, created) {
-		if (err) return console.error(err);
-		res.send(created);
-	});
+router.route('/question/:id')
 
-  // question.add(req.params.question, function() {
-  		// if(err) next(err);
-  		// else {
-  		// }
-  // })
-});
+	// GET single element
+	.get(function (req, res, next) {
+		QuestionModel.findOne({ '_id': req.params.id }, function (err, question) {
+			if (err) return console.error(err);
+			res.send(question);
+		});
+	})
 
-// PUT to update
-router.put('/question/:id', function (req, res, next) {
+	// PUT to update
+	.put(function (req, res, next) {
 
-	QuestionModel.findById( req.params.id, function (err, question) {
-		if (err) {
-			res.send('error updating');
-			return console.error(err);
-		}
-
-		// update object
-		question.type = req.body.type;
-		question.shortName = req.body.shortName;
-		question.explanation = req.body.explanation;
-		question.category = req.body.category;
-		question.status = req.body.status;
-
-		question.save(function(err) {
+		QuestionModel.findById( req.params.id, function (err, question) {
 			if (err) {
-			res.send('Error updating, e.g. invalid mapping');
-			return console.error(err);
-			// return next(err);
-		}
-			res.json(question);
-		})
-	});
-});
+				res.send('error updating');
+				return console.error(err);
+			}
 
-// DELETE
-router.delete('/question/:id', function (req, res, next) {
+			// update object
+			question.type = req.body.type;
+			question.shortName = req.body.shortName;
+			question.explanation = req.body.explanation;
+			question.category = req.body.category;
+			question.status = req.body.status;
 
-  // TODO implement authentication / validation
+			question.save(function(err) {
+				if (err) {
+				res.send('Error updating, e.g. invalid mapping');
+				return console.error(err);
+				// return next(err);
+			}
+				res.json(question);
+			})
+		});
+	})
 
-	QuestionModel.remove({ _id: req.params.id }, function(err, question) {
-		if (err) return console.error(err);
-		
-		res.send({ message: 'Successfully deleted' });
-	});
-});
+	// DELETE
+	.delete(function (req, res, next) {
+
+	  // TODO implement authentication / validation
+
+		QuestionModel.remove({ _id: req.params.id }, function(err, question) {
+			if (err) return console.error(err);
+			
+			res.send({ message: 'Successfully deleted' });
+		});
+	})
 
 
 
@@ -100,27 +106,40 @@ router.delete('/question/:id', function (req, res, next) {
  * USERS
  */ 
 
-// GET
-router.get('/user', function (req, res, next){
-	UserModel.find({}, function (err, users) {
-		if (err) return console.error(err);
-		res.send(users);
+ router.route('/user')
+
+	// GET
+	.get(function (req, res, next){
+		UserModel.find({}, function (err, users) {
+			if (err) return console.error(err);
+			res.send(users);
+		});
+	})
+
+	// POST to create
+	.post(function (req, res, next) {
+		UserModel.add(req, function (err, users) {
+			if (err) return console.error(err);
+			res.send(users);
+		});
+	})
+
+
+router.route('/user/:id')
+
+	.delete(function (req, res, next) {
+		next(new Error('not implemented'));
 	});
-});
 
-// POST to CREATE
-router.post('/user', function (req, res, next) {
-	
-	UserModel.add(req, function (err, users) {
-		if (err) return console.error(err);
-		res.send(users);
-	});
-
-});
-
-router.delete('/user/:id', function (req, res, next) {
-	next(new Error('not implemented'));
-});
+	/*******
+	 * TODO: QUESTION AN JANOSCH,
+	 * ist es besser mit
+	 * 		next(new Error(...)); 
+	 * zu arbeiten, oder lieber wie bisher mit
+	 * 		return console.error(err);
+	 * bzw., fehlt bei mir nicht ein
+	 *		RETURN next(new Error(...));
+	 */
 
 
 	// model.bla(function(err, result) {
