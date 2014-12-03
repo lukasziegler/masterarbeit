@@ -51,14 +51,6 @@ exports.add = function(req, callback) {
 		if(err) return callback(err);
 		callback(null, created);
 	});
-
-	  // user.save(function (err) {
-	  //   if (!err) {
-	  //     return console.log("User created");
-	  //   } else {
-	  //     return console.log(err);
-	  //   }
- 	 // });
 };
 
 exports = UserModel;

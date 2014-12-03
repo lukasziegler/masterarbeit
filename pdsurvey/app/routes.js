@@ -1,23 +1,20 @@
 // "use strict";
-
 	// TODO: Linter verwenden
 
 
-/** 
- * Embed Models
- */
+// Embed Models 
 
 var QuestionModel = require('./models/question');
 var UserModel = require('./models/user');
 
 
-/**
- * Define Routes
- */
+
+// Define Routes
 
 app.get('/', function (req, res, next) {
   res.send('Welcome to PDSurvey\'s REST API');
 })
+
 
 
 /** 
@@ -26,24 +23,28 @@ app.get('/', function (req, res, next) {
 
 // accept GET requests
 app.get('/question', function (req, res, next) {
-
 	QuestionModel.find({}, function (err, questions) {
 		if (err) return console.error(err);
-		console.log(questions);
 		res.send(questions);
 	});
-
 });
+
+app.get('/question/:id', function (req, res, next) {
+	QuestionModel.findOne({ '_id': req.params.id }, function (err, question) {
+		if (err) return console.error(err);
+		res.send(question);
+	});
+});
+
 
 // POST to create
 app.post('/question', function (req, res, next) {
-
 
 	QuestionModel.add(req, function (err, created) {
 		if (err) return console.error(err);
 		res.send(created);
 	});
-	
+
   // question.add(req.params.question, function() {
   		// if(err) next(err);
   		// else {
@@ -54,11 +55,19 @@ app.post('/question', function (req, res, next) {
 // PUT to update
 
 // DELETE
-app.delete('/question', function (req, res, next) {
-  res.send('Got a DELETE request at /question');
+app.delete('/question/:id', function (req, res, next) {
 
   // TODO implement authentication / validation
+
+	QuestionModel.remove({ _id: req.params.id }, function(err, question) {
+		if (err) return console.error(err);
+		
+		res.send({ message: 'Successfully deleted' });
+	});
+
 })
+
+
 
 
 
@@ -106,3 +115,5 @@ app.post('/user', function (req, res, next) {
 app.get('/ping', function (req, res, next) {
     res.render('index', { title: 'Pong', software: 'Express' });
 });
+
+// TODO: think about a conversion from app.get/post TO router.use

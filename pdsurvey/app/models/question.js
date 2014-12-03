@@ -46,6 +46,9 @@ exports.add = function(req, callback) {
 	});
 
 	// Question.create({ type: 'jelly bean' }, function(err, created) {
+		
+		// FRAGE: was ist effizienter, ein manuelles Mapping zu machen, 
+		// oder auf sowas wie JSONify zurückgreifen?
 };
 
 
@@ -64,4 +67,7 @@ exports.add = function(req, callback) {
  * Validations
  */
 
-exports = QuestionModel;
+//exports = QuestionModel;
+
+
+module.exports = QuestionModel;
