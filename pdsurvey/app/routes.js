@@ -11,7 +11,7 @@ var UserModel = require('./models/user');
 
 // Define Routes
 
-app.get('/', function (req, res, next) {
+router.get('/', function (req, res, next) {
   res.send('Welcome to PDSurvey\'s REST API');
 })
 
@@ -22,14 +22,14 @@ app.get('/', function (req, res, next) {
  */ 
 
 // accept GET requests
-app.get('/question', function (req, res, next) {
+router.get('/question', function (req, res, next) {
 	QuestionModel.find({}, function (err, questions) {
 		if (err) return console.error(err);
 		res.send(questions);
 	});
 });
 
-app.get('/question/:id', function (req, res, next) {
+router.get('/question/:id', function (req, res, next) {
 	QuestionModel.findOne({ '_id': req.params.id }, function (err, question) {
 		if (err) return console.error(err);
 		res.send(question);
@@ -38,7 +38,7 @@ app.get('/question/:id', function (req, res, next) {
 
 
 // POST to create
-app.post('/question', function (req, res, next) {
+router.post('/question', function (req, res, next) {
 
 	QuestionModel.add(req, function (err, created) {
 		if (err) return console.error(err);
@@ -53,7 +53,7 @@ app.post('/question', function (req, res, next) {
 });
 
 // PUT to update
-app.put('/question/:id', function (req, res, next) {
+router.put('/question/:id', function (req, res, next) {
 
 	QuestionModel.findById( req.params.id, function (err, question) {
 		if (err) {
@@ -80,7 +80,7 @@ app.put('/question/:id', function (req, res, next) {
 });
 
 // DELETE
-app.delete('/question/:id', function (req, res, next) {
+router.delete('/question/:id', function (req, res, next) {
 
   // TODO implement authentication / validation
 
@@ -101,7 +101,7 @@ app.delete('/question/:id', function (req, res, next) {
  */ 
 
 // GET
-app.get('/user', function (req, res, next){
+router.get('/user', function (req, res, next){
 	UserModel.find({}, function (err, users) {
 		if (err) return console.error(err);
 		res.send(users);
@@ -109,7 +109,7 @@ app.get('/user', function (req, res, next){
 });
 
 // POST to CREATE
-app.post('/user', function (req, res, next) {
+router.post('/user', function (req, res, next) {
 	
 	UserModel.add(req, function (err, users) {
 		if (err) return console.error(err);
@@ -118,7 +118,7 @@ app.post('/user', function (req, res, next) {
 
 });
 
-app.delete('/user/:id', function (req, res, next) {
+router.delete('/user/:id', function (req, res, next) {
 	next(new Error('not implemented'));
 });
 
@@ -137,7 +137,7 @@ app.delete('/user/:id', function (req, res, next) {
  */ 
 
 // sample GET request
-app.get('/ping', function (req, res, next) {
+router.get('/ping', function (req, res, next) {
     res.render('index', { title: 'Pong', software: 'Express' });
 });
 

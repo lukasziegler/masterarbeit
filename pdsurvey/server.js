@@ -28,12 +28,11 @@ if (app.get('env') !== 'production') {
     app.use(logger('dev'));
 }
 
-app.on('error', function(e) {
-	console.log('Fehler abgefangen.');
-});
-
-// Bootstrap routes
+// Register our routes
+router = express.Router();
 require('./app/routes');
+app.use('/', router); // registering
+
 
 // Bootstrap Error Handling
 require('./app/error-handling');
