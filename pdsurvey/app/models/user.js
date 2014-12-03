@@ -17,8 +17,7 @@ var UserSchema = mongoose.Schema({
 /**
  * Model for the Schema
  */
-var User = mongoose.model('users', UserSchema);
-module.exports = User;
+var UserModel = mongoose.model('User', UserSchema, 'users');
 
 /**
  * Virtuals
@@ -35,18 +34,31 @@ module.exports = User;
  */
 
 exports.find = function(query, callback) {
-	User.find(query, function(err, user) {
+	UserModel.find(query, function(err, user) {
 		if(err) return callback(err);
 		callback(null, user);
 	});
 }
 
-exports.add = function(newUser, callback) {
-	// var newUser = new User({ shortName: 'Mucki' })
+exports.add = function(req, callback) {
+	var newUser = new UserModel({
+		username: req.body.username,
+		fullname: req.body.fullname,
+		email: req.body.email
+	});
 	// Save new object to MongoDB
 	newUser.save(function (err, created) {
 		if(err) return callback(err);
 		callback(null, created);
 	});
+
+	  // user.save(function (err) {
+	  //   if (!err) {
+	  //     return console.log("User created");
+	  //   } else {
+	  //     return console.log(err);
+	  //   }
+ 	 // });
 };
 
+exports = UserModel;

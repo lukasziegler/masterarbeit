@@ -35,56 +35,56 @@ app.get('/question', function (req, res, next) {
 
 });
 
-// accept PUT request at /user
-app.put('/question', function (req, res, next) {
-  // res.send('Got a PUT request at /question');
+// POST to create
+app.post('/question', function (req, res, next) {
 
-  QuestionModel.add(req.body , function(err, created) {
-	if (err) return console.error(err);
-		console.log(created);
+
+	QuestionModel.add(req, function (err, created) {
+		if (err) return console.error(err);
 		res.send(created);
-
-  });
+	});
+	
   // question.add(req.params.question, function() {
   		// if(err) next(err);
   		// else {
   		// }
-
   // })
 })
 
-// accept DELETE request at /user
+// PUT to update
+
+// DELETE
 app.delete('/question', function (req, res, next) {
   res.send('Got a DELETE request at /question');
+
+  // TODO implement authentication / validation
 })
+
 
 
 /** 
  * USERS
  */ 
+
+// GET
 app.get('/user', function (req, res, next){
-  return UserModel.find(function (err, products) {
-    if (err) next(err);
-  });
+	UserModel.find({}, function (err, users) {
+		if (err) return console.error(err);
+		res.send(users);
+	});
 });
 
 // POST to CREATE
 app.post('/user', function (req, res, next) {
-	// UserModel.add
-  var user = new UserModel({
-    username: req.body.username,
-    fullname: req.body.fullname,
-    email: req.body.email
-  });
-  user.save(function (err) {
-    if (!err) {
-      return console.log("User created");
-    } else {
-      return console.log(err);
-    }
-  });
-  return res.send(user);
+	
+	UserModel.add(req, function (err, users) {
+		if (err) return console.error(err);
+		res.send(users);
+	});
+
 });
+
+// PUT to UPDATE
 
 
 

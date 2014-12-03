@@ -28,6 +28,10 @@ if (app.get('env') !== 'production') {
     app.use(logger('dev'));
 }
 
+app.on('error', function(e) {
+	console.log('Fehler abgefangen.');
+});
+
 // Bootstrap routes
 require('./app/routes');
 

@@ -16,22 +16,29 @@ var QuestionSchema = mongoose.Schema({
  * Model for the Schema
  */
 
-var Question = mongoose.model('questions', QuestionSchema);
+var QuestionModel = mongoose.model('Question', QuestionSchema, 'questions');
 
 /** 
  * Methods
  */
 
 exports.find = function(query, callback) {
-	Question.find(query, function(err, questions) {
+	QuestionModel.find(query, function(err, questions) {
 		if(err) return callback(err);
 		callback(null, questions);
 	});
 }
 
-exports.add = function(newQuestion, callback) {
+exports.add = function(req, callback) {
 
-	// var newQuestion = new Question({ shortName: 'Mucki' })
+	var newQuestion = new QuestionModel({
+		type: req.body.type,
+		shortName: req.body.shortName,
+		description: req.body.description,
+		explanation: req.body.explanation,
+		category: req.body.category,
+		status: req.body.status
+	});
 	// Save new object to MongoDB
 	newQuestion.save(function (err, created) {
 		if(err) return callback(err);
@@ -57,4 +64,4 @@ exports.add = function(newQuestion, callback) {
  * Validations
  */
 
-
+exports = QuestionModel;
