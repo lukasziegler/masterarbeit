@@ -23,8 +23,10 @@ app.use(function(err, req, res, next) {
 // TODO
 // think about logging my errors depending on the 
 // development environment
-// production -> save it to file or separate DB 
-// development -> console log!
+// > production -> save it to file or separate DB 
+// > development -> console log!
+
+// TODO überlegen ob leere Arrays oder Errors zurücksenden
 
 
 
