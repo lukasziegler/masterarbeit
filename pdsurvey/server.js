@@ -31,7 +31,7 @@ if (app.get('env') !== 'production') {
 // Register our routes
 router = express.Router();
 require('./app/routes');
-app.use('/', router); // registering
+app.use('/api', router); // registering
 
 
 // Bootstrap Error Handling

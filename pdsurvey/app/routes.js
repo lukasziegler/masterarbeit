@@ -33,17 +33,10 @@ router.route('/question')
 
 	// POST to create
 	.post(function (req, res, next) {
-
 		QuestionModel.add(req, function (err, created) {
 			if (err) return console.error(err);
 			res.send(created);
 		});
-
-	  // question.add(req.params.question, function() {
-	  		// if(err) next(err);
-	  		// else {
-	  		// }
-	  // })
 	})
 
 
@@ -76,10 +69,9 @@ router.route('/question/:id')
 
 			question.save(function(err) {
 				if (err) {
-				res.send('Error updating, e.g. invalid mapping');
-				return console.error(err);
-				// return next(err);
-			}
+					res.send('Error updating, e.g. invalid mapping');
+					return console.error(err);
+				}
 				res.json(question);
 			})
 		});
@@ -131,33 +123,14 @@ router.route('/user/:id')
 		next(new Error('not implemented'));
 	});
 
-	/*******
-	 * TODO: QUESTION AN JANOSCH,
-	 * ist es besser mit
-	 * 		next(new Error(...)); 
-	 * zu arbeiten, oder lieber wie bisher mit
-	 * 		return console.error(err);
-	 * bzw., fehlt bei mir nicht ein
-	 *		RETURN next(new Error(...));
-	 */
-
-
-	// model.bla(function(err, result) {
+	/* Custom Error Handling */
 	// 	if(err) next(new MyError("Bluberror", 401)
 	// 	else res.send(result)
-	// })
-	
 	// TODO: Think about creating my own type of errors
 	// e.g. look at GitHub > Mongoose/libs/error.js
 
-
-/** 
- * TESTING
- */ 
 
 // sample GET request
 router.get('/ping', function (req, res, next) {
     res.render('index', { title: 'Pong', software: 'Express' });
 });
-
-// TODO: think about a conversion from app.get/post TO router.use
