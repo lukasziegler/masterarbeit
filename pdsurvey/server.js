@@ -36,7 +36,7 @@ app.on('error', function(e) {
 require('./app/routes');
 
 // Bootstrap Error Handling
-// require('./app/error-handling');
+require('./app/error-handling');
 
 
 /** Launch server **/

@@ -118,9 +118,9 @@ app.post('/user', function (req, res, next) {
 
 });
 
-// PUT to UPDATE
-
-
+app.delete('/user/:id', function (req, res, next) {
+	next(new Error('not implemented'));
+});
 
 
 	// model.bla(function(err, result) {
