@@ -28,11 +28,17 @@ if (app.get('env') !== 'production') {
     app.use(logger('dev'));
 }
 
+// Allowing CORS requests
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // Register our routes
 router = express.Router();
 require('./app/routes');
 app.use('/api', router); // registering
-
 
 // Bootstrap Error Handling
 require('./app/error-handling');

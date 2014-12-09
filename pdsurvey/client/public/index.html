@@ -477,7 +477,11 @@
                             {{message}}
                         </div>
                         <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                            <p>Lorem ipsum dolor sit amet</p>
+
+                            <ul>
+                                <li ng-repeat="question in questions">{{question.shortName}} ({{question._id}})</li>
+                            </ul>
                         </div>
                         <div class="panel-footer">
                             Panel Footer

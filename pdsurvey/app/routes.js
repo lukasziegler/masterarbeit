@@ -8,13 +8,11 @@ var QuestionModel = require('./models/question');
 var UserModel = require('./models/user');
 
 
-
 // Define Routes
 
 router.get('/', function (req, res, next) {
   res.send('Welcome to PDSurvey\'s REST API');
 })
-
 
 
 /** 
@@ -134,3 +132,4 @@ router.route('/user/:id')
 router.get('/ping', function (req, res, next) {
     res.render('index', { title: 'Pong', software: 'Express' });
 });
+
