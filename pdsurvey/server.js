@@ -12,14 +12,14 @@ app = express();
 "use strict";
 
 // Database connection
-require('./app/db');
+require('./api/db');
 
 // Configure app to use bodyParser() - for POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Configure View Engine
-app.set('views', __dirname + '/app/views');
+app.set('views', __dirname + '/api/views');
 app.set('view engine', 'jade');
 
 // Configure Logging
@@ -37,11 +37,11 @@ app.use(function(req, res, next) {
 
 // Register our routes
 router = express.Router();
-require('./app/routes');
+require('./api/routes');
 app.use('/api', router); // registering
 
 // Bootstrap Error Handling
-require('./app/error-handling');
+require('./api/error-handling');
 
 
 /** Launch server **/
