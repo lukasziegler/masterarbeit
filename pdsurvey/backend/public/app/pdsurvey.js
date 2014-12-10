@@ -11,6 +11,10 @@ app.config(function($routeProvider) {
 			templateUrl: "/app/templates/questions/list.html",
 			controller: "QuestionListController"
 		})
+		.when("/questions/new", {
+			templateUrl: "/app/templates/questions/create.html",
+			controller: "QuestionCreateController"
+		})
 		.when("/", {
 			templateUrl: "/app/templates/dashboard/index.html",
 			controller: "HomeController"

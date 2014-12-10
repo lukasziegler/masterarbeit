@@ -1,0 +1,28 @@
+<form class="form-horizontal" ng-submit="createQuestion()">
+
+	<fieldset>
+		<legend>Add Question</legend>
+
+		<div class="control-group">
+			<label for="type" class="control-label">Type</label>
+			<div class="controls">
+				<input type="textinput" name="type" type="text" class="input-xlarge" ng-model="question.type">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label for="textinput" class="control-label">Name</label>
+			<div class="controls">
+				<input type="textinput" name="textinput" type="text" class="input-xlarge" ng-model="question.shortName">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<div class="controls">
+				<input type="submit" class="btn btn-primary" value="Submit"/>
+			</div>
+		</div>
+
+	</fieldset>
+
+</form>
