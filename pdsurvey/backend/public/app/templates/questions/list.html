@@ -36,7 +36,8 @@
                                             <td>{{question.description}}</td>
                                             <td>{{question.explanation}}</td>
                                             <td>{{question.state}}</td>
-                                            <td><a href="#/questions/{{question._id}}/edit" class="btn btn-default">Edit</a></td>
+                                            <td><a href="#/questions/{{question._id}}/edit" class="btn btn-default">Edit</a>
+                                            <a href="" ng-click="deleteQuestion(question)" class="btn btn-danger">Delete</a></td>
                                         </tr>
                                     </tbody>
                                 </table>

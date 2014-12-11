@@ -34,7 +34,7 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   
   // TODO: Only allow PUT, DELETE, OPTIONS for known host for Backend-Login!!
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS, DELETE");
   next();
 });
 
