@@ -29,7 +29,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="question in questions">
+                                        <tr ng-repeat="question in questions | orderBy : 'name'">
                                             <td>{{question.name}}</td>
                                             <td>{{question.type}}</td>
                                             <td>{{question.category}}</td>
@@ -44,7 +44,7 @@
                             </div>
                             <!-- /.table-responsive -->
 
-                            <a href="#/questions/new" class="btn btn-default">Add new question</a>
+                            <a href="#/questions/new" class="btn btn-primary">Add new question</a>
 
                         </div>
                         <!-- /.panel-body -->

@@ -4,11 +4,11 @@ var mongoose = require('mongoose');
  * Schema
  */
 var QuestionSchema = mongoose.Schema({ 
-        type: { type: String /*, required: true*/ },
+        type: { type: String, required: true },
         name: { type: String, required: true },
-        description: String,
+        description: { type: String, required: true },
         explanation: String,
-        category: String,
+        category: { type: String, required: true },
         state: String
 });
 

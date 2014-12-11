@@ -27,13 +27,13 @@ app.config(function($routeProvider) {
 		/* DASHBOARD */
 		.when("/", {
 			templateUrl: "/app/templates/dashboard/overview.html",
-			controller: "HomeController"
+			controller: "DashboardController"
 		})
 		.otherwise({redirectTo: "/"})
 });
 
 
 
-app.controller("HomeController", function($scope, $http) {
-	$scope.message = "Hallo Angular";
+app.controller("DashboardController", function($scope, $http) {
+	$scope.message = "Welcome to PDSurvey";
 });
