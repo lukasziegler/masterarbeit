@@ -24,6 +24,20 @@ app.config(function($routeProvider) {
 			controller: "QuestionEditController"
 		})
 
+		/* QUESTION TYPES */
+		.when("/questionTypes", {
+			templateUrl: "/app/templates/questionTypes/list.html",
+			controller: "QuestionTypeListController"
+		})
+		.when("/questionTypes/new", {
+			templateUrl: "/app/templates/questionTypes/create.html",
+			controller: "QuestionTypeCreateController"
+		})
+		.when("/questionTypes/:id/edit", {
+			templateUrl: "/app/templates/questionTypes/edit.html",
+			controller: "QuestionTypeEditController"
+		})
+
 		/* DASHBOARD */
 		.when("/", {
 			templateUrl: "/app/templates/dashboard/overview.html",
