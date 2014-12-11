@@ -31,10 +31,22 @@ router.route('/questions')
 
 	// POST to create
 	.post(function (req, res, next) {
-		QuestionModel.add(req, function (err, created) {
-			if (err) return console.error(err);
-			res.send(created);
+		var newQuestion = new QuestionModel({
+			type: req.body.type,
+			shortName: req.body.shortName,
+			description: req.body.description,
+			explanation: req.body.explanation,
+			category: req.body.category,
+			status: req.body.status
 		});
+
+	    newQuestion.save(function(err) {
+	        if (err) {
+	        	res.send('Error creating object');
+	            return console.error(err);
+	        }
+    	    return res.send(newQuestion);
+	    });
 	})
 
 

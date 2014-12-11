@@ -12,12 +12,6 @@ var QuestionSchema = mongoose.Schema({
         status: String
 });
 
-/**
- * Model for the Schema
- */
-
-var QuestionModel = mongoose.model('Question', QuestionSchema, 'questions');
-
 /** 
  * Methods
  */
@@ -32,7 +26,7 @@ exports.find = function(query, callback) {
 // 	else {callback(new Error("No questions found"))}
 
 
-exports.add = function(req, callback) {
+exports.create = function(req, callback) {
 	var newQuestion = new QuestionModel({
 		type: req.body.type,
 		shortName: req.body.shortName,
@@ -52,9 +46,6 @@ exports.update = function(req, callback) {
 	// TODO
 };
 
-
-
-
 /**
  * Virtuals
  */
@@ -63,5 +54,10 @@ exports.update = function(req, callback) {
  * Validations
  */
 
+ /**
+ * Model for the Schema
+ */
+
+var QuestionModel = mongoose.model('Question', QuestionSchema, 'questions');
 
 module.exports = QuestionModel;
