@@ -33,11 +33,11 @@ router.route('/questions')
 	.post(function (req, res, next) {
 		var newQuestion = new QuestionModel({
 			type: req.body.type,
-			shortName: req.body.shortName,
+			name: req.body.name,
 			description: req.body.description,
 			explanation: req.body.explanation,
 			category: req.body.category,
-			status: req.body.status
+			state: req.body.state
 		});
 
 	    newQuestion.save(function(err) {
@@ -64,27 +64,29 @@ router.route('/questions/:id')
 	// PUT to update
 	.put(function (req, res, next) {
 
-		QuestionModel.findById( req.params.id, function (err, question) {
+		return QuestionModel.findById( req.params.id, function (err, question) {
 			if (err) {
 				res.send('error updating');
 				return console.error(err);
 			}
 
 			// update object
-			question.type = req.body.type;
-			question.shortName = req.body.shortName;
-			question.explanation = req.body.explanation;
-			question.category = req.body.category;
-			question.status = req.body.status;
+			question.type = req.body.type,
+			question.name = req.body.name,
+			question.description = req.body.description,
+			question.explanation = req.body.explanation,
+			question.category = req.body.category,
+			question.state = req.body.state
 
-			question.save(function(err) {
+			return question.save(function(err) {
 				if (err) {
 					res.send('Error updating, e.g. invalid mapping');
 					return console.error(err);
 				}
-				res.json(question);
+				res.send(question);
 			})
 		});
+
 	})
 
 	// DELETE

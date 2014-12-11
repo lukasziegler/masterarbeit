@@ -5,11 +5,11 @@ var mongoose = require('mongoose');
  */
 var QuestionSchema = mongoose.Schema({ 
         type: { type: String /*, required: true*/ },
-        shortName: { type: String, required: true },
+        name: { type: String, required: true },
         description: String,
         explanation: String,
         category: String,
-        status: String
+        state: String
 });
 
 /** 
@@ -29,11 +29,11 @@ exports.find = function(query, callback) {
 exports.create = function(req, callback) {
 	var newQuestion = new QuestionModel({
 		type: req.body.type,
-		shortName: req.body.shortName,
+		name: req.body.name,
 		description: req.body.description,
 		explanation: req.body.explanation,
 		category: req.body.category,
-		status: req.body.status
+		state: req.body.state
 	});
 	// Save new object to MongoDB
 	newQuestion.save(function (err, created) {
