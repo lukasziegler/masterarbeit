@@ -57,7 +57,7 @@ router.route('/questions/:id')
 	// GET single element
 	.get(function (req, res, next) {
 		QuestionModel.findOne({ '_id': req.params.id }, function (err, question) {
-			if (err) return console.error(err);
+			if (err || !question) return console.error(err);
 			res.send(question);
 		});
 	})
@@ -146,7 +146,7 @@ router.route('/questionTypes/:id')
 	// GET single element
 	.get(function (req, res, next) {
 		QuestionTypeModel.findOne({ '_id': req.params.id }, function (err, questionType) {
-			if (err) return console.error(err);
+			if (err || !questionType) return console.error(err);
 			res.send(questionType);
 		});
 	})

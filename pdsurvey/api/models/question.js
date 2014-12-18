@@ -1,16 +1,5 @@
 var mongoose = require('mongoose');
-
-/**
- * Schema
- */
-var QuestionSchema = mongoose.Schema({ 
-        type: { type: String, required: true },
-        name: { type: String, required: true },
-        description: { type: String, required: true },
-        explanation: String,
-        category: { type: String, required: true },
-        state: String
-});
+var Schema = require("./schema");
 
 /** 
  * Methods
@@ -58,6 +47,6 @@ exports.update = function(req, callback) {
  * Model for the Schema
  */
 
-var QuestionModel = mongoose.model('Question', QuestionSchema, 'questions');
+var QuestionModel = mongoose.model('Question', Schema.Question, 'questions');
 
 module.exports = QuestionModel;

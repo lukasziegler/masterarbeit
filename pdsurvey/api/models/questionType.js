@@ -1,14 +1,5 @@
 var mongoose = require('mongoose');
-
-/**
- * Schema
- */
-var QuestionTypeSchema = mongoose.Schema({ 
-        name: { type: String, required: true },
-        description: { type: String, required: true },
-        parameters: String,
-        constraints: String
-});
+var Schema = require("./schema");
 
 /** 
  * Methods
@@ -39,6 +30,6 @@ exports.create = function(req, callback) {
  * Model for the Schema
  */
 
-var QuestionTypeModel = mongoose.model('QuestionType', QuestionTypeSchema, 'questionTypes');
+var QuestionTypeModel = mongoose.model('QuestionType', Schema.QuestionType, 'questionTypes');
 
 module.exports = QuestionTypeModel;
