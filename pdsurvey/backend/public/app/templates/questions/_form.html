@@ -25,10 +25,8 @@
 	<div class="col-lg-3">
 		<div class="form-group">
 			<label>Question Type</label>
-			<select class="form-control" ng-model="question.type" required>
-				<option>Type A</option>
-				<option>Type B</option>
-				<option>Type C</option>
+			<select class="form-control" ng-model="question.type" name="type" required>
+				<option ng-repeat="questionType in questionTypes" value="{{questionType._id}}">{{questionType.name}}</option>
 			</select>
 		</div>
 	</div><!-- /.col-lg-3 -->
