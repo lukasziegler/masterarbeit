@@ -30,6 +30,4 @@ exports.create = function(req, callback) {
  * Model for the Schema
  */
 
-var QuestionTypeModel = mongoose.model('QuestionType', Schema.QuestionType, 'questionTypes');
-
-module.exports = QuestionTypeModel;
+module.exports = mongoose.model('QuestionType', Schema.QuestionType, 'questionTypes');

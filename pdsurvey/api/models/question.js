@@ -47,6 +47,4 @@ exports.update = function(req, callback) {
  * Model for the Schema
  */
 
-var QuestionModel = mongoose.model('Question', Schema.Question, 'questions');
-
-module.exports = QuestionModel;
+module.exports = mongoose.model('Question', Schema.Question, 'questions');

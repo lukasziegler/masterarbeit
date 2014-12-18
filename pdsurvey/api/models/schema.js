@@ -1,23 +1,20 @@
 var mongoose = require('mongoose');
 
-var QuestionTypeSchema = mongoose.Schema({ 
+exports.QuestionType = mongoose.Schema({ 
         name: { type: String, required: true },
         description: { type: String, required: true },
         parameters: String,
         constraints: String
 });
 
-var QuestionSchema = mongoose.Schema({ 
-        type: { type: String },
+exports.Question = mongoose.Schema({ 
+        type: { 
+                type: mongoose.Schema.Types.ObjectId, 
+                ref: 'QuestionType'
+        },
         name: { type: String, required: true },
         description: { type: String, required: true },
         explanation: String,
         category: { type: String, required: true },
         state: { type: String, enum: ['A', 'B', 'C'] }
 });
-
-
-module.exports = {
-  Question: QuestionSchema,
-  QuestionType: QuestionTypeSchema
-}

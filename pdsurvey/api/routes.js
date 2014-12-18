@@ -4,8 +4,8 @@
 
 // Embed Models 
 
-var QuestionModel = require('./models/question');
 var QuestionTypeModel = require('./models/questionType');
+var QuestionModel = require('./models/question');
 var UserModel = require('./models/user');
 
 
@@ -24,7 +24,9 @@ router.route('/questions')
 
 	// GET 
 	.get(function (req, res, next) {
-		QuestionModel.find({}, function (err, questions) {
+		QuestionModel.find({})
+		.populate('type', 'name')
+		.exec(function (err, questions) {
 			if (err) return console.error(err);
 			res.send(questions);
 		});
@@ -56,7 +58,9 @@ router.route('/questions/:id')
 
 	// GET single element
 	.get(function (req, res, next) {
-		QuestionModel.findOne({ '_id': req.params.id }, function (err, question) {
+		QuestionModel.findOne({ '_id': req.params.id })
+		.populate('type')
+		.exec(function (err, question) {
 			if (err || !question) return console.error(err);
 			res.send(question);
 		});
@@ -145,7 +149,8 @@ router.route('/questionTypes/:id')
 
 	// GET single element
 	.get(function (req, res, next) {
-		QuestionTypeModel.findOne({ '_id': req.params.id }, function (err, questionType) {
+		QuestionTypeModel.findOne({ '_id': req.params.id })
+		.exec(function (err, questionType) {
 			if (err || !questionType) return console.error(err);
 			res.send(questionType);
 		});
