@@ -56,6 +56,15 @@ var DisplaySchema = mongoose.Schema({
 exports.DisplayModel = mongoose.model('Display', DisplaySchema, 'displays');
 
 
+/* CONTEXT */
+var ContextSchema = mongoose.Schema({ 
+    type: { type: String, required: true, enum: ['static', 'dynamic'] },
+    context: { type: String, required: true }
+});
+
+exports.ContextModel = mongoose.model('Context', ContextSchema, 'contexts');
+
+
 
 /* USER */
 exports.User = mongoose.Schema({ 

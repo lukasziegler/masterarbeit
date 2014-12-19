@@ -66,7 +66,8 @@ app.config(function($routeProvider) {
 			controller: "SurveyEditController"
 		})
 
-		/* DASHBOARD */
+
+		/* DISPLAYS */
 		.when("/displays", {
 			templateUrl: "/app/templates/displays/list.html",
 			controller: "DisplayListController"
@@ -78,6 +79,20 @@ app.config(function($routeProvider) {
 		.when("/displays/:id/edit", {
 			templateUrl: "/app/templates/displays/edit.html",
 			controller: "DisplayEditController"
+		})
+
+		/* CONTEXTS */
+		.when("/contexts", {
+			templateUrl: "/app/templates/contexts/list.html",
+			controller: "ContextListController"
+		})
+		.when("/contexts/new", {
+			templateUrl: "/app/templates/contexts/create.html",
+			controller: "ContextCreateController"
+		})
+		.when("/contexts/:id/edit", {
+			templateUrl: "/app/templates/contexts/edit.html",
+			controller: "ContextEditController"
 		})
 
 
