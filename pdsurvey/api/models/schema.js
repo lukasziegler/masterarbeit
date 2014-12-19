@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
+
 /* QUESTION TYPE */
 exports.QuestionType = mongoose.Schema({ 
     name: { type: String, required: true },
@@ -8,6 +9,7 @@ exports.QuestionType = mongoose.Schema({
     parameters: String,
     constraints: String
 });
+
 
 /* QUESTION */
 exports.Question = mongoose.Schema({ 
@@ -19,6 +21,7 @@ exports.Question = mongoose.Schema({
     state: { type: String, enum: ['A', 'B', 'C', 'pending', 'public'] }
 });
 
+
 /* CATEGORY */
 exports.Category = mongoose.Schema({ 
     name: { type: String, required: true },
@@ -26,6 +29,7 @@ exports.Category = mongoose.Schema({
 });
     // testing, to see if I can define and export my Models in here
 exports.CategoryModel = mongoose.model('Category', exports.Category, 'categories');
+
 
 /* SURVEY */
 exports.Survey = mongoose.Schema({ 
@@ -38,6 +42,18 @@ exports.Survey = mongoose.Schema({
 });
     // testing, to see if I can define and export my Models in here
 exports.SurveyModel = mongoose.model('Survey', exports.Survey, 'surveys');
+
+
+/* DISPLAYS */
+var DisplaySchema = mongoose.Schema({ 
+    name: { type: String, required: true },
+    producer: String,
+    url: String,
+    characteristics: String,
+    contextStatic: [String]
+});
+
+exports.DisplayModel = mongoose.model('Display', DisplaySchema, 'displays');
 
 
 

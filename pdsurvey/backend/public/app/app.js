@@ -71,6 +71,14 @@ app.config(function($routeProvider) {
 			templateUrl: "/app/templates/displays/list.html",
 			controller: "DisplayListController"
 		})
+		.when("/displays/new", {
+			templateUrl: "/app/templates/displays/create.html",
+			controller: "DisplayCreateController"
+		})
+		.when("/displays/:id/edit", {
+			templateUrl: "/app/templates/displays/edit.html",
+			controller: "DisplayEditController"
+		})
 
 
 
