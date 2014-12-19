@@ -3,7 +3,9 @@ var app = angular.module("pdsurvey");
 
 /** LIST **/
 
-app.controller("SurveyListController", function($scope, $http) {
+app.controller("SurveyListController", function($scope, $http, $location) {
+	$scope.survey  = {};
+
 	
 	$http.get("http://localhost:3000/api/surveys").success(function(response) {
 		$scope.surveys = response;
@@ -18,6 +20,13 @@ app.controller("SurveyListController", function($scope, $http) {
 				$scope.surveys.splice(index, 1);     
 			});
 	};
+
+	$scope.createSurvey = function() {
+		$http.post("http://localhost:3000/api/surveys", $scope.survey)
+			.success(function(response) {
+				$location.url("/surveys/#");
+			});
+	}
 
 });
 

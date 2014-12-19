@@ -67,6 +67,14 @@ app.config(function($routeProvider) {
 		})
 
 		/* DASHBOARD */
+		.when("/displays", {
+			templateUrl: "/app/templates/displays/list.html",
+			controller: "DisplayListController"
+		})
+
+
+
+		/* DASHBOARD */
 		.when("/", {
 			templateUrl: "/app/templates/dashboard/overview.html",
 			controller: "DashboardController"

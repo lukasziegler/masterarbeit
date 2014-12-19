@@ -42,7 +42,36 @@
                             </div>
                             <!-- /.table-responsive -->
 
-                            <a href="#/surveys/new" class="btn btn-primary">Add new Survey</a>
+                        </div>
+                        <!-- /.panel-body -->
+
+                    </div>
+                    <!-- /.panel -->
+
+                </div>
+            </div>
+
+
+
+
+
+            <div class="row">
+                <div class="col-lg-12" >
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Add new Survey
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+
+                            <form class="form-horizontal" ng-submit="createSurvey()" role="form">
+                              <fieldset>
+
+                                  <div ng-include="'/app/templates/surveys/_form.html'"></div>
+
+                                </fieldset>
+                            </form>
 
                         </div>
                         <!-- /.panel-body -->

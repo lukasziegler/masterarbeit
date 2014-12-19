@@ -46,3 +46,32 @@
 
                 </div>
             </div>
+
+
+
+            <div class="row">
+                <div class="col-lg-12" >
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Add new Category
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+
+                            <form class="form-horizontal" ng-submit="createCategory()" role="form">
+                              <fieldset>
+
+                                  <div ng-include="'/app/templates/categories/_form.html'"></div>
+
+                                </fieldset>
+                            </form>
+
+                        </div>
+                        <!-- /.panel-body -->
+
+                    </div>
+                    <!-- /.panel -->
+
+                </div>
+            </div>

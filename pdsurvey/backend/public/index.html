@@ -222,23 +222,59 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="#/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="#/"><i class="fa fa-paper-plane-o fa-fw"></i> Dashboard</a>
                         </li>
+
                         <li>
-                            <a href="#/surveys"><i class="fa fa-file-text-o fa-fw"></i> Surveys</a>
+                            <a href="#/displays"><i class="fa fa-desktop fa-fw"></i> Displays</a>
                         </li>
+
+                        <!-- MODEL -->
                         <li>
-                            <a href="#/categories"><i class="fa fa-file-text-o fa-fw"></i> Categories</a>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Model<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#/responses"><i class="fa fa-file-text fa-fw"></i> Responses</a>
+                                </li>
+                                <li>
+                                    <a href="#/campaigns"><i class="fa fa-files-o fa-fw"></i> Campaigns</a>
+                                </li>
+                                <li>
+                                    <a href="#/surveys"><i class="fa fa-file-text-o fa-fw"></i> Surveys</a>
+                                </li>
+                                <li>
+                                    <a href="#/categories"><i class="fa fa-file-o fa-fw"></i> Categories</a>
+                                </li>
+                                <li>
+                                    <a href="#/questions"><i class="fa fa-list fa-fw"></i> Questions</a>
+                                </li>
+                                <li>
+                                    <a href="#/questionTypes"><i class="fa fa-tasks fa-fw"></i> Question Types</a>
+                                </li>
+                                <li>
+                                    <a href="#/users"><i class="fa fa-users fa-fw"></i> Users</a>
+                                </li>
+                            </ul>
                         </li>
+
+                        <!-- NOT IMPLEMENTED YET -->
                         <li>
-                            <a href="#/questions"><i class="fa fa-file-text-o fa-fw"></i> Questions</a>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Not Yet Implemented<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#"><i class="fa fa-comments fa-fw"></i> Comments</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-area-chart fa-fw"></i> Statistics</a>
+                                </li>
+                            </ul>
                         </li>
+
                         <li>
-                            <a href="#/questionTypes"><i class="fa fa-tasks fa-fw"></i> Question Types</a>
+                            <a href="#"><i class="fa fa-cog fa-fw"></i> Settings</a>
                         </li>
-                        <li>
-                            <a href="#/users"><i class="fa fa-users fa-fw"></i> Users</a>
-                        </li>
+
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -276,6 +312,8 @@
         <script src="app/controllers/CategoryController.js"></script>
 
         <script src="app/controllers/SurveyController.js"></script>
+
+        <script src="app/controllers/DisplayController.js"></script>
 
         <!-- Metis Menu Plugin JavaScript -->
         <script src="lib/metisMenu/dist/metisMenu.min.js"></script>

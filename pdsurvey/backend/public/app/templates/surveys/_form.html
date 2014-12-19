@@ -3,16 +3,20 @@
 	<div class="col-lg-12">
 
 		<div class="form-group">
-			<label>Survey Name</label>
-			<input class="form-control" placeholder="Survey Name" ng-model="survey.name" required>
+			<label class="col-sm-2 control-label">Survey Name</label>
+			<div class="col-sm-10">
+				<input class="form-control" placeholder="Survey Name" ng-model="survey.name" required>
+			</div>
 		</div>
 
 	</div>
 
 	<div class="col-lg-12">
 		<div class="form-group">
-			<label>Description</label>
-			<input class="form-control" placeholder="Enter a short description" ng-model="survey.description">
+			<label class="col-sm-2 control-label">Description</label>
+			<div class="col-sm-10">
+				<input class="form-control" placeholder="Enter a short description" ng-model="survey.description">
+			</div>
 		</div>
 	</div><!-- /.col-lg-12 -->
 
@@ -22,4 +26,3 @@
 	<a href="#/surveys" class="btn btn-default">Cancel</a>
 
 </div>
-
