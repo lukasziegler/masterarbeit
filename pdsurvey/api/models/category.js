@@ -17,12 +17,8 @@ exports.find = function(query, callback) {
 
 exports.create = function(req, callback) {
 	var newQuestion = new QuestionModel({
-		type: req.body.type,
 		name: req.body.name,
-		description: req.body.description,
-		explanation: req.body.explanation,
-		category: req.body.category,
-		state: req.body.state
+		description: req.body.description
 	});
 	// Save new object to MongoDB
 	newQuestion.save(function (err, created) {
@@ -32,10 +28,6 @@ exports.create = function(req, callback) {
 };
 
 exports.update = function(req, callback) {
-	// TODO
-};
-
-exports.delete = function(req, callback) {
 	// TODO
 };
 
@@ -51,4 +43,3 @@ exports.delete = function(req, callback) {
  * Model for Schema
  */
 
-module.exports = mongoose.model('Question', Schema.Question, 'questions');

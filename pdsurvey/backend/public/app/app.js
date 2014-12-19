@@ -38,6 +38,34 @@ app.config(function($routeProvider) {
 			controller: "QuestionTypeEditController"
 		})
 
+		/* CATEGORIES */
+		.when("/categories", {
+			templateUrl: "/app/templates/categories/list.html",
+			controller: "CategoryListController"
+		})
+		.when("/categories/new", {
+			templateUrl: "/app/templates/categories/create.html",
+			controller: "CategoryCreateController"
+		})
+		.when("/categories/:id/edit", {
+			templateUrl: "/app/templates/categories/edit.html",
+			controller: "CategoryEditController"
+		})
+
+		/* SURVEYS */
+		.when("/surveys", {
+			templateUrl: "/app/templates/surveys/list.html",
+			controller: "SurveyListController"
+		})
+		.when("/surveys/new", {
+			templateUrl: "/app/templates/surveys/create.html",
+			controller: "SurveyCreateController"
+		})
+		.when("/surveys/:id/edit", {
+			templateUrl: "/app/templates/surveys/edit.html",
+			controller: "SurveyEditController"
+		})
+
 		/* DASHBOARD */
 		.when("/", {
 			templateUrl: "/app/templates/dashboard/overview.html",
