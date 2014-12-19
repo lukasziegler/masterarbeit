@@ -1,33 +1,5 @@
 var mongoose = require('mongoose');
-
-/**
- * Schema
- */
-var UserSchema = mongoose.Schema({ 
-        username: { type: String, required: true },
-        fullname: { type: String, required: true },
-        email: { type: String, required: true },
-        rights: String,
-        dateRegistered: { type: Date, default: Date.now },
-        hashed_password: String,
-        salt: String,
-        authToken: String
-});
-
-/**
- * Model for the Schema
- */
-var UserModel = mongoose.model('User', UserSchema, 'users');
-
-/**
- * Virtuals
- */
-
-
-/**
- * Validations
- */
-
+var Schema = require("./schema");
 
 /**
  * Methods
@@ -53,4 +25,9 @@ exports.add = function(req, callback) {
 	});
 };
 
-exports = UserModel;
+
+/**
+ * Model for Schema
+ */
+
+module.exports = mongoose.model('User', Schema.User, 'users');

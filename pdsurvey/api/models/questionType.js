@@ -26,8 +26,8 @@ exports.create = function(req, callback) {
 	});
 };
 
- /**
- * Model for the Schema
+/**
+ * Model for Schema
  */
-
+ 
 module.exports = mongoose.model('QuestionType', Schema.QuestionType, 'questionTypes');

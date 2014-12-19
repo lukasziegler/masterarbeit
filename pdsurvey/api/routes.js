@@ -1,8 +1,8 @@
 // "use strict";
-	// TODO: Linter verwenden
+// TODO: Linter verwenden
 
 
-// Embed Models 
+// Embed Models (! watch for correct order !)
 
 var QuestionTypeModel = require('./models/questionType');
 var QuestionModel = require('./models/question');
