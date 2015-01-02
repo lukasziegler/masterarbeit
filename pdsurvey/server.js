@@ -11,7 +11,7 @@ app = express();
 
 
 // Database connection
-require('./api/db');
+require('./server/db');
 
 // Configure app to use bodyParser() - for POST
 app.use(bodyParser.urlencoded({
@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // Configure View Engine
-app.set('views', __dirname + '/api/views');
+app.set('views', __dirname + '/server/views');
 app.set('view engine', 'jade');
 
 // Configure Logging
@@ -41,11 +41,11 @@ app.use(function (req, res, next) {
 
 // Register our routes
 router = express.Router();
-require('./api/routes');
+require('./server/routes');
 app.use('/api', router); // registering
 
 // Bootstrap Error Handling
-require('./api/error-handling');
+require('./server/error-handling');
 
 
 /** Launch server **/
