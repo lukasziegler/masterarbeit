@@ -9,6 +9,14 @@ app.config(function($routeProvider) {
 			templateUrl: "/app/templates/users/list.html",
 			controller: "UserListController"
 		})
+		.when("/users/new", {
+			templateUrl: "/app/templates/users/create.html",
+			controller: "UserCreateController"
+		})
+		.when("/users/:id/edit", {
+			templateUrl: "/app/templates/users/edit.html",
+			controller: "UserEditController"
+		})
 
 		/* QUESTIONS */
 		.when("/questions", {

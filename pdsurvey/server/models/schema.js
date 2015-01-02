@@ -27,7 +27,6 @@ exports.Category = mongoose.Schema({
     name: { type: String, required: true },
     description: { type: String }
 });
-    // testing, to see if I can define and export my Models in here
 exports.CategoryModel = mongoose.model('Category', exports.Category, 'categories');
 
 
@@ -40,7 +39,6 @@ exports.Survey = mongoose.Schema({
     dateCreated: { type: Date, default: Date.now },
     lastChange: { type: Date, default: Date.now }
 });
-    // testing, to see if I can define and export my Models in here
 exports.SurveyModel = mongoose.model('Survey', exports.Survey, 'surveys');
 
 
@@ -52,8 +50,23 @@ var DisplaySchema = mongoose.Schema({
     characteristics: String,
     contextStatic: [String]
 });
-
 exports.DisplayModel = mongoose.model('Display', DisplaySchema, 'displays');
+
+
+/* CAMPAIGNS */
+exports.Campaign = mongoose.Schema({ 
+    name: { type: String, required: true },
+    description: String,
+    startDate: { type: Date, default: Date.now },
+    endDate: { type: Date, default: Date.now },
+    display: { type: ObjectId, ref: 'Display' },
+    survey: { type: ObjectId, ref: 'Survey' },
+    contextDynamic: [String],
+    minReponses: Number,
+    createdBy: { type: ObjectId, ref: 'User' },
+    dateCreated: { type: Date, default: Date.now }
+});
+exports.CampaignModel = mongoose.model('Campaign', exports.Campaign, 'campaigns');
 
 
 /* CONTEXT */
@@ -61,13 +74,11 @@ var ContextSchema = mongoose.Schema({
     type: { type: String, required: true, enum: ['static', 'dynamic'] },
     context: { type: String, required: true }
 });
-
 exports.ContextModel = mongoose.model('Context', ContextSchema, 'contexts');
 
 
-
 /* USER */
-exports.User = mongoose.Schema({ 
+var UserSchema = mongoose.Schema({ 
     username: { type: String, required: true },
     fullname: { type: String, required: true },
     email: { type: String, required: true },
@@ -77,3 +88,5 @@ exports.User = mongoose.Schema({
     salt: String,
     authToken: String
 });
+exports.UserModel = mongoose.model('User', UserSchema, 'users');
+

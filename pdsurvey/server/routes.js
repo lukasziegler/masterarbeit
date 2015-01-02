@@ -6,11 +6,12 @@
 var Schema = require('./models/schema');
 var QuestionTypeModel = require('./models/questionType');
 var QuestionModel = require('./models/question');
-var CategoryModel = Schema.CategoryModel;
-var SurveyModel = Schema.SurveyModel;
+var Category = Schema.CategoryModel;
+var Survey = Schema.SurveyModel;
 var Display = Schema.DisplayModel;
+var Campaign = Schema.CampaignModel;
 var Context = Schema.ContextModel;
-var UserModel = require('./models/user');
+var User = Schema.UserModel;
 
 
 // Define Routes
@@ -149,7 +150,6 @@ router.route('/questionTypes')
 	})
 
 
-
 router.route('/questionTypes/:id')
 
 	// GET single element
@@ -212,7 +212,7 @@ router.route('/categories')
 
 	// GET 
 	.get(function (req, res, next) {
-		CategoryModel.find({}, function (err, categories) {
+		Category.find({}, function (err, categories) {
 			if (err) return console.error(err);
 			res.send(categories);
 		});
@@ -220,7 +220,7 @@ router.route('/categories')
 
 	// POST to create
 	.post(function (req, res, next) {
-		var newCategory = new CategoryModel({
+		var newCategory = new Category({
 			name: req.body.name,
 			description: req.body.description
 		});
@@ -235,12 +235,11 @@ router.route('/categories')
 	})
 
 
-
 router.route('/categories/:id')
 
 	// GET single element
 	.get(function (req, res, next) {
-		CategoryModel.findOne({ '_id': req.params.id })
+		Category.findOne({ '_id': req.params.id })
 		.exec(function (err, category) {
 			if (err || !category) return console.error(err);
 			res.send(category);
@@ -250,7 +249,7 @@ router.route('/categories/:id')
 	// PUT to update
 	.put(function (req, res, next) {
 
-		return CategoryModel.findById( req.params.id, function (err, category) {
+		return Category.findById( req.params.id, function (err, category) {
 			if (err) {
 				res.send('error updating');
 				return console.error(err);
@@ -274,13 +273,12 @@ router.route('/categories/:id')
 	// DELETE
 	.delete(function (req, res, next) {
 	  // TODO implement authentication / validation
-		CategoryModel.remove({ _id: req.params.id }, function(err, category) {
+		Category.remove({ _id: req.params.id }, function(err, category) {
 			if (err) return console.error(err);
 			
 			res.send({ message: 'Successfully deleted' });
 		});
 	})
-
 
 
 
@@ -297,7 +295,7 @@ router.route('/surveys')
 
 	// GET 
 	.get(function (req, res, next) {
-		SurveyModel.find({}, function (err, surveys) {
+		Survey.find({}, function (err, surveys) {
 			if (err) return console.error(err);
 			res.send(surveys);
 		});
@@ -305,7 +303,7 @@ router.route('/surveys')
 
 	// POST to create
 	.post(function (req, res, next) {
-		var newSurvey = new SurveyModel({
+		var newSurvey = new Survey({
 			name: req.body.name,
 			maxQuestions: req.body.maxQuestions,
 			createdBy: req.body.createdBy,
@@ -326,7 +324,7 @@ router.route('/surveys/:id')
 
 	// GET single element
 	.get(function (req, res, next) {
-		SurveyModel.findOne({ '_id': req.params.id })
+		Survey.findOne({ '_id': req.params.id })
 		.exec(function (err, survey) {
 			if (err || !survey) return console.error(err);
 			res.send(survey);
@@ -336,7 +334,7 @@ router.route('/surveys/:id')
 	// PUT to update
 	.put(function (req, res, next) {
 
-		return SurveyModel.findById( req.params.id, function (err, survey) {
+		return Survey.findById( req.params.id, function (err, survey) {
 			if (err) {
 				res.send('error updating');
 				return console.error(err);
@@ -361,7 +359,7 @@ router.route('/surveys/:id')
 	// DELETE
 	.delete(function (req, res, next) {
 	  // TODO implement authentication / validation
-		SurveyModel.remove({ _id: req.params.id }, function(err, survey) {
+		Survey.remove({ _id: req.params.id }, function(err, survey) {
 			if (err) return console.error(err);
 			
 			res.send({ message: 'Successfully deleted' });
@@ -461,6 +459,99 @@ router.route('/displays/:id')
 
 
 /** 
+ * CAMPAIGNS
+ */ 
+
+router.route('/campaigns')
+
+	// GET 
+	.get(function (req, res, next) {
+		Campaign.find({}, function (err, campaigns) {
+			if (err) return console.error(err);
+			res.send(campaigns);
+		});
+	})
+
+	// POST to create
+	.post(function (req, res, next) {
+		var newCampaign = new Campaign({
+			name: req.body.name,
+			description: req.body.description,
+			display: req.body.display,
+			survey: req.body.survey,
+			contextDynamic: req.body.contextDynamic,
+			minResponses: req.body.minResponses,
+			createdBy: req.body.createdBy,
+			dateCreated: new Date().toISOString()
+		});
+
+	    newCampaign.save(function(err) {
+	        if (err) {
+	        	res.send('Error creating object');
+	            return console.error(err);
+	        }
+    	    return res.send(newCampaign);
+	    });
+	})
+
+
+router.route('/campaigns/:id')
+
+	// GET single element
+	.get(function (req, res, next) {
+		Campaign.findOne({ '_id': req.params.id })
+		.exec(function (err, campaign) {
+			if (err || !campaign) return console.error(err);
+			res.send(campaign);
+		});
+	})
+
+	// PUT to update
+	.put(function (req, res, next) {
+
+		return Campaign.findById( req.params.id, function (err, campaign) {
+			if (err) {
+				res.send('error updating');
+				return console.error(err);
+			}
+
+			// update object
+			campaign.name = req.body.name,
+			campaign.description = req.body.description,
+			campaign.startDate = new Date().toISOString(),
+			campaign.endDate = new Date().toISOString(),
+			campaign.display = req.body.display,
+			campaign.survey = req.body.survey,
+			campaign.contextDynamic = req.body.contextDynamic,
+			campaign.minResponses = req.body.minResponses
+
+			return campaign.save(function(err) {
+				if (err) {
+					res.send('Error updating, e.g. invalid mapping');
+					return console.error(err);
+				}
+				res.send(campaign);
+			})
+		});
+
+	})
+
+	// DELETE
+	.delete(function (req, res, next) {
+	  // TODO implement authentication / validation
+		Campaign.remove({ _id: req.params.id }, function(err, campaign) {
+			if (err) return console.error(err);
+			
+			res.send({ message: 'Successfully deleted' });
+		});
+	})
+
+
+
+
+
+
+/** 
  * CONTEXTS
  */ 
 
@@ -548,11 +639,11 @@ router.route('/contexts/:id')
  * USERS
  */ 
 
- router.route('/users')
+router.route('/users')
 
-	// GET
-	.get(function (req, res, next){
-		UserModel.find({}, function (err, users) {
+	// GET 
+	.get(function (req, res, next) {
+		User.find({}, function (err, users) {
 			if (err) return console.error(err);
 			res.send(users);
 		});
@@ -560,24 +651,77 @@ router.route('/contexts/:id')
 
 	// POST to create
 	.post(function (req, res, next) {
-		UserModel.add(req, function (err, users) {
-			if (err) return console.error(err);
-			res.send(users);
+		var newUser = new User({
+			username: req.body.username,
+			fullname: req.body.fullname,
+			email: req.body.email
 		});
+
+	    newUser.save(function(err) {
+	        if (err) {
+	        	res.send('Error creating object');
+	            return console.error(err);
+	        }
+    	    return res.send(newUser);
+	    });
 	})
 
 
 router.route('/users/:id')
 
-	.delete(function (req, res, next) {
-		next(new Error('not implemented'));
-	});
+	// GET single element
+	.get(function (req, res, next) {
+		User.findOne({ '_id': req.params.id })
+		.exec(function (err, user) {
+			if (err || !user) return console.error(err);
+			res.send(user);
+		});
+	})
 
-	/* Custom Error Handling */
-	// 	if(err) next(new MyError("Bluberror", 401)
-	// 	else res.send(result)
-	// TODO: Think about creating my own type of errors
-	// e.g. look at GitHub > Mongoose/libs/error.js
+	// PUT to update
+	.put(function (req, res, next) {
+
+		return User.findById( req.params.id, function (err, user) {
+			if (err) {
+				res.send('error updating');
+				return console.error(err);
+			}
+
+			// update object
+			user.username = req.body.username,
+			user.fullname = req.body.fullname,
+			user.email = req.body.email
+
+			return user.save(function(err) {
+				if (err) {
+					res.send('Error updating, e.g. invalid mapping');
+					return console.error(err);
+				}
+				res.send(user);
+			})
+		});
+
+	})
+
+	// DELETE
+	.delete(function (req, res, next) {
+	  // TODO implement authentication / validation
+		User.remove({ _id: req.params.id }, function(err, user) {
+			if (err) return console.error(err);
+			
+			res.send({ message: 'Successfully deleted' });
+		});
+	})
+
+
+
+
+
+/* Custom Error Handling */
+// 	if(err) next(new MyError("Bluberror", 401)
+// 	else res.send(result)
+// TODO: Think about creating my own type of errors
+// e.g. look at GitHub > Mongoose/libs/error.js
 
 
 // sample GET request
