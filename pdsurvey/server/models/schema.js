@@ -3,16 +3,17 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 
 /* QUESTION TYPE */
-exports.QuestionType = mongoose.Schema({ 
+var QuestionTypeSchema = mongoose.Schema({ 
     name: { type: String, required: true },
     description: { type: String, required: true },
     parameters: String,
     constraints: String
 });
+exports.QuestionTypeModel = mongoose.model('QuestionType', QuestionTypeSchema, 'questionTypes');
 
 
 /* QUESTION */
-exports.Question = mongoose.Schema({ 
+var QuestionSchema = mongoose.Schema({ 
     type: { type: ObjectId, ref: 'QuestionType' },
     name: { type: String, required: true },
     description: { type: String, required: true },
@@ -20,18 +21,19 @@ exports.Question = mongoose.Schema({
     category: { type: String, required: true },
     state: { type: String, enum: ['A', 'B', 'C', 'pending', 'public'] }
 });
+exports.QuestionModel = mongoose.model('Question', QuestionSchema, 'questions');
 
 
 /* CATEGORY */
-exports.Category = mongoose.Schema({ 
+var CategorySchema = mongoose.Schema({ 
     name: { type: String, required: true },
     description: { type: String }
 });
-exports.CategoryModel = mongoose.model('Category', exports.Category, 'categories');
+exports.CategoryModel = mongoose.model('Category', CategorySchema, 'categories');
 
 
 /* SURVEY */
-exports.Survey = mongoose.Schema({ 
+var SurveySchema = mongoose.Schema({ 
     name: { type: String, required: true },
     // questions: [Question],
     maxQuestions: Number,
@@ -39,7 +41,7 @@ exports.Survey = mongoose.Schema({
     dateCreated: { type: Date, default: Date.now },
     lastChange: { type: Date, default: Date.now }
 });
-exports.SurveyModel = mongoose.model('Survey', exports.Survey, 'surveys');
+exports.SurveyModel = mongoose.model('Survey', SurveySchema, 'surveys');
 
 
 /* DISPLAYS */
@@ -54,7 +56,7 @@ exports.DisplayModel = mongoose.model('Display', DisplaySchema, 'displays');
 
 
 /* CAMPAIGNS */
-exports.Campaign = mongoose.Schema({ 
+var CampaignSchema = mongoose.Schema({ 
     name: { type: String, required: true },
     description: String,
     startDate: { type: Date, default: Date.now },
@@ -66,7 +68,7 @@ exports.Campaign = mongoose.Schema({
     createdBy: { type: ObjectId, ref: 'User' },
     dateCreated: { type: Date, default: Date.now }
 });
-exports.CampaignModel = mongoose.model('Campaign', exports.Campaign, 'campaigns');
+exports.CampaignModel = mongoose.model('Campaign', CampaignSchema, 'campaigns');
 
 
 /* CONTEXT */

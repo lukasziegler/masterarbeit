@@ -2,7 +2,9 @@ var mongoose = require('mongoose');
 var Schema = require("./schema");
 
 /** 
- * Methods
+ * NOTE: THIS FILE IS CURRENTLY NOT BEING USED ANYWHERE
+ * 
+ * > reason to see alternative approach
  */
 
 exports.find = function(query, callback) {
@@ -11,9 +13,6 @@ exports.find = function(query, callback) {
 		callback(null, questions);
 	});
 }
-// if(questions.length > 0) callback(null, questions)
-// 	else {callback(new Error("No questions found"))}
-
 
 exports.create = function(req, callback) {
 	var newQuestion = new QuestionModel({
@@ -39,16 +38,3 @@ exports.delete = function(req, callback) {
 	// TODO
 };
 
-/**
- * Virtuals
- */
-
-/**
- * Validations
- */
-
- /**
- * Model for Schema
- */
-
-module.exports = mongoose.model('Question', Schema.Question, 'questions');

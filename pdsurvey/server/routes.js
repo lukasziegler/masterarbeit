@@ -4,14 +4,14 @@
 
 // Embed Models (! watch for correct order !)
 var Schema = require('./models/schema');
-var QuestionTypeModel = require('./models/questionType');
-var QuestionModel = require('./models/question');
-var Category = Schema.CategoryModel;
-var Survey = Schema.SurveyModel;
-var Display = Schema.DisplayModel;
-var Campaign = Schema.CampaignModel;
-var Context = Schema.ContextModel;
-var User = Schema.UserModel;
+	QuestionType = Schema.QuestionTypeModel,
+	Question = Schema.QuestionModel,
+	Category = Schema.CategoryModel,
+	Survey = Schema.SurveyModel,
+	Display = Schema.DisplayModel,
+	Campaign = Schema.CampaignModel,
+	Context = Schema.ContextModel,
+	User = Schema.UserModel;
 
 
 // Define Routes
@@ -29,7 +29,7 @@ router.route('/questions')
 
 	// GET 
 	.get(function (req, res, next) {
-		QuestionModel.find({})
+		Question.find({})
 		.populate('type', 'name')
 		.exec(function (err, questions) {
 			if (err) return console.error(err);
@@ -39,7 +39,7 @@ router.route('/questions')
 
 	// POST to create
 	.post(function (req, res, next) {
-		var newQuestion = new QuestionModel({
+		var newQuestion = new Question({
 			type: req.body.type,
 			name: req.body.name,
 			description: req.body.description,
@@ -63,7 +63,7 @@ router.route('/questions/:id')
 
 	// GET single element
 	.get(function (req, res, next) {
-		QuestionModel.findOne({ '_id': req.params.id })
+		Question.findOne({ '_id': req.params.id })
 		.populate('type')
 		.exec(function (err, question) {
 			if (err || !question) return console.error(err);
@@ -74,7 +74,7 @@ router.route('/questions/:id')
 	// PUT to update
 	.put(function (req, res, next) {
 
-		return QuestionModel.findById( req.params.id, function (err, question) {
+		return Question.findById( req.params.id, function (err, question) {
 			if (err) {
 				res.send('error updating');
 				return console.error(err);
@@ -104,7 +104,7 @@ router.route('/questions/:id')
 
 	  // TODO implement authentication / validation
 
-	  	QuestionModel.remove({ _id: req.params.id }, function(err, question) {
+	  	Question.remove({ _id: req.params.id }, function(err, question) {
 			if (err) return callback(err);
 			
 			res.send({ message: 'Successfully deleted' });
@@ -125,7 +125,7 @@ router.route('/questionTypes')
 
 	// GET 
 	.get(function (req, res, next) {
-		QuestionTypeModel.find({}, function (err, questionTypes) {
+		QuestionType.find({}, function (err, questionTypes) {
 			if (err) return console.error(err);
 			res.send(questionTypes);
 		});
@@ -133,7 +133,7 @@ router.route('/questionTypes')
 
 	// POST to create
 	.post(function (req, res, next) {
-		var newQuestionType = new QuestionTypeModel({
+		var newQuestionType = new QuestionType({
 			name: req.body.name,
 			description: req.body.description,
 			parameters: req.body.parameters,
@@ -154,7 +154,7 @@ router.route('/questionTypes/:id')
 
 	// GET single element
 	.get(function (req, res, next) {
-		QuestionTypeModel.findOne({ '_id': req.params.id })
+		QuestionType.findOne({ '_id': req.params.id })
 		.exec(function (err, questionType) {
 			if (err || !questionType) return console.error(err);
 			res.send(questionType);
@@ -164,7 +164,7 @@ router.route('/questionTypes/:id')
 	// PUT to update
 	.put(function (req, res, next) {
 
-		return QuestionTypeModel.findById( req.params.id, function (err, questionType) {
+		return QuestionType.findById( req.params.id, function (err, questionType) {
 			if (err) {
 				res.send('error updating');
 				return console.error(err);
@@ -192,7 +192,7 @@ router.route('/questionTypes/:id')
 
 	  // TODO implement authentication / validation
 
-		QuestionTypeModel.remove({ _id: req.params.id }, function(err, questionType) {
+		QuestionType.remove({ _id: req.params.id }, function(err, questionType) {
 			if (err) return console.error(err);
 			
 			res.send({ message: 'Successfully deleted' });
