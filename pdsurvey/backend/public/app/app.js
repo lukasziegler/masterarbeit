@@ -66,6 +66,20 @@ app.config(function($routeProvider) {
 			controller: "SurveyEditController"
 		})
 
+		/* CAMPAIGNS */
+		.when("/campaigns", {
+			templateUrl: "/app/templates/campaigns/list.html",
+			controller: "CampaignListController"
+		})
+		.when("/campaigns/new", {
+			templateUrl: "/app/templates/campaigns/create.html",
+			controller: "CampaignCreateController"
+		})
+		.when("/campaigns/:id/edit", {
+			templateUrl: "/app/templates/campaigns/edit.html",
+			controller: "CampaignEditController"
+		})
+
 
 		/* DISPLAYS */
 		.when("/displays", {
