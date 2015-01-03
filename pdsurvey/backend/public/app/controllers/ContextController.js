@@ -26,20 +26,10 @@ app.controller("ContextListController", function($scope, $http) {
 /** CREATE **/
 
 app.controller("ContextCreateController", function($scope, $http, $location) {
-	$scope.context  = {
-		type: 'undefined'
-	};
-
-$scope.button = {
-toggle: false,
-checkbox: {left: false, middle: true, right: false},
-radio: 'left'
-};
+	$scope.context  = {};
 
 	// Save data
 	$scope.createContext = function() {
-console.log($scope.context);
-
 		$http.post("http://localhost:3000/api/contexts", $scope.context)
 			.success(function(response) {
 				$location.url("/contexts");
