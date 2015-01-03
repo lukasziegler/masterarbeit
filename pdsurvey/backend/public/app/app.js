@@ -1,4 +1,4 @@
-var app = angular.module("pdsurvey", ["ngRoute"]);
+var app = angular.module("pdsurvey", ["ngRoute", "mgcrea.ngStrap"]);
 
 // Routing
 app.config(function($routeProvider) {
