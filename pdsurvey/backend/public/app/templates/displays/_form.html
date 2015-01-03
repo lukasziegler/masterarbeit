@@ -1,42 +1,46 @@
 <div class="control-group">
 
-	<div class="col-lg-12">
 
-		<div class="form-group">
-			<label>Display Name</label>
-			<input class="form-control" placeholder="Name of Display" ng-model="display.name" required>
-		</div>
 
-	</div>
-
-	<div class="col-lg-6">
-		<div class="form-group">
-			<label>Producer</label>
-			<input class="form-control" placeholder="Name of Producer" ng-model="display.producer">
-		</div>
-	</div>
-	<div class="col-lg-6">
-		<div class="form-group">
-			<label>Product Website</label>
-			<input class="form-control" placeholder="http://" ng-model="display.url">
+	<div class="form-group">
+		<label for="display.name" class="col-sm-2 control-label">Name</label>
+		<div class="col-sm-10">
+			<input id="display.name" class="form-control" placeholder="Name of Display" ng-model="display.name" required>
 		</div>
 	</div>
 
-	<div class="col-lg-12">
-		<div class="form-group">
-			<label>Characteristics</label>
-			<input class="form-control" placeholder="TODO: Autocomplete" ng-model="display.characteristics">
+
+	<div class="form-group">
+		<label for="display.producer" class="col-sm-2 control-label">Producer</label>
+		<div class="col-sm-10">
+			<input id="display.producer" class="form-control" placeholder="Name of Producer" ng-model="display.producer">
 		</div>
 	</div>
 
-	<div class="col-lg-12">
-		<div class="form-group">
-			<label>Context</label>
-			<input class="form-control" placeholder="Static Context (TODO: Autocomplete)" ng-model="display.contextStatic">
+
+	<div class="form-group">
+		<label for="display.url" class="col-sm-2 control-label">Website</label>
+		<div class="col-sm-10">
+			<input id="display.url" class="form-control" placeholder="http://" ng-model="display.url">
 		</div>
 	</div>
 
-	<br>
+
+	<div class="form-group">
+		<label for="display.characteristics" class="col-sm-2 control-label">Characteristics</label>
+		<div class="col-sm-10">
+			<input id="display.characteristics" class="form-control" placeholder="TODO: Autocomplete" ng-model="display.characteristics">
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label for="display.contextStatic" class="col-sm-2 control-label">Context</label>
+		<div class="col-sm-10">
+			<input id="display.contextStatic" class="form-control" placeholder="Static Context (TODO: Autocomplete)" ng-model="display.contextStatic">
+		</div>
+	</div>
+
 
 	<button type="submit" class="btn btn-primary">Submit</button>
 	<a href="#/displays" class="btn btn-default">Cancel</a>

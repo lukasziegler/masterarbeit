@@ -8,7 +8,6 @@
 
 /*
  * Fix/Workaround for Bootstrap row-indentation
- */
 
 .row-indent {
 	margin-left: 0;
@@ -17,17 +16,4 @@
 .form-group {
 	margin-right: 0 !important;
 }
-
- /*
-
-.row {
-	margin-left: 0;
-	margin-right: 0;
-}
-
-.page-header {
-	margin-right: -15px;
-	margin-left: -15px;
-}
-
 */

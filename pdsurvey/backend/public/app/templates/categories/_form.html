@@ -1,23 +1,22 @@
 <div class="control-group">
 
-	<div class="col-lg-12">
 
-		<div class="form-group">
-			<label>Category Name</label>
-			<input class="form-control" placeholder="Category Name" ng-model="category.name" required>
+	<div class="form-group">
+		<label for="category.name" class="col-sm-2 control-label">Category</label>
+		<div class="col-sm-10">
+			<input id="category.name" class="form-control" placeholder="Name" ng-model="category.name" required>
 		</div>
-
 	</div>
 
-	<div class="col-lg-12">
-		<div class="form-group">
-			<label>Description</label>
-			<input class="form-control" placeholder="Enter a short description" ng-model="category.description">
+
+	<div class="form-group">
+		<label for="category.description" class="col-sm-2 control-label">Description</label>
+		<div class="col-sm-10">
+			<input id="category.description" class="form-control" placeholder="Enter a short description" ng-model="category.description">
 		</div>
-	</div><!-- /.col-lg-12 -->
+	</div>
 
-	<br>
-
+	
 	<button type="submit" class="btn btn-primary">Submit</button>
 	<a href="#/categories" class="btn btn-default">Cancel</a>
 
