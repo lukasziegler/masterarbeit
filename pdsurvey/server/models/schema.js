@@ -18,8 +18,8 @@ var QuestionSchema = mongoose.Schema({
     name: { type: String, required: true },
     description: { type: String, required: true },
     explanation: String,
-    category: { type: String, required: true },
-    state: { type: String, enum: ['A', 'B', 'C', 'pending', 'limited', 'public'] }
+    category: { type: String, required: true }
+    // state: { type: String, enum: ['A', 'B', 'C', 'pending', 'limited', 'public'] }
 });
 exports.QuestionModel = mongoose.model('Question', QuestionSchema, 'questions');
 

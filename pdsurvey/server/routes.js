@@ -44,8 +44,8 @@ router.route('/questions')
 			name: req.body.name,
 			description: req.body.description,
 			explanation: req.body.explanation,
-			category: req.body.category,
-			state: req.body.state
+			category: req.body.category
+			// state: req.body.state
 		});
 
 	    newQuestion.save(function(err) {
@@ -85,8 +85,8 @@ router.route('/questions/:id')
 			question.name = req.body.name,
 			question.description = req.body.description,
 			question.explanation = req.body.explanation,
-			question.category = req.body.category,
-			question.state = req.body.state
+			question.category = req.body.category
+			// question.state = req.body.state
 
 			return question.save(function(err) {
 				if (err) {
