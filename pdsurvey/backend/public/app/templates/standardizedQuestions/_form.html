@@ -11,9 +11,7 @@
 	<div class="form-group">
 		<label for="questionnaire.category" class="col-sm-2 control-label">Category</label>
 		<div class="col-sm-10">
-			<select id="questionnaire.category" class="form-control" ng-model="questionnaire.category" required>
-			<!-- <select id="questionnaire.category" class="form-control" ng-init="questionnaire.category = categories[0]" ng-model="questionnaire.category" ng-options="category.name for category in categories" required> -->
-				<option ng-repeat="category in categories" value="{{category._id}}">{{category.name}}</option>
+			<select id="questionnaire.category" class="form-control" ng-options="category._id as category.name for category in categories" ng-model="questionnaire.category">
 			</select>
 		</div>
 	</div>
@@ -26,6 +24,15 @@
 		</div>
 	</div>
 
+	<hr>
+
+	<h3>Questions</h3>
+	
+	<div class="row">
+		PLACEHOLDER
+	</div>
+
+	<hr>
 
 	<button type="submit" class="btn btn-primary">Submit</button>
 	<a href="#/standardizedQuestions" class="btn btn-default">Cancel</a>

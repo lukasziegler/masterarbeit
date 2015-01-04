@@ -56,10 +56,14 @@ app.controller("StandardizedQuestionEditController", function($scope, $http, $lo
 	// Load data
 	$http.get("http://localhost:3000/api/standardSurvey/" + id).success(function(response) {
 		$scope.questionnaire = response;
+		$scope.questionnaire.category = $scope.questionnaire.category._id;
 	});
 
 	$http.get("http://localhost:3000/api/categories").success(function(response) {
 		$scope.categories = response;
+
+		// Preselect the right Category
+	//	http://stackoverflow.com/questions/8217419/how-to-determine-if-javascript-array-contains-object
 	}).error(function(err) {
 		$scope.error = err;
 	});

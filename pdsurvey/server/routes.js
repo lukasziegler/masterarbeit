@@ -409,6 +409,7 @@ router.route('/standardSurvey/:id')
 	// GET single element
 	.get(function (req, res, next) {
 		StandardSurvey.findOne({ '_id': req.params.id })
+		.populate('category')
 		.exec(function (err, standardSurvey) {
 			if (err || !standardSurvey) return console.error(err);
 			res.send(standardSurvey);
