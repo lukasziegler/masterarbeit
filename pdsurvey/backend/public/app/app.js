@@ -74,6 +74,20 @@ app.config(function($routeProvider) {
 			controller: "SurveyEditController"
 		})
 
+		/* STANDARDIZED QUESTIONNAIRE / SURVEY */
+		.when("/standardizedQuestions", {
+			templateUrl: "/app/templates/standardizedQuestions/list.html",
+			controller: "StandardizedQuestionListController"
+		})
+		.when("/standardizedQuestions/new", {
+			templateUrl: "/app/templates/standardizedQuestions/create.html",
+			controller: "StandardizedQuestionCreateController"
+		})
+		.when("/standardizedQuestions/:id/edit", {
+			templateUrl: "/app/templates/standardizedQuestions/edit.html",
+			controller: "StandardizedQuestionEditController"
+		})
+
 		/* CAMPAIGNS */
 		.when("/campaigns", {
 			templateUrl: "/app/templates/campaigns/list.html",

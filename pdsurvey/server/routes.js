@@ -8,6 +8,7 @@ var Schema = require('./models/schema');
 	Question = Schema.QuestionModel,
 	Category = Schema.CategoryModel,
 	Survey = Schema.SurveyModel,
+	StandardSurvey = Schema.StandardSurveyModel,
 	Display = Schema.DisplayModel,
 	Campaign = Schema.CampaignModel,
 	Context = Schema.ContextModel,
@@ -363,6 +364,94 @@ router.route('/surveys/:id')
 			res.send({ message: 'Successfully deleted' });
 		});
 	})
+
+
+
+
+
+/** 
+ * STANDARDIZED SURVEYS
+ */ 
+
+router.route('/standardSurvey')
+
+	// GET 
+	.get(function (req, res, next) {
+		StandardSurvey.find({})
+		.populate('category')
+		.exec(function (err, standardSurveys) {
+			if (err) return console.error(err);
+			res.send(standardSurveys);
+		});
+	})
+
+	// POST to create
+	.post(function (req, res, next) {
+		var newStandardSurvey = new StandardSurvey({
+			name: req.body.name,
+			category: req.body.category,
+			questions: req.body.questions,
+			description: req.body.description
+		});
+
+	    newStandardSurvey.save(function(err) {
+	        if (err) {
+	        	res.send('Error creating object');
+	            return console.error(err);
+	        }
+    	    return res.send(newStandardSurvey);
+	    });
+	})
+
+
+router.route('/standardSurvey/:id')
+
+	// GET single element
+	.get(function (req, res, next) {
+		StandardSurvey.findOne({ '_id': req.params.id })
+		.exec(function (err, standardSurvey) {
+			if (err || !standardSurvey) return console.error(err);
+			res.send(standardSurvey);
+		});
+	})
+
+	// PUT to update
+	.put(function (req, res, next) {
+
+		return StandardSurvey.findById( req.params.id, function (err, standardSurvey) {
+			if (err) {
+				res.send('error updating');
+				return console.error(err);
+			}
+
+			// update object
+			standardSurvey.name = req.body.name,
+			standardSurvey.category = req.body.category,
+			standardSurvey.questions = req.body.questions,
+			standardSurvey.description = req.body.description
+
+			return standardSurvey.save(function(err) {
+				if (err) {
+					res.send('Error updating, e.g. invalid mapping');
+					return console.error(err);
+				}
+				res.send(standardSurvey);
+			})
+		});
+
+	})
+
+	// DELETE
+	.delete(function (req, res, next) {
+	  // TODO implement authentication / validation
+		StandardSurvey.remove({ _id: req.params.id }, function(err, standardSurvey) {
+			if (err) return console.error(err);
+			
+			res.send({ message: 'Successfully deleted' });
+		});
+	})
+
+
 
 
 

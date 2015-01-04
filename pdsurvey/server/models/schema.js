@@ -31,7 +31,7 @@ var CategorySchema = mongoose.Schema({
 exports.CategoryModel = mongoose.model('Category', CategorySchema, 'categories');
 
 
-/* SURVEY */
+/* SURVEY (QUESTIONNAIRE) */
 var SurveySchema = mongoose.Schema({ 
     name: { type: String, required: true },
     // questions: [Question],
@@ -41,6 +41,19 @@ var SurveySchema = mongoose.Schema({
     lastChange: { type: Date, default: Date.now }
 });
 exports.SurveyModel = mongoose.model('Survey', SurveySchema, 'surveys');
+
+
+/* STANDARDIZED QUESTIONNAIRE */
+var StandardSurveySchema = mongoose.Schema({ 
+    name: { type: String, required: true },
+    category: { type: ObjectId, ref: 'Category'},
+    questions: {
+        name: String,
+        question: [QuestionSchema]
+    },
+    description: { type: String }
+});
+exports.StandardSurveyModel = mongoose.model('StandardSurvey', StandardSurveySchema, 'standardSurvey');
 
 
 /* DISPLAYS */
