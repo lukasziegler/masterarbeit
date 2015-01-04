@@ -16,7 +16,6 @@ exports.QuestionTypeModel = mongoose.model('QuestionType', QuestionTypeSchema, '
 var QuestionSchema = mongoose.Schema({ 
     type: { type: ObjectId, ref: 'QuestionType' },
     name: { type: String, required: true },
-    description: { type: String, required: true },
     explanation: String,
     category: { type: String, required: true }
     // state: { type: String, enum: ['A', 'B', 'C', 'pending', 'limited', 'public'] }

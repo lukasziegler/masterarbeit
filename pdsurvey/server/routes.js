@@ -42,7 +42,6 @@ router.route('/questions')
 		var newQuestion = new Question({
 			type: req.body.type,
 			name: req.body.name,
-			description: req.body.description,
 			explanation: req.body.explanation,
 			category: req.body.category
 			// state: req.body.state
@@ -83,7 +82,6 @@ router.route('/questions/:id')
 			// update object
 			question.type = req.body.type,
 			question.name = req.body.name,
-			question.description = req.body.description,
 			question.explanation = req.body.explanation,
 			question.category = req.body.category
 			// question.state = req.body.state
