@@ -27,6 +27,9 @@ app.controller("DisplayListController", function($scope, $http) {
 
 app.controller("DisplayCreateController", function($scope, $http, $location) {
 	$scope.display  = {};
+	$scope.contexts  = {};
+
+	$scope.contextList  = [];
 
 	// Save data
 	$scope.createDisplay = function() {
@@ -35,6 +38,22 @@ app.controller("DisplayCreateController", function($scope, $http, $location) {
 				$location.url("/displays");
 			});
 	}
+
+	// Load context for Autocomplete
+	$http.get("http://localhost:3000/api/contexts")
+	.success(function(response) {
+		$scope.contexts = response;
+	}).error(function(err) {
+		$scope.error = err;
+	});
+
+
+	$scope.addContext = function(newContext) {
+		$scope.contextList.push(newContext);
+	}
+
+
+
 });
 
 
