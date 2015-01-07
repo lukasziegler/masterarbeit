@@ -49,8 +49,17 @@ var StandardSurveySchema = mongoose.Schema({
     category: { type: ObjectId, ref: 'Category'},
     questions: {
         name: String,
-        question: [QuestionSchema]
+        type: [QuestionTypeSchema]
     },
+
+    // sections: [{
+    //     name: String,
+    //     questions: {
+    //         question: String,
+    //         type: [QuestionTypeSchema]
+    //     }
+    // }],
+
     description: { type: String }
 });
 exports.StandardSurveyModel = mongoose.model('StandardSurvey', StandardSurveySchema, 'standardSurvey');

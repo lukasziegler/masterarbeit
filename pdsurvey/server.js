@@ -1,3 +1,4 @@
+var newrelic = require('newrelic');
 var fs = require('fs');
 var express = require('express');
 var mongoose = require('mongoose');
