@@ -1,0 +1,14 @@
+{
+  "name": "client",
+  "version": "0.0.1",
+  "description": "PDSurvey Web Client with AngularJS",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lukas Ziegler",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.10.4"
+  }
+}

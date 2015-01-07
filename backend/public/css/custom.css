@@ -1,0 +1,19 @@
+/*
+ * Datepicker element (AngularStrap)
+ */
+
+
+.datepicker.dropdown-menu {
+}
+
+/*
+ * Fix/Workaround for Bootstrap row-indentation
+
+.row-indent {
+	margin-left: 0;
+}
+
+.form-group {
+	margin-right: 0 !important;
+}
+*/
