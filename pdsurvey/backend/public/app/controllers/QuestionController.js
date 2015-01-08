@@ -35,6 +35,12 @@ app.controller("QuestionCreateController", function($scope, $http, $location) {
 		$scope.error = err;
 	});
 
+	$http.get("http://localhost:3000/api/categories").success(function(response) {
+		$scope.categories = response;
+	}).error(function(err) {
+		$scope.error = err;
+	});
+
 	// Save data
 	$scope.createQuestion = function() {
 		$http.post("http://localhost:3000/api/questions", $scope.question)
@@ -55,6 +61,18 @@ app.controller("QuestionEditController", function($scope, $http, $location, $rou
 	// Load data
 	$http.get("http://localhost:3000/api/questions/" + id).success(function(response) {
 		$scope.question = response;
+
+		if (typeof $scope.question.type != 'undefined')
+			$scope.question.type = $scope.question.type._id;
+
+		if (typeof $scope.question.category != 'undefined')
+			$scope.question.category = $scope.question.category._id;
+	});
+
+	$http.get("http://localhost:3000/api/categories").success(function(response) {
+		$scope.categories = response;
+	}).error(function(err) {
+		$scope.error = err;
 	});
 
 	$http.get("http://localhost:3000/api/questionTypes").success(function(response) {

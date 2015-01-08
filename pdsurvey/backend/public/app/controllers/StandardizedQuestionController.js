@@ -56,7 +56,9 @@ app.controller("StandardizedQuestionEditController", function($scope, $http, $lo
 	// Load data
 	$http.get("http://localhost:3000/api/standardSurvey/" + id).success(function(response) {
 		$scope.questionnaire = response;
-		$scope.questionnaire.category = $scope.questionnaire.category._id;
+
+		if (typeof $scope.questionnaire.category != 'undefined')
+			$scope.questionnaire.category = $scope.questionnaire.category._id;
 	});
 
 	$http.get("http://localhost:3000/api/categories").success(function(response) {

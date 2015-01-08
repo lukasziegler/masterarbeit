@@ -31,7 +31,7 @@
                                         <tr ng-repeat="question in questions | orderBy : 'name'">
                                             <td>{{question.name}}</td>
                                             <td>{{question.type.name}}</td>
-                                            <td>{{question.category}}</td>
+                                            <td>{{question.category.name}}</td>
                                             <td><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="{{question.explanation}}"><i class="fa fa-info"></i></button>
                                             </td>
                                             <!-- <td>{{question.state}}</td> -->

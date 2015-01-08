@@ -28,24 +28,24 @@
 
 	<h3>Questions</h3>
 	
-	<div class="row">
+	<div class="row" ng-repeat="question in questionnaire.sections.questions">
 		<div class="col-md-2">
-			<input class="form-control" placeholder="Section 1">
+			<input class="form-control" placeholder="Section" value="{{questionnaire.sections.name}}">
 		</div>
 		<div class="col-md-6">
-			<input class="form-control" placeholder="Question 1">
-
-			<input class="form-control" placeholder="Question 2">
-
-			<input class="form-control" placeholder="Question 3">
+			<input class="form-control" placeholder="Question" value="{{question.question}}">	
+			<!-- {{questionnaire.sections.questions[1]}} -->
+				
+<!-- 			<input class="form-control" placeholder="Question 2">
+			<input class="form-control" placeholder="Question 3"> -->
 			<br>
-			<a href="" class="btn btn-default">Add Question</a>
 		</div>
 		<div class="col-md-4">
-			<input class="form-control" placeholder="Question Type">
+			<input class="form-control" placeholder="Question Type" value="{{question.type.name}}">
 		</div>
 	</div>
 	<br>
+	<a href="" class="btn btn-default">Add Question</a>
 	<a href="" class="btn btn-default">Add Section</a>
 
 	<hr>

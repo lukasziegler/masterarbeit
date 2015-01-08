@@ -23,8 +23,7 @@
 	<div class="form-group">
 		<label for="question.type" class="col-sm-2 control-label">Question Type</label>
 		<div class="col-sm-10">
-			<select id="question.type" class="form-control" ng-model="question.type" name="type" required>
-				<option ng-repeat="questionType in questionTypes" value="{{questionType._id}}">{{questionType.name}}</option>
+			<select id="question.type" class="form-control" ng-options="questionType._id as questionType.name for questionType in questionTypes" ng-model="question.type" required>
 			</select>
 		</div>
 	</div>
@@ -33,12 +32,7 @@
 	<div class="form-group">
 		<label for="question.category" class="col-sm-2 control-label">Category</label>
 		<div class="col-sm-10">
-			<select id="question.category" class="form-control" ng-model="question.category" required>
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
+			<select id="question.category" class="form-control" ng-options="category._id as category.name for category in categories" ng-model="question.category" required>
 			</select>
 		</div>
 	</div>
