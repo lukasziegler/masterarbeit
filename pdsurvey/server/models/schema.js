@@ -62,8 +62,8 @@ var StandardSurveySchema = mongoose.Schema({
         //     type: {type: String}
         // }]
         questions: [{
-            question: String,
-            type: { type: ObjectId, ref: 'QuestionType' }
+            question: { type: String, required: true },
+            type: { type: ObjectId, ref: 'QuestionType', required: true }
         }]
     },
 

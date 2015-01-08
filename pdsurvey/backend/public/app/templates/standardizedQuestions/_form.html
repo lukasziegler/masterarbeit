@@ -38,28 +38,43 @@
 	<div class="form-group" ng-repeat="question in questionnaire.sections.questions">
 		<label class="col-md-2 control-label"><span ng-if="$index == 0">Questions</span></label>
 		<div class="col-md-7">
-			<input class="form-control" placeholder="Question" value="{{question.question}}" ng-model="question.question">	
-			<!-- {{questionnaire.sections.questions[1]}} -->
+
+
+<div class="input-group">
+    <input type="text" class="form-control" placeholder="Question" value="{{question.question}}" ng-model="question.question">
+    <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="removeQuestion(question)" title="Remove Question"><i class="fa fa-minus"></i>
+        </button>
+    </span>
+</div>
+
+
 		</div>
 		<div class="col-md-3">
-			<select id="" class="form-control" ng-options="questionType._id as questionType.name for questionType in questionTypes" ng-model="question.type"></select>
+			<select id="" class="form-control" ng-options="questionType._id as questionType.name for questionType in questionTypes" ng-model="question.type" require></select>
 		</div>
 	</div>
 
 
 	<div class="form-group">
-		<div class="col-md-2 text-right">
-			<a href="" class="btn btn-default">Add Section</a>
-		</div>
-		<div class="col-md-10">
+		<div class="col-md-10 col-md-offset-2">
 			<a href="" ng-click="addQuestion()" class="btn btn-default">Add Question</a>
 		</div>
 	</div>
+
+	<div class="form-group">
+		<div class="col-sm-2 text-right">
+			<a href="" ng-click="addSection()" class="btn btn-default">Add Section</a>
+		</div>
+	</div>
+
 
 	<hr>
 
 	<button type="submit" class="btn btn-primary">Submit</button>
 	<a href="#/standardizedQuestions" class="btn btn-default">Cancel</a>
+
+	<br><br>
 
 </div>
 

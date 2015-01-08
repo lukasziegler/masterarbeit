@@ -55,6 +55,10 @@ app.controller("StandardizedQuestionCreateController", function($scope, $http, $
 		$scope.questionnaire.sections.questions.push({"name":"","type":""});
 	};
 
+	$scope.removeQuestion = function(item) {
+		var index = $scope.questionnaire.sections.questions.indexOf(item)
+		$scope.questionnaire.sections.questions.splice(index, 1);     
+	};
 });
 
 
@@ -105,6 +109,7 @@ app.controller("StandardizedQuestionEditController", function($scope, $http, $lo
 	};
 
 	$scope.removeQuestion = function(item) {
-		removeItem(item);
+		var index = $scope.questionnaire.sections.questions.indexOf(item)
+		$scope.questionnaire.sections.questions.splice(index, 1);     
 	};
 });
