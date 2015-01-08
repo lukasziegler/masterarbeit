@@ -14,10 +14,10 @@ exports.QuestionTypeModel = mongoose.model('QuestionType', QuestionTypeSchema, '
 
 /* QUESTION */
 var QuestionSchema = mongoose.Schema({ 
-    type: { type: ObjectId, ref: 'QuestionType' },
+    type: { type: ObjectId, ref: 'QuestionType', required: true },
     name: { type: String, required: true },
     explanation: String,
-    category: { type: String, required: true }
+    category: { type: ObjectId, ref: 'Category', required: true }
     // state: { type: String, enum: ['A', 'B', 'C', 'pending', 'limited', 'public'] }
 });
 exports.QuestionModel = mongoose.model('Question', QuestionSchema, 'questions');
@@ -47,20 +47,49 @@ exports.SurveyModel = mongoose.model('Survey', SurveySchema, 'surveys');
 var StandardSurveySchema = mongoose.Schema({ 
     name: { type: String, required: true },
     category: { type: ObjectId, ref: 'Category'},
-    questions: {
+
+    // sections: {
+    //     name: String,
+    //     position: Number,
+    //     questions: [QuestionSchema]
+    // },
+
+    sections: {
         name: String,
-        type: [QuestionTypeSchema]
+        position: Number,
+        // questions: [{
+        //     question: String,
+        //     type: {type: String}
+        // }]
+        questions: [{
+            question: String,
+            type: { type: ObjectId, ref: 'QuestionType' }
+        }]
     },
 
-    // sections: [{
+    // questions: {
+    //     name: String,
+    //     type: [QuestionTypeSchema]
+    // },
+
+    // sections: {
     //     name: String,
     //     questions: {
     //         question: String,
     //         type: [QuestionTypeSchema]
     //     }
-    // }],
+    // },
+
+    // sections: {
+    //     name: String,
+    //     questions: [{
+    //         question: String,
+    //         type: String
+    //     }
+    // },
 
     description: { type: String }
+
 });
 exports.StandardSurveyModel = mongoose.model('StandardSurvey', StandardSurveySchema, 'standardSurvey');
 

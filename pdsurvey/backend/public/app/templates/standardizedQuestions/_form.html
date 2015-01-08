@@ -28,25 +28,33 @@
 
 	<h3>Questions</h3>
 	
-	<div class="row" ng-repeat="question in questionnaire.sections.questions">
-		<div class="col-md-2">
-			<input class="form-control" placeholder="Section" value="{{questionnaire.sections.name}}">
-		</div>
-		<div class="col-md-6">
-			<input class="form-control" placeholder="Question" value="{{question.question}}">	
-			<!-- {{questionnaire.sections.questions[1]}} -->
-				
-<!-- 			<input class="form-control" placeholder="Question 2">
-			<input class="form-control" placeholder="Question 3"> -->
-			<br>
-		</div>
-		<div class="col-md-4">
-			<input class="form-control" placeholder="Question Type" value="{{question.type.name}}">
+	<div class="form-group">
+		<label for="questionnaire.section.0" class="col-sm-2 control-label">Section</label>
+		<div class="col-md-3">
+			<input id="questionnaire.section.0" class="form-control" placeholder="Section" value="{{questionnaire.sections.name}}">
 		</div>
 	</div>
-	<br>
-	<a href="" class="btn btn-default">Add Question</a>
-	<a href="" class="btn btn-default">Add Section</a>
+
+	<div class="form-group" ng-repeat="question in questionnaire.sections.questions">
+		<label class="col-md-2 control-label">Questions</label>
+		<div class="col-md-7">
+			<input class="form-control" placeholder="Question" value="{{question.question}}">	
+			<!-- {{questionnaire.sections.questions[1]}} -->
+		</div>
+		<div class="col-md-3">
+			<select id="" class="form-control" ng-options="questionType._id as questionType.name for questionType in questionTypes" ng-model="question.type"></select>
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<div class="col-md-2 text-right">
+			<a href="" class="btn btn-default">Add Section</a>
+		</div>
+		<div class="col-md-10">
+			<a href="" class="btn btn-default">Add Question</a>
+		</div>
+	</div>
 
 	<hr>
 

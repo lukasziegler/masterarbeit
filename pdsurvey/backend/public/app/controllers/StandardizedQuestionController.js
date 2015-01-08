@@ -35,6 +35,12 @@ app.controller("StandardizedQuestionCreateController", function($scope, $http, $
 		$scope.error = err;
 	});
 
+	$http.get("http://localhost:3000/api/questionTypes").success(function(response) {
+		$scope.questionTypes = response;
+	}).error(function(err) {
+		$scope.error = err;
+	});
+
 	// Save data
 	$scope.createStandardQuestion = function() {
 		$http.post("http://localhost:3000/api/standardSurvey", $scope.questionnaire)
@@ -50,7 +56,6 @@ app.controller("StandardizedQuestionCreateController", function($scope, $http, $
 
 app.controller("StandardizedQuestionEditController", function($scope, $http, $location, $routeParams) {
 	$scope.questionnaire  = {};
-	$scope.categories  = {};
 	var id = $routeParams.id;
 
 	// Load data
@@ -63,9 +68,12 @@ app.controller("StandardizedQuestionEditController", function($scope, $http, $lo
 
 	$http.get("http://localhost:3000/api/categories").success(function(response) {
 		$scope.categories = response;
+	}).error(function(err) {
+		$scope.error = err;
+	});
 
-		// Preselect the right Category
-	//	http://stackoverflow.com/questions/8217419/how-to-determine-if-javascript-array-contains-object
+	$http.get("http://localhost:3000/api/questionTypes").success(function(response) {
+		$scope.questionTypes = response;
 	}).error(function(err) {
 		$scope.error = err;
 	});

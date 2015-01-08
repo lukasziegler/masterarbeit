@@ -69,14 +69,14 @@ app.controller("QuestionEditController", function($scope, $http, $location, $rou
 			$scope.question.category = $scope.question.category._id;
 	});
 
-	$http.get("http://localhost:3000/api/categories").success(function(response) {
-		$scope.categories = response;
+	$http.get("http://localhost:3000/api/questionTypes").success(function(response) {
+		$scope.questionTypes = response;
 	}).error(function(err) {
 		$scope.error = err;
 	});
 
-	$http.get("http://localhost:3000/api/questionTypes").success(function(response) {
-		$scope.questionTypes = response;
+	$http.get("http://localhost:3000/api/categories").success(function(response) {
+		$scope.categories = response;
 	}).error(function(err) {
 		$scope.error = err;
 	});

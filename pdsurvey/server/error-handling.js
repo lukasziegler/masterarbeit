@@ -6,6 +6,8 @@
 // development error handler
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
+    	console.error(error.message);
+    	console.error(err.stack);
         res.status(err.status || 500);
         res.send(err.name+': '+err.message);
     });
