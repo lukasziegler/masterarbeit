@@ -26,7 +26,8 @@ app.controller("StandardizedQuestionListController", function($scope, $http) {
 /** CREATE **/
 
 app.controller("StandardizedQuestionCreateController", function($scope, $http, $location) {
-	$scope.questionnaire  = {};
+	$scope.questionnaire  = {"name":"", "category":"", "description":"", 
+		"sections":{"name":"", "questions":[{"question":"", "type":""}]}};
 	$scope.categories  = {};
 
 	$http.get("http://localhost:3000/api/categories").success(function(response) {
@@ -48,6 +49,12 @@ app.controller("StandardizedQuestionCreateController", function($scope, $http, $
 				$location.url("/standardizedQuestions");
 			});
 	}
+
+	// Functions
+	$scope.addQuestion = function() {
+		$scope.questionnaire.sections.questions.push({"name":"","type":""});
+	};
+
 });
 
 
@@ -62,8 +69,14 @@ app.controller("StandardizedQuestionEditController", function($scope, $http, $lo
 	$http.get("http://localhost:3000/api/standardSurvey/" + id).success(function(response) {
 		$scope.questionnaire = response;
 
+		// Replace Object with ID for Preselect to work
 		if (typeof $scope.questionnaire.category != 'undefined')
 			$scope.questionnaire.category = $scope.questionnaire.category._id;
+
+		for (var i = 0; i < $scope.questionnaire.sections.questions.length; i++) {
+			if (typeof $scope.questionnaire.sections.questions[i].type != 'undefined')
+				$scope.questionnaire.sections.questions[i].type = $scope.questionnaire.sections.questions[i].type._id;
+		}
 	});
 
 	$http.get("http://localhost:3000/api/categories").success(function(response) {
@@ -84,5 +97,14 @@ app.controller("StandardizedQuestionEditController", function($scope, $http, $lo
 			.success(function(response) {
 				$location.url("/standardizedQuestions");
 			});
+	};
+
+	// Functions
+	$scope.addQuestion = function() {
+		$scope.questionnaire.sections.questions.push({"name":"","type":""});
+	};
+
+	$scope.removeQuestion = function(item) {
+		removeItem(item);
 	};
 });

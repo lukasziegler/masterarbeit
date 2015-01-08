@@ -31,14 +31,14 @@
 	<div class="form-group">
 		<label for="questionnaire.section.0" class="col-sm-2 control-label">Section</label>
 		<div class="col-md-3">
-			<input id="questionnaire.section.0" class="form-control" placeholder="Section" value="{{questionnaire.sections.name}}">
+			<input id="questionnaire.section.0" class="form-control" placeholder="Section" value="{{questionnaire.sections.name}}" ng-model="questionnaire.sections.name">
 		</div>
 	</div>
 
 	<div class="form-group" ng-repeat="question in questionnaire.sections.questions">
-		<label class="col-md-2 control-label">Questions</label>
+		<label class="col-md-2 control-label"><span ng-if="$index == 0">Questions</span></label>
 		<div class="col-md-7">
-			<input class="form-control" placeholder="Question" value="{{question.question}}">	
+			<input class="form-control" placeholder="Question" value="{{question.question}}" ng-model="question.question">	
 			<!-- {{questionnaire.sections.questions[1]}} -->
 		</div>
 		<div class="col-md-3">
@@ -52,7 +52,7 @@
 			<a href="" class="btn btn-default">Add Section</a>
 		</div>
 		<div class="col-md-10">
-			<a href="" class="btn btn-default">Add Question</a>
+			<a href="" ng-click="addQuestion()" class="btn btn-default">Add Question</a>
 		</div>
 	</div>
 
