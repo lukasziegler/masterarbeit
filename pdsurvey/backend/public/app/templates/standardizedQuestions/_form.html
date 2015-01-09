@@ -28,26 +28,28 @@
 
 	<h3>Questions</h3>
 	
+<div ng-repeat="section in questionnaire.sections">
+		
+	
+
 	<div class="form-group">
-		<label for="questionnaire.section.0" class="col-sm-2 control-label">Section</label>
+		<label class="col-sm-2 control-label">Section</label>
 		<div class="col-md-3">
-			<input id="questionnaire.section.0" class="form-control" placeholder="Section" value="{{questionnaire.sections.name}}" ng-model="questionnaire.sections.name">
+			<input class="form-control btn-default active" placeholder="Section" value="{{section.name}}" ng-model="section.name">
 		</div>
 	</div>
 
-	<div class="form-group" ng-repeat="question in questionnaire.sections.questions">
+	<div class="form-group" ng-repeat="question in section.questions">
 		<label class="col-md-2 control-label"><span ng-if="$index == 0">Questions</span></label>
 		<div class="col-md-7">
 
-
-<div class="input-group">
-    <input type="text" class="form-control" placeholder="Question" value="{{question.question}}" ng-model="question.question">
-    <span class="input-group-btn">
-        <button class="btn btn-default" type="button" ng-click="removeQuestion(question)" title="Remove Question"><i class="fa fa-minus"></i>
-        </button>
-    </span>
-</div>
-
+			<div class="input-group">
+			    <input type="text" class="form-control" placeholder="Question" value="{{question.question}}" ng-model="question.question">
+			    <span class="input-group-btn">
+			        <button class="btn btn-default" type="button" ng-click="removeQuestion(section, question)" title="Remove Question"><i class="fa fa-minus"></i>
+			        </button>
+			    </span>
+			</div>
 
 		</div>
 		<div class="col-md-3">
@@ -58,9 +60,11 @@
 
 	<div class="form-group">
 		<div class="col-md-10 col-md-offset-2">
-			<a href="" ng-click="addQuestion()" class="btn btn-default">Add Question</a>
+			<a href="" ng-click="addQuestion(section)" class="btn btn-default">Add Question</a>
 		</div>
 	</div>
+
+</div>
 
 	<div class="form-group">
 		<div class="col-sm-2 text-right">

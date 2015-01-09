@@ -21,7 +21,6 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Category</th>
-                                            <th>Questions</th>
                                             <th>Description</th>
                                             <th>Aktionen</th>
                                         </tr>
@@ -30,7 +29,6 @@
                                         <tr ng-repeat="questionnaire in questionnaires | orderBy : 'name'">
                                             <td>{{questionnaire.name}}</td>
                                             <td>{{questionnaire.category.name}}</td>
-                                            <td>{{questionnaire.questions.length}}</td>
                                             <td>{{questionnaire.description}}</td>
                                             <td><a href="#/standardizedQuestions/{{questionnaire._id}}/edit" class="btn btn-default">Edit</a>
                                             <a href="" ng-click="deleteQuestion(questionnaire)" class="btn btn-danger">Delete</a></td>

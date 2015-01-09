@@ -1,6 +1,10 @@
 var app = angular.module("pdsurvey");
 
 
+/** DIRECTIVES **/
+// TODO: refactor code structure >> see 
+
+
 /** LIST **/
 
 app.controller("StandardizedQuestionListController", function($scope, $http) {
@@ -27,7 +31,7 @@ app.controller("StandardizedQuestionListController", function($scope, $http) {
 
 app.controller("StandardizedQuestionCreateController", function($scope, $http, $location) {
 	$scope.questionnaire  = {"name":"", "category":"", "description":"", 
-		"sections":{"name":"", "questions":[{"question":"", "type":""}]}};
+		"sections":[{"name":"", "questions":[{"question":"", "type":""}]}]};
 	$scope.categories  = {};
 
 	$http.get("http://localhost:3000/api/categories").success(function(response) {
@@ -51,13 +55,35 @@ app.controller("StandardizedQuestionCreateController", function($scope, $http, $
 	}
 
 	// Functions
-	$scope.addQuestion = function() {
-		$scope.questionnaire.sections.questions.push({"name":"","type":""});
+	$scope.addQuestion = function(section) {
+		var index = $scope.questionnaire.sections.indexOf(section)
+
+		// Nice to have: prefill the next question with the last question type
+		var numQuestions = $scope.questionnaire.sections[index].questions.length;
+		if (numQuestions < 2)
+			$scope.questionnaire.sections[index].questions.push({"name":"","type":""});
+		else {
+			var lastQuestionType = $scope.questionnaire.sections[index].questions[numQuestions-1].type;
+			$scope.questionnaire.sections[index].questions.push({"name":"","type":lastQuestionType});
+		}
 	};
 
-	$scope.removeQuestion = function(item) {
-		var index = $scope.questionnaire.sections.questions.indexOf(item)
-		$scope.questionnaire.sections.questions.splice(index, 1);     
+	$scope.removeQuestion = function(section, question) {
+		var indexSection = $scope.questionnaire.sections.indexOf(section);
+		var indexQuestion = $scope.questionnaire.sections[indexSection].questions.indexOf(question);
+		$scope.questionnaire.sections[indexSection].questions.splice(indexQuestion, 1);     
+
+		if ($scope.questionnaire.sections[indexSection].questions.length < 1)
+			$scope.deleteSection(section);
+	};
+
+	$scope.addSection = function() {
+		$scope.questionnaire.sections.push({"name":"","questions":[{"question":"","type":""}]});
+	};
+
+	$scope.deleteSection = function(section) {
+		var indexSection = $scope.questionnaire.sections.indexOf(section);
+		$scope.questionnaire.sections.splice(indexSection, 1);     
 	};
 });
 
@@ -76,11 +102,6 @@ app.controller("StandardizedQuestionEditController", function($scope, $http, $lo
 		// Replace Object with ID for Preselect to work
 		if (typeof $scope.questionnaire.category != 'undefined')
 			$scope.questionnaire.category = $scope.questionnaire.category._id;
-
-		for (var i = 0; i < $scope.questionnaire.sections.questions.length; i++) {
-			if (typeof $scope.questionnaire.sections.questions[i].type != 'undefined')
-				$scope.questionnaire.sections.questions[i].type = $scope.questionnaire.sections.questions[i].type._id;
-		}
 	});
 
 	$http.get("http://localhost:3000/api/categories").success(function(response) {
@@ -104,12 +125,34 @@ app.controller("StandardizedQuestionEditController", function($scope, $http, $lo
 	};
 
 	// Functions
-	$scope.addQuestion = function() {
-		$scope.questionnaire.sections.questions.push({"name":"","type":""});
+	$scope.addQuestion = function(section) {
+		var index = $scope.questionnaire.sections.indexOf(section)
+
+		// Nice to have: prefill the next question with the last question type
+		var numQuestions = $scope.questionnaire.sections[index].questions.length;
+		if (numQuestions < 2)
+			$scope.questionnaire.sections[index].questions.push({"name":"","type":""});
+		else {
+			var lastQuestionType = $scope.questionnaire.sections[index].questions[numQuestions-1].type;
+			$scope.questionnaire.sections[index].questions.push({"name":"","type":lastQuestionType});
+		}
 	};
 
-	$scope.removeQuestion = function(item) {
-		var index = $scope.questionnaire.sections.questions.indexOf(item)
-		$scope.questionnaire.sections.questions.splice(index, 1);     
+	$scope.removeQuestion = function(section, question) {
+		var indexSection = $scope.questionnaire.sections.indexOf(section);
+		var indexQuestion = $scope.questionnaire.sections[indexSection].questions.indexOf(question);
+		$scope.questionnaire.sections[indexSection].questions.splice(indexQuestion, 1);     
+
+		if ($scope.questionnaire.sections[indexSection].questions.length < 1)
+			$scope.deleteSection(section);
+	};
+
+	$scope.addSection = function() {
+		$scope.questionnaire.sections.push({"name":"","questions":[{"question":"","type":""}]});
+	};
+
+	$scope.deleteSection = function(section) {
+		var indexSection = $scope.questionnaire.sections.indexOf(section);
+		$scope.questionnaire.sections.splice(indexSection, 1);     
 	};
 });

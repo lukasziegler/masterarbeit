@@ -379,7 +379,7 @@ router.route('/standardSurvey')
 	.get(function (req, res, next) {
 		StandardSurvey.find({})
 		.populate('category')
-		.populate('sections.questions.type')
+		// .populate('sections.questions.type')
 		.exec(function (err, standardSurveys) {
 			if (err) return console.error(err);
 			res.send(standardSurveys);
@@ -411,7 +411,6 @@ router.route('/standardSurvey/:id')
 	.get(function (req, res, next) {
 		StandardSurvey.findOne({ '_id': req.params.id })
 		.populate('category')
-		.populate('sections.questions.type')
 		.exec(function (err, standardSurvey) {
 			if (err || !standardSurvey) return console.error(err);
 			res.send(standardSurvey);
