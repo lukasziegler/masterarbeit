@@ -1,9 +1,14 @@
-var app = angular.module("pdsurvey");
+var app = angular.module("pdsurvey")
 
 
 /** DIRECTIVES **/
 // TODO: refactor code structure >> see 
-
+.directive('helloWorld', function() {
+  return {
+      restrict: 'AEC',
+      replace: true,
+      template: '<h3>Hello, World!</h3>'
+}; });
 
 /** LIST **/
 
