@@ -28,7 +28,6 @@ app.controller("DisplayListController", function($scope, $http) {
 app.controller("DisplayCreateController", function($scope, $http, $location) {
 	$scope.display  = {};
 	$scope.contexts  = {};
-
 	$scope.contextList  = [];
 
 	// Save data
@@ -41,18 +40,15 @@ app.controller("DisplayCreateController", function($scope, $http, $location) {
 
 	// Load context for Autocomplete
 	$http.get("http://localhost:3000/api/contexts")
-	.success(function(response) {
-		$scope.contexts = response;
-	}).error(function(err) {
-		$scope.error = err;
-	});
-
+		.success(function(response) {
+			$scope.contexts = response;
+		}).error(function(err) {
+			$scope.error = err;
+		});
 
 	$scope.addContext = function(newContext) {
 		$scope.contextList.push(newContext);
 	}
-
-
 
 });
 
@@ -68,6 +64,19 @@ app.controller("DisplayEditController", function($scope, $http, $location, $rout
 	$http.get("http://localhost:3000/api/displays/" + id).success(function(response) {
 		$scope.display = response;
 	});
+
+	// Load context for Autocomplete
+	$scope.contexts  = {};
+	$scope.contextList  = [];
+	$http.get("http://localhost:3000/api/contexts")
+		.success(function(response) {
+			$scope.contexts = response;
+		}).error(function(err) {
+			$scope.error = err;
+		});
+		$scope.addContext = function(newContext) {
+			$scope.contextList.push(newContext);
+		}
 
 	// Save data
 	$scope.saveDisplay = function() {
