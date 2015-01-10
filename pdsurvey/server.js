@@ -24,10 +24,6 @@ app.use(bodyParser.json());
 app.set('views', __dirname + '/server/views');
 app.set('view engine', 'jade');
 
-// Configure Logging
-app.use(express.static(__dirname + '/backend/public'));
-
-
 if (app.get('env') !== 'production') {
     app.use(logger('dev'));
 }
@@ -39,6 +35,11 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Methods", "GET, PUT");
     next();
 });
+
+
+// Configure Logging
+app.use(express.static(__dirname + '/backend/public'));
+
 
 // Register our routes
 router = express.Router();
