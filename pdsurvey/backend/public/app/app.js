@@ -108,7 +108,6 @@ app.config(function($routeProvider) {
 			controller: "CampaignEditController"
 		})
 
-
 		/* DISPLAYS */
 		.when("/displays", {
 			templateUrl: "/app/templates/displays/list.html",
@@ -137,18 +136,12 @@ app.config(function($routeProvider) {
 			controller: "ContextEditController"
 		})
 
-
-
 		/* DASHBOARD */
 		.when("/", {
 			templateUrl: "/app/templates/dashboard/overview.html",
 			controller: "DashboardController"
 		})
+
 		.otherwise({redirectTo: "/"})
-});
 
-
-
-app.controller("DashboardController", function($scope, $http) {
-	$scope.message = "Welcome to PDSurvey";
 });
