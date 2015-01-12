@@ -23,6 +23,25 @@ var QuestionSchema = mongoose.Schema({
 exports.QuestionModel = mongoose.model('Question', QuestionSchema, 'questions');
 
 
+/* RESPONSES */
+var ResponseSchema = mongoose.Schema({ 
+    question: { 
+        id: { type: ObjectId, ref: 'Question' },
+        type: { type: ObjectId, ref: 'QuestionType', required: true },
+        wording: { type: String },
+        answer: { type: String, required: true }
+    },
+    questionnaire: { 
+        type: { type: String, enum: ['Questionnaire', 'StandardSurvey'] },
+        ref: { type: ObjectId }
+    },
+    display: { type: ObjectId, ref: 'Display'/*, required: true*/ },
+    session: { type: Number }, 
+    timestamp: { type: Date, default: Date.now }
+});
+exports.ResponseModel = mongoose.model('Response', ResponseSchema, 'responses');
+
+
 /* CATEGORY */
 var CategorySchema = mongoose.Schema({ 
     name: { type: String, required: true },

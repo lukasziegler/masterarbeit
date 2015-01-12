@@ -2,87 +2,49 @@
 // TODO: Linter verwenden
 
 
-// Embed Models in the correct order !!
 Schema = require('./schema');
 
-// var QuestionType = Schema.QuestionTypeModel;
-// var Question = Schema.QuestionModel;
-// var Category = Schema.CategoryModel;
-// var Survey = Schema.SurveyModel;
-// var StandardSurvey = Schema.StandardSurveyModel;
-// var Display = Schema.DisplayModel;
-// var Campaign = Schema.CampaignModel;
-// var Context = Schema.ContextModel;
-// var User = Schema.UserModel;
+
+// ! Embed Models in the correct order
 
 
-// Define Routes
+/** 
+ * Define Routes
+ */ 
 
 router.get('/', function (req, res, next) {
   res.send('Welcome to PDSurvey\'s REST API');
 })
 
 
-/** 
- * QUESTIONS
- */ 
-
+// Questions
 require("./models/questions");
 
+// Responses
+require("./models/responses");
 
-/** 
- * QUESTION TYPES
- */ 
-
+// Question Types
 require("./models/questionTypes");
 
-
-/** 
- * CATEGORIES
- */ 
-
+// Categories
 require("./models/categories");
 
-
-/** 
- * SURVEYS
- */ 
-
+// Surveys
 require("./models/surveys");
 
-
-/** 
- * STANDARDIZED SURVEYS
- */ 
-
+// Standardized Questionnaires
 require("./models/standardSurvey");
 
-
-/** 
- * DISPLAYS
- */ 
-
+// Displays
 require("./models/displays");
 
-
-/** 
- * CAMPAIGNS
- */ 
-
+// Campaigns
 require("./models/campaigns");
 
-
-/** 
- * CONTEXTS
- */ 
-
+// Contexts
 require("./models/contexts");
 
-
-/** 
- * USERS
- */ 
-
+// USers
 require("./models/users");
 
 

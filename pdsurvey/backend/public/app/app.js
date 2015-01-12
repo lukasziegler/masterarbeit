@@ -18,6 +18,12 @@ app.config(function($routeProvider) {
 			controller: "UserEditController"
 		})
 
+		/* RESPONSES */
+		.when("/responses", {
+			templateUrl: "/app/templates/responses/list.html",
+			controller: "ResponseListController"
+		})
+
 		/* QUESTIONS */
 		.when("/questions", {
 			templateUrl: "/app/templates/questions/list.html",

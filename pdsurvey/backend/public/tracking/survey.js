@@ -42,15 +42,18 @@ $(document).ready(function(){
     var div = $( '<div/>' ).addClass( 'pdsurvey' );
 	$( 'body' ).append( div );
 
-    // Load content from remote template
-    $.get( uri + 'survey.html', function(data){
-        div.html(data);
-    })
-
-    // Testing Bootstrap Namespace
+    /** A) Load content from remote template **/
+    // $.get( uri + 'survey.html', function(data){
+    //     div.html(data);
+    // })
     // .done(function() {
     //     div.append( '<a class="btn btn-default" href="#" role="button">Bootstrap Test</a>' );
     // })
+
+    /** B) Testing Bootstrap Namespace **/
+    var container = $( '<div/>' ).addClass( 'container' );
+    container.append('<h1>PDSurvey</h1>');
+    div.append(container);
 
     // Load JSON data via REST call
     $.getJSON( api + 'standardSurvey' )
@@ -60,8 +63,29 @@ $(document).ready(function(){
             console.log( "REST Response", data );
         }
 
-        div.append( '<p>NumSurveys: '+data.length+'</p>' );
+        // List of available Questionnaires
+        container.append('Available Questionnaires:<br>');
+
+        var surveys = $('<ul/>')
+        $.each(data, function(i, item) {
+            surveys.append('<li>'+item.name+'</li>');
+        });
+        container.append(surveys);
         
+        // Ask a random Question
+        var question = $('<div/>').append('<strong>Random Question:</strong> ')
+
+        var randSurvey = Math.floor(Math.random() * data.length);
+        var randSection = Math.floor(Math.random() * data[randSurvey].sections.length);
+        var randQuestion = Math.floor(Math.random() * data[randSurvey].sections[randSection].questions.length);
+
+        console.log("RandQuestion:", randSurvey, randSection, randQuestion);
+
+        question.append( data[randSurvey].sections[randSection].questions[randQuestion].question + '<br>' );
+        var response = $('<a class="btn btn-primary">Respond</a>')
+
+        question.append(response);
+        container.append(question);
     });
 
 });
