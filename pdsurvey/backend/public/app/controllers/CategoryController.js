@@ -19,6 +19,13 @@ app.controller("CategoryListController", function($scope, $http) {
 			});
 	};
 
+	// Generate a random color for the Category tiles
+	var randomColors = ["primary", "yellow", "green", "red"];
+	$scope.randomColor = function() {
+		var i = Math.floor( Math.random() * randomColors.length );
+		return "panel-"+randomColors[i];
+	};
+
 });
 
 
@@ -57,4 +64,19 @@ app.controller("CategoryEditController", function($scope, $http, $location, $rou
 				$location.url("/categories");
 			});
 	};
+});
+
+
+
+/** VIEW all linked Questionnaires **/
+
+app.controller("CategoryViewController", function($scope, $http, $location, $routeParams) {
+	$scope.category  = {};
+	var id = $routeParams.id;
+
+	// Load data
+	$http.get("http://localhost:3000/api/categories/" + id).success(function(response) {
+		$scope.category = response;
+	});
+
 });

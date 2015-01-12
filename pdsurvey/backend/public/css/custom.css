@@ -17,3 +17,9 @@
 	margin-right: 0 !important;
 }
 */
+
+
+/** Individual Styling **/
+.panel a, .panel a:hover, .panel a:visited {
+	color: #fff;
+}

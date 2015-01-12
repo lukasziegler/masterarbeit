@@ -65,6 +65,10 @@ app.config(function($routeProvider) {
 			templateUrl: "/app/templates/categories/edit.html",
 			controller: "CategoryEditController"
 		})
+		.when("/categories/:id/", {
+			templateUrl: "/app/templates/categories/view.html",
+			controller: "CategoryViewController"
+		})
 
 		/* SURVEYS */
 		.when("/surveys", {
