@@ -1,0 +1,22 @@
+	<div class="row">
+      <div class="jumbotron col-lg-10 co-lg-offset-1 col-md-10 col-md-offset-1">
+	        <h1>{{question.question}}</h1>
+	        <p class="lead">{{message}} Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+	        <p>
+	        	<a class="btn btn-lg btn-primary" href="#" ng-click="submit()" role="button">Submit</a>
+				<a class="btn btn-lg btn-success pull-right" href="#/survey" ng-click="nextQuestion()" role="button">Next Question</a>
+			</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1">
+	        <h3>Debug information</h3>
+
+	        <h4>Questionnaires</h4>
+	        <ul>
+	        	<li ng-repeat="questionnaire in questionnaires">{{questionnaire.name}} ({{questionnaire.sections.length}} sections, {{numQuestions(questionnaire.sections)}} questions)</li>
+	        </ul>
+
+	      </div>
+	</div>

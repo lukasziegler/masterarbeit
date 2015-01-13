@@ -1,7 +1,7 @@
 var app = angular.module("pdsurvey");
 
 
-/** LIST **/
+/** DASHBOARD **/
 
 app.controller("DashboardController", function($scope, $http) {
 	
