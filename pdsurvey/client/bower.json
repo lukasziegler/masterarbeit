@@ -1,10 +1,10 @@
 {
-  "name": "pdsurvey-backend",
-  "version": "0.1.2",
+  "name": "pdsurvey-client",
+  "version": "0.0.1",
   "authors": [
     "lukasziegler <lukas@lukasziegler.com>"
   ],
-  "description": "Web-Backend for the PDSurvey tool",
+  "description": "Frontend for the PDSurvey tool",
   "keywords": [
     "pdsurvey"
   ],
@@ -19,7 +19,6 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.1",
-    "angular-strap": "~2.1.5"
+    "bootstrap": "~3.3.1"
   }
 }
