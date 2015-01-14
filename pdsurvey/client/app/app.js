@@ -18,6 +18,6 @@ app.config(function($routeProvider) {
 			controller: "MainController"
 		})
 
-		.otherwise({redirectTo: "/notImplemented"})
+		.otherwise({redirectTo: "/survey"})
 
 });

@@ -1,5 +1,41 @@
 var app = angular.module("pdsurvey")
 
+
+var htmlQuestionType = '            <label for="radioOption1">I do not agree </label>'+
+            '<label class="radio-inline">'+
+                '<input type="radio" ng-model="response" name="optionsRadiosInline" id="radioOption1" value="1">1'+
+            '</label>'+
+            '<label class="radio-inline">'+
+                '<input type="radio" ng-model="response" name="optionsRadiosInline" id="radioOption2" value="2">2'+
+            '</label>'+
+            '<label class="radio-inline">'+
+                '<input type="radio" ng-model="response" name="optionsRadiosInline" id="radioOption3" value="3">3'+
+            '</label>'+
+            '<label class="radio-inline">'+
+                '<input type="radio" ng-model="response" name="optionsRadiosInline" id="radioOption4" value="4">4'+
+            '</label>'+
+            '<label class="radio-inline">'+
+                '<input type="radio" ng-model="response" name="optionsRadiosInline" id="radioOption5" value="5">5'+
+            '</label>'+
+            '<label for="radioOption5"> I agree</label>';
+
+var htmlQuestionType2 = '            <input type="text" ng-model="response" class="form-control" placeholder="Your Response" required>';
+
+app.directive('dynamic', function ($compile) {
+  return {
+    restrict: 'A',
+    replace: true,
+    link: function (scope, ele, attrs) {
+      scope.$watch(attrs.dynamic, function() {
+        ele.html(htmlQuestionType);
+        $compile(ele.contents())(scope);
+      });
+    }
+  };
+});
+
+
+
 /* Controller */
 app.controller("SurveyController", function($scope, $http, $rootScope) {	
 	$scope.message = "Angular.js test -";
@@ -24,9 +60,6 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 	};
 
 	$scope.nextQuestion = function() {
-
-		console.log("TypeOf", typeof $scope.questionnaires);
-
 		var randSurvey = 0, 
 			randSection = 0,
 			randQuestion = 0;
@@ -35,32 +68,23 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 	        randSurvey = Math.floor(Math.random() * $scope.questionnaires.length);
 	        randSection = Math.floor(Math.random() * $scope.questionnaires[randSurvey].sections.length);
 	        randQuestion = Math.floor(Math.random() * $scope.questionnaires[randSurvey].sections[randSection].questions.length);
-	        // console.log("RAND", randSurvey,randSection, randQuestion);
 
 	        $scope.question = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion];
-	        
-	        // return $scope.nextQuestion;
-
-		} else {
-			// return null;
 		}
-	}
+	};
+
+	$scope.html1 = htmlQuestionType;
+
+	$scope.questionType = function(type) {
+		switch(type) {
+			case "5489b332aaaad87855ae8328":
+				return "bar";
+				break;
+			case "5489b2faaaaad87855ae8327":
+				return "foo";
+				break;
+			default:
+				$scope.questionTypeHTML = "QuestionType not found";
+		}
+	};
 })
-
-
-
-        
-        // // Ask a random Question
-        // var question = $('<div/>').append('<strong>Random Question:</strong> ')
-
-        // var randSurvey = Math.floor(Math.random() * data.length);
-        // var randSection = Math.floor(Math.random() * data[randSurvey].sections.length);
-        // var randQuestion = Math.floor(Math.random() * data[randSurvey].sections[randSection].questions.length);
-
-        // console.log("RandQuestion:", randSurvey, randSection, randQuestion);
-
-        // question.append( data[randSurvey].sections[randSection].questions[randQuestion].question + '<br>' );
-        // var response = $('<a class="btn btn-primary">Respond</a>')
-
-        // question.append(response);
-        // container.append(question);
