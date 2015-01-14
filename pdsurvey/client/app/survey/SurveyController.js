@@ -1,6 +1,8 @@
 var app = angular.module("pdsurvey")
 
 
+/** Question Types **/
+
 var htmlQuestionType1 = '            <label for="radioOption1">I do not agree </label>'+
             '<label class="radio-inline">'+
                 '<input type="radio" ng-model="response.answer" name="optionsRadiosInline" id="radioOption1" value="1">1'+
@@ -21,12 +23,17 @@ var htmlQuestionType1 = '            <label for="radioOption1">I do not agree </
 
 var htmlQuestionType = '            <input type="text" ng-model="response.answer" class="form-control" placeholder="Your Response" required>';
 
-app.directive('dynamic', function ($compile) {
+
+
+/** Directives **/
+
+app.directive('pdLoadQuestionType', function ($compile) {
   return {
     restrict: 'A',
     replace: true,
     link: function (scope, ele, attrs) {
-      scope.$watch(attrs.dynamic, function() {
+      scope.$watch(attrs.pdLoadQuestionType, function() {
+      	// console.log("Type", attrs.pdLoadQuestionType);
         ele.html(htmlQuestionType);
         $compile(ele.contents())(scope);
       });
@@ -38,8 +45,8 @@ app.directive('dynamic', function ($compile) {
 
 /* Controller */
 app.controller("SurveyController", function($scope, $http, $rootScope) {	
-	$scope.message = "Angular.js test -";
-	$scope.question = {};
+
+	// initializing Response object
 	$scope.response = { "question": { "id": "", "type": "", "wording": ""}, 
 		"answer": "", "questionnaire": { "type": "", "ref": ""}, 
 		"display": "5494310cf4e2b1000004bcb8", "session": 1};
@@ -48,12 +55,11 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 	$http.get($rootScope.restApi + "/standardSurvey").success(function(response) {
 		$scope.questionnaires = response;
 		$scope.nextQuestion();
-
 	}).error(function(err) {
 		$scope.error = err;
 	});
 
-	// functions
+	// Debug: functions
 	$scope.numQuestions = function(sections) {
 		var num = 0;
 		for (var i = 0; i < sections.length; i++) {
@@ -88,27 +94,28 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 		}
 	};
 
+	/* WIP:
+	 * Currently not really needed */
 	$scope.setQuestionType = function(type) {
-
 		// clear last response from view
 		$scope.response.answer = "";
 
-		switch(type) {
-			case "5489b332aaaad87855ae8328":
-				$scope.html1 = htmlQuestionType1;
-				return "bar";
-				break;
-			case "5489b2faaaaad87855ae8327":
-				$scope.html1 = htmlQuestionType;
-				return "foo";
-				break;
-			default:
-				$scope.questionTypeHTML = "QuestionType not found";
-		}
+		// switch(type) {
+		// 	case "5489b332aaaad87855ae8328":
+		// 		$scope.html1 = htmlQuestionType1;
+		// 		return "bar";
+		// 		break;
+		// 	case "5489b2faaaaad87855ae8327":
+		// 		$scope.html1 = htmlQuestionType;
+		// 		return "foo";
+		// 		break;
+		// 	default:
+		// 		$scope.questionTypeHTML = "QuestionType not found";
+		// }
 	};
 
 
-	// Question Response
+	// Submit Response
 	$scope.submit = function() {
 		if( $scope.response.answer == '') {
 			alert('Response is empty');
@@ -117,7 +124,7 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 
 		$http.post("http://localhost:3000/api/responses", $scope.response)
 			.success(function(response) {
-				console.log("successfully submitted response");
+				console.log("successfully submitted response:", $scope.response.answer);
 				$scope.nextQuestion();
 			})
 			.error(function(response) {
