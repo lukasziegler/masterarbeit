@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-lg-3 col-md-4 col-sm-6" ng-repeat="category in categories | orderBy : 'name'">
-        <div class="panel {{randomColor()}}">
+        <div class="panel panel-categories {{randomColor()}}">
             <div class="panel-heading">
                 <div class="row text-center">
                         <div class="lead"><a href="#categories/{{category._id}}/">{{category.name}}</a></div>

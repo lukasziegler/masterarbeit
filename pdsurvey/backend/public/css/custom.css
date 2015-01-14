@@ -20,6 +20,6 @@
 
 
 /** Individual Styling **/
-.panel a, .panel a:hover, .panel a:visited {
+.panel-categories a, .panel-categories a:hover, .panel-categories a:visited {
 	color: #fff;
 }
