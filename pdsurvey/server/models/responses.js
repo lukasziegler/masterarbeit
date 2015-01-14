@@ -20,13 +20,20 @@ router.route('/responses')
 
 	// POST to create
 	.post(function (req, res, next) {
+
+console.log("RESPONSE1", req.body);
+
 		var newReponse = new Response({
 			question: req.body.question,
 			questionnaire: req.body.questionnaire,
+			answer: req.body.answer,
 			display: req.body.display,
-			session: req.body.session,
-			timestamp: new Date().toISOString()
+			session: req.body.session
+			// timestamp: new Date().toISOString()
 		});
+
+console.log("RESPONSE2", newResponse);
+
 
 	    newResponse.save(function(err) {
 	        if (err) {

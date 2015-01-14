@@ -1,25 +1,25 @@
 var app = angular.module("pdsurvey")
 
 
-var htmlQuestionType = '            <label for="radioOption1">I do not agree </label>'+
+var htmlQuestionType1 = '            <label for="radioOption1">I do not agree </label>'+
             '<label class="radio-inline">'+
-                '<input type="radio" ng-model="response" name="optionsRadiosInline" id="radioOption1" value="1">1'+
+                '<input type="radio" ng-model="response.answer" name="optionsRadiosInline" id="radioOption1" value="1">1'+
             '</label>'+
             '<label class="radio-inline">'+
-                '<input type="radio" ng-model="response" name="optionsRadiosInline" id="radioOption2" value="2">2'+
+                '<input type="radio" ng-model="response.answer" name="optionsRadiosInline" id="radioOption2" value="2">2'+
             '</label>'+
             '<label class="radio-inline">'+
-                '<input type="radio" ng-model="response" name="optionsRadiosInline" id="radioOption3" value="3">3'+
+                '<input type="radio" ng-model="response.answer" name="optionsRadiosInline" id="radioOption3" value="3">3'+
             '</label>'+
             '<label class="radio-inline">'+
-                '<input type="radio" ng-model="response" name="optionsRadiosInline" id="radioOption4" value="4">4'+
+                '<input type="radio" ng-model="response.answer" name="optionsRadiosInline" id="radioOption4" value="4">4'+
             '</label>'+
             '<label class="radio-inline">'+
-                '<input type="radio" ng-model="response" name="optionsRadiosInline" id="radioOption5" value="5">5'+
+                '<input type="radio" ng-model="response.answer" name="optionsRadiosInline" id="radioOption5" value="5">5'+
             '</label>'+
             '<label for="radioOption5"> I agree</label>';
 
-var htmlQuestionType2 = '            <input type="text" ng-model="response" class="form-control" placeholder="Your Response" required>';
+var htmlQuestionType = '            <input type="text" ng-model="response.answer" class="form-control" placeholder="Your Response" required>';
 
 app.directive('dynamic', function ($compile) {
   return {
@@ -40,6 +40,8 @@ app.directive('dynamic', function ($compile) {
 app.controller("SurveyController", function($scope, $http, $rootScope) {	
 	$scope.message = "Angular.js test -";
 	$scope.question = {};
+	$scope.response = { "question": { "id": "", "type": "", "wording": ""}, 
+		"answer": "", "display": "5494310cf4e2b1000004bcb8", "session": 1};
 
 	// load Questionnaires
 	$http.get($rootScope.restApi + "/standardSurvey").success(function(response) {
@@ -70,6 +72,14 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 	        randQuestion = Math.floor(Math.random() * $scope.questionnaires[randSurvey].sections[randSection].questions.length);
 
 	        $scope.question = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion];
+
+console.log("Question", $scope.question);
+
+	        $scope.response.question.id = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion]._id;
+	        $scope.response.question.type = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion].type;
+	        $scope.response.question.wording = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion].question;
+
+console.log("Response", $scope.response);
 		}
 	};
 
@@ -86,5 +96,26 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 			default:
 				$scope.questionTypeHTML = "QuestionType not found";
 		}
+	};
+
+
+	// Question Response
+	$scope.submit = function() {
+		console.log("attempting to submit()", $scope.response);
+
+		if( $scope.response.answer == '') {
+			alert('Response is empty');
+			return;
+		}
+
+		$http.post("http://localhost:3000/api/responses/", $scope.response)
+			.success(function(response) {
+				console.log("successfully submitted response");
+				nextQuestion();
+			})
+			.error(function(response) {
+				console.log("error sending response");
+				alert("Error submitting response");
+			});
 	};
 })
