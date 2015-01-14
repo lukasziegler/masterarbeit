@@ -1,55 +1,41 @@
 var Response = Schema.ResponseModel;
 
 /** 
- * QUESTION TYPES
+ * RESPONSES
  */ 
 
 router.route('/responses')
 
-	/** 
-	 * TODO: ADD AUTHENTICATION !!
-	 */
-	 
 	// GET 
 	.get(function (req, res, next) {
-		Response.find({}, function (err, responses) {
+		Response.find({}, function (err, categories) {
 			if (err) return console.error(err);
-			res.send(responses);
+			res.send(categories);
 		});
 	})
 
 	// POST to create
 	.post(function (req, res, next) {
-
-console.log("RESPONSE1", req.body);
-
-		var newReponse = new Response({
+		var newResponse = new Response({
 			question: req.body.question,
-			questionnaire: req.body.questionnaire,
 			answer: req.body.answer,
+			questionnaire: req.body.questionnaire,
 			display: req.body.display,
-			session: req.body.session
-			// timestamp: new Date().toISOString()
+			session: req.body.session,
+			timestamp: new Date().toISOString()
 		});
-
-console.log("RESPONSE2", newResponse);
-
 
 	    newResponse.save(function(err) {
 	        if (err) {
 	        	res.send('Error creating object');
 	            return console.error(err);
 	        }
-    	    return res.send(newReponse);
+    	    return res.send(newResponse);
 	    });
 	})
 
 
 router.route('/responses/:id')
-
-	/** 
-	 * TODO: ADD AUTHENTICATION !!
-	 */
 
 	// GET single element
 	.get(function (req, res, next) {
@@ -59,8 +45,6 @@ router.route('/responses/:id')
 			res.send(response);
 		});
 	})
-
-
 
 	// // PUT to update
 	// .put(function (req, res, next) {
@@ -73,9 +57,7 @@ router.route('/responses/:id')
 
 	// 		// update object
 	// 		response.name = req.body.name,
-	// 		response.description = req.body.description,
-	// 		response.parameters = req.body.parameters,
-	// 		response.constraints = req.body.constraints
+	// 		response.description = req.body.description
 
 	// 		return response.save(function(err) {
 	// 			if (err) {
@@ -90,9 +72,7 @@ router.route('/responses/:id')
 
 	// // DELETE
 	// .delete(function (req, res, next) {
-
 	//   // TODO implement authentication / validation
-
 	// 	Response.remove({ _id: req.params.id }, function(err, response) {
 	// 		if (err) return console.error(err);
 			

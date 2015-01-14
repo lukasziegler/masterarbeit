@@ -41,7 +41,8 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 	$scope.message = "Angular.js test -";
 	$scope.question = {};
 	$scope.response = { "question": { "id": "", "type": "", "wording": ""}, 
-		"answer": "", "display": "5494310cf4e2b1000004bcb8", "session": 1};
+		"answer": "", "questionnaire": { "type": "", "ref": ""}, 
+		"display": "5494310cf4e2b1000004bcb8", "session": 1};
 
 	// load Questionnaires
 	$http.get($rootScope.restApi + "/standardSurvey").success(function(response) {
@@ -67,30 +68,38 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 			randQuestion = 0;
 
 		if (typeof $scope.questionnaires !== 'undefined') {
+			// choose random question
 	        randSurvey = Math.floor(Math.random() * $scope.questionnaires.length);
 	        randSection = Math.floor(Math.random() * $scope.questionnaires[randSurvey].sections.length);
 	        randQuestion = Math.floor(Math.random() * $scope.questionnaires[randSurvey].sections[randSection].questions.length);
 
+	        // update Question object for View
 	        $scope.question = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion];
 
-console.log("Question", $scope.question);
-
+	        // update Response object
 	        $scope.response.question.id = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion]._id;
 	        $scope.response.question.type = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion].type;
 	        $scope.response.question.wording = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion].question;
+	        $scope.response.questionnaire.type = "StandardSurvey";
+	        $scope.response.questionnaire.ref = $scope.questionnaires[randSurvey]._id;
 
-console.log("Response", $scope.response);
+	        // clear last response from 
+	        $scope.setQuestionType($scope.response.question.type);
 		}
 	};
 
-	$scope.html1 = htmlQuestionType;
+	$scope.setQuestionType = function(type) {
 
-	$scope.questionType = function(type) {
+		// clear last response from view
+		$scope.response.answer = "";
+
 		switch(type) {
 			case "5489b332aaaad87855ae8328":
+				$scope.html1 = htmlQuestionType1;
 				return "bar";
 				break;
 			case "5489b2faaaaad87855ae8327":
+				$scope.html1 = htmlQuestionType;
 				return "foo";
 				break;
 			default:
@@ -101,17 +110,15 @@ console.log("Response", $scope.response);
 
 	// Question Response
 	$scope.submit = function() {
-		console.log("attempting to submit()", $scope.response);
-
 		if( $scope.response.answer == '') {
 			alert('Response is empty');
 			return;
 		}
 
-		$http.post("http://localhost:3000/api/responses/", $scope.response)
+		$http.post("http://localhost:3000/api/responses", $scope.response)
 			.success(function(response) {
 				console.log("successfully submitted response");
-				nextQuestion();
+				$scope.nextQuestion();
 			})
 			.error(function(response) {
 				console.log("error sending response");
