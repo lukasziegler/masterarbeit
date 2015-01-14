@@ -6,15 +6,15 @@ app.config(function($routeProvider) {
 
 		/* MAIN */
 		.when("/survey", {
-			templateUrl: "/app/templates/survey/index.html",
+			templateUrl: "/app/survey/index.html",
 			controller: "SurveyController"
 		})
 		.when("/about", {
-			templateUrl: "/app/templates/about/index.html",
+			templateUrl: "/app/main/about.html",
 			controller: "AboutController"
 		})
 		.when("/welcome", {
-			templateUrl: "/app/templates/main/index.html",
+			templateUrl: "/app/main/index.html",
 			controller: "MainController"
 		})
 
