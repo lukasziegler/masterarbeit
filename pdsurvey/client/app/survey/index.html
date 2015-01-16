@@ -14,21 +14,3 @@
 			</div>
       </div>
     </div>
-
-    <div class="row">
-    	{{generateQuestionType()}}
-    </div>
-
-    <!-- <div pd-generate-question-type></div> -->
-
-    <div class="row">
-      <div class="col-lg-10 col-lg-offset-1">
-	        <h3>Debug information</h3>
-
-	        <h4>Questionnaires</h4>
-	        <ul>
-	        	<li ng-repeat="questionnaire in questionnaires">{{questionnaire.name}} ({{questionnaire.sections.length}} sections, {{numQuestions(questionnaire.sections)}} questions)</li>
-	        </ul>
-
-	      </div>
-	</div>

@@ -8,9 +8,12 @@
 
     <div class="row">
       <div class="col-lg-10 col-lg-offset-1">
-	        <h4>Public Display Research</h4>
-	        <p>Got interested in our research? Find out more about our <a href="#">plans</a> from our research group.</p>
-	        <h4>Support Our Research</h4>
-	        <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+	        <h3>Debug information</h3>
+
+	        <h4>Questionnaires</h4>
+	        <ul>
+	        	<li ng-repeat="questionnaire in questionnaires">{{questionnaire.name}} ({{questionnaire.sections.length}} sections, {{numQuestions(questionnaire.sections)}} questions)</li>
+	        </ul>
+
 	      </div>
 	</div>

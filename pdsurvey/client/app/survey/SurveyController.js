@@ -22,7 +22,7 @@ app.directive('pdLoadQuestionType', function ($compile) {
         	for (var i = 1; i <= param.num; i++) {
 
         		if (i == 1)	
-        			str += '<label class="radio-label" for="radio'+i+'" ng-mouseover="test()">'+param.minLabel+' </label>'; 
+        			str += '<label class="radio-label" for="radio'+i+'">'+param.minLabel+' </label>'; 
 
         		str += '<label class="radio-inline"><input type="radio" ng-model="response.answer" name="optionsRadiosInline" id="radio'+i+'" value="'+i+'" class="input-lg">'+i+'</label>';
 
@@ -63,19 +63,6 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 		$scope.error = err;
 	});
 
-	// Debug: functions
-	$scope.numQuestions = function(sections) {
-		var num = 0;
-		for (var i = 0; i < sections.length; i++) {
-			num += sections[i].questions.length;
-		};
-		return num;
-	};
-
-	$scope.test = function() {
-		alert("foo");
-	}
-
 	$scope.nextQuestion = function() {
 		var randSurvey = 0, 
 			randSection = 0,
@@ -102,32 +89,14 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 	        $scope.response.questionnaire.ref = $scope.questionnaires[randSurvey]._id;
 
 	        // clear last response from 
-	        $scope.setQuestionType($scope.response.question.type);
+	        $scope.resetQuestion();
 		}
 	};
 
-	/* WIP:
-	 * Currently not really needed */
-	$scope.setQuestionType = function(type) {
+	/* Currently not really needed */
+	$scope.resetQuestion = function() {
 		// clear last response from view
 		$scope.response.answer = "";
-
-		// switch(type) {
-		// 	case "5489b332aaaad87855ae8328":
-		// 		$scope.html1 = htmlQuestionType1;
-		// 		return "bar";
-		// 		break;
-		// 	case "5489b2faaaaad87855ae8327":
-		// 		$scope.html1 = htmlQuestionType;
-		// 		return "foo";
-		// 		break;
-		// 	default:
-		// 		$scope.questionTypeHTML = "QuestionType not found";
-		// }
-	};
-
-	$scope.generateQuestionType = function(parameters) {
-		return "FOOO";
 	};
 
 
