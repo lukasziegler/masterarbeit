@@ -1,45 +1,49 @@
 var app = angular.module("pdsurvey")
 
 
-/** Question Types **/
-
-var htmlQuestionType1 = '            <label for="radioOption1">I do not agree </label>'+
-            '<label class="radio-inline">'+
-                '<input type="radio" ng-model="response.answer" name="optionsRadiosInline" id="radioOption1" value="1">1'+
-            '</label>'+
-            '<label class="radio-inline">'+
-                '<input type="radio" ng-model="response.answer" name="optionsRadiosInline" id="radioOption2" value="2">2'+
-            '</label>'+
-            '<label class="radio-inline">'+
-                '<input type="radio" ng-model="response.answer" name="optionsRadiosInline" id="radioOption3" value="3">3'+
-            '</label>'+
-            '<label class="radio-inline">'+
-                '<input type="radio" ng-model="response.answer" name="optionsRadiosInline" id="radioOption4" value="4">4'+
-            '</label>'+
-            '<label class="radio-inline">'+
-                '<input type="radio" ng-model="response.answer" name="optionsRadiosInline" id="radioOption5" value="5">5'+
-            '</label>'+
-            '<label for="radioOption5"> I agree</label>';
-
-var htmlQuestionType = '            <input type="text" ng-model="response.answer" class="form-control" placeholder="Your Response" required>';
-
-
-
 /** Directives **/
 
 app.directive('pdLoadQuestionType', function ($compile) {
   return {
     restrict: 'A',
     replace: true,
-    link: function (scope, ele, attrs) {
+    link: function (scope, element, attrs) {
       scope.$watch(attrs.pdLoadQuestionType, function() {
-      	// console.log("Type", attrs.pdLoadQuestionType);
-        ele.html(htmlQuestionType);
-        $compile(ele.contents())(scope);
+
+        var param = {"type": "radio", "num": 5, "minLabel": "I do not agree", "maxLabel": "I agree"};
+        // var param = {"type": "text"};
+
+
+        /** Generate Question Type **/
+        var str ="";
+
+        // 1) Radio
+        if (param.type === "radio") {
+        	for (var i = 1; i <= param.num; i++) {
+
+        		if (i == 1)	
+        			str += '<label class="radio-label" for="radio'+i+'" ng-mouseover="test()">'+param.minLabel+' </label>'; 
+
+        		str += '<label class="radio-inline"><input type="radio" ng-model="response.answer" name="optionsRadiosInline" id="radio'+i+'" value="'+i+'" class="input-lg">'+i+'</label>';
+
+        		if (param.num > 7 && i%5 == 0 && i != param.num)
+        			str+= "<br>";
+
+        		if (i == param.num) 
+        			str += '<label class="radio-label" for="radio'+i+'"> '+param.maxLabel+'</label>'; 
+        	};
+
+        // 2) Text field
+        } else if (param.type === "text") {
+        	str += '<input type="text" ng-model="response.answer" class="form-control" placeholder="Your Response" required>';
+        }
+        element.append(str);
+	    
       });
     }
   };
 });
+
 
 
 
@@ -68,6 +72,10 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 		return num;
 	};
 
+	$scope.test = function() {
+		alert("foo");
+	}
+
 	$scope.nextQuestion = function() {
 		var randSurvey = 0, 
 			randSection = 0,
@@ -78,6 +86,10 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 	        randSurvey = Math.floor(Math.random() * $scope.questionnaires.length);
 	        randSection = Math.floor(Math.random() * $scope.questionnaires[randSurvey].sections.length);
 	        randQuestion = Math.floor(Math.random() * $scope.questionnaires[randSurvey].sections[randSection].questions.length);
+
+	        // check whether Question has been asked already
+	        	// TODO
+	        	// + clear blackList again in setQuestionType()
 
 	        // update Question object for View
 	        $scope.question = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion];
@@ -112,6 +124,10 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 		// 	default:
 		// 		$scope.questionTypeHTML = "QuestionType not found";
 		// }
+	};
+
+	$scope.generateQuestionType = function(parameters) {
+		return "FOOO";
 	};
 
 
