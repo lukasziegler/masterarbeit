@@ -34,6 +34,25 @@ router.route('/contexts')
 	})
 
 
+router.route('/contexts/dynamic')
+	// GET 
+	.get(function (req, res, next) {
+		Context.find({ type: 'dynamic' }, function (err, contexts) {
+			if (err) return console.error(err);
+			res.send(contexts);
+		});
+	})
+
+router.route('/contexts/static')
+	// GET 
+	.get(function (req, res, next) {
+		Context.find({ type: 'static' }, function (err, contexts) {
+			if (err) return console.error(err);
+			res.send(contexts);
+		});
+	})
+
+
 router.route('/contexts/:id')
 
 	// GET single element
@@ -77,3 +96,5 @@ router.route('/contexts/:id')
 			res.send({ message: 'Successfully deleted' });
 		});
 	})
+
+

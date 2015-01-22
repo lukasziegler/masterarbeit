@@ -15,13 +15,20 @@ var app = angular.module("pdsurvey")
 				var model = scope.newDisplay.type;
 
 				if (name != undefined && model != undefined) {
+
+					// update model
 					scope.myDisplays.push( {"name": name,
 						"type": model});
-					console.log("Submitted fields", name, model);
+
+					// TODO save to REST / DB
+
+					// clear old values
+					scope.newDisplay.name = "";
+					scope.newDisplay.type = {};
 				}
 				else {
 					alert("Empty fields");
-					console.log("Empty fields", name, model);
+					// TODO show notification in form fields
 				}
 			}
 		}
@@ -57,7 +64,7 @@ app.controller("WizardController", function($scope, $http) {
 	});
 
 	// Load Context
-	$http.get("http://localhost:3000/api/contexts?type=dynamic").success(function(response) {
+	$http.get("http://localhost:3000/api/contexts/dynamic").success(function(response) {
 		$scope.dynamicContext = response;
 	}).error(function(err) {
 		$scope.error = err;
