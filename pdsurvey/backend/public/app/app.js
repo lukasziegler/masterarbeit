@@ -6,143 +6,143 @@ app.config(function($routeProvider) {
 
 		/* USERS */
 		.when("/users", {
-			templateUrl: "/app/templates/users/list.html",
+			templateUrl: "/app/users/templates/list.html",
 			controller: "UserListController"
 		})
 		.when("/users/new", {
-			templateUrl: "/app/templates/users/create.html",
+			templateUrl: "/app/users/templates/create.html",
 			controller: "UserCreateController"
 		})
 		.when("/users/:id/edit", {
-			templateUrl: "/app/templates/users/edit.html",
+			templateUrl: "/app/users/templates/edit.html",
 			controller: "UserEditController"
 		})
 
 		/* RESPONSES */
 		.when("/responses", {
-			templateUrl: "/app/templates/responses/list.html",
+			templateUrl: "/app/responses/templates/list.html",
 			controller: "ResponseListController"
 		})
 
 		/* QUESTIONS */
 		.when("/questions", {
-			templateUrl: "/app/templates/questions/list.html",
+			templateUrl: "/app/questions/templates/list.html",
 			controller: "QuestionListController"
 		})
 		.when("/questions/new", {
-			templateUrl: "/app/templates/questions/create.html",
+			templateUrl: "/app/questions/templates/create.html",
 			controller: "QuestionCreateController"
 		})
 		.when("/questions/:id/edit", {
-			templateUrl: "/app/templates/questions/edit.html",
+			templateUrl: "/app/questions/templates/edit.html",
 			controller: "QuestionEditController"
 		})
 
 		/* QUESTION TYPES */
 		.when("/questionTypes", {
-			templateUrl: "/app/templates/questionTypes/list.html",
+			templateUrl: "/app/questionTypes/templates/list.html",
 			controller: "QuestionTypeListController"
 		})
 		.when("/questionTypes/new", {
-			templateUrl: "/app/templates/questionTypes/create.html",
+			templateUrl: "/app/questionTypes/templates/create.html",
 			controller: "QuestionTypeCreateController"
 		})
 		.when("/questionTypes/:id/edit", {
-			templateUrl: "/app/templates/questionTypes/edit.html",
+			templateUrl: "/app/questionTypes/templates/edit.html",
 			controller: "QuestionTypeEditController"
 		})
 
 		/* CATEGORIES */
 		.when("/categories", {
-			templateUrl: "/app/templates/categories/list.html",
+			templateUrl: "/app/categories/templates/list.html",
 			controller: "CategoryListController"
 		})
 		.when("/categories/new", {
-			templateUrl: "/app/templates/categories/create.html",
+			templateUrl: "/app/categories/templates/create.html",
 			controller: "CategoryCreateController"
 		})
 		.when("/categories/:id/edit", {
-			templateUrl: "/app/templates/categories/edit.html",
+			templateUrl: "/app/categories/templates/edit.html",
 			controller: "CategoryEditController"
 		})
 		.when("/categories/:id/", {
-			templateUrl: "/app/templates/categories/view.html",
+			templateUrl: "/app/categories/templates/view.html",
 			controller: "CategoryViewController"
 		})
 
 		/* SURVEYS */
 		.when("/surveys", {
-			templateUrl: "/app/templates/surveys/list.html",
+			templateUrl: "/app/surveys/templates/list.html",
 			controller: "SurveyListController"
 		})
 		.when("/surveys/new", {
-			templateUrl: "/app/templates/surveys/create.html",
+			templateUrl: "/app/surveys/templates/create.html",
 			controller: "SurveyCreateController"
 		})
 		.when("/surveys/:id/edit", {
-			templateUrl: "/app/templates/surveys/edit.html",
+			templateUrl: "/app/surveys/templates/edit.html",
 			controller: "SurveyEditController"
 		})
 
 		/* STANDARDIZED QUESTIONNAIRE / SURVEY */
 		.when("/standardizedQuestions", {
-			templateUrl: "/app/templates/standardizedQuestions/list.html",
+			templateUrl: "/app/standardizedQuestions/templates/list.html",
 			controller: "StandardizedQuestionListController"
 		})
 		.when("/standardizedQuestions/new", {
-			templateUrl: "/app/templates/standardizedQuestions/create.html",
+			templateUrl: "/app/standardizedQuestions/templates/create.html",
 			controller: "StandardizedQuestionCreateController"
 		})
 		.when("/standardizedQuestions/:id/edit", {
-			templateUrl: "/app/templates/standardizedQuestions/edit.html",
+			templateUrl: "/app/standardizedQuestions/templates/edit.html",
 			controller: "StandardizedQuestionEditController"
 		})
 
 		/* CAMPAIGNS */
 		.when("/campaigns", {
-			templateUrl: "/app/templates/campaigns/list.html",
+			templateUrl: "/app/campaigns/templates/list.html",
 			controller: "CampaignListController"
 		})
 		.when("/campaigns/new", {
-			templateUrl: "/app/templates/campaigns/create.html",
+			templateUrl: "/app/campaigns/templates/create.html",
 			controller: "CampaignCreateController"
 		})
 		.when("/campaigns/:id/edit", {
-			templateUrl: "/app/templates/campaigns/edit.html",
+			templateUrl: "/app/campaigns/templates/edit.html",
 			controller: "CampaignEditController"
 		})
 
 		/* DISPLAYS */
 		.when("/displays", {
-			templateUrl: "/app/templates/displays/list.html",
+			templateUrl: "/app/displays/templates/list.html",
 			controller: "DisplayListController"
 		})
 		.when("/displays/new", {
-			templateUrl: "/app/templates/displays/create.html",
+			templateUrl: "/app/displays/templates/create.html",
 			controller: "DisplayCreateController"
 		})
 		.when("/displays/:id/edit", {
-			templateUrl: "/app/templates/displays/edit.html",
+			templateUrl: "/app/displays/templates/edit.html",
 			controller: "DisplayEditController"
 		})
 
 		/* CONTEXTS */
 		.when("/contexts", {
-			templateUrl: "/app/templates/contexts/list.html",
+			templateUrl: "/app/contexts/templates/list.html",
 			controller: "ContextListController"
 		})
 		.when("/contexts/new", {
-			templateUrl: "/app/templates/contexts/create.html",
+			templateUrl: "/app/contexts/templates/create.html",
 			controller: "ContextCreateController"
 		})
 		.when("/contexts/:id/edit", {
-			templateUrl: "/app/templates/contexts/edit.html",
+			templateUrl: "/app/contexts/templates/edit.html",
 			controller: "ContextEditController"
 		})
 
 		/* DASHBOARD */
 		.when("/", {
-			templateUrl: "/app/templates/dashboard/overview.html",
+			templateUrl: "/app/dashboard/templates/overview.html",
 			controller: "DashboardController"
 		})
 
