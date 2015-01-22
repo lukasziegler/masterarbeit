@@ -140,6 +140,12 @@ app.config(function($routeProvider) {
 			controller: "ContextEditController"
 		})
 
+		/* WIZARD / GETTING STARTED */
+		.when("/wizard", {
+			templateUrl: "/app/wizard/templates/index.html",
+			controller: "WizardController"
+		})
+
 		/* DASHBOARD */
 		.when("/", {
 			templateUrl: "/app/dashboard/templates/overview.html",

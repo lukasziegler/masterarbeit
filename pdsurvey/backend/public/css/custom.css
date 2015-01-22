@@ -23,3 +23,33 @@
 .panel-categories a, .panel-categories a:hover, .panel-categories a:visited {
 	color: #fff;
 }
+
+
+/* Wizard: Breadcrum-Navigation */
+.breadcrumb {
+	margin-bottom: 0;
+	padding: 0;
+}
+
+
+.breadcrumb li a,
+.breadcrumb li.active a {
+	padding: 5px 8px 6px 7px;
+	font-weight: 500;
+	color: #333;
+	border-radius: 5px;
+}
+.breadcrumb li a:hover {
+	background-color: #dddddd;
+	text-decoration: none;
+}
+
+
+.breadcrumb li.active a {
+	background-color: #2563ab;
+	color: #fff;
+}
+.breadcrumb li.active a:hover {
+}
+
+
