@@ -48,6 +48,7 @@
 .breadcrumb li.active a {
 	background-color: #2563ab;
 	color: #fff;
+	font-weight: 400;
 }
 .breadcrumb li.active a:hover {
 }
