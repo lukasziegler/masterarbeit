@@ -103,8 +103,9 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 	// Submit Response
 	$scope.submit = function() {
 		if( $scope.response.answer == '') {
-			alert('Response is empty');
-			return;
+			console.log($scope.response.answer);
+			// alert('Response is empty');
+			// return;
 		}
 
 		$http.post("http://localhost:3000/api/responses", $scope.response)

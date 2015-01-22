@@ -70,12 +70,12 @@ router.route('/responses/:id')
 
 	// })
 
-	// // DELETE
-	// .delete(function (req, res, next) {
-	//   // TODO implement authentication / validation
-	// 	Response.remove({ _id: req.params.id }, function(err, response) {
-	// 		if (err) return console.error(err);
+	// DELETE
+	.delete(function (req, res, next) {
+	  // TODO implement authentication / validation
+		Response.remove({ _id: req.params.id }, function(err, response) {
+			if (err) return console.error(err);
 			
-	// 		res.send({ message: 'Successfully deleted' });
-	// 	});
-	// })
+			res.send({ message: 'Successfully deleted' });
+		});
+	})

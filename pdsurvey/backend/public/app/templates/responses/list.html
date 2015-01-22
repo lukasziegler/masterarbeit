@@ -28,13 +28,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="response in responses | orderBy : 'name'">
+                                        <tr ng-repeat="response in responses | orderBy : 'timestamp'">
                                             <td>{{response.question.wording}}</td>
-                                            <td>{{response.question.answer}}</td>
+                                            <td>{{response.answer}}</td>
                                             <td>{{response.questionnaire.type}}</td>
                                             <td>{{response.display}}</td>
                                             <td>{{response.session}}</td>
                                             <td>{{response.timestamp | date:'H:mm - dd.MM.yyyy'}}</td>
+                                            <td><a href="" ng-click="deleteResponse(response)" class="btn btn-danger">Delete</a></td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -104,7 +104,7 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                asdf
+                No campaigns found
             </div>
             <!-- /.panel-body -->
         </div>
@@ -117,7 +117,7 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                asdf
+                <div ng-repeat="display in displays">{{display.name}}</div>
             </div>
             <!-- /.panel-body -->
         </div>
@@ -151,7 +151,24 @@
                 </div>
             </div>
             <div class="panel-body">
-                asdf
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Answer</th>
+                            <th>Question</th>
+                            <!-- <th>Display</th>
+                            <th>Questionnaire</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="response in responses | orderBy: '-timestamp'">
+                            <td>{{response.answer}}</td>
+                            <td>{{response.question.wording}}</td>
+<!--                             <td>TODO</td> -->
+                        </tr>
+                    </tbody>
+                </table>
+
             </div>
         </div>
         <!-- /.panel -->

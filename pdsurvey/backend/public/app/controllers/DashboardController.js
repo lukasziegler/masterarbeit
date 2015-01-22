@@ -21,4 +21,18 @@ app.controller("DashboardController", function($scope, $http) {
 			});
 	};
 
+	// Load Responses
+	$http.get("http://localhost:3000/api/responses").success(function(response) {
+		$scope.responses = response;
+	}).error(function(err) {
+		$scope.error = err;
+	});
+
+	// Load Displays
+	$http.get("http://localhost:3000/api/displays").success(function(response) {
+		$scope.displays = response;
+	}).error(function(err) {
+		$scope.error = err;
+	});
+	
 });
