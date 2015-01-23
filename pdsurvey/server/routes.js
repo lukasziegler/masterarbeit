@@ -27,6 +27,27 @@ router.get('/secret', auth, function (req, res, next) {
   res.send('This page is only visible when logged in');
 })
 
+//==================================================================
+
+// route to test if the user is logged in or not
+router.get('/loggedin', function(req, res) {
+  res.send(req.isAuthenticated() ? req.user : '0');
+})
+
+// route to log in
+router.post('/login', passport.authenticate('local'), function(req, res) {
+  res.send(req.user);
+})
+
+// route to log out
+router.post('/logout', function(req, res){
+  req.logOut();
+  res.status(200).end();
+})
+
+//==================================================================
+
+
 
 // Questions
 require("./models/questions");
