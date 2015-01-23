@@ -5,15 +5,26 @@
 Schema = require('./schema');
 
 
-// ! Embed Models in the correct order
+// Middleware to be used for every secured route
+var auth = function(req, res, next){
+	if (!req.isAuthenticated()) 
+		res.status(401).end();
+	else
+		next();
+};
 
 
 /** 
  * Define Routes
+ ! Embed Models in the correct order
  */ 
 
 router.get('/', function (req, res, next) {
   res.send('Welcome to PDSurvey\'s REST API');
+})
+
+router.get('/secret', auth, function (req, res, next) {
+  res.send('This page is only visible when logged in');
 })
 
 
