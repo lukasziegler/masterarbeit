@@ -42,7 +42,7 @@ var auth = function(req, res, next){
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3333);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(cookieParser()); 
