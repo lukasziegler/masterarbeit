@@ -1,5 +1,10 @@
 var app = angular.module("pdsurvey", ["ngRoute", /*"ngResource",*/ "mgcrea.ngStrap"]);
 
+// Root Scope
+app.run(function($rootScope) {
+	$rootScope.user = "lukas";
+});
+
 // Routing
 app.config(function($routeProvider) {
 
