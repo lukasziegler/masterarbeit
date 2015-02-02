@@ -54,6 +54,15 @@ var app = angular.module("pdsurvey")
 /** CONTROLLERS **/
 
 app.controller("WizardController", function($scope, $http) {
+	// Tabs for Wizard
+	$scope.tabs = [
+		{title:'Display', template: '/app/wizard/templates/_display.html',},
+		{title:'Survey', template: '/app/wizard/templates/_survey.html'},
+		{title:'Campaign', template: '/app/wizard/templates/_campaign.html'},
+		{title:'Embed Code', template: '/app/wizard/templates/_embedCode.html'}
+	];
+	$scope.tabs.activeTab = 0;
+
 	$scope.myDisplays = [];
 
 	// Load Displays
@@ -74,5 +83,6 @@ app.controller("WizardController", function($scope, $http) {
 	$scope.addNewDisplay = function() {
 		alert("TODO");
 	}
+
 
 })
