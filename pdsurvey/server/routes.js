@@ -67,7 +67,10 @@ require("./models/surveys");
 // Standardized Questionnaires
 require("./models/standardSurvey");
 
-// Displays
+// Display Models
+require("./models/displayModels");
+
+// Displays per User
 require("./models/displays");
 
 // Campaigns

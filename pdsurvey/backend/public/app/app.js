@@ -168,6 +168,20 @@ app.config(function($routeProvider, $httpProvider) {
 			controller: "CampaignEditController"
 		})
 
+		/* DISPLAY MODELS */
+		.when("/displayModels", {
+			templateUrl: "/app/displayModels/templates/list.html",
+			controller: "DisplayModelListController"
+		})
+		.when("/displayModels/new", {
+			templateUrl: "/app/displayModels/templates/create.html",
+			controller: "DisplayModelCreateController"
+		})
+		.when("/displayModels/:id/edit", {
+			templateUrl: "/app/displayModels/templates/edit.html",
+			controller: "DisplayModelEditController"
+		})
+
 		/* DISPLAYS */
 		.when("/displays", {
 			templateUrl: "/app/displays/templates/list.html",

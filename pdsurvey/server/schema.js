@@ -80,7 +80,18 @@ var StandardSurveySchema = mongoose.Schema({
 exports.StandardSurveyModel = mongoose.model('StandardSurvey', StandardSurveySchema, 'standardSurvey');
 
 
-/* DISPLAYS */
+/* DISPLAY MODELS */
+var DisplayModelSchema = mongoose.Schema({ 
+    name: { type: String, required: true },
+    producer: String,
+    url: String,
+    characteristics: String,
+    contextStatic: [String]
+});
+exports.DisplayModelModel = mongoose.model('DisplayModel', DisplayModelSchema, 'displayModels');
+
+
+/* DISPLAYS (per User) */
 var DisplaySchema = mongoose.Schema({ 
     name: { type: String, required: true },
     producer: String,
