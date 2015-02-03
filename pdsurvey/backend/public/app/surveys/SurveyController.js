@@ -3,18 +3,18 @@ var app = angular.module("pdsurvey");
 
 /** LIST **/
 
-app.controller("SurveyListController", function($scope, $http, $location) {
+app.controller("SurveyListController", function($scope, $http, $location, config) {
 	$scope.survey  = {};
 
 	
-	$http.get("http://localhost:3000/api/surveys").success(function(response) {
+	$http.get(config.API + "surveys").success(function(response) {
 		$scope.surveys = response;
 	}).error(function(err) {
 		$scope.error = err;
 	});
 
 	$scope.deleteSurvey = function(survey) {
-		$http.delete("http://localhost:3000/api/surveys/" + survey._id)
+		$http.delete(config.API + "surveys/" + survey._id)
 			.success(function(response) {
 				var index = $scope.surveys.indexOf(survey)
 				$scope.surveys.splice(index, 1);     
@@ -22,7 +22,7 @@ app.controller("SurveyListController", function($scope, $http, $location) {
 	};
 
 	$scope.createSurvey = function() {
-		$http.post("http://localhost:3000/api/surveys", $scope.survey)
+		$http.post(config.API + "surveys", $scope.survey)
 			.success(function(response) {
 				$location.url("/surveys/#");
 			});
@@ -34,11 +34,11 @@ app.controller("SurveyListController", function($scope, $http, $location) {
 
 /** CREATE **/
 
-app.controller("SurveyCreateController", function($scope, $http, $location) {
+app.controller("SurveyCreateController", function($scope, $http, $location, config) {
 	$scope.survey  = {};
 
 	// Load data
-	// $http.get("http://localhost:3000/api/questionTypes").success(function(response) {
+	// $http.get(config.API + "questionTypes").success(function(response) {
 	// 	$scope.questionTypes = response;
 	// }).error(function(err) {
 	// 	$scope.error = err;
@@ -46,7 +46,7 @@ app.controller("SurveyCreateController", function($scope, $http, $location) {
 
 	// Save data
 	$scope.createSurvey = function() {
-		$http.post("http://localhost:3000/api/surveys", $scope.survey)
+		$http.post(config.API + "surveys", $scope.survey)
 			.success(function(response) {
 				$location.url("/surveys");
 			});
@@ -57,16 +57,16 @@ app.controller("SurveyCreateController", function($scope, $http, $location) {
 
 /** EDIT **/
 
-app.controller("SurveyEditController", function($scope, $http, $location, $routeParams) {
+app.controller("SurveyEditController", function($scope, $http, $location, $routeParams, config) {
 	$scope.survey  = {};
 	var id = $routeParams.id;
 
 	// Load data
-	$http.get("http://localhost:3000/api/surveys/" + id).success(function(response) {
+	$http.get(config.API + "surveys/" + id).success(function(response) {
 		$scope.survey = response;
 	});
 
-	// $http.get("http://localhost:3000/api/questionTypes").success(function(response) {
+	// $http.get(config.API + "questionTypes").success(function(response) {
 	// 	$scope.questionTypes = response;
 	// }).error(function(err) {
 	// 	$scope.error = err;
@@ -74,7 +74,7 @@ app.controller("SurveyEditController", function($scope, $http, $location, $route
 
 	// Save data
 	$scope.saveSurvey = function() {
-		$http.put("http://localhost:3000/api/surveys/" + $scope.survey._id, $scope.survey)
+		$http.put(config.API + "surveys/" + $scope.survey._id, $scope.survey)
 			.success(function(response) {
 				$location.url("/surveys");
 			});

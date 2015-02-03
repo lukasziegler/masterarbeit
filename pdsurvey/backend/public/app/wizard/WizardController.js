@@ -3,7 +3,7 @@ var app = angular.module("pdsurvey")
 
 /** CONTROLLERS **/
 
-app.controller("WizardController", function($scope, $http, $rootScope) {
+app.controller("WizardController", function($scope, $http, $rootScope, config) {
 	// Tabs for Wizard
 	$scope.tabs = [
 		{title:'Display', template: '/app/wizard/templates/_display.html',},
@@ -18,14 +18,14 @@ app.controller("WizardController", function($scope, $http, $rootScope) {
 	$scope.myDisplays = [];
 
 	// Load Displays
-	$http.get("http://localhost:3000/api/displays").success(function(response) {
+	$http.get(config.API + "displays").success(function(response) {
 		$scope.displays = response;
 	}).error(function(err) {
 		$scope.error = err;
 	});
 
 	// Load Context
-	$http.get("http://localhost:3000/api/contexts/dynamic").success(function(response) {
+	$http.get(config.API + "contexts/dynamic").success(function(response) {
 		$scope.dynamicContext = response;
 	}).error(function(err) {
 		$scope.error = err;

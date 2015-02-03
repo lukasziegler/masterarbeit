@@ -3,16 +3,16 @@ var app = angular.module("pdsurvey");
 
 /** LIST **/
 
-app.controller("ContextListController", function($scope, $http) {
+app.controller("ContextListController", function($scope, $http, config) {
 	
-	$http.get("http://localhost:3000/api/contexts").success(function(response) {
+	$http.get(config.API + "contexts").success(function(response) {
 		$scope.contexts = response;
 	}).error(function(err) {
 		$scope.error = err;
 	});
 
 	$scope.deleteContext = function(context) {
-		$http.delete("http://localhost:3000/api/contexts/" + context._id)
+		$http.delete(config.API + "contexts/" + context._id)
 			.success(function(response) {
 				var index = $scope.contexts.indexOf(context)
 				$scope.contexts.splice(index, 1);     
@@ -25,12 +25,12 @@ app.controller("ContextListController", function($scope, $http) {
 
 /** CREATE **/
 
-app.controller("ContextCreateController", function($scope, $http, $location) {
+app.controller("ContextCreateController", function($scope, $http, $location, config) {
 	$scope.context  = {};
 
 	// Save data
 	$scope.createContext = function() {
-		$http.post("http://localhost:3000/api/contexts", $scope.context)
+		$http.post(config.API + "contexts", $scope.context)
 			.success(function(response) {
 				$location.url("/contexts");
 			});
@@ -41,18 +41,18 @@ app.controller("ContextCreateController", function($scope, $http, $location) {
 
 /** EDIT **/
 
-app.controller("ContextEditController", function($scope, $http, $location, $routeParams) {
+app.controller("ContextEditController", function($scope, $http, $location, $routeParams, config) {
 	$scope.context  = {};
 	var id = $routeParams.id;
 
 	// Load data
-	$http.get("http://localhost:3000/api/contexts/" + id).success(function(response) {
+	$http.get(config.API + "contexts/" + id).success(function(response) {
 		$scope.context = response;
 	});
 
 	// Save data
 	$scope.saveContext = function() {
-		$http.put("http://localhost:3000/api/contexts/" + $scope.context._id, $scope.context)
+		$http.put(config.API + "contexts/" + $scope.context._id, $scope.context)
 			.success(function(response) {
 				$location.url("/contexts");
 			});
