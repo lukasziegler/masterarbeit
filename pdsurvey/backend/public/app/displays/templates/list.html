@@ -32,7 +32,7 @@
                                             <th>Name</th>
                                             <th>Producer</th>
                                             <th>Characteristics</th>
-                                            <th>Static Context</th>
+                                            <th>Dynamic Context</th>
                                             <th>Aktionen</th>
                                         </tr>
                                     </thead>
@@ -41,9 +41,9 @@
                                             <td>{{display.name}}</td>
                                             <td><a href="{{display.url}}" target="_blank">{{display.producer}}</a></td>
                                             <td>{{display.characteristics}}</td>
-                                            <td>{{display.contextStatic}}</td>
+                                            <td>{{display.contextDynamic}}</td>
                                             <td><a href="#/displays/{{display._id}}/edit" class="btn btn-default">Edit</a>
-                                            <a href="" ng-click="deleteQuestion(display)" class="btn btn-danger">Delete</a></td>
+                                            <a href="" ng-click="deleteDisplay(display)" class="btn btn-danger">Delete</a></td>
                                         </tr>
                                     </tbody>
                                 </table>

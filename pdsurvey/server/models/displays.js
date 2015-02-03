@@ -18,10 +18,10 @@ router.route('/displays')
 	.post(function (req, res, next) {
 		var newDisplay = new Display({
 			name: req.body.name,
-			producer: req.body.producer,
-			url: req.body.url,
-			characteristics: req.body.characteristics,
-			contextStatic: req.body.contextStatic
+			displayModel: req.body.displayModel,
+			user: req.body.user,
+			location: req.body.location,
+			contextDynamic: req.body.contextDynamic
 		});
 
 	    newDisplay.save(function(err) {
@@ -56,10 +56,10 @@ router.route('/displays/:id')
 
 			// update object
 			display.name = req.body.name,
-			display.producer = req.body.producer,
-			display.url = req.body.url,
-			display.characteristics = req.body.characteristics,
-			display.contextStatic = req.body.contextStatic
+			display.displayModel = req.body.displayModel,
+			display.user = req.body.user,
+			display.location = req.body.location,
+			display.contextDynamic = req.body.contextDynamic
 
 			return display.save(function(err) {
 				if (err) {

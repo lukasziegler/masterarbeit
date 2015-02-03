@@ -39,34 +39,34 @@ router.route('/displayModels/:id')
 	// GET single element
 	.get(function (req, res, next) {
 		DisplayModel.findOne({ '_id': req.params.id })
-		.exec(function (err, display) {
-			if (err || !display) return console.error(err);
-			res.send(display);
+		.exec(function (err, displayModel) {
+			if (err || !displayModel) return console.error(err);
+			res.send(displayModel);
 		});
 	})
 
 	// PUT to update
 	.put(function (req, res, next) {
 
-		return DisplayModel.findById( req.params.id, function (err, display) {
+		return DisplayModel.findById( req.params.id, function (err, displayModel) {
 			if (err) {
 				res.send('error updating');
 				return console.error(err);
 			}
 
 			// update object
-			display.name = req.body.name,
-			display.producer = req.body.producer,
-			display.url = req.body.url,
-			display.characteristics = req.body.characteristics,
-			display.contextStatic = req.body.contextStatic
+			displayModel.name = req.body.name,
+			displayModel.producer = req.body.producer,
+			displayModel.url = req.body.url,
+			displayModel.characteristics = req.body.characteristics,
+			displayModel.contextStatic = req.body.contextStatic
 
-			return display.save(function(err) {
+			return displayModel.save(function(err) {
 				if (err) {
 					res.send('Error updating, e.g. invalid mapping');
 					return console.error(err);
 				}
-				res.send(display);
+				res.send(displayModel);
 			})
 		});
 
@@ -74,7 +74,7 @@ router.route('/displayModels/:id')
 
 	// DELETE
 	.delete(function (req, res, next) {
-		DisplayModel.remove({ _id: req.params.id }, function(err, display) {
+		DisplayModel.remove({ _id: req.params.id }, function(err, displayModel) {
 			if (err) return console.error(err);
 			
 			res.send({ message: 'Successfully deleted' });

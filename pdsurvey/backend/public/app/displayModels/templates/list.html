@@ -32,25 +32,25 @@
                                             <th>Name</th>
                                             <th>Producer</th>
                                             <th>Characteristics</th>
-                                            <th>Static Context</th>
+                                            <th>Dynamic Context</th>
                                             <th>Aktionen</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="display in displays | orderBy : 'name'">
-                                            <td>{{display.name}}</td>
-                                            <td><a href="{{display.url}}" target="_blank">{{display.producer}}</a></td>
-                                            <td>{{display.characteristics}}</td>
-                                            <td>{{display.contextStatic}}</td>
-                                            <td><a href="#/displays/{{display._id}}/edit" class="btn btn-default">Edit</a>
-                                            <a href="" ng-click="deleteQuestion(display)" class="btn btn-danger">Delete</a></td>
+                                        <tr ng-repeat="displayModel in displayModels | orderBy : 'name'">
+                                            <td>{{displayModel.name}}</td>
+                                            <td><a href="{{displayModel.url}}" target="_blank">{{displayModel.producer}}</a></td>
+                                            <td>{{displayModel.characteristics}}</td>
+                                            <td>{{displayModel.contextStatic}}</td>
+                                            <td><a href="#/displayModels/{{displayModel._id}}/edit" class="btn btn-default">Edit</a>
+                                            <a href="" ng-click="deleteDisplayModel(display)" class="btn btn-danger">Delete</a></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <!-- /.table-responsive -->
 
-                            <a href="#/displays/new" class="btn btn-primary">Add new Display</a>
+                            <a href="#/displayModels/new" class="btn btn-primary">Add new Display Model</a>
 
                         </div>
                         <!-- /.panel-body -->

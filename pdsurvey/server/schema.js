@@ -94,10 +94,10 @@ exports.DisplayModelModel = mongoose.model('DisplayModel', DisplayModelSchema, '
 /* DISPLAYS (per User) */
 var DisplaySchema = mongoose.Schema({ 
     name: { type: String, required: true },
-    producer: String,
-    url: String,
-    characteristics: String,
-    contextStatic: [String]
+    displayModel: { type: ObjectId, ref: 'DisplayModel', required: true },
+    user: { type: ObjectId, ref: 'User' },
+    location: String,
+    contextDynamic: [String]
 });
 exports.DisplayModel = mongoose.model('Display', DisplaySchema, 'displays');
 

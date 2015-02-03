@@ -11,44 +11,38 @@
 
 
 	<div class="form-group">
-		<label for="display.producer" class="col-sm-2 control-label">Producer</label>
+		<label for="display.displayModel" class="col-sm-2 control-label">Display Model</label>
 		<div class="col-sm-10">
-			<input id="display.producer" class="form-control" placeholder="Name of Producer" ng-model="display.producer">
+			<input type="text" class="form-control" ng-model="display.displayModel" ng-options="displayModel as displayModel.name for displayModel in displayModels" placeholder="Type of Display" bs-typeahead required>
 		</div>
 	</div>
 
 
 	<div class="form-group">
-		<label for="display.url" class="col-sm-2 control-label">Website</label>
+		<label for="display.url" class="col-sm-2 control-label">Location</label>
 		<div class="col-sm-10">
-			<input id="display.url" class="form-control" placeholder="http://" ng-model="display.url">
+			<input id="display.location" class="form-control" placeholder="Where is it positioned?" ng-model="display.location" required>
 		</div>
 	</div>
 
 
 	<div class="form-group">
-		<label for="display.characteristics" class="col-sm-2 control-label">Characteristics</label>
+		<label for="display.contextDynamic" class="col-sm-2 control-label">Context</label>
 		<div class="col-sm-10">
-			<input id="display.characteristics" class="form-control" placeholder="TODO: Autocomplete" ng-model="display.characteristics">
-		</div>
-	</div>
-
-	<hr>
-
-	<h3>Assign Static Context</h3>
-
-	<div class="form-group">
-		<div class="col-sm-2 text-right">
-			<a href="" ng-click="addContext(display.contextStatic)" class="btn btn-primary">Add</a>
-		</div>
-		<div class="col-sm-10">
-		    <input id="display.contextStatic" type="text" class="form-control" ng-model="display.contextStatic" ng-options="context as context.context for context in contexts" placeholder="Assign a Static Context" bs-typeahead>
+			<div class="input-group">
+			    <input id="display.contextDynamic" type="text" class="form-control" placeholder="Assign a Dynamic Context" ng-options="context as context.context for context in contexts" ng-model="display.contextDynamic" bs-typeahead>
+<!-- 			    <input id="displayModel.contextStatic" type="text" class="form-control" ng-model="displayModel.contextStatic" ng-options="context as context.context for context in contexts" placeholder="Assign a Static Context" bs-typeahead>
+ -->
+			    <span class="input-group-btn">
+			        <button pd-add-context></button>
+			    </span>
+			</div>
 		</div>
 	</div>
 
 	<div class="form-group" ng-repeat="context in contextList">
-		<label class="col-sm-2 control-label">{{context.context}}</label>
-    	<div class="col-sm-10">
+		<div class="col-sm-2"><strong>{{context.context}}</label></div>
+    	<div class="col-sm-7">
 			<input class="form-control" placeholder="" ng-model="context.value">
     	</div>
 	</div>

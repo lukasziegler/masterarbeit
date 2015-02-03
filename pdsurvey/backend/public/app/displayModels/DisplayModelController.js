@@ -39,7 +39,7 @@ app.controller("DisplayModelCreateController", function($scope, $http, $location
 	}
 
 	// Load context for Autocomplete
-	$http.get(config.API + "contexts")
+	$http.get(config.API + "contexts/static/")
 		.success(function(response) {
 			$scope.contexts = response;
 		}).error(function(err) {
@@ -68,7 +68,7 @@ app.controller("DisplayModelEditController", function($scope, $http, $location, 
 	// Load context for Autocomplete
 	$scope.contexts  = {};
 	$scope.contextList  = [];
-	$http.get(config.API + "contexts")
+	$http.get(config.API + "contexts/static/")
 		.success(function(response) {
 			$scope.contexts = response;
 		}).error(function(err) {

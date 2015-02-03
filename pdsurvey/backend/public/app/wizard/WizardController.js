@@ -18,14 +18,14 @@ app.controller("WizardController", function($scope, $http, $rootScope, config) {
 	$scope.myDisplays = [];
 
 	// Load Displays
-	$http.get(config.API + "displays").success(function(response) {
+	$http.get(config.API + "displayModels").success(function(response) {
 		$scope.displays = response;
 	}).error(function(err) {
 		$scope.error = err;
 	});
 
 	// Load Context
-	$http.get(config.API + "contexts/dynamic").success(function(response) {
+	$http.get(config.API + "contexts/dynamic/").success(function(response) {
 		$scope.dynamicContext = response;
 	}).error(function(err) {
 		$scope.error = err;

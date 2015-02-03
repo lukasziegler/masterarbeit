@@ -1,4 +1,21 @@
-var app = angular.module("pdsurvey");
+var app = angular.module("pdsurvey")
+
+
+/** DIRECTIVES **/
+.directive('pdAddContext', function() {
+	return {
+		restrict: 'A',
+		replace: true,
+		template: '<a href="" ng-click="addContext(display.contextDynamic)" class="btn btn-default"><i class="fa fa-plus"></i></a>',
+		link: function(scope, elem, attrs) {
+
+		scope.addContext = function(newContext) {
+			scope.contextList.push(newContext);
+		}
+
+		}
+	};
+})
 
 
 /** LIST **/
@@ -30,25 +47,37 @@ app.controller("DisplayCreateController", function($scope, $http, $location, con
 	$scope.contexts  = {};
 	$scope.contextList  = [];
 
+	// TEMPORARY
+		$scope.display.user = "54a6b51a276762fc510bb0f0";
+	// TEMPORARY
+
+	// Load Display Models (for Autocomplete)
+	$http.get(config.API + "displayModels/").success(function(response) {
+		$scope.displayModels = response;
+	}).error(function(err) {
+		$scope.error = err;
+	});
+
+	// Load Context (for Autocomplete)
+	$http.get(config.API + "contexts/dynamic/").success(function(response) {
+		$scope.contexts = response;
+	}).error(function(err) {
+		$scope.error = err;
+	});
+
+
 	// Save data
 	$scope.createDisplay = function() {
-		$http.post(config.API + "displays", $scope.display)
+		$http.post(config.API + "displays/", $scope.display)
 			.success(function(response) {
 				$location.url("/displays");
 			});
 	}
 
-	// Load context for Autocomplete
-	$http.get(config.API + "contexts")
-		.success(function(response) {
-			$scope.contexts = response;
-		}).error(function(err) {
-			$scope.error = err;
-		});
 
-	$scope.addContext = function(newContext) {
-		$scope.contextList.push(newContext);
-	}
+	// $scope.addContext = function(newContext) {
+	// 	$scope.contextList.push(newContext);
+	// }
 
 });
 
@@ -60,15 +89,23 @@ app.controller("DisplayEditController", function($scope, $http, $location, $rout
 	$scope.display  = {};
 	var id = $routeParams.id;
 
-	// Load data
-	$http.get(config.API + "displays/" + id).success(function(response) {
-		$scope.display = response;
+	
+	// TEMPORARY
+		$scope.display.user = "54a6b51a276762fc510bb0f0";
+	// TEMPORARY
+
+
+	// Load Display Models
+	$http.get(config.API + "displayModels/").success(function(response) {
+		$scope.displayModels = response;
+	}).error(function(err) {
+		$scope.error = err;
 	});
 
 	// Load context for Autocomplete
 	$scope.contexts  = {};
 	$scope.contextList  = [];
-	$http.get(config.API + "contexts")
+	$http.get(config.API + "contexts/dynamic/")
 		.success(function(response) {
 			$scope.contexts = response;
 		}).error(function(err) {
