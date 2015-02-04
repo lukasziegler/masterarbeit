@@ -56,6 +56,14 @@ app.use(passport.session());    // Add passport initialization
 // app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Allow CORS requests
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+    next();
+});
+
 // development only
 // if ('development' == app.get('env')) {
 //   app.use(express.errorHandler());

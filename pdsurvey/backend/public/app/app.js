@@ -1,4 +1,5 @@
-var app = angular.module('pdsurvey', ['ngRoute', 'mgcrea.ngStrap', 'pdWizard']);
+var app = angular.module('pdsurvey', ['ngRoute', 'mgcrea.ngStrap', 
+	'pdWizard', 'pdAuthentication']);
 
 // Constants (Config)
 app.constant('config', { API: 'http://localhost:3000/api/' } );
@@ -20,7 +21,7 @@ app.config(function($routeProvider, $httpProvider) {
       var deferred = $q.defer();
 
       // Make an AJAX call to check if the user is logged in
-      $http.get('/loggedin').success(function(user){
+      $http.get(config.API + '/loggedin').success(function(user){
         // Authenticated
         if (user !== '0')
           $timeout(deferred.resolve, 0);
@@ -72,6 +73,12 @@ app.config(function($routeProvider, $httpProvider) {
 		.when("/users/:id/edit", {
 			templateUrl: "/app/users/templates/edit.html",
 			controller: "UserEditController"
+		})
+
+		/* USERS LOGIN */
+		.when("/login", {
+			templateUrl: "/app/authentication/templates/login.html",
+			controller: "AuthenticationController"
 		})
 
 		/* RESPONSES */

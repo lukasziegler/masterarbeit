@@ -3,7 +3,7 @@ var wizard = angular.module('pdWizard', [])
 
 /** CONTROLLERS **/
 
-app.controller("WizardController", function($scope, $http, $rootScope, config) {
+.controller("WizardController", function($scope, $http, $rootScope, config) {
 	// Tabs for Wizard
 	$scope.tabs = [
 		{title:'Display', template: '/app/wizard/templates/_display.html',},
