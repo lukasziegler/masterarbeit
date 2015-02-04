@@ -9,7 +9,9 @@ router.route('/categories')
 	// GET 
 	.get(function (req, res, next) {
 		Category.find({}, function (err, categories) {
-			if (err) return console.error(err);
+			if (err) {
+				return next(err);
+			}
 			res.send(categories);
 		});
 	})
@@ -22,10 +24,9 @@ router.route('/categories')
 		});
 
 	    newCategory.save(function(err) {
-	        if (err) {
-	        	res.send('Error creating object');
-	            return console.error(err);
-	        }
+			if (err) {
+				return next(err);
+			}
     	    return res.send(newCategory);
 	    });
 	})
@@ -37,7 +38,9 @@ router.route('/categories/:id')
 	.get(function (req, res, next) {
 		Category.findOne({ '_id': req.params.id })
 		.exec(function (err, category) {
-			if (err || !category) return console.error(err);
+			if (err || !category) {
+				return next(err);
+			}
 			res.send(category);
 		});
 	})
@@ -47,8 +50,7 @@ router.route('/categories/:id')
 
 		return Category.findById( req.params.id, function (err, category) {
 			if (err) {
-				res.send('error updating');
-				return console.error(err);
+				return next(err);
 			}
 
 			// update object
@@ -57,8 +59,7 @@ router.route('/categories/:id')
 
 			return category.save(function(err) {
 				if (err) {
-					res.send('Error updating, e.g. invalid mapping');
-					return console.error(err);
+					return next(err);
 				}
 				res.send(category);
 			})
@@ -70,8 +71,9 @@ router.route('/categories/:id')
 	.delete(function (req, res, next) {
 	  // TODO implement authentication / validation
 		Category.remove({ _id: req.params.id }, function(err, category) {
-			if (err) return console.error(err);
-			
+			if (err) {
+				return next(err);
+			}			
 			res.send({ message: 'Successfully deleted' });
 		});
 	})

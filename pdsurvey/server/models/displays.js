@@ -11,7 +11,10 @@ router.route('/displays')
 		Display.find({})
 		.populate('displayModel', '_id name')
 		.exec(function (err, displays) {
-			if (err) return console.error(err);
+			if (err) {
+				return next(err);
+			}
+			
 			res.send(displays);
 		});
 	})
@@ -28,9 +31,9 @@ router.route('/displays')
 
 	    newDisplay.save(function(err) {
 	        if (err) {
-	        	res.send('Error creating object');
-	            return console.error(err);
+	        	return next(err);
 	        }
+
     	    return res.send(newDisplay);
 	    });
 	})
@@ -43,7 +46,7 @@ router.route('/displays/:id')
 		Display.findOne({ '_id': req.params.id })
 		.populate('displayModel', '_id name')
 		.exec(function (err, display) {
-			if (err || !display) return console.error(err);
+			if (err || !display) return next(err);
 			res.send(display);
 		});
 	})
@@ -52,10 +55,8 @@ router.route('/displays/:id')
 	.put(function (req, res, next) {
 
 		return Display.findById( req.params.id, function (err, display) {
-			if (err) {
-				res.send('error updating');
-				return console.error(err);
-			}
+
+			if (err) return next(err);
 
 			// update object
 			display.name = req.body.name,
@@ -66,10 +67,12 @@ router.route('/displays/:id')
 
 			return display.save(function(err) {
 				if (err) {
-					res.send('Error updating, e.g. invalid mapping');
-					return console.error(err);
+					next(err);
+					return;
 				}
+			
 				res.send(display);
+			
 			})
 		});
 
@@ -78,8 +81,10 @@ router.route('/displays/:id')
 	// DELETE
 	.delete(function (req, res, next) {
 		Display.remove({ _id: req.params.id }, function(err, display) {
-			if (err) return console.error(err);
-			
+
+			if (err) return next(err);			
+
 			res.send({ message: 'Successfully deleted' });
+			
 		});
 	})

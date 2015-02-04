@@ -9,7 +9,9 @@ router.route('/responses')
 	// GET 
 	.get(function (req, res, next) {
 		Response.find({}, function (err, categories) {
-			if (err) return console.error(err);
+			if (err) {
+				return next(err);
+			}
 			res.send(categories);
 		});
 	})
@@ -26,10 +28,9 @@ router.route('/responses')
 		});
 
 	    newResponse.save(function(err) {
-	        if (err) {
-	        	res.send('Error creating object');
-	            return console.error(err);
-	        }
+			if (err) {
+				return next(err);
+			}
     	    return res.send(newResponse);
 	    });
 	})
@@ -41,7 +42,10 @@ router.route('/responses/:id')
 	.get(function (req, res, next) {
 		Response.findOne({ '_id': req.params.id })
 		.exec(function (err, response) {
-			if (err || !response) return console.error(err);
+			if (err || !response) {
+				return next(err);
+			}
+
 			res.send(response);
 		});
 	})
@@ -51,8 +55,7 @@ router.route('/responses/:id')
 
 	// 	return Response.findById( req.params.id, function (err, response) {
 	// 		if (err) {
-	// 			res.send('error updating');
-	// 			return console.error(err);
+	// 			return next(err);
 	// 		}
 
 	// 		// update object
@@ -61,8 +64,7 @@ router.route('/responses/:id')
 
 	// 		return response.save(function(err) {
 	// 			if (err) {
-	// 				res.send('Error updating, e.g. invalid mapping');
-	// 				return console.error(err);
+	// 				return next(err);
 	// 			}
 	// 			res.send(response);
 	// 		})
@@ -74,8 +76,9 @@ router.route('/responses/:id')
 	.delete(function (req, res, next) {
 	  // TODO implement authentication / validation
 		Response.remove({ _id: req.params.id }, function(err, response) {
-			if (err) return console.error(err);
-			
+			if (err) {
+				return next(err);
+			}			
 			res.send({ message: 'Successfully deleted' });
 		});
 	})

@@ -9,7 +9,10 @@ router.route('/campaigns')
 	// GET 
 	.get(function (req, res, next) {
 		Campaign.find({}, function (err, campaigns) {
-			if (err) return console.error(err);
+			if (err) {
+				return next(err);
+			}
+
 			res.send(campaigns);
 		});
 	})
@@ -28,10 +31,9 @@ router.route('/campaigns')
 		});
 
 	    newCampaign.save(function(err) {
-	        if (err) {
-	        	res.send('Error creating object');
-	            return console.error(err);
-	        }
+			if (err) { 
+				return next(err);
+			}
     	    return res.send(newCampaign);
 	    });
 	})
@@ -43,7 +45,10 @@ router.route('/campaigns/:id')
 	.get(function (req, res, next) {
 		Campaign.findOne({ '_id': req.params.id })
 		.exec(function (err, campaign) {
-			if (err || !campaign) return console.error(err);
+			if (err || !campaign) {
+				return next(err);
+			}
+
 			res.send(campaign);
 		});
 	})
@@ -53,8 +58,7 @@ router.route('/campaigns/:id')
 
 		return Campaign.findById( req.params.id, function (err, campaign) {
 			if (err) {
-				res.send('error updating');
-				return console.error(err);
+				return next(err);
 			}
 
 			// update object
@@ -69,8 +73,7 @@ router.route('/campaigns/:id')
 
 			return campaign.save(function(err) {
 				if (err) {
-					res.send('Error updating, e.g. invalid mapping');
-					return console.error(err);
+					return next(err);
 				}
 				res.send(campaign);
 			})
@@ -82,8 +85,9 @@ router.route('/campaigns/:id')
 	.delete(function (req, res, next) {
 	  // TODO implement authentication / validation
 		Campaign.remove({ _id: req.params.id }, function(err, campaign) {
-			if (err) return console.error(err);
-			
+			if (err) {
+				return next(err);
+			}			
 			res.send({ message: 'Successfully deleted' });
 		});
 	})

@@ -9,7 +9,9 @@ router.route('/questionTypes')
 	// GET 
 	.get(function (req, res, next) {
 		QuestionType.find({}, function (err, questionTypes) {
-			if (err) return console.error(err);
+			if (err) {
+				return next(err);
+			}
 			res.send(questionTypes);
 		});
 	})
@@ -24,10 +26,9 @@ router.route('/questionTypes')
 		});
 
 	    newQuestionType.save(function(err) {
-	        if (err) {
-	        	res.send('Error creating object');
-	            return console.error(err);
-	        }
+			if (err) {
+				return next(err);
+			}
     	    return res.send(newQuestionType);
 	    });
 	})
@@ -39,7 +40,9 @@ router.route('/questionTypes/:id')
 	.get(function (req, res, next) {
 		QuestionType.findOne({ '_id': req.params.id })
 		.exec(function (err, questionType) {
-			if (err || !questionType) return console.error(err);
+			if (err || !questionType) {
+				return next(err);
+			}
 			res.send(questionType);
 		});
 	})
@@ -49,8 +52,7 @@ router.route('/questionTypes/:id')
 
 		return QuestionType.findById( req.params.id, function (err, questionType) {
 			if (err) {
-				res.send('error updating');
-				return console.error(err);
+				return next(err);
 			}
 
 			// update object
@@ -61,8 +63,7 @@ router.route('/questionTypes/:id')
 
 			return questionType.save(function(err) {
 				if (err) {
-					res.send('Error updating, e.g. invalid mapping');
-					return console.error(err);
+					return next(err);
 				}
 				res.send(questionType);
 			})
@@ -76,8 +77,9 @@ router.route('/questionTypes/:id')
 	  // TODO implement authentication / validation
 
 		QuestionType.remove({ _id: req.params.id }, function(err, questionType) {
-			if (err) return console.error(err);
-			
+			if (err) {
+				return next(err);
+			}			
 			res.send({ message: 'Successfully deleted' });
 		});
 	})

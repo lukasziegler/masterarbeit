@@ -12,7 +12,9 @@ var StandardSurvey = Schema.StandardSurveyModel;
 		.populate('category')
 		// .populate('sections.questions.type')
 		.exec(function (err, standardSurveys) {
-			if (err) return console.error(err);
+			if (err) {
+				return next(err);
+			}
 			res.send(standardSurveys);
 		});
 	})
@@ -27,10 +29,9 @@ var StandardSurvey = Schema.StandardSurveyModel;
 		});
 
 	    newStandardSurvey.save(function(err) {
-	        if (err) {
-	        	res.send('Error creating object');
-	            return console.error(err);
-	        }
+			if (err) {
+				return next(err);
+			}
     	    return res.send(newStandardSurvey);
 	    });
 	})
@@ -43,7 +44,9 @@ router.route('/standardSurvey/:id')
 		StandardSurvey.findOne({ '_id': req.params.id })
 		.populate('category')
 		.exec(function (err, standardSurvey) {
-			if (err || !standardSurvey) return console.error(err);
+			if (err || !standardSurvey) {
+				return next(err);
+			}
 			res.send(standardSurvey);
 		});
 	})
@@ -53,8 +56,7 @@ router.route('/standardSurvey/:id')
 
 		return StandardSurvey.findById( req.params.id, function (err, standardSurvey) {
 			if (err) {
-				res.send('error updating');
-				return console.error(err);
+				return next(err);
 			}
 
 			// update object
@@ -65,8 +67,7 @@ router.route('/standardSurvey/:id')
 
 			return standardSurvey.save(function(err) {
 				if (err) {
-					res.send('Error updating, e.g. invalid mapping');
-					return console.error(err);
+					return next(err);
 				}
 				res.send(standardSurvey);
 			})
@@ -78,8 +79,9 @@ router.route('/standardSurvey/:id')
 	.delete(function (req, res, next) {
 	  // TODO implement authentication / validation
 		StandardSurvey.remove({ _id: req.params.id }, function(err, standardSurvey) {
-			if (err) return console.error(err);
-			
+			if (err) {
+				return next(err);
+			}			
 			res.send({ message: 'Successfully deleted' });
 		});
 	})

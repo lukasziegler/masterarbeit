@@ -11,7 +11,9 @@ router.route('/questions')
 		Question.find({})
 		.populate('type category', 'name')
 		.exec(function (err, questions) {
-			if (err) return console.error(err);
+			if (err) {
+				return next(err);
+			}
 			res.send(questions);
 		});
 	})
@@ -27,10 +29,9 @@ router.route('/questions')
 		});
 
 	    newQuestion.save(function(err) {
-	        if (err) {
-	        	res.send('Error creating object');
-	            return console.error(err);
-	        }
+			if (err) {
+				return next(err);
+			}
     	    return res.send(newQuestion);
 	    });
 	})
@@ -44,7 +45,9 @@ router.route('/questions/:id')
 		Question.findOne({ '_id': req.params.id })
 		.populate('type category', 'name')
 		.exec(function (err, question) {
-			if (err || !question) return console.error(err);
+			if (err || !question) {
+				return next(err);
+			}
 			res.send(question);
 		});
 	})
@@ -54,8 +57,7 @@ router.route('/questions/:id')
 
 		return Question.findById( req.params.id, function (err, question) {
 			if (err) {
-				res.send('error updating');
-				return console.error(err);
+				return next(err);
 			}
 
 			// update object
@@ -67,8 +69,7 @@ router.route('/questions/:id')
 
 			return question.save(function(err) {
 				if (err) {
-					res.send('Error updating, e.g. invalid mapping');
-					return console.error(err);
+					return next(err);
 				}
 				res.send(question);
 			})
@@ -82,8 +83,9 @@ router.route('/questions/:id')
 	  // TODO implement authentication / validation
 
 	  	Question.remove({ _id: req.params.id }, function(err, question) {
-			if (err) return callback(err);
-			
+			if (err) {
+				return next(err);
+			}			
 			res.send({ message: 'Successfully deleted' });
 		});
 

@@ -9,7 +9,7 @@ router.route('/surveys')
 	// GET 
 	.get(function (req, res, next) {
 		Survey.find({}, function (err, surveys) {
-			if (err) return console.error(err);
+			if (err) return next(err);
 			res.send(surveys);
 		});
 	})
@@ -25,8 +25,7 @@ router.route('/surveys')
 
 	    newSurvey.save(function(err) {
 	        if (err) {
-	        	res.send('Error creating object');
-	            return console.error(err);
+	        	return next(err);
 	        }
     	    return res.send(newSurvey);
 	    });
@@ -39,7 +38,7 @@ router.route('/surveys/:id')
 	.get(function (req, res, next) {
 		Survey.findOne({ '_id': req.params.id })
 		.exec(function (err, survey) {
-			if (err || !survey) return console.error(err);
+			if (err || !survey) return next(err);
 			res.send(survey);
 		});
 	})
@@ -49,8 +48,7 @@ router.route('/surveys/:id')
 
 		return Survey.findById( req.params.id, function (err, survey) {
 			if (err) {
-				res.send('error updating');
-				return console.error(err);
+				return next(err);
 			}
 
 			// update object
@@ -60,8 +58,7 @@ router.route('/surveys/:id')
 
 			return survey.save(function(err) {
 				if (err) {
-					res.send('Error updating, e.g. invalid mapping');
-					return console.error(err);
+					return next(err);
 				}
 				res.send(survey);
 			})
@@ -73,7 +70,7 @@ router.route('/surveys/:id')
 	.delete(function (req, res, next) {
 	  // TODO implement authentication / validation
 		Survey.remove({ _id: req.params.id }, function(err, survey) {
-			if (err) return console.error(err);
+			if (err) return next(err);
 			
 			res.send({ message: 'Successfully deleted' });
 		});

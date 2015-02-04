@@ -9,7 +9,9 @@ router.route('/contexts')
 	// GET 
 	.get(function (req, res, next) {
 		Context.find({}, function (err, contexts) {
-			if (err) return console.error(err);
+			if (err) {
+				return next(err);
+			}
 			res.send(contexts);
 		});
 	})
@@ -25,10 +27,9 @@ router.route('/contexts')
 		console.log("DEBUG", newContext)
 
 	    newContext.save(function(err) {
-	        if (err) {
-	        	res.send('Error creating object');
-	            return console.error(err);
-	        }
+			if (err) {
+				return next(err);
+			}
     	    return res.send(newContext);
 	    });
 	})
@@ -40,7 +41,9 @@ router.route('/contexts/dynamic')
 		Context.find({ type: 'dynamic' })
 		.select('-type')
 		.exec(function (err, contexts) {
-			if (err) return console.error(err);
+			if (err) {
+				return next(err);
+			}
 			res.send(contexts);
 		});
 	})
@@ -51,7 +54,9 @@ router.route('/contexts/static')
 		Context.find({ type: 'static' })
 		.select('-type')
 		.exec(function (err, contexts) {
-			if (err) return console.error(err);
+			if (err) {
+				return next(err);
+			}
 			res.send(contexts);
 		});
 	})
@@ -63,7 +68,9 @@ router.route('/contexts/:id')
 	.get(function (req, res, next) {
 		Context.findOne({ '_id': req.params.id })
 		.exec(function (err, context) {
-			if (err || !context) return console.error(err);
+			if (err || !context) {
+				return next(err);
+			}
 			res.send(context);
 		});
 	})
@@ -73,8 +80,7 @@ router.route('/contexts/:id')
 
 		return Context.findById( req.params.id, function (err, context) {
 			if (err) {
-				res.send('error updating');
-				return console.error(err);
+				return next(err);
 			}
 
 			// update object
@@ -83,8 +89,7 @@ router.route('/contexts/:id')
 
 			return context.save(function(err) {
 				if (err) {
-					res.send('Error updating, e.g. invalid mapping');
-					return console.error(err);
+					return next(err);
 				}
 				res.send(context);
 			})
@@ -95,8 +100,9 @@ router.route('/contexts/:id')
 	// DELETE
 	.delete(function (req, res, next) {
 		Context.remove({ _id: req.params.id }, function(err, context) {
-			if (err) return console.error(err);
-			
+			if (err) {
+				return next(err);
+			}			
 			res.send({ message: 'Successfully deleted' });
 		});
 	})
