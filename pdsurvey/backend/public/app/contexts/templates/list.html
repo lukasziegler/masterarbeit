@@ -16,8 +16,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="context in contexts | orderBy: ['type', 'context']">
-                            <td>{{context.context}}</td>
+                        <tr ng-repeat="context in contexts | orderBy: ['type', 'name']">
+                            <td>{{context.name}}</td>
                             <td>{{context.type}}</td>
                             <td>TODO</td>
                             <td><a href="#/contexts/{{context._id}}/edit" class="btn btn-default">Edit</a>

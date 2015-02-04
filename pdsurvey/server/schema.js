@@ -97,7 +97,7 @@ var DisplaySchema = mongoose.Schema({
     displayModel: { type: ObjectId, ref: 'DisplayModel', required: true },
     user: { type: ObjectId, ref: 'User' },
     location: String,
-    contextDynamic: [String]
+    contextDynamic: [mongoose.Schema.Types.Mixed]
 });
 exports.DisplayModel = mongoose.model('Display', DisplaySchema, 'displays');
 
@@ -121,7 +121,7 @@ exports.CampaignModel = mongoose.model('Campaign', CampaignSchema, 'campaigns');
 /* CONTEXT */
 var ContextSchema = mongoose.Schema({ 
     type: { type: String, required: true, enum: ['static', 'dynamic'] },
-    context: { type: String, required: true }
+    name: { type: String, required: true }
 });
 exports.ContextModel = mongoose.model('Context', ContextSchema, 'contexts');
 

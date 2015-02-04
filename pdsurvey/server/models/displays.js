@@ -8,7 +8,9 @@ router.route('/displays')
 
 	// GET 
 	.get(function (req, res, next) {
-		Display.find({}, function (err, displays) {
+		Display.find({})
+		.populate('displayModel', '_id name')
+		.exec(function (err, displays) {
 			if (err) return console.error(err);
 			res.send(displays);
 		});
@@ -39,6 +41,7 @@ router.route('/displays/:id')
 	// GET single element
 	.get(function (req, res, next) {
 		Display.findOne({ '_id': req.params.id })
+		.populate('displayModel', '_id name')
 		.exec(function (err, display) {
 			if (err || !display) return console.error(err);
 			res.send(display);

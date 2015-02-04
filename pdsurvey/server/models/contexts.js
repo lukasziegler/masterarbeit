@@ -19,7 +19,7 @@ router.route('/contexts')
 
 		var newContext = new Context({
 			type: req.body.type,
-			context: req.body.context
+			name: req.body.name
 		});
 
 		console.log("DEBUG", newContext)
@@ -37,7 +37,9 @@ router.route('/contexts')
 router.route('/contexts/dynamic')
 	// GET 
 	.get(function (req, res, next) {
-		Context.find({ type: 'dynamic' }, function (err, contexts) {
+		Context.find({ type: 'dynamic' })
+		.select('-type')
+		.exec(function (err, contexts) {
 			if (err) return console.error(err);
 			res.send(contexts);
 		});
@@ -46,7 +48,9 @@ router.route('/contexts/dynamic')
 router.route('/contexts/static')
 	// GET 
 	.get(function (req, res, next) {
-		Context.find({ type: 'static' }, function (err, contexts) {
+		Context.find({ type: 'static' })
+		.select('-type')
+		.exec(function (err, contexts) {
 			if (err) return console.error(err);
 			res.send(contexts);
 		});
@@ -75,7 +79,7 @@ router.route('/contexts/:id')
 
 			// update object
 			context.type = req.body.type,
-			context.context = req.body.context
+			context.name = req.body.name
 
 			return context.save(function(err) {
 				if (err) {

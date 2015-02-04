@@ -1,16 +1,50 @@
 var app = angular.module("pdsurvey")
 
 
-/** DIRECTIVES **/
+
+//================================================
+// DIRECTIVES
+//================================================
+
+
 .directive('pdAddContext', function() {
 	return {
 		restrict: 'A',
-		replace: true,
-		template: '<a href="" ng-click="addContext(display.contextDynamic)" class="btn btn-default"><i class="fa fa-plus"></i></a>',
+		replace: false,
+		// template: '<a href="" ng-click="addContext(display.contextDynamic)" class="btn btn-default"><i class="fa fa-plus"></i></a>',
 		link: function(scope, elem, attrs) {
 
 		scope.addContext = function(newContext) {
-			scope.contextList.push(newContext);
+
+			if (scope.dynamicContexts.indexOf(newContext) != -1) {
+				// add to contextDynamic List
+				// scope.contextDynamic.push( { _id: newContext._id, name: newContext.name, value: ""} );
+				scope.contextDynamic.push( newContext );
+
+				// remove form Dropbown dynamicContexts
+				var index = scope.dynamicContexts.indexOf(newContext)
+				scope.dynamicContexts.splice(index, 1);
+			}
+		}
+
+		}
+	};
+})
+
+.directive('pdRemoveContext', function() {
+	return {
+		restrict: 'A',
+		replace: true,
+		template: '<a href="" ng-click="removeContext(context)" class="btn btn-default"><i class="fa fa-minus"></i></a>',
+		link: function(scope, elem, attrs) {
+
+		scope.removeContext = function(context) {
+			// add to dynamicContexts List
+			scope.dynamicContexts.push( context );
+
+			// remove form Dropbown contextDynamic
+			var index = scope.contextDynamic.indexOf(context)
+			scope.contextDynamic.splice(index, 1);
 		}
 
 		}
@@ -18,9 +52,14 @@ var app = angular.module("pdsurvey")
 })
 
 
+//================================================
+// CONTROLLERS
+//================================================
+
+
 /** LIST **/
 
-app.controller("DisplayListController", function($scope, $http, config) {
+.controller("DisplayListController", function($scope, $http, config) {
 	
 	$http.get(config.API + "displays").success(function(response) {
 		$scope.displays = response;
@@ -36,20 +75,22 @@ app.controller("DisplayListController", function($scope, $http, config) {
 			});
 	};
 
-});
+})
 
 
 
 /** CREATE **/
 
-app.controller("DisplayCreateController", function($scope, $http, $location, config) {
+.controller("DisplayCreateController", function($scope, $http, $location, config) {
 	$scope.display  = {};
-	$scope.contexts  = {};
-	$scope.contextList  = [];
 
 	// TEMPORARY
 		$scope.display.user = "54a6b51a276762fc510bb0f0";
 	// TEMPORARY
+
+	$scope.displayModels = [];
+	$scope.dynamicContexts = [];
+	$scope.contextDynamic = [];
 
 	// Load Display Models (for Autocomplete)
 	$http.get(config.API + "displayModels/").success(function(response) {
@@ -60,7 +101,7 @@ app.controller("DisplayCreateController", function($scope, $http, $location, con
 
 	// Load Context (for Autocomplete)
 	$http.get(config.API + "contexts/dynamic/").success(function(response) {
-		$scope.contexts = response;
+		$scope.dynamicContexts = response;
 	}).error(function(err) {
 		$scope.error = err;
 	});
@@ -68,52 +109,56 @@ app.controller("DisplayCreateController", function($scope, $http, $location, con
 
 	// Save data
 	$scope.createDisplay = function() {
-		$http.post(config.API + "displays/", $scope.display)
+		$scope.display.contextDynamic = $scope.contextDynamic;
+
+		$http.post(config.API + "displays", $scope.display)
 			.success(function(response) {
 				$location.url("/displays");
 			});
 	}
-
-
-	// $scope.addContext = function(newContext) {
-	// 	$scope.contextList.push(newContext);
-	// }
-
-});
+})
 
 
 
 /** EDIT **/
 
-app.controller("DisplayEditController", function($scope, $http, $location, $routeParams, config) {
+.controller("DisplayEditController", function($scope, $http, $location, $routeParams, config) {
 	$scope.display  = {};
 	var id = $routeParams.id;
 
-	
 	// TEMPORARY
 		$scope.display.user = "54a6b51a276762fc510bb0f0";
 	// TEMPORARY
 
+	$scope.displayModels = [];
+	$scope.dynamicContexts = [];
+	$scope.contextDynamic = [];
 
-	// Load Display Models
+	// Load Display ID
+	$http.get(config.API + "displays/" + id).success(function(response) {
+		$scope.display = response;
+
+		// copy values to temporary 
+		$scope.contextDynamic = $scope.display.contextDynamic;
+		$scope.display.contextDynamic = $scope.display.contextDynamic._id;
+
+		// $scope.display.displayModel = $scope.display.displayModel._id;
+		// console.log($scope.display.displayModel)
+	});
+
+	// Load Display Models (for Autocomplete)
 	$http.get(config.API + "displayModels/").success(function(response) {
 		$scope.displayModels = response;
 	}).error(function(err) {
 		$scope.error = err;
 	});
 
-	// Load context for Autocomplete
-	$scope.contexts  = {};
-	$scope.contextList  = [];
-	$http.get(config.API + "contexts/dynamic/")
-		.success(function(response) {
-			$scope.contexts = response;
-		}).error(function(err) {
-			$scope.error = err;
-		});
-		$scope.addContext = function(newContext) {
-			$scope.contextList.push(newContext);
-		}
+	// Load Context (for Autocomplete)
+	$http.get(config.API + "contexts/dynamic/").success(function(response) {
+		$scope.dynamicContexts = response;
+	}).error(function(err) {
+		$scope.error = err;
+	});
 
 	// Save data
 	$scope.saveDisplay = function() {
