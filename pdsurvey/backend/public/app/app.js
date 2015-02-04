@@ -1,4 +1,4 @@
-var app = angular.module("pdsurvey", ["ngRoute", /*"ngResource",*/ "mgcrea.ngStrap"]);
+var app = angular.module('pdsurvey', ['ngRoute', 'mgcrea.ngStrap', 'pdWizard']);
 
 // Constants (Config)
 app.constant('config', { API: 'http://localhost:3000/api/' } );

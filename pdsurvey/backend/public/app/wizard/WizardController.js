@@ -1,4 +1,4 @@
-var app = angular.module("pdsurvey")
+var wizard = angular.module('pdWizard', [])
 
 
 /** CONTROLLERS **/
