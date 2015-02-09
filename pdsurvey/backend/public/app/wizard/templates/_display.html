@@ -8,52 +8,9 @@
 		<form class="form-horizontal" ng-submit="wizardDisplay()">
 		    <fieldset>
 
-				<div class="control-group">
-
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Name</label>
-						<div class="col-sm-10">
-						    <input type="text" class="form-control" placeholder="Only visible to you (e.g. CIP Pool 1)" value="{{newDisplay.name}}" ng-model="newDisplay.name">
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Model</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" ng-model="newDisplay.type" ng-options="display as display.name for display in displays" placeholder="Choose Model from Database" bs-typeahead>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<div class="col-sm-2 control-label">or</div>
-						<div class="col-sm-10">
-							<a href="" class="btn btn-default" ng-click="addNewDisplay()">Add a new model to our database</a>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Dynamic Context</label>
-						<div class="col-sm-10">
-
-							<div class="input-group">
-								<input type="text" class="form-control" ng-model="newDisplay.dynamicContext" ng-options="context as context.context for context in dynamicContext" placeholder="Specify the context where your Display is at" bs-typeahead>
-								<span class="input-group-btn">
-									<button pd-add-display></button>
-								</span>
-							</div>
-
-						</div>
-					</div>
-
-
-
-
-					<div class="form-group">
-						<div class="col-sm-10 col-sm-offset-2">
-							<a href="" class="btn btn-primary" ng-click="addDisplay()">Save Display</a>
-						</div>
-					</div>
-				</div>
+				<div ng-include="'/app/displays/templates/_form.html'"></div>
+				
+				<button type="submit" class="btn btn-primary pull-right">Save Display</button>
 
 			</fieldset>
 		</form>

@@ -10,13 +10,30 @@ var wizard = angular.module('pdWizard', [])
 		restrict: 'A',
 		replace: true,
 		template:  '<div class="row">'+
-					    '<div class="col-lg-12" >'+
-					     '   <a href="" class="btn btn-primary pull-right" ng-click="nextPill()">Next Step</a>'+
+					    '<div class="col-lg-12" style="padding-bottom: 1.5em;">'+
+					     '   <a href="" class="btn btn-default" ng-click="prevPill()" ng-hide="prevPillShow()">Previous Step</a>'+
+						 '   <a href="" class="btn btn-success pull-right" ng-click="nextPill()" ng-hide="nextPillShow()">Next Step</a>'+
 					    '</div>'+
 					'</div>',
 		link: function(scope, elem, attrs) {
+
+			scope.prevPillShow = function() {
+				return scope.tabs.activeTab == 0;
+			}
+			scope.nextPillShow = function() {
+				return scope.tabs.activeTab == scope.tabs.length-1;
+			}
+
+
+			scope.prevPill = function() {
+				if (scope.prevPillShow())
+					alert("End of Pills");
+				else
+					scope.tabs.activeTab--;
+			}
+
 			scope.nextPill = function() {
-				if (scope.tabs.activeTab == scope.tabs.length-1)
+				if (scope.nextPillShow())
 					alert("End of Pills");
 				else
 					scope.tabs.activeTab++;

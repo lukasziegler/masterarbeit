@@ -21,7 +21,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 
 	<div class="form-group">
 		<label for="display.location" class="col-sm-2 control-label">Location</label>
@@ -40,8 +40,8 @@
 
 
 	<div class="form-group" ng-repeat="context in contextDynamic">
-		<div class="col-sm-3 col-sm-offset-2 text-right">{{context.name}}</div>
-    	<div class="col-sm-7">
+		<div class="col-sm-2 text-right">{{context.name}}</div>
+    	<div class="col-sm-6">
 			<div class="input-group">
 				<input class="form-control" placeholder="" ng-model="context.value">
 			    <span class="input-group-btn">
@@ -49,11 +49,6 @@
 				</span>
 			</div>
     	</div>
-	</div>
-
-	
-	<button type="submit" class="btn btn-primary">Submit</button>
-	<a href="#/displays" class="btn btn-default">Cancel</a>
+	</div>	
 
 </div>
-
