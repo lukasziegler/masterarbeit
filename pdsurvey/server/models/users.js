@@ -84,7 +84,7 @@ router.route('/users/:id/displays')
 	// GET single element
 	.get(function (req, res, next) {
 		Displays.find({ 'user': req.params.id })
-		.populate('displayModel')
+		.populate('displayModel', '_id name')
 		.exec(function (err, user) {
 			if (err || !user) return next(err);
 			res.send(user);

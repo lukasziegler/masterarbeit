@@ -1,5 +1,9 @@
-var app = angular.module("pdsurvey")
+var app = angular.module('pdsurvey')
 
+// Template for Modals 
+.run(function($templateCache) {
+	$templateCache.put('modal/wizard/addDisplayModel.html', '<div class="modal" tabindex="-1" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header" ng-show="title"><button type="button" class="close" ng-click="$hide()">&times;</button><h4 class="modal-title" ng-bind-html="title"></h4></div><div class="modal-body" ng-show="content"><h4>Text in a modal</h4><p ng-bind-html="content"></p><pre>2 + 3 = {{ 2 + 3 }}</pre><h4>Popover in a modal</h4><p>This <a href="#" role="button" class="btn btn-default popover-test" data-title="A Title" data-content="And here\'s some amazing content. It\'s very engaging. right?" bs-popover>button</a> should trigger a popover on click.</p><h4>Tooltips in a modal</h4><p><a href="#" class="tooltip-test" data-title="Tooltip" bs-tooltip>This link</a> and <a href="#" class="tooltip-test" data-title="Tooltip" bs-tooltip>that link</a> should have tooltips on hover.</p></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="$hide()">Close</button> <button type="button" class="btn btn-primary" ng-click="$hide()">Save changes</button></div></div></div></div>');
+})
 
 
 //================================================
@@ -81,9 +85,14 @@ var app = angular.module("pdsurvey")
 
 /** CREATE **/
 
-.controller("DisplayCreateController", function($scope, $rootScope, $http, $location, config) {
+.controller("DisplayCreateController", function($scope, $rootScope, $http, $location, $modal, config) {
 	$scope.display  = {};
 	$scope.display.user = $rootScope.userId;
+
+	$scope.modal = {
+	  "title": "Add Display Model",
+	  "content": 'Hello Modal<br />This is a multiline message!'
+	};
 
 	$scope.displayModels = [];
 	$scope.dynamicContexts = [];
@@ -121,11 +130,8 @@ var app = angular.module("pdsurvey")
 
 .controller("DisplayEditController", function($scope, $http, $location, $routeParams, config) {
 	$scope.display  = {};
+	$scope.display.user = $rootScope.userId;
 	var id = $routeParams.id;
-
-	// TEMPORARY
-		$scope.display.user = "54a6b51a276762fc510bb0f0";
-	// TEMPORARY
 
 	$scope.displayModels = [];
 	$scope.dynamicContexts = [];

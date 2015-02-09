@@ -1,5 +1,5 @@
-var app = angular.module('pdsurvey', ['ngRoute', 'mgcrea.ngStrap', 
-	'pdWizard', 'pdAuthentication']);
+var app = angular.module('pdsurvey', ['ngRoute', 'ngAnimate', 'ngSanitize', 
+	'mgcrea.ngStrap', 'pdWizard', 'pdAuthentication']);
 
 // Constants (Config)
 app.constant('config', { API: 'http://localhost:3000/api/' } );
@@ -11,7 +11,7 @@ app.run(function($rootScope) {
 });
 
 // Routing
-app.config(function($routeProvider, $httpProvider) {
+app.config(function($routeProvider, $httpProvider, $modalProvider) {
 
 
     //================================================
@@ -235,5 +235,14 @@ app.config(function($routeProvider, $httpProvider) {
 		})
 
 		.otherwise({redirectTo: "/"})
+
+
+    //================================================
+    // AngularStrap: Configure Modals (Popups)
+    //================================================
+
+	angular.extend($modalProvider.defaults, {
+		html: true
+	});
 
 });

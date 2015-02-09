@@ -2,9 +2,9 @@
 
 
 	<div class="form-group">
-		<label for="display.name" class="col-sm-2 control-label">Display</label>
+		<label for="display.name" class="col-sm-2 control-label">Name</label>
 		<div class="col-sm-10">
-			<input type="text" id="display.name" class="form-control" placeholder="Abbreviation for Display" ng-model="display.name" required>
+			<input type="text" id="display.name" class="form-control" placeholder="Abbreviation for Display (e.g. CIP Pool)" ng-model="display.name" required>
 		</div>
 	</div>
 
@@ -12,10 +12,16 @@
 	<div class="form-group">
 		<label for="display.displayModel" class="col-sm-2 control-label">Model</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" id="display.displayModel" ng-model="display.displayModel" ng-options="displayModel._id as displayModel.name for displayModel in displayModels" placeholder="Type of Display" bs-typeahead required>
+			<div class="input-group">
+				<input type="text" class="form-control" id="display.displayModel" ng-model="display.displayModel" ng-options="displayModel._id as displayModel.name for displayModel in displayModels" placeholder="Choose Model from Database" bs-typeahead required>
+				<span class="input-group-btn">
+					<!-- <button pd-add-display-model></button> -->
+					<button class="btn btn-default" type="button" title="Add a new Model"data-template="modal/wizard/addDisplayModel.html" bs-modal="modal"><i class="fa fa-plus"></i></button>
+				</span>
+			</div>
 		</div>
 	</div>
-
+	
 
 	<div class="form-group">
 		<label for="display.location" class="col-sm-2 control-label">Location</label>
@@ -28,18 +34,10 @@
 	<div class="form-group"> 
 		<label for="display.contextDynamic" class="col-sm-2 control-label">Context</label>
 		<div class="col-sm-10">
-<!-- 			<div class="input-group">
- -->				
  			<select id="display.contextDynamic" class="form-control" ng-options="context as context.name for context in dynamicContexts" ng-model="display.contextDynamic" ng-change="addContext(display.contextDynamic)" ng-selected="alert('foo')" pd-add-context></select>
-
-<!-- 			<input id="display.contextDynamic" class="form-control" placeholder="DROPDOWN" ng-model="display.contextDynamic">
- -->		
-<!-- 			    <span class="input-group-btn">
- 					<button pd-add-context></button>
-				</span>
-			</div> -->
  		</div>
 	</div>
+
 
 	<div class="form-group" ng-repeat="context in contextDynamic">
 		<div class="col-sm-3 col-sm-offset-2 text-right">{{context.name}}</div>
