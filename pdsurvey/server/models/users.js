@@ -1,4 +1,5 @@
 var User = Schema.UserModel;
+var Displays = Schema.DisplayModel;
 
 /** 
  * USERS
@@ -72,3 +73,22 @@ router.route('/users/:id')
 			res.send({ message: 'Successfully deleted' });
 		});
 	})
+
+
+/* * * * * * * * * * * */
+/* USER SPECIFIC DATA **/ 
+/* * * * * * * * * * * */
+
+router.route('/users/:id/displays')
+
+	// GET single element
+	.get(function (req, res, next) {
+		Displays.find({ 'user': req.params.id })
+		.populate('displayModel')
+		.exec(function (err, user) {
+			if (err || !user) return next(err);
+			res.send(user);
+		});
+	})
+
+

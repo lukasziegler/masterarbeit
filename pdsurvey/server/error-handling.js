@@ -5,11 +5,13 @@
 // error handler
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.send(err.message);
 
     // extension for development error handler
     if (app.get('env') === 'development') {
     	console.error(err);
+    	res.send(err.message);
+    } else {
+    	res.send();
     }
 });
 

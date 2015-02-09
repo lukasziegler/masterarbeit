@@ -77,19 +77,18 @@
 	                    <thead>
 	                        <tr>
 	                            <th>Name</th>
-	                            <th>Type</th>
-	                            <th>Producer</th>
-	                            <th></th>
+	                            <th>Model</th>
+	                            <th>Location</th>
+	                            <!-- <th></th> -->
 	                        </tr>
 	                    </thead>
 	                    <tbody>
 	                        <tr ng-repeat="myDisplay in myDisplays">
 	                            <td>{{myDisplay.name}}</td>
-	                            <td>{{myDisplay.type.name}}</td>
-	                            <td>{{myDisplay.type.producer}}</td>
-	                            <td><button pd-remove-display></button></td>
-<!-- 	                            <td><a href="#/displays/{{display._id}}/edit" class="btn btn-default pull-right"><i class="fa fa-minus"></i></a></td>
- -->	                        </tr>
+	                            <td>{{myDisplay.displayModel.name}}</td>
+	                            <td>{{myDisplay.location}}</td>
+	                            <!-- <td><button pd-remove-display></button></td> -->
+	                        </tr>
 	                    </tbody>
 	                </table>
                 </div>

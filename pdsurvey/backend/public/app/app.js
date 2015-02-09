@@ -7,6 +7,7 @@ app.constant('config', { API: 'http://localhost:3000/api/' } );
 // Root Scope
 app.run(function($rootScope) {
 	$rootScope.user = "lukas";
+	$rootScope.userId = "54a6b51a276762fc510bb0f0";
 });
 
 // Routing

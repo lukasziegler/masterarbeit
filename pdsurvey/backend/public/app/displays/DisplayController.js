@@ -81,12 +81,9 @@ var app = angular.module("pdsurvey")
 
 /** CREATE **/
 
-.controller("DisplayCreateController", function($scope, $http, $location, config) {
+.controller("DisplayCreateController", function($scope, $rootScope, $http, $location, config) {
 	$scope.display  = {};
-
-	// TEMPORARY
-		$scope.display.user = "54a6b51a276762fc510bb0f0";
-	// TEMPORARY
+	$scope.display.user = $rootScope.userId;
 
 	$scope.displayModels = [];
 	$scope.dynamicContexts = [];
