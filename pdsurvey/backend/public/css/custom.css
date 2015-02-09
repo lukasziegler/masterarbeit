@@ -53,4 +53,21 @@
 .breadcrumb li.active a:hover {
 }
 
+/* Wizard: OptionPanel / choosing an option */
 
+.option-panel div {
+	margin: 2em 0;
+}
+
+.option-panel a {
+	font-size: 22px; 
+	font-weight: 300;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+@media (min-width: @screen-lg-min) {
+	.option-panel div:first-child {
+		border-right: 1px solid #ddd;
+	}
+}
