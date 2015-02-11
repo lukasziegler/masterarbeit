@@ -95,23 +95,33 @@ var wizard = angular.module('pdWizard', [])
 /** CONTROLLERS **/
 /* * * * * * * * */
 
-.controller("WizardController", function($scope, $http, $rootScope, config) {
+.controller("WizardController", function($scope, $http, $rootScope, $location, config) {
 	// Tabs for Wizard
 	$scope.tabs = [
-		{title:'Add Displays', template: '/app/wizard/templates/_display.html', hint: 'First add all displays you own to the PDSurvey plattform. This allows you to assign questionnaires to specific displays and to evaluate key differences between individual displays. Many display models already exist in our database. In case your display type is missing, please take the time to add it to the system.'},
-		{title:'Choose Surveys', template: '/app/wizard/templates/_survey.html', hint: 'asdf'},
-		{title:'Manage Campaigns', template: '/app/wizard/templates/_campaign.html', hint: 'In order to carry out surveys you need to assign them to your displays.'},
-		{title:'Publish', template: '/app/wizard/templates/_embedCode.html', hint: 'All there is left to do is to embed the following Java Script code at the bottom of your application code.'}
+		{title:'Add Displays', url: 'display', template: '/app/wizard/templates/_display.html', hint: 'First add all displays you own to the PDSurvey plattform. This allows you to assign questionnaires to specific displays and to evaluate key differences between individual displays. Many display models already exist in our database. In case your display type is missing, please take the time to add it to the system.'},
+		{title:'Choose Surveys', url: 'survey', template: '/app/wizard/templates/_survey.html', hint: 'asdf'},
+		{title:'Manage Campaigns', url: 'campaign', template: '/app/wizard/templates/_campaign.html', hint: 'In order to carry out surveys you need to assign them to your displays.'},
+		{title:'Publish', url: 'embedcode', template: '/app/wizard/templates/_embedCode.html', hint: 'All there is left to do is to embed the following Java Script code at the bottom of your application code.'}
 	];
 	$scope.tabs.activeTab = 0;
 
+
+	// Automatically update the URL for the tabs
+	$scope.$watch(function(scope) { return $scope.tabs.activeTab },
+		function(newValue, oldValue) {
+			$location.path('/wizard/' + $scope.tabs[newValue].url, false);
+		}
+	);
+	
+	// Respond the Hint text for every tab 
 	$scope.getTabHint = function(activeTab) {
 		if (activeTab >= 0 && activeTab < $scope.tabs.length) {
 			return $scope.tabs[activeTab].hint;
 		}
-		else
-			return -1;
+		else 	return -1;
 	};
+
+
 
 
 	/*** 1) DISPLAY ***/
