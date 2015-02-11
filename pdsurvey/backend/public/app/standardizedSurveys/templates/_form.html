@@ -26,14 +26,14 @@
 
 	<hr>
 
-	<h3>Questions</h3>
+	<h4>Questions</h4>
 	
 	<div ng-repeat="section in questionnaire.sections">
 			
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Section</label>
 			<div class="col-md-3">
-				<input class="form-control btn-default active" placeholder="Section" value="{{section.name}}" ng-model="section.name">
+				<input class="form-control btn-default active" placeholder="Section (optional)" value="{{section.name}}" ng-model="section.name">
 			</div>
 		</div>
 

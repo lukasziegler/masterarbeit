@@ -47,6 +47,17 @@
                                         </tr>
                                     </tbody>
                                 </table>
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                responsive: false,
+                info: false,
+                processing: true,
+                ordering: false
+                // sDom: '<"top">rt<"bottom"flp><"clear">'
+        });
+    });
+    </script>
 
 
 				<div class="pull-right">
@@ -70,7 +81,7 @@
 		<form class="form-horizontal" ng-submit="wizardDisplay()">
 		    <fieldset>
 
-				<div ng-include="'/app/surveys/templates/_form.html'"></div>
+				<div ng-include="'/app/standardizedSurveys/templates/_form.html'"></div>
 
 				<div class="pull-right">
 					<a class="btn btn-default" ng-click="setSurveyMode(0)">Cancel</a>
@@ -117,15 +128,3 @@
 </div>
 
 <button pd-next-tab></button>
-
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: false,
-                info: false,
-                processing: true,
-                ordering: false
-                // sDom: '<"top">rt<"bottom"flp><"clear">'
-        });
-    });
-    </script>

@@ -10,7 +10,10 @@
 
 				<div ng-include="'/app/displays/templates/_form.html'"></div>
 				
-				<button type="submit" class="btn btn-primary pull-right">Save Display</button>
+				<button type="submit" class="btn btn-primary pull-right" ng-click="addDisplay(display)">Save Display</button>
+
+				> {{display}}
+				>> {{display.name}}
 
 			</fieldset>
 		</form>
