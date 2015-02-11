@@ -163,17 +163,17 @@ app.config(function($routeProvider, $httpProvider, $modalProvider) {
 		})
 
 		/* STANDARDIZED QUESTIONNAIRE / SURVEY */
-		.when("/standardizedQuestions", {
-			templateUrl: "/app/standardizedQuestions/templates/list.html",
-			controller: "StandardizedQuestionListController"
+		.when("/standardizedSurveys", {
+			templateUrl: "/app/standardizedSurveys/templates/list.html",
+			controller: "StandardizedSurveyListController"
 		})
-		.when("/standardizedQuestions/new", {
-			templateUrl: "/app/standardizedQuestions/templates/create.html",
-			controller: "StandardizedQuestionCreateController"
+		.when("/standardizedSurveys/new", {
+			templateUrl: "/app/standardizedSurveys/templates/create.html",
+			controller: "StandardizedSurveyCreateController"
 		})
-		.when("/standardizedQuestions/:id/edit", {
-			templateUrl: "/app/standardizedQuestions/templates/edit.html",
-			controller: "StandardizedQuestionEditController"
+		.when("/standardizedSurveys/:id/edit", {
+			templateUrl: "/app/standardizedSurveys/templates/edit.html",
+			controller: "StandardizedSurveyEditController"
 		})
 
 		/* CAMPAIGNS */
