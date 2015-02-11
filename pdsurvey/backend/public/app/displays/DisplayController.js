@@ -56,6 +56,8 @@ var app = angular.module('pdsurvey')
 })
 
 
+
+
 //================================================
 // CONTROLLERS
 //================================================
@@ -63,21 +65,26 @@ var app = angular.module('pdsurvey')
 
 /** LIST **/
 
-.controller("DisplayListController", function($scope, $http, config) {
-	
-	$http.get(config.API + "displays").success(function(response) {
-		$scope.displays = response;
-	}).error(function(err) {
-		$scope.error = err;
-	});
+.controller("DisplayListController", function($scope, $http, displayFactory, config) {
+
+	getDisplays();
+
+	function getDisplays() {
+		displayFactory.getDisplays()
+			.success(function(response) {
+				$scope.displays = response;
+			}).error(function(err) {
+				$scope.error = err;
+			});
+	}
 
 	$scope.deleteDisplay = function(display) {
-		$http.delete(config.API + "displays/" + display._id)
+		displayFactory.deleteDisplay(display)
 			.success(function(response) {
 				var index = $scope.displays.indexOf(display)
 				$scope.displays.splice(index, 1);     
 			});
-	};
+	}
 
 })
 
@@ -85,7 +92,7 @@ var app = angular.module('pdsurvey')
 
 /** CREATE **/
 
-.controller("DisplayCreateController", function($scope, $rootScope, $http, $location, $modal, config) {
+.controller("DisplayCreateController", function($scope, $rootScope, $http, $location, $modal, displayFactory, displayModelFactory, config) {
 	$scope.display  = {};
 	$scope.display.user = $rootScope.userId;
 
@@ -98,12 +105,17 @@ var app = angular.module('pdsurvey')
 	$scope.dynamicContexts = [];
 	$scope.contextDynamic = [];
 
+	getDisplayModels();
+
 	// Load Display Models (for Autocomplete)
-	$http.get(config.API + "displayModels/").success(function(response) {
-		$scope.displayModels = response;
-	}).error(function(err) {
-		$scope.error = err;
-	});
+	function getDisplayModels () {
+		displayModelFactory.getDisplayModels()
+			.success(function(response) {
+				$scope.displayModels = response;
+			}).error(function(err) {
+				$scope.error = err;
+			});
+	}
 
 	// Load Context (for Autocomplete)
 	$http.get(config.API + "contexts/dynamic/").success(function(response) {
@@ -117,7 +129,7 @@ var app = angular.module('pdsurvey')
 	$scope.createDisplay = function() {
 		$scope.display.contextDynamic = $scope.contextDynamic;
 
-		$http.post(config.API + "displays", $scope.display)
+		displayFactory.addDisplay( $scope.display )
 			.success(function(response) {
 				$location.url("/displays");
 			});
@@ -128,7 +140,7 @@ var app = angular.module('pdsurvey')
 
 /** EDIT **/
 
-.controller("DisplayEditController", function($scope, $rootScope, $http, $location, $routeParams, $modal, config) {
+.controller("DisplayEditController", function($scope, $rootScope, $http, $location, $routeParams, $modal, displayFactory, config) {
 	$scope.display  = {};
 	$scope.display.user = $rootScope.userId;
 	var id = $routeParams.id;
