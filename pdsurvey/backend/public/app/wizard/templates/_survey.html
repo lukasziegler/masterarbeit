@@ -1,4 +1,4 @@
-<div class="panel panel-default" ng-show="surveyMode == 0">
+<div class="panel panel-default"> <!-- ng-show="surveyMode == 0" -->
 	<div class="panel-heading">
 	    Add Survey
 	</div>
@@ -25,7 +25,29 @@
 		<form class="form-horizontal" ng-submit="wizardDisplay()">
 		    <fieldset>
 
-				<div ng-include="'/app/surveys/templates/_form.html'"></div>
+<!-- 				<div ng-include="'/app/surveys/templates/_form.html'"></div>
+ -->
+
+
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Survey Name</th>
+                                            <th>Category</th>
+                                            <th>Description</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="survey in surveys | orderBy : 'name'" ng-class-even="'even'" ng-class-odd="'odd'">
+                                            <td>{{survey.name}}</td>
+                                            <td>{{survey.category.name}}</td>
+                                            <td>{{survey.description}}</td>
+                                            <td><a class="btn btn-primary">Select</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
 
 				<div class="pull-right">
 					<a class="btn btn-default" ng-click="setSurveyMode(0)">Cancel</a>
@@ -95,3 +117,15 @@
 </div>
 
 <button pd-next-tab></button>
+
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                responsive: false,
+                info: false,
+                processing: true,
+                ordering: false
+                // sDom: '<"top">rt<"bottom"flp><"clear">'
+        });
+    });
+    </script>

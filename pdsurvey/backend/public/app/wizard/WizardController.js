@@ -165,8 +165,22 @@ var wizard = angular.module('pdWizard', [])
 	$scope.surveyMode = 0;
 
 	$scope.setSurveyMode = function(i) {
+
 		if (i >= 0 && i < 3) {
 			$scope.surveyMode = i;
+		}
+
+		switch (i) {
+			case 1:
+				$http.get(config.API + "standardSurvey").success(function(response) {
+					$scope.surveys = response;
+				}).error(function(err) {
+					$scope.error = err;
+				});
+				break;
+
+			case 2: 
+				break;
 		}
 	}
 
