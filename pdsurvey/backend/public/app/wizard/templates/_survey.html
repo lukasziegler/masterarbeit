@@ -1,14 +1,14 @@
-<div class="panel panel-default">
+<div class="panel panel-default" ng-show="surveyMode == 0">
 	<div class="panel-heading">
 	    Add Survey
 	</div>
 	<div class="panel-body option-panel">
 
 		<div class="col-md-6 text-center">
-			<a ng-click="surveyAddDefault()">Choose from existing Surveys</a>
+			<a ng-click="setSurveyMode(1)">Choose from existing Surveys</a>
 		</div>
 		<div class="col-md-6 text-center">
-			<a ng-click="surveyAddCustom()">Add your own custom Survey</a>
+			<a ng-click="setSurveyMode(2)">Add your own custom Survey</a>
 		</div>
 
 	</div>
@@ -16,7 +16,7 @@
 
 
 
-<div class="panel panel-default">
+<div class="panel panel-default" ng-show="surveyMode === 1">
 	<div class="panel-heading">
 	    Choose Existing Survey
 	</div>
@@ -27,8 +27,10 @@
 
 				<div ng-include="'/app/surveys/templates/_form.html'"></div>
 
-				<button type="submit" class="btn btn-primary pull-right">Save Survey</button>
-
+				<div class="pull-right">
+					<a class="btn btn-default" ng-click="setSurveyMode(0)">Cancel</a>
+					<button type="submit" class="btn btn-primary">Add Survey</button>
+				</div>
 			</fieldset>
 		</form>
 
@@ -37,7 +39,7 @@
 
 
 
-<div class="panel panel-default">
+<div class="panel panel-default" ng-show="surveyMode === 2">
 	<div class="panel-heading">
 	    Create New Survey
 	</div>
@@ -48,7 +50,10 @@
 
 				<div ng-include="'/app/surveys/templates/_form.html'"></div>
 
-				<button type="submit" class="btn btn-primary pull-right">Save Survey</button>
+				<div class="pull-right">
+					<a class="btn btn-default" ng-click="setSurveyMode(0)">Cancel</a>
+					<button type="submit" class="btn btn-primary">Add Survey</button>
+				</div>
 
 			</fieldset>
 		</form>

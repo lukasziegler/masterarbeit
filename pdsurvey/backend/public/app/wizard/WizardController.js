@@ -120,7 +120,7 @@ var wizard = angular.module('pdWizard', [])
 		}
 	);
 	
-	
+
 	// Respond the Hint text for every tab 
 	$scope.getTabHint = function(activeTab) {
 		if (activeTab >= 0 && activeTab < $scope.tabs.length) {
@@ -162,6 +162,14 @@ var wizard = angular.module('pdWizard', [])
 
 
 	/*** 2) SURVEY ***/
+	$scope.surveyMode = 0;
+
+	$scope.setSurveyMode = function(i) {
+		if (i >= 0 && i < 3) {
+			$scope.surveyMode = i;
+		}
+	}
+
 
 
 	/*** 3) CAMPAIGN ***/
