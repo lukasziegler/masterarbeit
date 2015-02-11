@@ -1,5 +1,56 @@
-var app = angular.module("pdsurvey");
+var app = angular.module("pdsurvey")
 
+
+//================================================
+// DIRECTIVES
+//================================================
+
+.directive('pdAddContextStatic', function() {
+	return {
+		restrict: 'A',
+		replace: false,
+		// template: '<a href="" ng-click="addContext(display.contextStatic)" class="btn btn-default"><i class="fa fa-plus"></i></a>',
+		link: function(scope, elem, attrs) {
+
+		scope.addContext = function(newContext) {
+
+			if (scope.staticContexts.indexOf(newContext) != -1) {
+				scope.contextStatic.push( newContext );
+
+				// remove form Dropbown staticContexts
+				var index = scope.staticContexts.indexOf(newContext)
+				scope.staticContexts.splice(index, 1);
+			}
+		}
+
+		}
+	};
+})
+
+.directive('pdRemoveContextStatic', function() {
+	return {
+		restrict: 'A',
+		replace: true,
+		template: '<a href="" ng-click="removeContext(context)" class="btn btn-default"><i class="fa fa-minus"></i></a>',
+		link: function(scope, elem, attrs) {
+
+		scope.removeContext = function(context) {
+			// add to staticContexts List
+			scope.staticContexts.push( context );
+
+			// remove form Dropbown contextStatic
+			var index = scope.contextStatic.indexOf(context)
+			scope.contextStatic.splice(index, 1);
+		}
+
+		}
+	};
+})
+
+
+//================================================
+// CONTROLLERS
+//================================================
 
 /** LIST **/
 
@@ -27,8 +78,6 @@ app.controller("DisplayModelListController", function($scope, $http, config) {
 
 app.controller("DisplayModelCreateController", function($scope, $http, $location, config) {
 	$scope.displayModel  = {};
-	$scope.contexts  = {};
-	$scope.contextList  = [];
 
 	// Save data
 	$scope.createDisplayModel = function() {
@@ -38,19 +87,15 @@ app.controller("DisplayModelCreateController", function($scope, $http, $location
 			});
 	}
 
-	// Load context for Autocomplete
-	$http.get(config.API + "contexts/static/")
-		.success(function(response) {
-			$scope.contexts = response;
-			console.log(response)
-		}).error(function(err) {
-			$scope.error = err;
-		});
+	// Load Context (for Autocomplete)
+	$scope.staticContexts = [];
+	$scope.contextStatic = [];
 
-	$scope.addContext = function(newContext) {
-		$scope.contextList.push(newContext);
-	}
-
+	$http.get(config.API + "contexts/static/").success(function(response) {
+		$scope.staticContexts = response;
+	}).error(function(err) {
+		$scope.error = err;
+	});
 });
 
 
@@ -66,18 +111,16 @@ app.controller("DisplayModelEditController", function($scope, $http, $location, 
 		$scope.displayModel = response;
 	});
 
-	// Load context for Autocomplete
-	$scope.contexts  = {};
-	$scope.contextList  = [];
-	$http.get(config.API + "contexts/static/")
-		.success(function(response) {
-			$scope.contexts = response;
-		}).error(function(err) {
-			$scope.error = err;
-		});
-		$scope.addContext = function(newContext) {
-			$scope.contextList.push(newContext);
-		}
+	// Load Context (for Autocomplete)
+	$scope.staticContexts = [];
+	$scope.contextStatic = [];
+
+	$http.get(config.API + "contexts/static/").success(function(response) {
+		$scope.staticContexts = response;
+	}).error(function(err) {
+		$scope.error = err;
+	});
+
 
 	// Save data
 	$scope.saveDisplayModel = function() {

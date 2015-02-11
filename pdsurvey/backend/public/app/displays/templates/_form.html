@@ -34,7 +34,7 @@
 	<div class="form-group"> 
 		<label for="display.contextDynamic" class="col-sm-2 control-label">Context</label>
 		<div class="col-sm-10">
- 			<select id="display.contextDynamic" class="form-control" ng-options="context as context.name for context in dynamicContexts" ng-model="display.contextDynamic" ng-change="addContext(display.contextDynamic)" ng-selected="alert('foo')" pd-add-context></select>
+ 			<select id="display.contextDynamic" class="form-control" ng-options="context as context.name for context in dynamicContexts" ng-model="display.contextDynamic" ng-change="addContext(display.contextDynamic)" ng-selected="alert('foo')" pd-add-context-dynamic></select>
  		</div>
 	</div>
 
@@ -45,7 +45,7 @@
 			<div class="input-group">
 				<input class="form-control" placeholder="" ng-model="context.value">
 			    <span class="input-group-btn">
- 					<button pd-remove-context></button>
+ 					<button pd-remove-context-dynamic></button>
 				</span>
 			</div>
     	</div>

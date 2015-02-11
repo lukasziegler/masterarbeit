@@ -11,7 +11,7 @@ var app = angular.module('pdsurvey')
 //================================================
 
 
-.directive('pdAddContext', function() {
+.directive('pdAddContextDynamic', function() {
 	return {
 		restrict: 'A',
 		replace: false,
@@ -35,7 +35,7 @@ var app = angular.module('pdsurvey')
 	};
 })
 
-.directive('pdRemoveContext', function() {
+.directive('pdRemoveContextDynamic', function() {
 	return {
 		restrict: 'A',
 		replace: true,
