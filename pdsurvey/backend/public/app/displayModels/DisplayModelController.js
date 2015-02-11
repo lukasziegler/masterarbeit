@@ -42,6 +42,7 @@ app.controller("DisplayModelCreateController", function($scope, $http, $location
 	$http.get(config.API + "contexts/static/")
 		.success(function(response) {
 			$scope.contexts = response;
+			console.log(response)
 		}).error(function(err) {
 			$scope.error = err;
 		});

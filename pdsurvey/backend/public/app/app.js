@@ -237,7 +237,7 @@ app.config(function($routeProvider, $httpProvider, $modalProvider) {
 			templateUrl: "/app/wizard/templates/index.html",
 			controller: "WizardController"
 		})
-		.when("/wizard/survey", {
+		.when("/wizard/:tab", {
 			templateUrl: "/app/wizard/templates/index.html",
 			controller: "WizardController"
 		})

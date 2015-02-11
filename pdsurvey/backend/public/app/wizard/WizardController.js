@@ -95,7 +95,7 @@ var wizard = angular.module('pdWizard', [])
 /** CONTROLLERS **/
 /* * * * * * * * */
 
-.controller("WizardController", function($scope, $http, $rootScope, $location, config) {
+.controller("WizardController", function($scope, $http, $rootScope, $routeParams, $location, config) {
 	// Tabs for Wizard
 	$scope.tabs = [
 		{title:'Add Displays', url: 'display', template: '/app/wizard/templates/_display.html', hint: 'First add all displays you own to the PDSurvey plattform. This allows you to assign questionnaires to specific displays and to evaluate key differences between individual displays. Many display models already exist in our database. In case your display type is missing, please take the time to add it to the system.'},
@@ -105,13 +105,21 @@ var wizard = angular.module('pdWizard', [])
 	];
 	$scope.tabs.activeTab = 0;
 
-
+	// Update Tab on first page load (deep linking functionality)
+	for (var i = 0; i < $scope.tabs.length; i++) {
+		if ($scope.tabs[i].url === $routeParams.tab) {
+			$scope.tabs.activeTab = i;
+			break;
+		}
+	};
+	
 	// Automatically update the URL for the tabs
 	$scope.$watch(function(scope) { return $scope.tabs.activeTab },
 		function(newValue, oldValue) {
 			$location.path('/wizard/' + $scope.tabs[newValue].url, false);
 		}
 	);
+	
 	
 	// Respond the Hint text for every tab 
 	$scope.getTabHint = function(activeTab) {

@@ -18,7 +18,28 @@
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-	    Add Survey
+	    Choose Existing Survey
+	</div>
+	<div class="panel-body">
+
+		<form class="form-horizontal" ng-submit="wizardDisplay()">
+		    <fieldset>
+
+				<div ng-include="'/app/surveys/templates/_form.html'"></div>
+
+				<button type="submit" class="btn btn-primary pull-right">Save Survey</button>
+
+			</fieldset>
+		</form>
+
+	</div>
+</div>
+
+
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+	    Create New Survey
 	</div>
 	<div class="panel-body">
 
