@@ -1,4 +1,4 @@
-var app = angular.module('pdsurvey', ['ngRoute', 'ngAnimate', 'ngSanitize', 
+var app = angular.module('pdsurvey', ['ngRoute', 'ngResource', 'ngAnimate', 'ngSanitize', 
 	'mgcrea.ngStrap', 'pdWizard', 'pdAuthentication']);
 
 // Constants (Config)

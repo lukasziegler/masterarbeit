@@ -57,7 +57,6 @@ var app = angular.module('pdsurvey')
 
 
 
-
 //================================================
 // CONTROLLERS
 //================================================
@@ -65,11 +64,12 @@ var app = angular.module('pdsurvey')
 
 /** LIST **/
 
-.controller("DisplayListController", function($scope, $http, displayFactory, config) {
+.controller("DisplayListController", function($scope, $http, displayFactory, config, Display) {
 
 	getDisplays();
 
 	function getDisplays() {
+		// Display.
 		displayFactory.getDisplays()
 			.success(function(response) {
 				$scope.displays = response;
@@ -85,6 +85,11 @@ var app = angular.module('pdsurvey')
 				$scope.displays.splice(index, 1);     
 			});
 	}
+
+
+	// var entries = Display.query(function() {
+	//     console.log(entries);
+	// });
 
 })
 
