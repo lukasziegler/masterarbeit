@@ -50,37 +50,37 @@ router.post('/logout', function(req, res){
 
 
 // Questions
-require("./models/questions");
+require("./api/questions");
 
 // Responses
-require("./models/responses");
+require("./api/responses");
 
 // Question Types
-require("./models/questionTypes");
+require("./api/questionTypes");
 
 // Categories
-require("./models/categories");
+require("./api/categories");
 
 // Surveys
-require("./models/surveys");
+require("./api/surveys");
 
 // Standardized Questionnaires
-require("./models/standardSurvey");
+require("./api/standardSurvey");
 
 // Display Models
-require("./models/displayModels");
+require("./api/displayModels");
 
 // Displays per User
-require("./models/displays");
+require("./api/displays");
 
 // Campaigns
-require("./models/campaigns");
+require("./api/campaigns");
 
 // Contexts
-require("./models/contexts");
+require("./api/contexts");
 
 // USers
-require("./models/users");
+require("./api/users");
 
 
 
