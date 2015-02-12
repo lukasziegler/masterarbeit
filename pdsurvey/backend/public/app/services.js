@@ -5,48 +5,52 @@ var app = angular.module('pdsurvey')
 //  REST-API
 //================================================
 
-	.factory("Question", function($resource) {
-	    return $resource("/api/questions/:id");
+	.factory('Question', function($resource) {
+	    return $resource('/api/questions/:id');
 	})
 
-	.factory("Response", function($resource) {
-	    return $resource("/api/responses/:id");
+	.factory('Response', function($resource) {
+	    return $resource('/api/responses/:id');
 	})
 
-	.factory("QuestionType", function($resource) {
-	    return $resource("/api/questionTypes/:id");
+	.factory('QuestionType', function($resource) {
+	    return $resource('/api/questionTypes/:id');
 	})
 
-	.factory("Category", function($resource) {
-	    return $resource("/api/categories/:id");
+	.factory('Category', function($resource) {
+	    return $resource('/api/categories/:id');
 	})
 
-	.factory("Survey", function($resource) {
-	    return $resource("/api/surveys/:id");
+	.factory('Survey', function($resource) {
+	    return $resource('/api/surveys/:id');
 	})
 
-	.factory("StandardizedSurvey", function($resource) {
-	    return $resource("/api/standardSurvey/:id");
+	.factory('StandardizedSurvey', function($resource) {
+	    return $resource('/api/standardSurvey/:id');
 	})
 
-	.factory("DisplayModel", function($resource) {
-	    return $resource("/api/displayModels/:id");
+	.factory('DisplayModel', function($resource) {
+	    return $resource('/api/displayModels/:id');
 	})
 
-	.factory("Display", function($resource) {
-	    return $resource("/api/displays/:id");
+	.factory('Display', function($resource) {
+	    return $resource('/api/displays/:id');
 	})
 
-	.factory("Campaign", function($resource) {
-	    return $resource("/api/campaigns/:id");
+	.factory('Campaign', function($resource) {
+	    return $resource('/api/campaigns/:id');
 	})
 
-	.factory("Context", function($resource) {
-	    return $resource("/api/contexts/:id");
+	.factory('Context', function($resource) {
+	    return $resource('/api/contexts/:id', {},
+	    	{
+	    		'getStatic': {'method': 'GET', 'params': {'type': 'dynamic'}, isArray: true},
+	    		'getDynamic': {'method': 'GET', 'params': {'type': 'dynamic'}, isArray: true}
+	    	});
 	})
 
-	.factory("User", function($resource) {
-	    return $resource("/api/users/:id");
+	.factory('User', function($resource) {
+	    return $resource('/api/users/:id');
 	})
 
 

@@ -91,11 +91,14 @@ var wizard = angular.module('pdWizard', [])
 	};
 })
 
+
 //================================================
 // CONTROLLERS
 //================================================
 
-.controller("WizardController", function($scope, $http, $rootScope, $routeParams, $location, config) {
+.controller("WizardController", function($scope, $routeParams, $location, 
+	Display, DisplayModel, Context, StandardizedSurvey, Category, QuestionType) {
+	
 	// Tabs for Wizard
 	$scope.tabs = [
 		{title:'Add Displays', url: 'display', template: '/app/wizard/templates/_display.html', hint: 'First add all displays you own to the PDSurvey plattform. This allows you to assign questionnaires to specific displays and to evaluate key differences between individual displays. Many display models already exist in our database. In case your display type is missing, please take the time to add it to the system.'},
@@ -105,13 +108,17 @@ var wizard = angular.module('pdWizard', [])
 	];
 	$scope.tabs.activeTab = 0;
 
-	// Update Tab on first page load (deep linking functionality)
-	for (var i = 0; i < $scope.tabs.length; i++) {
-		if ($scope.tabs[i].url === $routeParams.tab) {
-			$scope.tabs.activeTab = i;
-			break;
-		}
-	};
+	initTabs();
+
+	function initTabs() {
+		// Update Tab on first page load (deep linking functionality)
+		for (var i = 0; i < $scope.tabs.length; i++) {
+			if ($scope.tabs[i].url === $routeParams.tab) {
+				$scope.tabs.activeTab = i;
+				break;
+			}
+		};	
+	}
 	
 	// Automatically update the URL for the tabs
 	$scope.$watch(function(scope) { return $scope.tabs.activeTab },
@@ -125,7 +132,7 @@ var wizard = angular.module('pdWizard', [])
 		if (activeTab >= 0 && activeTab < $scope.tabs.length) {
 			return $scope.tabs[activeTab].hint;
 		}
-		else 	return -1;
+		else return -1;
 	};
 
 
@@ -137,10 +144,8 @@ var wizard = angular.module('pdWizard', [])
 	$scope.myDisplays = [];		// list of saved displays
 	$scope.display = {};		// new display (needed for prototypical inheritance)
 
-	$http.get(config.API + "users/" + $rootScope.userId + '/displays').success(function(response) {
-		$scope.myDisplays = response;
-	}).error(function(err) {
-		$scope.error = err;
+	Display.query(function(data) {
+		$scope.myDisplays = data;
 	});
 
 
@@ -149,17 +154,13 @@ var wizard = angular.module('pdWizard', [])
 	$scope.contextDynamic = [];
 
 	// Load Display Models (for Autocomplete)
-	$http.get(config.API + "displayModels/").success(function(response) {
-		$scope.displayModels = response;
-	}).error(function(err) {
-		$scope.error = err;
+	DisplayModel.query(function(data) {
+		$scope.displayModels = data;
 	});
 
 	// Load Context (for Autocomplete)
-	$http.get(config.API + "contexts/dynamic/").success(function(response) {
-		$scope.dynamicContexts = response;
-	}).error(function(err) {
-		$scope.error = err;
+	Context.getDynamic(function(data) {
+		$scope.dynamicContexts = data;
 	});
 
 	$scope.addDisplay = function() {
@@ -197,10 +198,8 @@ var wizard = angular.module('pdWizard', [])
 
 		switch (i) {
 			case 1:
-				$http.get(config.API + "standardSurvey").success(function(response) {
-					$scope.surveys = response;
-				}).error(function(err) {
-					$scope.error = err;
+				StandardizedSurvey.query(function(data) {
+					$scope.surveys = data;
 				});
 				break;
 
@@ -213,18 +212,14 @@ var wizard = angular.module('pdWizard', [])
 		"sections":[{"name":"", "questions":[{"question":"", "type":""}]}]};
 	$scope.categories  = {};
 
-	$http.get(config.API + "categories").success(function(response) {
-		$scope.categories = response;
-	}).error(function(err) {
-		$scope.error = err;
+
+	Category.query(function(data) {
+		$scope.categories = data;
 	});
 
-	$http.get(config.API + "questionTypes").success(function(response) {
-		$scope.questionTypes = response;
-	}).error(function(err) {
-		$scope.error = err;
+	QuestionType.query(function(data) {
+		$scope.questionTypes = data;
 	});
-
 
 	/* * * * * * * * * */
 	/*   3) CAMPAIGN   */
