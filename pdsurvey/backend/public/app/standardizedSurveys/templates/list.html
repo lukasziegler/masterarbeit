@@ -30,7 +30,7 @@
                                             <td>{{questionnaire.name}}</td>
                                             <td>{{questionnaire.category.name}}</td>
                                             <td>{{questionnaire.description}}</td>
-                                            <td><a href="#/standardizedSurveys/{{questionnaire._id}}/edit" class="btn btn-default">Edit</a>
+                                            <td><a href="/standardizedSurveys/{{questionnaire._id}}/edit" class="btn btn-default">Edit</a>
                                             <a href="" ng-click="deleteQuestion(questionnaire)" class="btn btn-danger">Delete</a></td>
                                         </tr>
                                     </tbody>
@@ -38,7 +38,7 @@
                             </div>
                             <!-- /.table-responsive -->
 
-                            <a href="#/standardizedSurveys/new" class="btn btn-primary">Add new Questionnaire</a>
+                            <a href="/standardizedSurveys/new" class="btn btn-primary">Add new Questionnaire</a>
 
                         </div>
                         <!-- /.panel-body -->

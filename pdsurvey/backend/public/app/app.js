@@ -25,7 +25,7 @@ app.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $loc
 }])
 
 // Routing
-app.config(function($routeProvider, $httpProvider, $modalProvider) {
+app.config(function($routeProvider, $httpProvider, $locationProvider, $modalProvider) {
 
 
     //================================================
@@ -249,6 +249,13 @@ app.config(function($routeProvider, $httpProvider, $modalProvider) {
 		})
 
 		// .otherwise({redirectTo: "/"})
+	
+
+	//================================================
+    // Activate HTML5 Mode Routing (remove the ...//...)
+    //================================================
+
+	$locationProvider.html5Mode(true);
 
 
     //================================================

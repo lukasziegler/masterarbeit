@@ -36,8 +36,6 @@ app.use(session({ resave: true,
                   secret: 'securedsession' }));
 app.use(passport.initialize()); // Add passport initialization
 app.use(passport.session());    // Add passport initialization
-app.use(express.static(__dirname + '/backend/public'));
-
 
 // Allow CORS requests
 app.use(function (req, res, next) {
@@ -52,6 +50,16 @@ app.use(function (req, res, next) {
 router = express.Router();
 require('./server/routes');
 app.use('/api', router); // register routes
+
+// Routing of static files
+app.use('/app', express.static(__dirname + '/backend/public/app'));
+app.use('/css', express.static(__dirname + '/backend/public/css'));
+app.use('/lib', express.static(__dirname + '/backend/public/lib'));
+app.use('/tracking', express.static(__dirname + '/backend/public/tracking'));
+app.all('/*', function(req, res, next) {
+	// Allow Angular to support HTML5 mode
+    res.sendfile('/backend/public/index.html', { root: __dirname });
+});
 
 
 // Bootstrap Error Handling

@@ -34,7 +34,7 @@
                                             <td>{{survey.createdBy}}</td>
                                             <td>{{survey.dateCreated | date:'longDate'}} - {{survey.dateCreated | date:'h:mm a'}}</td>
                                             <td>{{survey.lastChange | date:'longDate'}} - {{survey.lastChange | date:'h:mm a'}}</td>
-                                            <td><a href="#/surveys/{{survey._id}}/edit" class="btn btn-default">Edit</a>
+                                            <td><a href="/surveys/{{survey._id}}/edit" class="btn btn-default">Edit</a>
                                             <a href="" ng-click="deleteSurvey(survey)" class="btn btn-danger">Delete</a></td>
                                         </tr>
                                     </tbody>
