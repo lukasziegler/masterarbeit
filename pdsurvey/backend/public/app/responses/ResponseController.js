@@ -3,20 +3,22 @@ var app = angular.module("pdsurvey");
 
 /** LIST **/
 
-app.controller("ResponseListController", function($scope, $http, config) {
+app.controller("ResponseListController", function($scope, Response) {
 	
-	$http.get(config.API + "responses").success(function(response) {
-		$scope.responses = response;
-	}).error(function(err) {
+	// Load all entries
+	Response.query(function(data) {
+		$scope.responses = data;
+	}, function(err) {
 		$scope.error = err;
 	});
 
 	$scope.deleteResponse = function(response) {
-		$http.delete(config.API + "responses/" + response._id)
-			.success(function(response) {
-				var index = $scope.responses.indexOf(response)
-				$scope.responses.splice(index, 1);     
-			});
+		Response.delete({id: response._id}, {}, function() {
+			var index = $scope.responses.indexOf(response)
+			$scope.responses.splice(index, 1);     
+		}, function(err) {
+			$scope.error = err;
+		});
 	};
 
 });

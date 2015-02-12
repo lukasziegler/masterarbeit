@@ -3,20 +3,23 @@ var app = angular.module("pdsurvey");
 
 /** LIST **/
 
-app.controller("CampaignListController", function($scope, $http, config) {
+app.controller("CampaignListController", function($scope, Campaign) {
 
-	$http.get(config.API + "campaigns/").success(function(response) {
-		$scope.campaigns = response;
-	}).error(function(err) {
+	// Load all entries
+	Campaign.query(function(data) {
+		$scope.campaigns = data;
+	}, function(err) {
 		$scope.error = err;
 	});
 
+	// Delete selected entry
 	$scope.deleteCampaign = function(campaign) {
-		$http.delete(API_URL + "campaigns/" + campaign._id)
-			.success(function(response) {
-				var index = $scope.campaigns.indexOf(campaign)
-				$scope.campaigns.splice(index, 1);     
-			});
+		Campaign.delete({id: campaign._id}, {}, function() {
+			var index = $scope.campaigns.indexOf(campaign)
+			$scope.campaigns.splice(index, 1);     
+		}, function(err) {
+			$scope.error = err;
+		});
 	};
 
 });
@@ -25,15 +28,16 @@ app.controller("CampaignListController", function($scope, $http, config) {
 
 /** CREATE **/
 
-app.controller("CampaignCreateController", function($scope, $http, $location, config) {
+app.controller("CampaignCreateController", function($scope, $location, Campaign) {
 	$scope.campaign  = {};
 
 	// Save data
 	$scope.createCampaign = function() {
-		$http.post(config.API + "campaigns/", $scope.campaign)
-			.success(function(response) {
-				$location.url("/campaigns");
-			});
+		Campaign.save($scope.campaign, function() {
+			$location.url("/campaigns");
+		}, function(err) {
+			$scope.error = err;
+		});
 	}
 });
 
@@ -41,20 +45,23 @@ app.controller("CampaignCreateController", function($scope, $http, $location, co
 
 /** EDIT **/
 
-app.controller("CampaignEditController", function($scope, $http, $location, $routeParams, config) {
+app.controller("CampaignEditController", function($scope, $location, $routeParams, Campaign) {
 	$scope.campaign  = {};
 	var id = $routeParams.id;
 
 	// Load data
-	$http.get(config.API + "campaigns/" + id).success(function(response) {
-		$scope.campaign = response;
+	Campaign.get( {id: id}, function(data) {
+		$scope.campaign = data;
+	}, function(err) {
+		$scope.error = err;
 	});
 
 	// Save data
 	$scope.saveCampaign = function() {
-		$http.put(config.API + "campaigns/" + $scope.campaign._id, $scope.campaign)
-			.success(function(response) {
-				$location.url("/campaigns");
-			});
+		$scope.campaign.$update(function() {
+			$location.url("/campaigns");
+		}, function(err) {
+			$scope.error = err;
+		});
 	};
 });

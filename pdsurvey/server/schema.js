@@ -53,7 +53,7 @@ exports.CategoryModel = mongoose.model('Category', CategorySchema, 'categories')
 /* SURVEY (QUESTIONNAIRE) */
 var SurveySchema = mongoose.Schema({ 
     name: { type: String, required: true },
-    // questions: [Question],
+    description: String,
     maxQuestions: Number,
     createdBy: { type: ObjectId, ref: 'User' },
     dateCreated: { type: Date, default: Date.now },

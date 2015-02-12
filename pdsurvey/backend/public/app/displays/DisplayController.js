@@ -64,40 +64,35 @@ var app = angular.module('pdsurvey')
 
 /** LIST **/
 
-.controller("DisplayListController", function($scope, $http, displayFactory, config, Display) {
+.controller("DisplayListController", function($scope, Display) {
 
 	getDisplays();
 
 	function getDisplays() {
-		// Display.
-		displayFactory.getDisplays()
-			.success(function(response) {
-				$scope.displays = response;
-			}).error(function(err) {
-				$scope.error = err;
-			});
+		Display.query(function(data) {
+			$scope.displays = data;
+		}, function(err) {
+			$scope.error = err;
+		});
 	}
 
 	$scope.deleteDisplay = function(display) {
-		displayFactory.deleteDisplay(display)
-			.success(function(response) {
-				var index = $scope.displays.indexOf(display)
-				$scope.displays.splice(index, 1);     
-			});
+		Display.delete({id: display._id}, {}, function() {
+			var index = $scope.displays.indexOf(display)
+			$scope.displays.splice(index, 1);     
+		}, function(err) {
+			$scope.error = err;
+		});
 	}
-
-
-	// var entries = Display.query(function() {
-	//     console.log(entries);
-	// });
-
 })
 
 
 
 /** CREATE **/
 
-.controller("DisplayCreateController", function($scope, $rootScope, $http, $location, $modal, displayFactory, displayModelFactory, config) {
+.controller("DisplayCreateController", function($scope, $rootScope, $location, $modal,
+	Display, DisplayModel, Context) {
+
 	$scope.display  = {};
 	$scope.display.user = $rootScope.userId;
 
@@ -114,30 +109,29 @@ var app = angular.module('pdsurvey')
 
 	// Load Display Models (for Autocomplete)
 	function getDisplayModels () {
-		displayModelFactory.getDisplayModels()
-			.success(function(response) {
-				$scope.displayModels = response;
-			}).error(function(err) {
-				$scope.error = err;
-			});
+		DisplayModel.query(function(data) {
+			$scope.displayModels = data;
+		}, function(err) {
+			$scope.error = err;
+		});
 	}
 
 	// Load Context (for Autocomplete)
-	$http.get(config.API + "contexts/dynamic/").success(function(response) {
-		$scope.dynamicContexts = response;
-	}).error(function(err) {
+	Context.getDynamic(function(data) {
+		$scope.dynamicContexts = data;
+	}, function(err) {
 		$scope.error = err;
 	});
-
 
 	// Save data
 	$scope.createDisplay = function() {
 		$scope.display.contextDynamic = $scope.contextDynamic;
 
-		displayFactory.addDisplay( $scope.display )
-			.success(function(response) {
-				$location.url("/displays");
-			});
+		Display.save($scope.display, function() {
+			$location.url("/displays");
+		}, function(err) {
+			$scope.error = err;
+		});
 	}
 })
 
@@ -145,7 +139,9 @@ var app = angular.module('pdsurvey')
 
 /** EDIT **/
 
-.controller("DisplayEditController", function($scope, $rootScope, $http, $location, $routeParams, $modal, displayFactory, config) {
+.controller("DisplayEditController", function($scope, $rootScope, $location, $routeParams, $modal,
+	Display, DisplayModel, Context) {
+
 	$scope.display  = {};
 	$scope.display.user = $rootScope.userId;
 	var id = $routeParams.id;
@@ -154,37 +150,38 @@ var app = angular.module('pdsurvey')
 	$scope.dynamicContexts = [];
 	$scope.contextDynamic = [];
 
-	// Load Display ID
-	$http.get(config.API + "displays/" + id).success(function(response) {
-		$scope.display = response;
+	// Load Display
+	Display.get( {id: id}, function(data) {
+		$scope.display = data;
 
 		// copy values to temporary 
 		$scope.contextDynamic = $scope.display.contextDynamic;
 		$scope.display.contextDynamic = $scope.display.contextDynamic._id;
 
-		// $scope.display.displayModel = $scope.display.displayModel._id;
-		// console.log($scope.display.displayModel)
+	}, function(err) {
+		$scope.error = err;
 	});
 
 	// Load Display Models (for Autocomplete)
-	$http.get(config.API + "displayModels/").success(function(response) {
-		$scope.displayModels = response;
-	}).error(function(err) {
+	DisplayModel.query(function(data) {
+		$scope.displayModels = data;
+	}, function(err) {
 		$scope.error = err;
 	});
 
 	// Load Context (for Autocomplete)
-	$http.get(config.API + "contexts/dynamic/").success(function(response) {
-		$scope.dynamicContexts = response;
-	}).error(function(err) {
+	Context.getDynamic(function(data) {
+		$scope.dynamicContexts = data;
+	}, function(err) {
 		$scope.error = err;
 	});
 
 	// Save data
 	$scope.saveDisplay = function() {
-		$http.put(config.API + "displays/" + $scope.display._id, $scope.display)
-			.success(function(response) {
-				$location.url("/displays");
-			});
+		$scope.display.$update(function() {
+			$location.url("/displays");
+		}, function(err) {
+			$scope.error = err;
+		});
 	};
 });

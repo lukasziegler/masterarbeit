@@ -54,20 +54,23 @@ var app = angular.module("pdsurvey")
 
 /** LIST **/
 
-app.controller("DisplayModelListController", function($scope, $http, config) {
+app.controller("DisplayModelListController", function($scope, DisplayModel) {
 	
-	$http.get(config.API + "displayModels").success(function(response) {
-		$scope.displayModels = response;
-	}).error(function(err) {
+	// Load all entries
+	DisplayModel.query(function(data) {
+		$scope.displayModels = data;
+	}, function(err) {
 		$scope.error = err;
 	});
 
+	// Delete selected entry
 	$scope.deleteDisplayModel = function(displayModel) {
-		$http.delete(config.API + "displayModels/" + displayModel._id)
-			.success(function(response) {
-				var index = $scope.displayModels.indexOf(displayModel)
-				$scope.displayModels.splice(index, 1);     
-			});
+		DisplayModel.delete({id: displayModel._id}, {}, function() {
+			var index = $scope.displayModels.indexOf(displayModel)
+			$scope.displayModels.splice(index, 1);     
+		}, function(err) {
+			$scope.error = err;
+		});
 	};
 
 });
@@ -76,24 +79,25 @@ app.controller("DisplayModelListController", function($scope, $http, config) {
 
 /** CREATE **/
 
-app.controller("DisplayModelCreateController", function($scope, $http, $location, config) {
+app.controller("DisplayModelCreateController", function($scope, $location, DisplayModel, Context) {
 	$scope.displayModel  = {};
 
 	// Save data
 	$scope.createDisplayModel = function() {
-		$http.post(config.API + "displayModels", $scope.displayModel)
-			.success(function(response) {
-				$location.url("/displayModels");
-			});
+		Campaign.save($scope.displayModel, function() {
+			$location.url("/displayModels");
+		}, function(err) {
+			$scope.error = err;
+		});
 	}
 
 	// Load Context (for Autocomplete)
 	$scope.staticContexts = [];
 	$scope.contextStatic = [];
 
-	$http.get(config.API + "contexts/static/").success(function(response) {
-		$scope.staticContexts = response;
-	}).error(function(err) {
+	Context.getStatic(function(data) {
+		$scope.staticContexts = data;
+	}, function(err) {
 		$scope.error = err;
 	});
 });
@@ -102,31 +106,34 @@ app.controller("DisplayModelCreateController", function($scope, $http, $location
 
 /** EDIT **/
 
-app.controller("DisplayModelEditController", function($scope, $http, $location, $routeParams, config) {
+app.controller("DisplayModelEditController", function($scope, $location, $routeParams, DisplayModel, Context) {
 	$scope.displayModel  = {};
 	var id = $routeParams.id;
 
 	// Load data
-	$http.get(config.API + "displayModels/" + id).success(function(response) {
-		$scope.displayModel = response;
+	DisplayModel.get( {id: id}, function(data) {
+		$scope.displayModel = data;
+	}, function(err) {
+		$scope.error = err;
 	});
 
 	// Load Context (for Autocomplete)
 	$scope.staticContexts = [];
 	$scope.contextStatic = [];
 
-	$http.get(config.API + "contexts/static/").success(function(response) {
-		$scope.staticContexts = response;
-	}).error(function(err) {
+	Context.getStatic(function(data) {
+		$scope.staticContexts = data;
+	}, function(err) {
 		$scope.error = err;
 	});
 
 
 	// Save data
 	$scope.saveDisplayModel = function() {
-		$http.put(config.API + "displayModels/" + $scope.displayModel._id, $scope.displayModel)
-			.success(function(response) {
-				$location.url("/displayModels");
-			});
+		$scope.displayModel.$update(function() {
+			$location.url("/displayModels");
+		}, function(err) {
+			$scope.error = err;
+		});
 	};
 });

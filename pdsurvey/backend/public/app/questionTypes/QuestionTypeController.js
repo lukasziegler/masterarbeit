@@ -3,20 +3,22 @@ var app = angular.module("pdsurvey");
 
 /** LIST **/
 
-app.controller("QuestionTypeListController", function($scope, $http, config) {
+app.controller("QuestionTypeListController", function($scope, QuestionType) {
 	
-	$http.get(config.API + "questionTypes").success(function(response) {
-		$scope.questionTypes = response;
-	}).error(function(err) {
+	// Load all entries
+	QuestionType.query(function(data) {
+		$scope.questionTypes = data;
+	}, function(err) {
 		$scope.error = err;
 	});
 
 	$scope.deleteQuestionType = function(questionType) {
-		$http.delete(config.API + "questionTypes/" + questionType._id)
-			.success(function(response) {
-				var index = $scope.questionTypes.indexOf(questionType)
-				$scope.questionTypes.splice(index, 1);     
-			});
+		QuestionType.delete({id: questionType._id}, {}, function() {
+			var index = $scope.questionTypes.indexOf(questionType)
+			$scope.questionTypes.splice(index, 1);     
+		}, function(err) {
+			$scope.error = err;
+		});
 	};
 
 });
@@ -25,14 +27,15 @@ app.controller("QuestionTypeListController", function($scope, $http, config) {
 
 /** CREATE **/
 
-app.controller("QuestionTypeCreateController", function($scope, $http, $location, config) {
+app.controller("QuestionTypeCreateController", function($scope, $location, QuestionType) {
 	$scope.questionType  = {};
 
 	$scope.createQuestionType = function() {
-		$http.post(config.API + "questionTypes", $scope.questionType)
-			.success(function(response) {
-				$location.url("/questionTypes");
-			});
+		QuestionType.save($scope.questionType, function() {
+			$location.url("/questionTypes");
+		}, function(err) {
+			$scope.error = err;
+		});
 	}
 });
 
@@ -40,19 +43,22 @@ app.controller("QuestionTypeCreateController", function($scope, $http, $location
 
 /** EDIT **/
 
-app.controller("QuestionTypeEditController", function($scope, $http, $location, $routeParams, config) {
+app.controller("QuestionTypeEditController", function($scope, $location, $routeParams, QuestionType) {
 	$scope.questionType  = {};
 	var id = $routeParams.id;
 
-	$http.get(config.API + "questionTypes/" + id).success(function(response) {
-		$scope.questionType = response;
+	// Load data
+	QuestionType.get( {id: id}, function(data) {
+		$scope.questionType = data;
+	}, function(err) {
+		$scope.error = err;
 	});
 
 	$scope.saveQuestionType = function() {
-		console.log("id: ",$scope.questionType._id);
-		$http.put(config.API + "questionTypes/" + $scope.questionType._id, $scope.questionType)
-			.success(function(response) {
-				$location.url("/questionTypes");
-			});
+		$scope.questionType.$update(function() {
+			$location.url("/questionTypes");
+		}, function(err) {
+			$scope.error = err;
+		});
 	};
 });

@@ -20,8 +20,7 @@
                                     <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Questions</th>
-                                            <th>User created by</th>
+                                            <th>Description</th>
                                             <th>Date created</th>
                                             <th>Last change</th>
                                             <th>Aktionen</th>
@@ -30,8 +29,7 @@
                                     <tbody>
                                         <tr ng-repeat="survey in surveys | orderBy : 'name'">
                                             <td>{{survey.name}}</td>
-                                            <td>{{survey.questions}}</td>
-                                            <td>{{survey.createdBy}}</td>
+                                            <td>{{survey.description}}</td>
                                             <td>{{survey.dateCreated | date:'longDate'}} - {{survey.dateCreated | date:'h:mm a'}}</td>
                                             <td>{{survey.lastChange | date:'longDate'}} - {{survey.lastChange | date:'h:mm a'}}</td>
                                             <td><a href="/surveys/{{survey._id}}/edit" class="btn btn-default">Edit</a>

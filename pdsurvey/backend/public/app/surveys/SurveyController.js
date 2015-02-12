@@ -3,29 +3,35 @@ var app = angular.module("pdsurvey");
 
 /** LIST **/
 
-app.controller("SurveyListController", function($scope, $http, $location, config) {
+app.controller("SurveyListController", function($scope, $location, Survey) {
 	$scope.survey  = {};
 
-	
-	$http.get(config.API + "surveys").success(function(response) {
-		$scope.surveys = response;
-	}).error(function(err) {
-		$scope.error = err;
-	});
+	getSurveys();
+
+	// Load all entries
+	function getSurveys() {
+		Survey.query(function(data) {
+			$scope.surveys = data;
+		}, function(err) {
+			$scope.error = err;
+		});
+	}
 
 	$scope.deleteSurvey = function(survey) {
-		$http.delete(config.API + "surveys/" + survey._id)
-			.success(function(response) {
-				var index = $scope.surveys.indexOf(survey)
-				$scope.surveys.splice(index, 1);     
-			});
+		Survey.delete({id: survey._id}, {}, function() {
+			var index = $scope.surveys.indexOf(survey)
+			$scope.surveys.splice(index, 1);     
+		}, function(err) {
+			$scope.error = err;
+		});
 	};
 
 	$scope.createSurvey = function() {
-		$http.post(config.API + "surveys", $scope.survey)
-			.success(function(response) {
-				$location.url("/surveys/#");
-			});
+		Survey.save($scope.survey, function() {
+			getSurveys();
+		}, function(err) {
+			$scope.error = err;
+		});
 	}
 
 });
@@ -34,22 +40,16 @@ app.controller("SurveyListController", function($scope, $http, $location, config
 
 /** CREATE **/
 
-app.controller("SurveyCreateController", function($scope, $http, $location, config) {
+app.controller("SurveyCreateController", function($scope, $location, Survey) {
 	$scope.survey  = {};
-
-	// Load data
-	// $http.get(config.API + "questionTypes").success(function(response) {
-	// 	$scope.questionTypes = response;
-	// }).error(function(err) {
-	// 	$scope.error = err;
-	// });
 
 	// Save data
 	$scope.createSurvey = function() {
-		$http.post(config.API + "surveys", $scope.survey)
-			.success(function(response) {
-				$location.url("/surveys");
-			});
+		Survey.save($scope.survey, function() {
+			$location.url("/surveys");
+		}, function(err) {
+			$scope.error = err;
+		});
 	}
 });
 
@@ -57,26 +57,23 @@ app.controller("SurveyCreateController", function($scope, $http, $location, conf
 
 /** EDIT **/
 
-app.controller("SurveyEditController", function($scope, $http, $location, $routeParams, config) {
+app.controller("SurveyEditController", function($scope, $location, $routeParams, Survey) {
 	$scope.survey  = {};
 	var id = $routeParams.id;
 
 	// Load data
-	$http.get(config.API + "surveys/" + id).success(function(response) {
-		$scope.survey = response;
+	Survey.get( {id: id}, function(data) {
+		$scope.survey = data;
+	}, function(err) {
+		$scope.error = err;
 	});
-
-	// $http.get(config.API + "questionTypes").success(function(response) {
-	// 	$scope.questionTypes = response;
-	// }).error(function(err) {
-	// 	$scope.error = err;
-	// });
 
 	// Save data
 	$scope.saveSurvey = function() {
-		$http.put(config.API + "surveys/" + $scope.survey._id, $scope.survey)
-			.success(function(response) {
-				$location.url("/surveys");
-			});
+		$scope.survey.$update(function() {
+			$location.url("/surveys");
+		}, function(err) {
+			$scope.error = err;
+		});
 	};
 });

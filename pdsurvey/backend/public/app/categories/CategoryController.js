@@ -3,20 +3,23 @@ var app = angular.module("pdsurvey");
 
 /** LIST **/
 
-app.controller("CategoryListController", function($scope, $http, config) {
+app.controller("CategoryListController", function($scope, Category) {
 	
-	$http.get(config.API + "categories").success(function(response) {
-		$scope.categories = response;
-	}).error(function(err) {
+	// Load all data
+	Category.query(function(data) {
+		$scope.categories = data;
+	}, function(err) {
 		$scope.error = err;
 	});
 
+	// Delete single entry
 	$scope.deleteCategory = function(category) {
-		$http.delete(config.API + "categories/" + category._id)
-			.success(function(response) {
-				var index = $scope.categories.indexOf(category)
-				$scope.categories.splice(index, 1);     
-			});
+		Category.delete({id: category._id}, {}, function() {
+			var index = $scope.categories.indexOf(category)
+			$scope.categories.splice(index, 1);     
+		}, function(err) {
+			$scope.error = err;
+		});
 	};
 
 	// Generate a random color for the Category tiles
@@ -32,15 +35,16 @@ app.controller("CategoryListController", function($scope, $http, config) {
 
 /** CREATE **/
 
-app.controller("CategoryCreateController", function($scope, $http, $location, config) {
+app.controller("CategoryCreateController", function($scope, $location, Category) {
 	$scope.category  = {};
 
 	// Save data
 	$scope.createCategory = function() {
-		$http.post(config.API + "categories", $scope.category)
-			.success(function(response) {
-				$location.url("/categories");
-			});
+		Category.save($scope.category, function() {
+			$location.url("/categories");
+		}, function(err) {
+			$scope.error = err;
+		});
 	}
 });
 
@@ -48,21 +52,24 @@ app.controller("CategoryCreateController", function($scope, $http, $location, co
 
 /** EDIT **/
 
-app.controller("CategoryEditController", function($scope, $http, $location, $routeParams, config) {
+app.controller("CategoryEditController", function($scope, $location, $routeParams, Category) {
 	$scope.category  = {};
 	var id = $routeParams.id;
 
 	// Load data
-	$http.get(config.API + "categories/" + id).success(function(response) {
-		$scope.category = response;
+	Category.get( {id: id}, function(data) {
+		$scope.category = data;
+	}, function(err) {
+		$scope.error = err;
 	});
 
 	// Save data
 	$scope.saveCategory = function() {
-		$http.put(config.API + "categories/" + $scope.category._id, $scope.category)
-			.success(function(response) {
-				$location.url("/categories");
-			});
+		$scope.category.$update(function() {
+			$location.url("/categories");
+		}, function(err) {
+			$scope.error = err;
+		});
 	};
 });
 
@@ -70,13 +77,14 @@ app.controller("CategoryEditController", function($scope, $http, $location, $rou
 
 /** VIEW all linked Questionnaires **/
 
-app.controller("CategoryViewController", function($scope, $http, $location, $routeParams, config) {
+app.controller("CategoryViewController", function($scope, $location, $routeParams, Category) {
 	$scope.category  = {};
 	var id = $routeParams.id;
 
 	// Load data
-	$http.get(config.API + "categories/" + id).success(function(response) {
-		$scope.category = response;
+	Category.get( {id: id}, function(data) {
+		$scope.categories = data;
+	}, function(err) {
+		$scope.error = err;
 	});
-
 });

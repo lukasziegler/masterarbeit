@@ -18,6 +18,7 @@ router.route('/surveys')
 	.post(function (req, res, next) {
 		var newSurvey = new Survey({
 			name: req.body.name,
+			description: req.body.description,
 			maxQuestions: req.body.maxQuestions,
 			createdBy: req.body.createdBy,
 			lastChange: new Date().toISOString()
@@ -53,6 +54,7 @@ router.route('/surveys/:id')
 
 			// update object
 			survey.name = req.body.name,
+			survey.description = req.body.description,
 			survey.maxQuestions = req.body.maxQuestions,
 			survey.lastChange = new Date().toISOString()
 
