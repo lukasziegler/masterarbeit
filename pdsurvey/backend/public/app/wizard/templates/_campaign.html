@@ -11,7 +11,7 @@
 </div>
 
 
-<div class="row" ng-show="myDisplays.length > 0">
+<div class="row" ng-show="readyToConfigure()">
     <div class="col-lg-12" >
 
         <div class="panel panel-default">
@@ -46,7 +46,53 @@
 </div>
 
 
-<div class="row" ng-show="myDisplays.length > 0">
+<div class="row" ng-show="readyToConfigure()">
+    <div class="col-lg-12" >
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Optional Settings
+            </div>
+            <div class="panel-body">
+
+				<form class="form-horizontal" ng-submit="configureCampaign()">
+				    <fieldset>
+
+						<div class="form-group">
+							<label for="campaign.startDate" class="col-sm-2 control-label"><i class="fa fa-calendar"></i> Date range</label>
+							<div class="col-sm-5">
+								<input type="text" class="form-control" ng-model="campaign.startDate" data-max-date="{{campaign.endDate}}" placeholder="From" bs-datepicker>
+							</div>
+							<div class="col-sm-5">
+								<input type="text" class="form-control" ng-model="campaign.endDate" data-min-date="{{campaign.startDate}}" placeholder="Until" bs-datepicker>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label for="campaign.contextDynamic" class="col-sm-2 control-label">Dynamic Context</label>
+							<div class="col-sm-10">
+								<input id="campaign.contextDynamic" class="form-control" placeholder="TODO AUTOCOMPLETE" ng-model="campaign.contextDynamic">
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label for="campaign.minResponses" class="col-sm-2 control-label">NumResponses</label>
+							<div class="col-sm-5">
+								<input id="campaign.minResponses" class="form-control" placeholder="Minimum number of responses" type="number" ng-model="campaign.minResponses">
+							</div>
+						</div>
+
+					</fieldset>
+				</form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="row" ng-show="myDisplays.length > 0">
     <div class="col-lg-12" >
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -155,6 +201,6 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <button pd-next-tab></button>

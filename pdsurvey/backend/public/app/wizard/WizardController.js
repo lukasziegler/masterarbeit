@@ -94,72 +94,6 @@ var wizard = angular.module('pdWizard', [])
 })
 
 
-// .directive('pdToggleDisplay', function() {
-
-// 	return {
-// 		restrict: 'A',
-// 		replace: true,
-// 		template: '<a class="btn btn-primary pull-right" ng-click="addDisplay(display)">Select</a>',
-// 		link: function(scope, elem, attrs) {
-
-// 			// scope.addDisplay = function(display) {
-
-// 			// 	var index = scope.myDisplays.indexOf(display);
-
-// 			// 	if (index == -1) {
-// 			// 		scope.myDisplays.push(display);		// add
-
-// 			// 	}
-// 			// 	else {
-// 			// 		scope.myDisplays.splice(index, 1);	// remove
-// 			// 		var action = 'select';
-// 			// 	}
-// 			// };
-
-// 		}
-// 	}
-// })
-
-
-.directive('pdToggleSurvey', function() {
-
-	var action = 'select';
-
-	var getTemplate = function(action) {
-		if (action === 'select')
-			return '<a class="btn btn-primary" ng-click="addExistingSurvey(survey)">Select</a>';
-		else if (action === 'deselect')
-			return '<a class="btn btn-success" ng-click="addExistingSurvey(survey)">Deselect</a>';
-	}
-
-	return {
-		restrict: 'A',
-		replace: true,
-		template: getTemplate(action),
-		link: function(scope, elem, attrs) {
-
-			scope.addExistingSurvey = function(survey) {
-
-				var index = scope.mySurveys.indexOf(survey);
-
-				// console.log(elem)
-				// $(this).removeClass('btn-primary').addClass('btn-success');
-				// $(this).text('test');
-
-				if (index == -1) {
-					scope.mySurveys.push(survey);		// add
-
-				}
-				else {
-					scope.mySurveys.splice(index, 1);	// remove
-					var action = 'select';
-				}
-			};
-
-		}
-	}
-})
-
 .directive('pdRemoveSurvey', function() {
 	return {
 		restrict: 'A',
@@ -189,7 +123,7 @@ var wizard = angular.module('pdWizard', [])
 		{title:'Choose Displays', url: 'display', template: '/app/wizard/templates/_display.html', hint: 'First add all displays you own to the PDSurvey plattform. This allows you to assign questionnaires to specific displays and to evaluate key differences between individual displays. Many display models already exist in our database. In case your display type is missing, please take the time to add it to the system.'},
 		{title:'Choose Surveys', url: 'survey', template: '/app/wizard/templates/_survey.html', hint: 'asdf'},
 		{title:'Manage Campaigns', url: 'campaign', template: '/app/wizard/templates/_campaign.html', hint: 'In order to carry out surveys you first need to create a campaign and assign displays and surveys to it. In the next step you can configure and launch your campaigns.'},
-		{title:'Configuration', url: 'options', template: '/app/wizard/templates/_configuration.html', hint: 'This step is optional. Here you can configure optional settings for your campaign.'},
+		// {title:'Configuration', url: 'options', template: '/app/wizard/templates/_configuration.html', hint: 'This step is optional. Here you can configure optional settings for your campaign.'},
 		{title:'Publish', url: 'embedcode', template: '/app/wizard/templates/_embedCode.html', hint: 'All there is left to do is to embed the following Java Script code at the bottom of your application code.'}
 	];
 	$scope.tabs.activeTab = 0;
@@ -240,17 +174,9 @@ var wizard = angular.module('pdWizard', [])
 	$scope.display = {};		// new display (needed for prototypical inheritance)
 	$scope.displayMode = 0;		// 0 = fresh start, 1 = choose existing, 2 = add new survey
 
-
 	$scope.setDisplayMode = function(i) {
 		if (i >= 0 && i < 3) {
 			$scope.displayMode = i;
-		}
-
-		switch (i) {
-			case 1: 	// load existing surveys
-				break;
-			case 2:  	// add new Display
-				break;
 		}
 	}
 
@@ -294,16 +220,17 @@ var wizard = angular.module('pdWizard', [])
 		}
 	}
 
-	$scope.addDisplay = function(display) {
-
+	// add/remove Display to the myDisplays list
+	$scope.toggleDisplay = function(display) {
 		var index = $scope.myDisplays.indexOf(display);
 
-		if (index == -1)
-			$scope.myDisplays.push(display);		// add
-		else
-			$scope.myDisplays.splice(index, 1);		// remove
+		if (index == -1)	// add
+			$scope.myDisplays.push(display);
+		else 				// remove
+			$scope.myDisplays.splice(index, 1);
 	};
 
+	// check if the display is part of myDisplays
 	$scope.isDisplaySelected = function(display) {
 		if ($scope.myDisplays.indexOf(display) == -1)
 			return false;
@@ -323,18 +250,12 @@ var wizard = angular.module('pdWizard', [])
 		if (i >= 0 && i < 3) {
 			$scope.surveyMode = i;
 		}
-
-		switch (i) {
-			case 1:
-				StandardizedSurvey.query(function(data) {
-					$scope.surveys = data;
-				});
-				break;
-
-			case 2: 
-				break;
-		}
 	}
+
+	// load surveys
+	StandardizedSurvey.query(function(data) {
+		$scope.surveys = data;
+	});
 
 	// init for new survey
 	$scope.questionnaire  = {"name":"", "category":"", "description":"", 
@@ -351,7 +272,7 @@ var wizard = angular.module('pdWizard', [])
 	});
 
 
-	$scope.addNewSurvey = function() {
+	$scope.saveSurvey = function() {
 		StandardizedSurvey.save($scope.questionnaire, function() {
 			$scope.mySurveys.push($scope.questionnaire);
 		}, function(err) {
@@ -359,16 +280,23 @@ var wizard = angular.module('pdWizard', [])
 		});
 	}
 
-	// $scope.addExistingSurvey = function(survey) {
-	// 	var index = $scope.mySurveys.indexOf(survey);
+	// add/remove Survey to the mySurveys list
+	$scope.toggleSurvey = function(survey) {
+		var index = $scope.mySurveys.indexOf(survey);
 
-	// 	if (index == -1)
-	// 		$scope.mySurveys.push(survey);		// add
-	// 	else
-	// 		$scope.mySurveys.splice(index, 1);	// remove
-	// }
+		if (index == -1)	// add
+			$scope.mySurveys.push(survey);
+		else 				// remove
+			$scope.mySurveys.splice(index, 1);
+	};
 
-
+	// check if the survey is part of mySurveys
+	$scope.isSurveySelected = function(survey) {
+		if ($scope.mySurveys.indexOf(survey) == -1)
+			return false;
+		else
+			return true;
+	}
 
 	/* * * * * * * * * */
 	/*   3) CAMPAIGN   */
