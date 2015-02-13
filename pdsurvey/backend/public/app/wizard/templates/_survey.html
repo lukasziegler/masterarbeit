@@ -1,16 +1,15 @@
 
 
- <div class="row">
+<div class="row">
     <div class="col-lg-12">
-
         <div class="panel panel-selected">
             <div class="panel-heading">
                 Selected Surveys
             </div>
             <div class="panel-body">
 
-	            <div class="table-responsive" ng-show="mySurveys.length > 0">
-	                <table class="table table-hover table-striped">
+	            <div class="table-no-borders" ng-show="mySurveys.length > 0">
+	                <table class="table table-hover table-striped table-v-centered">
 	                    <thead>
 	                        <tr>
 	                            <th>Name</th>
@@ -39,18 +38,16 @@
     </div>
 </div>
 
-
 <button pd-next-tab></button>
 
-
-<div class="panel panel-default"> <!-- ng-show="surveyMode === 1" -->
+<div class="panel panel-default">
 	<div class="panel-heading">
 	    Choose Existing Survey
 	</div>
 	<div class="panel-body">
 
-        <div class="table-responsive">
-            <table class="table table-hover table-striped table-v-centered">
+        <div class="table-no-borders">
+            <table class="table table-hover table-striped table-v-centered wide-table">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -70,10 +67,6 @@
             </table>
         </div>
 
-		<div class="pull-right">
-			<a class="btn btn-default" ng-click="setSurveyMode(0)">Cancel</a>
-		</div>
-
 	</div>
 </div>
 
@@ -84,10 +77,7 @@
 	</div>
 	<div class="panel-body option-panel">
 
-<!-- 		<div class="col-md-6 text-center">
-			<a ng-click="setSurveyMode(1)">Choose from existing Surveys</a>
-		</div>
- -->		<div class="col-md-12 text-center">
+		<div class="col-md-12 text-center">
 			<a ng-click="setSurveyMode(2)">Or add your own custom Survey</a>
 		</div>
 

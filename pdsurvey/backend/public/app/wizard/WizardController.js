@@ -10,9 +10,9 @@ var wizard = angular.module('pdWizard', [])
 		restrict: 'A',
 		replace: true,
 		template:  '<div class="row">'+
-					    '<div class="col-lg-12" style="padding-bottom: 1.5em;">'+
-					     '   <a href="" class="btn btn-default" ng-click="prevPill()" ng-hide="prevPillShow()">Previous Step</a>'+
-						 '   <a href="" class="btn btn-success pull-right" ng-click="nextPill()" ng-hide="nextPillShow()">Next Step</a>'+
+					    '<div class="col-lg-12" style="padding-bottom: 1.5em; text-align: right">'+
+					     '   <a href="" class="btn btn-default pull-left" ng-click="prevPill()" ng-hide="prevPillShow()">Previous Step</a>'+
+						 '   <a href="" class="btn btn-success" ng-click="nextPill()" ng-hide="nextPillShow()">Next Step</a>'+
 					    '</div>'+
 					'</div>',
 		link: function(scope, elem, attrs) {

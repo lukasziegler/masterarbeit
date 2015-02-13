@@ -3,6 +3,15 @@
  * Addition to the normal Bootstrap Styling
  */
 
+ div.table-no-borders {
+ 	margin-bottom: 0;
+ 	margin: 0 -15px;
+ }
+
+ div.table-no-borders > table {
+ 	margin-bottom: 0;
+ }
+
 table.table-v-centered td {
 	vertical-align: middle !important;
 }
