@@ -9,6 +9,13 @@
             </div>
             <div class="panel-body">
 
+				<form class="form-horizontal" ng-submit="addCampaign()">
+				    <fieldset>
+
+						<div ng-include="'/app/campaigns/templates/_form.html'"></div>
+
+					</fieldset>
+				</form>
 
             </div>
         </div>
@@ -75,7 +82,7 @@
 	                            <td>{{mySurvey.name}}</td>
 	                            <td>{{mySurvey.displayModel.name}}</td>
 	                            <td>{{mySurvey.location}}</td>
-	                            <td><button class="btn btn-default pull-right" type="button" title="Choose Survey">Select</button></td>
+	                            <td><button class="btn btn-default pull-right" type="button" ng-click="assignSurvey(survey)" title="Choose Display">Select</button></td>
 	                        </tr>
 	                    </tbody>
 	                </table>
@@ -87,12 +94,12 @@
 </div>
 
 
-<div class="row" ng-show="myDisplays.length > 0">
+<div class="row" ng-show="mySurveys.length > 0">
     <div class="col-lg-12" >
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                My Campaigns
+                Choose Surveys
             </div>
             <div class="panel-body">
 
@@ -107,14 +114,14 @@
 	                        </tr>
 	                    </thead>
 	                    <tbody>
-	                        <tr ng-repeat="myDisplay in myDisplays">
-	                            <td>{{myDisplay.name}}</td>
-	                            <td>{{myDisplay.displayModel.name}}</td>
-	                            <td>{{myDisplay.location}}</td>
+	                        <tr ng-repeat="survey in mySurveys">
+	                            <td>{{survey.name}}</td>
+	                            <td>{{survey.displayModel.name}}</td>
+	                            <td>{{survey.location}}</td>
 	                            <td>
 	                            	<div class="pull-right">
-	                            		<button class="btn btn-default" type="button" ng-click="FOOO" title="Choose Display">Configure</button>
-	                            		<button class="btn btn-warning" type="button" ng-click="FOOO" title="Choose Display">Launch</button>
+	                            		<button class="btn btn-default" type="button" ng-click="configureSurvey(survey)" title="Configure Survey">Configure</button>
+	                            		<button class="btn btn-warning" type="button" ng-click="assignSurvey(survey)" title="Choose Survey">Assign</button>
                             		</div>
                         		</td>
 	                        </tr>

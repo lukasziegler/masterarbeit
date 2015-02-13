@@ -111,7 +111,7 @@ var CampaignSchema = mongoose.Schema({
     display: { type: ObjectId, ref: 'Display' },
     survey: { type: ObjectId, ref: 'Survey' },
     contextDynamic: [String],
-    minReponses: Number,
+    minResponses: Number,
     createdBy: { type: ObjectId, ref: 'User' },
     dateCreated: { type: Date, default: Date.now }
 });

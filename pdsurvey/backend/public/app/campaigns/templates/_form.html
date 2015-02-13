@@ -53,11 +53,19 @@
 
 
 	<div class="form-group">
+		<label for="campaign.minResponses" class="col-sm-2 control-label">NumResponses</label>
+		<div class="col-sm-5">
+			<input id="campaign.minResponses" class="form-control" placeholder="Minimum number of responses" type="number" ng-model="campaign.minResponses">
+		</div>
+	</div>
+
+
+	<div class="form-group">
 		<label for="campaign.createdBy" class="col-sm-2 control-label">Created By</label>
 		<div class="col-sm-10">
 			<input id="campaign.createdBy" class="form-control" placeholder="TODO autofill with session data" ng-model="campaign.createdBy" disabled>
 		</div>
 	</div>
-	
+
 </div>
 

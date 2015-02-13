@@ -28,8 +28,12 @@ app.controller("CampaignListController", function($scope, Campaign) {
 
 /** CREATE **/
 
-app.controller("CampaignCreateController", function($scope, $location, Campaign) {
+app.controller("CampaignCreateController", function($scope, $rootScope, $location, Campaign) {
 	$scope.campaign  = {};
+	$scope.campaign.createdBy = $rootScope.userId;
+
+	$scope.campaign.display = "54d1e7c3ef96bc690dd19974";
+	$scope.campaign.survey = "54a9344c04d9e425198b33bc";
 
 	// Save data
 	$scope.createCampaign = function() {
@@ -45,19 +49,22 @@ app.controller("CampaignCreateController", function($scope, $location, Campaign)
 
 /** EDIT **/
 
-app.controller("CampaignEditController", function($scope, $location, $routeParams, Campaign) {
+app.controller("CampaignEditController", function($scope, $rootScope, $location, $routeParams, Campaign) {
 	$scope.campaign  = {};
+	$scope.campaign.createdBy = $rootScope.userId;
 	var id = $routeParams.id;
 
 	// Load data
 	Campaign.get( {id: id}, function(data) {
 		$scope.campaign = data;
+		console.log(data)
 	}, function(err) {
 		$scope.error = err;
 	});
 
 	// Save data
 	$scope.saveCampaign = function() {
+		console.log("saved", $scope.campaign)
 		$scope.campaign.$update(function() {
 			$location.url("/campaigns");
 		}, function(err) {
