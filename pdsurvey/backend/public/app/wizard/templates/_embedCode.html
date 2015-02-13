@@ -1,5 +1,16 @@
 
 
+<div class="row" ng-hide="readyToConfigure()">
+    <div class="col-lg-12" >
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                You must first choose a display and a survey, in order to be able to configure and publish a campaign.
+            </div>
+        </div>
+	</div>
+</div>
+
+
 <div class="row" ng-show="myDisplays.length > 0">
     <div class="col-lg-12" >
 
@@ -10,22 +21,38 @@
             <div class="panel-body">
 
 				<div class="form-group">
-				    <label>Campaign Information</label>
-				    <p>ID: {{campaign._id}}</p>
+				    <label>Instructions</label>
+				    <ol>
+				    	<li>Copy the following code</li>
+				    	<li>Embed it on your public display. Paste the code before the closing <code>&lt;body&gt;</code>-Tag</li>
+				    	<li>Verify that your campaign is configured correctly</li>
+				    	<li>Launch your campaign</li>
+				    </ol>
 				</div>
 
 				<div class="form-group">
 				    <label>Your Embed Code</label>
+
+				    <br>
+				    <a href="" class="btn btn-warning" ng-click="copyCode()">Copy Code</a>
+				    <br>
+
 				    <textarea class="form-control" rows="3" ng-model="embedCode"></textarea>
 				</div>
 
 				<div class="form-group">
-				    <label>Instructions</label>
-				    <ol>
-				    	<li>asdf</li>
-				    	<li>asdf</li>
-				    	<li>asdf</li>
-				    </ol>
+				    <label>Campaign Information</label>
+				    <p>ID: {{campaign._id}}</p>
+				    <p>Duration: {{campaign.startDate}} - {{campaign.endDate}}</p>
+				    <p>Displays: {{campaign.displays}}</p>
+				    <p>Surveys: {{campaign.surveys}}</p>
+				</div>
+
+				<div class="form-group">
+				    <label>Last step</label>
+				    <br>
+					<a href="" class="btn btn-warning" ng-click="launchCampaign()">Launch Campaign</a>
+					<br>
 				</div>
 
             </div>
