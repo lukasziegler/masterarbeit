@@ -4,14 +4,23 @@ var Context = Schema.ContextModel;
  * CONTEXTS
  */ 
 
-router.route('/contexts')
+router.route('/contexts?:type')
+
+
 
 	// GET 
 	.get(function (req, res, next) {
-		Context.find({}, function (err, contexts) {
-			if (err) {
-				return next(err);
-			}
+		var filterBy = {};
+
+		if (req.query.type === 'static')
+			filterBy = { 'type': 'static' };
+		else if (req.query.type === 'dynamic')
+			filterBy = { 'type': 'dynamic' };
+
+		// query mongoose
+		Context.find(filterBy, function (err, contexts) {
+			if (err) return next(err);
+
 			res.send(contexts);
 		});
 	})
@@ -24,8 +33,6 @@ router.route('/contexts')
 			name: req.body.name
 		});
 
-		console.log("DEBUG", newContext)
-
 	    newContext.save(function(err) {
 			if (err) {
 				return next(err);
@@ -34,32 +41,6 @@ router.route('/contexts')
 	    });
 	})
 
-
-router.route('/contexts/dynamic')
-	// GET 
-	.get(function (req, res, next) {
-		Context.find({ type: 'dynamic' })
-		.select('-type')
-		.exec(function (err, contexts) {
-			if (err) {
-				return next(err);
-			}
-			res.send(contexts);
-		});
-	})
-
-router.route('/contexts/static')
-	// GET 
-	.get(function (req, res, next) {
-		Context.find({ type: 'static' })
-		.select('-type')
-		.exec(function (err, contexts) {
-			if (err) {
-				return next(err);
-			}
-			res.send(contexts);
-		});
-	})
 
 
 router.route('/contexts/:id')
