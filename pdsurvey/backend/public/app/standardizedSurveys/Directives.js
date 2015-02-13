@@ -21,9 +21,6 @@ var app = angular.module("pdsurvey")
 					scope.questionnaire.sections[index].questions.push({"name":"","type":lastQuestionType});
 				}
 			}
-       		// elem.bind("click", function(e) {
-       		// 	console.log(elem);
-       		// });
 		}
 	};
 })

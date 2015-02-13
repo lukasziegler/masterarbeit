@@ -91,6 +91,61 @@ var wizard = angular.module('pdWizard', [])
 	};
 })
 
+.directive('pdToggleSurvey', function() {
+
+	var action = 'select';
+
+	var getTemplate = function(action) {
+		if (action === 'select')
+			return '<a class="btn btn-primary" ng-click="addExistingSurvey(survey)">Select</a>';
+		else if (action === 'deselect')
+			return '<a class="btn btn-success" ng-click="addExistingSurvey(survey)">Deselect</a>';
+	}
+
+	return {
+		restrict: 'A',
+		replace: true,
+		template: getTemplate(action),
+		link: function(scope, elem, attrs) {
+
+			scope.addExistingSurvey = function(survey) {
+
+				var index = scope.mySurveys.indexOf(survey);
+
+				// console.log(elem)
+				// $(this).removeClass('btn-primary').addClass('btn-success');
+				// $(this).text('test');
+
+				if (index == -1) {
+					scope.mySurveys.push(survey);		// add
+
+				}
+				else {
+					scope.mySurveys.splice(index, 1);	// remove
+					var action = 'select';
+				}
+			};
+
+		}
+	}
+})
+
+.directive('pdRemoveSurvey', function() {
+	return {
+		restrict: 'A',
+		replace: true,
+		template: '<button class="btn btn-default" type="button" ng-click="removeSurvey(survey)" title="Remove Survey"><i class="fa fa-minus"></i></button>',
+		link: function(scope, elem, attrs) {
+
+			scope.removeSurvey = function(survey) {
+				var index = scope.mySurveys.indexOf(survey);
+				scope.mySurveys.splice(index, 1);     
+			};
+
+		}
+	};
+})
+
 
 //================================================
 // CONTROLLERS
@@ -191,6 +246,9 @@ var wizard = angular.module('pdWizard', [])
 	$scope.surveyMode = 0;
 
 	$scope.setSurveyMode = function(i) {
+		// 0 = fresh start
+		// 1 = choose existing
+		// 2 = add new survey
 
 		if (i >= 0 && i < 3) {
 			$scope.surveyMode = i;
@@ -208,11 +266,12 @@ var wizard = angular.module('pdWizard', [])
 		}
 	}
 
+	// init for new survey
 	$scope.questionnaire  = {"name":"", "category":"", "description":"", 
 		"sections":[{"name":"", "questions":[{"question":"", "type":""}]}]};
 	$scope.categories  = {};
 
-
+	// load supplementary data
 	Category.query(function(data) {
 		$scope.categories = data;
 	});
@@ -220,6 +279,24 @@ var wizard = angular.module('pdWizard', [])
 	QuestionType.query(function(data) {
 		$scope.questionTypes = data;
 	});
+
+
+	$scope.addNewSurvey = function() {
+		StandardizedSurvey.save($scope.questionnaire, function() {
+			$scope.mySurveys.push($scope.questionnaire);
+		}, function(err) {
+			$scope.error = err;
+		});
+	}
+
+	// $scope.addExistingSurvey = function(survey) {
+	// 	var index = $scope.mySurveys.indexOf(survey);
+
+	// 	if (index == -1)
+	// 		$scope.mySurveys.push(survey);		// add
+	// 	else
+	// 		$scope.mySurveys.splice(index, 1);	// remove
+	// }
 
 	/* * * * * * * * * */
 	/*   3) CAMPAIGN   */

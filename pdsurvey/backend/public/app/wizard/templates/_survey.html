@@ -43,7 +43,7 @@
                                             <td>{{survey.name}}</td>
                                             <td>{{survey.category.name}}</td>
                                             <td>{{survey.description}}</td>
-                                            <td><a class="btn btn-primary">Select</a></td>
+                                            <td><button pd-toggle-survey></button></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -62,7 +62,6 @@
 
 				<div class="pull-right">
 					<a class="btn btn-default" ng-click="setSurveyMode(0)">Cancel</a>
-					<button type="submit" class="btn btn-primary">Add Survey</button>
 				</div>
 			</fieldset>
 		</form>
@@ -78,7 +77,7 @@
 	</div>
 	<div class="panel-body">
 
-		<form class="form-horizontal" ng-submit="wizardDisplay()">
+		<form class="form-horizontal" ng-submit="addNewSurvey()">
 		    <fieldset>
 
 				<div ng-include="'/app/standardizedSurveys/templates/_form.html'"></div>
@@ -110,12 +109,14 @@
 	                    <thead>
 	                        <tr>
 	                            <th>Name</th>
+	                            <th>Category</th>
 	                            <th></th>
 	                        </tr>
 	                    </thead>
 	                    <tbody>
 	                        <tr ng-repeat="mySurvey in mySurveys">
 	                            <td>{{mySurvey.name}}</td>
+	                            <td>{{mySurvey.category.name}}</td>
 	                            <td><button pd-remove-survey></button></td>
                     		</tr>
 	                    </tbody>
