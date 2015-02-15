@@ -58,7 +58,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="display in displays" ng-click="toggleDisplay(display)" ng-class="{selected: isDisplaySelected(display)}">
+                    <tr class="selectable" ng-repeat="display in displays" ng-click="toggleDisplay(display)" ng-class="{selected: isDisplaySelected(display)}">
                         <td>{{display.name}}</td>
                         <td>{{display.displayModel.name}}</td>
                         <td>{{display.location}}</td>
