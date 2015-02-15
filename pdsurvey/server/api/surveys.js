@@ -8,7 +8,9 @@ router.route('/surveys')
 
 	// GET 
 	.get(function (req, res, next) {
-		Survey.find({}, function (err, surveys) {
+		Survey.find({})
+		.populate('category')
+		.exec(function (err, surveys) {
 			if (err) return next(err);
 			res.send(surveys);
 		});
@@ -18,7 +20,10 @@ router.route('/surveys')
 	.post(function (req, res, next) {
 		var newSurvey = new Survey({
 			name: req.body.name,
+			category: req.body.category,
+			state: req.body.state,
 			description: req.body.description,
+			sections: req.body.sections,
 			maxQuestions: req.body.maxQuestions,
 			createdBy: req.body.createdBy,
 			lastChange: new Date().toISOString()
@@ -38,6 +43,7 @@ router.route('/surveys/:id')
 	// GET single element
 	.get(function (req, res, next) {
 		Survey.findOne({ '_id': req.params.id })
+		.populate('category')
 		.exec(function (err, survey) {
 			if (err || !survey) return next(err);
 			res.send(survey);
@@ -54,7 +60,10 @@ router.route('/surveys/:id')
 
 			// update object
 			survey.name = req.body.name,
+			survey.category = req.body.category,
+			survey.state = req.body.state,
 			survey.description = req.body.description,
+			survey.sections = req.body.sections,
 			survey.maxQuestions = req.body.maxQuestions,
 			survey.lastChange = new Date().toISOString()
 

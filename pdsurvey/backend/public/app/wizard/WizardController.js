@@ -116,14 +116,13 @@ var wizard = angular.module('pdWizard', [])
 //================================================
 
 .controller("WizardController", function($scope, $routeParams, $location, 
-	Display, DisplayModel, Context, StandardizedSurvey, Category, QuestionType) {
+	Display, DisplayModel, Context, Survey, Category, QuestionType) {
 	
 	// Tabs for Wizard
 	$scope.tabs = [
 		{title:'Choose Displays', url: 'display', template: '/app/wizard/templates/_display.html', hint: 'First add all displays you own to the PDSurvey plattform. This allows you to assign questionnaires to specific displays and to evaluate key differences between individual displays. Many display models already exist in our database. In case your display type is missing, please take the time to add it to the system.'},
 		{title:'Choose Surveys', url: 'survey', template: '/app/wizard/templates/_survey.html', hint: 'asdf'},
 		{title:'Manage Campaigns', url: 'campaign', template: '/app/wizard/templates/_campaign.html', hint: 'In order to carry out surveys you first need to create a campaign and assign displays and surveys to it. In the next step you can configure and launch your campaigns.'},
-		// {title:'Configuration', url: 'options', template: '/app/wizard/templates/_configuration.html', hint: 'This step is optional. Here you can configure optional settings for your campaign.'},
 		{title:'Publish', url: 'embedcode', template: '/app/wizard/templates/_embedCode.html', hint: 'All there is left to do is to embed the following Java Script code at the bottom of your application code.'}
 	];
 	$scope.tabs.activeTab = 0;
@@ -253,12 +252,12 @@ var wizard = angular.module('pdWizard', [])
 	}
 
 	// load surveys
-	StandardizedSurvey.query(function(data) {
+	Survey.query(function(data) {
 		$scope.surveys = data;
 	});
 
 	// init for new survey
-	$scope.questionnaire  = {"name":"", "category":"", "description":"", 
+	$scope.survey  = {"name":"", "category":"", "description":"", 
 		"sections":[{"name":"", "questions":[{"question":"", "type":""}]}]};
 	$scope.categories  = {};
 
@@ -273,8 +272,8 @@ var wizard = angular.module('pdWizard', [])
 
 
 	$scope.saveSurvey = function() {
-		StandardizedSurvey.save($scope.questionnaire, function() {
-			$scope.mySurveys.push($scope.questionnaire);
+		Survey.save($scope.survey, function() {
+			$scope.mySurveys.push($scope.survey);
 		}, function(err) {
 			$scope.error = err;
 		});

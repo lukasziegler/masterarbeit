@@ -26,23 +26,31 @@ app.controller("SurveyListController", function($scope, $location, Survey) {
 		});
 	};
 
-	$scope.createSurvey = function() {
-		Survey.save($scope.survey, function() {
-			getSurveys();
-		}, function(err) {
-			$scope.error = err;
-		});
-	}
-
 });
 
 
 
 /** CREATE **/
 
-app.controller("SurveyCreateController", function($scope, $location, Survey) {
-	$scope.survey  = {};
+app.controller("SurveyCreateController", function($scope, $location, 
+	Survey, Category, QuestionType) {
 
+	$scope.survey  = {"name":"", "category":"", "description":"", 
+		"sections":[{"name":"", "questions":[{"question":"", "type":""}]}]};
+	$scope.categories  = {};
+
+	// Load complementary data
+	Category.query(function(data) {
+		$scope.categories = data;
+	}, function(err) {
+		$scope.error = err;
+	});
+
+	QuestionType.query(function(data) {
+		$scope.questionTypes = data;
+	}, function(err) {
+		$scope.error = err;
+	});
 	// Save data
 	$scope.createSurvey = function() {
 		Survey.save($scope.survey, function() {
@@ -57,13 +65,32 @@ app.controller("SurveyCreateController", function($scope, $location, Survey) {
 
 /** EDIT **/
 
-app.controller("SurveyEditController", function($scope, $location, $routeParams, Survey) {
+app.controller("SurveyEditController", function($scope, $location, $routeParams, 
+	Survey, Category, QuestionType) {
+
 	$scope.survey  = {};
 	var id = $routeParams.id;
 
 	// Load data
 	Survey.get( {id: id}, function(data) {
 		$scope.survey = data;
+
+		// Replace Object with ID for Preselect to work
+		if (typeof $scope.survey.category != 'undefined')
+			$scope.survey.category = $scope.survey.category._id;
+	}, function(err) {
+		$scope.error = err;
+	});
+
+	// Load complementary data
+	Category.query(function(data) {
+		$scope.categories = data;
+	}, function(err) {
+		$scope.error = err;
+	});
+
+	QuestionType.query(function(data) {
+		$scope.questionTypes = data;
 	}, function(err) {
 		$scope.error = err;
 	});

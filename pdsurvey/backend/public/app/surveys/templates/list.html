@@ -20,18 +20,18 @@
                                     <thead>
                                         <tr>
                                             <th>Name</th>
+                                            <th>Category</th>
                                             <th>Description</th>
-                                            <th>Date created</th>
-                                            <th>Last change</th>
+                                            <th>State</th>
                                             <th>Aktionen</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="survey in surveys | orderBy : 'name'">
                                             <td>{{survey.name}}</td>
+                                            <td>{{survey.category.name}}</td>
                                             <td>{{survey.description}}</td>
-                                            <td>{{survey.dateCreated | date:'longDate'}} - {{survey.dateCreated | date:'h:mm a'}}</td>
-                                            <td>{{survey.lastChange | date:'longDate'}} - {{survey.lastChange | date:'h:mm a'}}</td>
+                                            <td>{{survey.state}}</td>
                                             <td><a href="/surveys/{{survey._id}}/edit" class="btn btn-default">Edit</a>
                                             <a href="" ng-click="deleteSurvey(survey)" class="btn btn-danger">Delete</a></td>
                                         </tr>
@@ -40,39 +40,7 @@
                             </div>
                             <!-- /.table-responsive -->
 
-                        </div>
-                        <!-- /.panel-body -->
-
-                    </div>
-                    <!-- /.panel -->
-
-                </div>
-            </div>
-
-
-
-
-
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1" >
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Add new Survey
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-
-                            <form class="form-horizontal" ng-submit="createSurvey()" role="form">
-                              <fieldset>
-
-                                  <div ng-include="'/app/surveys/templates/_form.html'"></div>
-
-                                  <button type="submit" class="btn btn-primary pull-right">Submit</button>
-
-
-                                </fieldset>
-                            </form>
+                            <a href="/surveys/new" class="btn btn-primary">Add new Survey</a>
 
                         </div>
                         <!-- /.panel-body -->

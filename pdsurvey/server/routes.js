@@ -64,9 +64,6 @@ require("./api/categories");
 // Surveys
 require("./api/surveys");
 
-// Standardized Questionnaires
-require("./api/standardSurvey");
-
 // Display Models
 require("./api/displayModels");
 

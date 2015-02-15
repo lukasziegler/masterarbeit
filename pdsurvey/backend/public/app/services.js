@@ -45,14 +45,6 @@ var app = angular.module('pdsurvey')
 	    	});
 	})
 
-	// StandardizedSurvey
-	.factory('StandardizedSurvey', function($resource) {
-	    return $resource('/api/standardSurvey/:id', { id: '@_id' },
-	    	{
-	    		'update': {'method': 'PUT'}
-	    	});
-	})
-
 	// DisplayModel
 	.factory('DisplayModel', function($resource) {
 	    return $resource('/api/displayModels/:id', { id: '@_id' },

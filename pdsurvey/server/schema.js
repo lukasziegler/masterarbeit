@@ -53,19 +53,10 @@ exports.CategoryModel = mongoose.model('Category', CategorySchema, 'categories')
 /* SURVEY (QUESTIONNAIRE) */
 var SurveySchema = mongoose.Schema({ 
     name: { type: String, required: true },
-    description: String,
-    maxQuestions: Number,
-    createdBy: { type: ObjectId, ref: 'User' },
-    dateCreated: { type: Date, default: Date.now },
-    lastChange: { type: Date, default: Date.now }
-});
-exports.SurveyModel = mongoose.model('Survey', SurveySchema, 'surveys');
-
-
-/* STANDARDIZED QUESTIONNAIRE */
-var StandardSurveySchema = mongoose.Schema({ 
-    name: { type: String, required: true },
     category: { type: ObjectId, ref: 'Category'},
+    state: { type: String, enum: ['standardized', 'personal', 'suggested', 'approved'] },
+    description: { type: String },
+
     sections: [{
         name: String,
         // position: Number,
@@ -75,9 +66,13 @@ var StandardSurveySchema = mongoose.Schema({
             type: { type: ObjectId, ref: 'QuestionType', required: true }
         }]
     }],
-    description: { type: String }
+
+    maxQuestions: Number,
+    createdBy: { type: ObjectId, ref: 'User' },
+    dateCreated: { type: Date, default: Date.now },
+    lastChange: { type: Date, default: Date.now }
 });
-exports.StandardSurveyModel = mongoose.model('StandardSurvey', StandardSurveySchema, 'standardSurvey');
+exports.SurveyModel = mongoose.model('Survey', SurveySchema, 'surveys');
 
 
 /* DISPLAY MODELS */
