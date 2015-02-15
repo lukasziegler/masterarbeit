@@ -5,9 +5,14 @@ var app = angular.module('pdsurvey', ['ngRoute', 'ngResource', 'ngAnimate', 'ngS
 app.constant('config', { API: 'http://localhost:3000/api/' } );
 
 // Root Scope
-app.run(function($rootScope) {
+app.run(function($rootScope, authService) {
 	$rootScope.user = "lukas";
 	$rootScope.userId = "54a6b51a276762fc510bb0f0";
+
+	$rootScope.getUserRole = function() {
+		return authService.getUserRole();
+	}
+
 });
 
 app.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $location) {

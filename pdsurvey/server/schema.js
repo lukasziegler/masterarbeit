@@ -54,7 +54,7 @@ exports.CategoryModel = mongoose.model('Category', CategorySchema, 'categories')
 var SurveySchema = mongoose.Schema({ 
     name: { type: String, required: true },
     category: { type: ObjectId, ref: 'Category'},
-    state: { type: String, enum: ['standardized', 'personal', 'suggested', 'approved'] },
+    state: { type: String, enum: ['standardized', 'personal', 'suggested', 'approved'], default: 'personal' },
     description: { type: String },
 
     sections: [{
