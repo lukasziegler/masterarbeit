@@ -162,20 +162,6 @@ app.config(function($routeProvider, $httpProvider, $locationProvider, $modalProv
 			controller: "SurveyEditController"
 		})
 
-		/* STANDARDIZED QUESTIONNAIRE / SURVEY */
-		.when("/standardizedSurveys", {
-			templateUrl: "/app/standardizedSurveys/templates/list.html",
-			controller: "StandardizedSurveyListController"
-		})
-		.when("/standardizedSurveys/new", {
-			templateUrl: "/app/standardizedSurveys/templates/create.html",
-			controller: "StandardizedSurveyCreateController"
-		})
-		.when("/standardizedSurveys/:id/edit", {
-			templateUrl: "/app/standardizedSurveys/templates/edit.html",
-			controller: "StandardizedSurveyEditController"
-		})
-
 		/* CAMPAIGNS */
 		.when("/campaigns", {
 			templateUrl: "/app/campaigns/templates/list.html",
@@ -240,6 +226,12 @@ app.config(function($routeProvider, $httpProvider, $locationProvider, $modalProv
 		.when("/wizard/:tab", {
 			templateUrl: "/app/wizard/templates/index.html",
 			controller: "WizardController"
+		})
+
+		/* SETTINGS */
+		.when("/settings", {
+			templateUrl: "/app/settings/templates/index.html",
+			controller: "SettingsController"
 		})
 
 		/* DASHBOARD */
