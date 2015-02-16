@@ -29,7 +29,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table table-hover table-striped">
+                                <table class="table table-hover table-striped table-v-centered">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
@@ -41,8 +41,8 @@
                                         <tr ng-repeat="category in categories | orderBy : 'name'">
                                             <td>{{category.name}}</td>
                                             <td>{{category.description}}</td>
-                                            <td><a href="/categories/{{category._id}}/edit" class="btn btn-default">Edit</a>
-                                            <a href="" ng-click="deleteCategory(category)" class="btn btn-danger">Delete</a></td>
+                                            <td><a href="/categories/{{category._id}}/edit" class="btn btn-default btn-sm">Edit</a>
+                                            <a href="" ng-click="deleteCategory(category)" class="btn btn-danger btn-sm">Delete</a></td>
                                         </tr>
                                     </tbody>
                                 </table>

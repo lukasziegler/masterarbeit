@@ -15,7 +15,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table table-hover table-striped">
+                                <table class="table table-hover table-striped table-v-centered">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
@@ -29,8 +29,8 @@
                                             <td>{{display.name}}</td>
                                             <td>{{display.displayModel.name}}</td>
                                             <td>{{display.location}}</td>
-                                            <td><a href="/displays/{{display._id}}/edit" class="btn btn-default">Edit</a>
-                                            <a href="" ng-click="deleteDisplay(display)" class="btn btn-danger">Delete</a></td>
+                                            <td><a href="/displays/{{display._id}}/edit" class="btn btn-default btn-sm">Edit</a>
+                                            <a href="" ng-click="deleteDisplay(display)" class="btn btn-danger btn-sm">Delete</a></td>
                                         </tr>
                                     </tbody>
                                 </table>

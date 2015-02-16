@@ -3,7 +3,9 @@ var app = angular.module("pdsurvey");
 
 /** LIST **/
 
-app.controller("CampaignListController", function($scope, Campaign) {
+app.controller("CampaignListController", function($scope, Campaign, config) {
+
+	$scope.frontendURL = config.frontend;
 
 	// Load all entries
 	Campaign.query(function(data) {
@@ -57,14 +59,12 @@ app.controller("CampaignEditController", function($scope, $rootScope, $location,
 	// Load data
 	Campaign.get( {id: id}, function(data) {
 		$scope.campaign = data;
-		console.log(data)
 	}, function(err) {
 		$scope.error = err;
 	});
 
 	// Save data
 	$scope.saveCampaign = function() {
-		console.log("saved", $scope.campaign)
 		$scope.campaign.$update(function() {
 			$location.url("/campaigns");
 		}, function(err) {

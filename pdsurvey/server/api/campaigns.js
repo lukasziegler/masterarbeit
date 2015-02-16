@@ -26,6 +26,7 @@ router.route('/campaigns')
 			survey: req.body.survey,
 			contextDynamic: req.body.contextDynamic,
 			minResponses: req.body.minResponses,
+			launched: req.body.launched,
 			createdBy: req.body.createdBy,
 			dateCreated: new Date().toISOString()
 		});
@@ -69,7 +70,8 @@ router.route('/campaigns/:id')
 			campaign.display = req.body.display,
 			campaign.survey = req.body.survey,
 			campaign.contextDynamic = req.body.contextDynamic,
-			campaign.minResponses = req.body.minResponses
+			campaign.minResponses = req.body.minResponses,
+			campaign.launched = req.body.launched
 
 			return campaign.save(function(err) {
 				if (err) {

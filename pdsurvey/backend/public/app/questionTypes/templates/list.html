@@ -16,7 +16,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table table-hover table-striped">
+                                <table class="table table-hover table-striped table-v-centered">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
@@ -31,8 +31,8 @@
                                             <td>{{questionType.description}}</td>
                                             <td>{{questionType.parameters}}</td>
                                             <td>{{questionType.constraints}}</td>
-                                            <td><a href="/questionTypes/{{questionType._id}}/edit" class="btn btn-default">Edit</a>
-                                            <a href="" ng-click="deleteQuestionType(questionType)" class="btn btn-danger">Delete</a></td>
+                                            <td><a href="/questionTypes/{{questionType._id}}/edit" class="btn btn-default btn-sm">Edit</a>
+                                            <a href="" ng-click="deleteQuestionType(questionType)" class="btn btn-danger btn-sm">Delete</a></td>
                                         </tr>
                                     </tbody>
                                 </table>

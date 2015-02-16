@@ -2,7 +2,7 @@ var app = angular.module('pdsurvey', ['ngRoute', 'ngResource', 'ngAnimate', 'ngS
 	'mgcrea.ngStrap', 'pdWizard', 'pdAuthentication']);
 
 // Constants (Config)
-app.constant('config', { API: 'http://localhost:3000/api/' } );
+app.constant('config', { API: 'http://localhost:3000/api/', frontend: 'http://localhost:8080/#/survey' } );
 
 // Root Scope
 app.run(function($rootScope, authService) {

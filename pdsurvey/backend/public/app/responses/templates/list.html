@@ -16,7 +16,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table table-hover table-striped">
+                                <table class="table table-hover table-striped table-v-centered">
                                     <thead>
                                         <tr>
                                             <th>Question</th>
@@ -35,7 +35,7 @@
                                             <td>{{response.display}}</td>
                                             <td>{{response.session}}</td>
                                             <td>{{response.timestamp | date:'H:mm - dd.MM.yyyy'}}</td>
-                                            <td><a href="" ng-click="deleteResponse(response)" class="btn btn-danger">Delete</a></td>
+                                            <td><a href="" ng-click="deleteResponse(response)" class="btn btn-danger btn-sm">Delete</a></td>
                                         </tr>
                                     </tbody>
                                 </table>
