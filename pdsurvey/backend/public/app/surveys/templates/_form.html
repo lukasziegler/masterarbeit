@@ -12,7 +12,7 @@
 	<div class="form-group">
 		<label for="survey.category" class="col-sm-2 control-label">Category</label>
 		<div class="col-sm-10">
-			<select id="survey.category" class="form-control" ng-options="category._id as category.name for category in categories" ng-model="survey.category">
+			<select id="survey.category" class="form-control" ng-options="category as category.name for category in categories" ng-model="survey.category">
 			</select>
 		</div>
 	</div>

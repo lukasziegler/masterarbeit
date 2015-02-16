@@ -23,7 +23,7 @@ router.route('/displays')
 	.post(function (req, res, next) {
 		var newDisplay = new Display({
 			name: req.body.name,
-			displayModel: req.body.displayModel,
+			displayModel: req.body.displayModel._id,
 			user: req.body.user,
 			location: req.body.location,
 			contextDynamic: req.body.contextDynamic
@@ -60,7 +60,7 @@ router.route('/displays/:id')
 
 			// update object
 			display.name = req.body.name,
-			display.displayModel = req.body.displayModel,
+			display.displayModel = req.body.displayModel._id,
 			display.user = req.body.user,
 			display.location = req.body.location,
 			display.contextDynamic = req.body.contextDynamic

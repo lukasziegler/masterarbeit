@@ -72,7 +72,7 @@ var wizard = angular.module('pdWizard', [])
 	return {
 		restrict: 'A',
 		replace: true,
-		template: '<button class="btn btn-default pull-right" type="button" ng-click="removeSurvey(survey)" title="Remove Survey"><i class="fa fa-minus"></i></button>',
+		template: '<button class="btn btn-default pull-right" type="button" ng-click="removeSurvey(mySurvey)" title="Remove Survey"><i class="fa fa-minus"></i></button>',
 		link: function(scope, elem, attrs) {
 
 			scope.removeSurvey = function(survey) {
@@ -202,6 +202,7 @@ var wizard = angular.module('pdWizard', [])
 			$scope.display = {};
 			getContextDynamic();
 			$scope.contextDynamic = {};
+
 		}, function(err) {
 			$scope.error = err;
 		});

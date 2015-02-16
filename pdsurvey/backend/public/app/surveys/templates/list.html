@@ -22,7 +22,7 @@
                                             <th>Name</th>
                                             <th>Category</th>
                                             <th>Description</th>
-                                            <th>State</th>
+                                            <th data-restrict access="admin">State</th>
                                             <th>Aktionen</th>
                                         </tr>
                                     </thead>
@@ -31,7 +31,7 @@
                                             <td>{{survey.name}}</td>
                                             <td>{{survey.category.name}}</td>
                                             <td>{{survey.description}}</td>
-                                            <td>{{survey.state}}</td>
+                                            <td data-restrict access="admin">{{survey.state}}</td>
                                             <td><a href="/surveys/{{survey._id}}/edit" class="btn btn-default btn-sm">Edit</a>
                                             <a href="" ng-click="deleteSurvey(survey)" class="btn btn-danger btn-sm">Delete</a></td>
                                         </tr>

@@ -20,7 +20,7 @@ router.route('/surveys')
 	.post(function (req, res, next) {
 		var newSurvey = new Survey({
 			name: req.body.name,
-			category: req.body.category,
+			category: req.body.category._id,
 			state: req.body.state,
 			description: req.body.description,
 			sections: req.body.sections,
@@ -60,7 +60,7 @@ router.route('/surveys/:id')
 
 			// update object
 			survey.name = req.body.name,
-			survey.category = req.body.category,
+			survey.category = req.body.category._id,
 			survey.state = req.body.state,
 			survey.description = req.body.description,
 			survey.sections = req.body.sections,
