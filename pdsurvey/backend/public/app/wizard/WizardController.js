@@ -321,6 +321,8 @@ var wizard = angular.module('pdWizard', [])
 	$scope.saveCampaign = function() {
 		// for first call of function, create new Campaign (POST)
 		if ($scope.campaignId === "") {
+			$scope.campaign.contextDynamic = $scope.contextDynamic;
+
 			Campaign.save($scope.campaign, function(response) {
 				$scope.campaign = response;
 				$scope.campaignId = response._id;
@@ -356,9 +358,9 @@ var wizard = angular.module('pdWizard', [])
 	/* * * * * * * * * */
 
 	// TEMP TEMP TEMP (for faster development)
-			// $scope.myDisplays = [{'asdf': 'asdf'}];
-			// $scope.mySurveys = [{'asdf': 'asdf'}];
-			// $scope.campaign.name = 'asdf';
+			$scope.myDisplays = [{'asdf': 'asdf'}];
+			$scope.mySurveys = [{'asdf': 'asdf'}];
+			$scope.campaign.name = 'asdf';
 	// TEMP TEMP TEMP
 
 	$scope.codeCopied = false;

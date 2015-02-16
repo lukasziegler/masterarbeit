@@ -30,15 +30,26 @@ app.controller("CampaignListController", function($scope, Campaign, config) {
 
 /** CREATE **/
 
-app.controller("CampaignCreateController", function($scope, $rootScope, $location, Campaign) {
+app.controller("CampaignCreateController", function($scope, $rootScope, $location, Campaign, Context) {
 	$scope.campaign  = {};
 	$scope.campaign.createdBy = $rootScope.userId;
 
+	// TEMP TEMP (for development purposes)
 	$scope.campaign.display = "54d1e7c3ef96bc690dd19974";
 	$scope.campaign.survey = "54a9344c04d9e425198b33bc";
+	// TEMP TEMP TEMP
+
+	// Load Context (for Autocomplete)
+	Context.getDynamic(function(data) {
+		$scope.dynamicContexts = data;
+	}, function(err) {
+		$scope.error = err;
+	});
 
 	// Save data
 	$scope.createCampaign = function() {
+		$scope.campaign.contextDynamic = $scope.contextDynamic;
+
 		Campaign.save($scope.campaign, function() {
 			$location.url("/campaigns");
 		}, function(err) {
@@ -51,7 +62,7 @@ app.controller("CampaignCreateController", function($scope, $rootScope, $locatio
 
 /** EDIT **/
 
-app.controller("CampaignEditController", function($scope, $rootScope, $location, $routeParams, Campaign) {
+app.controller("CampaignEditController", function($scope, $rootScope, $location, $routeParams, Campaign, Context) {
 	$scope.campaign  = {};
 	$scope.campaign.createdBy = $rootScope.userId;
 	var id = $routeParams.id;
@@ -59,6 +70,17 @@ app.controller("CampaignEditController", function($scope, $rootScope, $location,
 	// Load data
 	Campaign.get( {id: id}, function(data) {
 		$scope.campaign = data;
+
+		// copy values to temporary 
+		$scope.contextDynamic = $scope.campaign.contextDynamic;
+		$scope.campaign.contextDynamic = $scope.campaign.contextDynamic._id;
+	}, function(err) {
+		$scope.error = err;
+	});
+
+	// Load Context (for Autocomplete)
+	Context.getDynamic(function(data) {
+		$scope.dynamicContexts = data;
 	}, function(err) {
 		$scope.error = err;
 	});

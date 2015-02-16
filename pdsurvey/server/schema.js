@@ -105,8 +105,9 @@ var CampaignSchema = mongoose.Schema({
     endDate: { type: Date, default: Date.now },
     display: { type: ObjectId, ref: 'Display' },
     survey: { type: ObjectId, ref: 'Survey' },
-    contextDynamic: [String],
+    contextDynamic: [mongoose.Schema.Types.Mixed],
     minResponses: Number,
+    numQuestionsPerPage: Number,
     launched: { type: Boolean, default: false },
     createdBy: { type: ObjectId, ref: 'User' },
     dateCreated: { type: Date, default: Date.now }

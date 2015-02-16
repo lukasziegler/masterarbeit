@@ -64,11 +64,29 @@
 						</div>
 
 
-						<div class="form-group">
+
+						<div class="form-group"> 
 							<label for="campaign.contextDynamic" class="col-sm-2 control-label">Dynamic Context</label>
 							<div class="col-sm-10">
-								<input id="campaign.contextDynamic" class="form-control" placeholder="TODO AUTOCOMPLETE" ng-model="campaign.contextDynamic">
-							</div>
+								<div class="input-group">
+					 				<select id="campaign.contextDynamic" class="form-control" ng-options="context as context.name for context in dynamicContexts" ng-model="campaign.contextDynamic" ng-change="addContext(campaign.contextDynamic)" pd-add-context-dynamic>
+					 					<option value=""> - Choose value from Dropdown - </option>
+					 				</select>
+								</div>
+					 		</div>
+						</div>
+
+
+						<div class="form-group" ng-repeat="context in contextDynamic">
+							<div class="col-sm-2 text-right">{{context.name}}</div>
+					    	<div class="col-sm-6">
+								<div class="input-group">
+								    <span class="input-group-btn">
+					 					<button pd-remove-context-dynamic></button>
+									</span>
+									<input class="form-control" placeholder="" ng-model="context.value">
+								</div>
+					    	</div>
 						</div>
 
 
