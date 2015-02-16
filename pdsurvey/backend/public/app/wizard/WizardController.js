@@ -309,6 +309,7 @@ var wizard = angular.module('pdWizard', [])
 
 
 	$scope.codeCopied = false;
+	$scope.campaignLaunched = false;
 
 	$scope.copyCode = function() {
 		// copy code
@@ -317,6 +318,11 @@ var wizard = angular.module('pdWizard', [])
 		$scope.codeCopied = true;
 
 		// launch campaign
+	}
+
+	$scope.launchCampaign = function() {
+		alert("TODO");
+		$scope.campaignLaunched = true;
 	}
 
 	$scope.embedCode = "<script>"

@@ -88,3 +88,18 @@ router.route('/displays/:id')
 			
 		});
 	})
+
+
+
+
+router.route('/displays/user/:id')
+
+	// GET single element
+	.get(function (req, res, next) {
+		Display.find({ 'user': req.params.id })
+		.populate('displayModel', '_id name')
+		.exec(function (err, user) {
+			if (err || !user) return next(err);
+			res.send(user);
+		});
+	})

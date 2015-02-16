@@ -11,6 +11,24 @@
 </div>
 
 
+<div class="row" ng-show="campaignLaunched">
+    <div class="col-lg-12" >
+
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                Congratulations!
+            </div>
+            <div class="panel-body">
+				<div class="form-group">
+				    <p>Your campaign is now live and is waiting for the first reponses.<br> For more insights and statistics head over to <a href="/responses">Responses</a>.</p>
+				</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="row" ng-show="readyToConfigure()">
     <div class="col-lg-12" >
 
@@ -24,7 +42,7 @@
 				    <label>Instructions</label>
 				    <ol>
 				    	<li>Copy the following code</li>
-				    	<li>Embed it on your public display. Paste the code before the closing <code>&lt;body&gt;</code>-Tag</li>
+				    	<li>Embed it on your public display. Paste the code before the closing <code>&lt;/body&gt;</code>-Tag</li>
 				    	<li>Verify that your campaign is configured correctly</li>
 				    	<li>Launch your campaign</li>
 				    </ol>
@@ -46,13 +64,21 @@
 				<div class="form-group">
 				    <p><strong>Last step</strong></p>
 
-				    <a href="" class="btn" ng-class="{'btn-success': campaignLaunched, 'btn-warning': !campaignLaunched}">Launch Campaign</a>
+					<div class="row">
+						<div class="col-md-3">
+						    <a href="" class="btn" ng-class="{'btn-success': campaignLaunched, 'btn-warning': !campaignLaunched}" ng-click="launchCampaign()">Launch Campaign</a>
+				    	</div>
+						<div class="col-md-9">
+							<p>Until now your campaign is in invisible mode. Only when you launched the campaign, your campaign and surveys will go live and appear on your public display.</p>
+				    	</div>
+				    </div>
 				</div>
 
             </div>
         </div>
     </div>
 </div>
+
 
 <div class="row" ng-show="readyToConfigure()">
     <div class="col-lg-12" >
