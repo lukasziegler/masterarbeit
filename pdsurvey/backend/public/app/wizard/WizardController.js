@@ -260,7 +260,7 @@ var wizard = angular.module('pdWizard', [])
 	});
 
 	// init for new survey
-	$scope.survey  = {"name":"", "category":"", "description":"", 
+	$scope.survey  = {"name":"", "category":"", "state": "personal", "description":"", 
 		"sections":[{"name":"", "questions":[{"question":"", "type":""}]}]};
 	$scope.categories  = {};
 
@@ -275,8 +275,17 @@ var wizard = angular.module('pdWizard', [])
 
 
 	$scope.saveSurvey = function() {
+		// save to DB
 		Survey.save($scope.survey, function() {
+
+			// update list
+			$scope.surveys.push($scope.survey);
 			$scope.mySurveys.push($scope.survey);
+
+			// clear form fields
+			$scope.survey  = {"name":"", "category":"", "state": "personal", "description":"", 
+				"sections":[{"name":"", "questions":[{"question":"", "type":""}]}]};
+
 		}, function(err) {
 			$scope.error = err;
 		});
