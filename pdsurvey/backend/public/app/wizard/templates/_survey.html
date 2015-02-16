@@ -1,6 +1,11 @@
 
 
-<div class="row">
+<div class="alert alert-warning" ng-hide="readyToConfigure()">
+    You must first choose a <strong>display</strong>, in order to be able to select or surveys.
+</div>
+
+
+<div class="row" ng-show="readyToConfigure()">
     <div class="col-lg-12">
         <div class="panel panel-selected">
             <div class="panel-heading">
@@ -38,9 +43,9 @@
     </div>
 </div>
 
-<button pd-next-tab></button>
+<button pd-next-tab ng-show="readyToConfigure()"></button>
 
-<div class="panel panel-default">
+<div class="panel panel-default" ng-show="readyToConfigure()">
 	<div class="panel-heading">
 	    Choose Existing Survey
 	</div>
@@ -71,7 +76,7 @@
 </div>
 
 
-<div class="panel panel-default" ng-hide="surveyMode === 2">
+<div class="panel panel-default" ng-show="readyToConfigure() && surveyMode !== 2">
 	<div class="panel-heading">
 	    Add New Survey
 	</div>
@@ -86,7 +91,7 @@
 
 
 
-<div class="panel panel-default" ng-show="surveyMode === 2">
+<div class="panel panel-default" ng-show="surveyMode === 2" ng-show="readyToConfigure()">
 	<div class="panel-heading">
 	    Create New Survey
 	</div>

@@ -14,6 +14,7 @@ var wizard = angular.module('pdWizard', [])
 					     '   <a href="" class="btn btn-default pull-left" ng-click="prevPill()" ng-hide="prevPillShow()">Previous Step</a>'+
 						 '   <a href="" class="btn btn-success" ng-class="{\'disabled\': !readyForNextStep()}" ng-if="tabs.activeTab != 2" ng-click="nextPill()" ng-hide="nextPillShow()">Next Step</a>'+
 						 '   <a href="" class="btn btn-warning" ng-class="{\'disabled\': !readyForNextStep()}" ng-if="tabs.activeTab == 2" ng-click="configureCampaign()" ng-hide="nextPillShow()">Configure Campaign</a>'+
+						 '   <a href="" class="btn btn-warning" ng-class="{\'disabled\': !readyForNextStep()}" ng-if="tabs.activeTab == 3 && !campaignLaunched" ng-click="launchCampaign()">Launch Campaign</a>'+
 					    '</div>'+
 					'</div>',
 		link: function(scope, elem, attrs) {
@@ -89,7 +90,7 @@ var wizard = angular.module('pdWizard', [])
 // CONTROLLERS
 //================================================
 
-.controller("WizardController", function($scope, $routeParams, $location, 
+.controller("WizardController", function($scope, $routeParams, $location, config,
 	Display, DisplayModel, Context, Survey, Category, QuestionType, Campaign) {
 	
 	// Tabs for Wizard
@@ -128,14 +129,26 @@ var wizard = angular.module('pdWizard', [])
 		else return -1;
 	};
 
-	// Check whether the user has selected Displays & Surveys
+	// validation for content (check for the previous tab)
 	$scope.readyToConfigure = function() {
-		if ($scope.myDisplays.length == 0 && $scope.mySurveys.length == 0) 
+
+		if ($scope.tabs.activeTab == 1 && $scope.myDisplays.length == 0) {
 			return false;
-		else
+		} else if ($scope.tabs.activeTab == 2 && $scope.mySurveys.length == 0) {
+			return false;
+		} else if ($scope.tabs.activeTab == 3 && $scope.campaign.name == undefined) {
+			return false;
+		} else {
 			return true;
+		}
+
+		// if ($scope.myDisplays.length == 0 && $scope.mySurveys.length == 0) 
+		// 	return false;
+		// else
+		// 	return true;
 	};
 
+	// validation for NextTab (check on the tab itself)
 	$scope.readyForNextStep = function() {
 		if ($scope.tabs.activeTab == 0 && $scope.myDisplays.length == 0) {
 			return false;
@@ -307,16 +320,16 @@ var wizard = angular.module('pdWizard', [])
 	// call on tab switch (from campaign to embedCode)
 	$scope.saveCampaign = function() {
 		// for first call of function, create new Campaign (POST)
-		if ($scope.campaignId == "") {
+		if ($scope.campaignId === "") {
 			Campaign.save($scope.campaign, function(response) {
-				// $scope.campaign = response;
+				$scope.campaign = response;
 				$scope.campaignId = response._id;
 
 				// update embedCode (add ID)
 				$scope.updateEmbedCode($scope.campaignId);
 
 				// check, notify user if it is missing
-				if ($scope.campaignId = "")
+				if ($scope.campaignId === "")
 					alert("Error, CampaignID could not be retrieved. Please try again.");
 			}, function(err) {
 				$scope.error = err;
@@ -325,17 +338,13 @@ var wizard = angular.module('pdWizard', [])
 			// if function is called multiple times, use PUT instead of POST
 			$scope.updateCampaign();
 		}
-
 	}
-
 
 	// call when user clicked on 'launch campaign'
 	$scope.updateCampaign = function() {
 		$scope.campaign.$update(function() {
-			
-			if ($scope.campaignId = "")
+			if ($scope.campaignId === "")
 				alert("Error, CampaignID could not be retrieved. Please try again.");
-
 		}, function(err) {
 			$scope.error = err;
 		});
@@ -346,10 +355,10 @@ var wizard = angular.module('pdWizard', [])
 	/*  5) EMBED CODE  */
 	/* * * * * * * * * */
 
-	// TEMP TEMP TEMP
-			$scope.myDisplays = [{'asdf': 'asdf'}];
-			$scope.mySurveys = [{'asdf': 'asdf'}];
-			$scope.campaign.name = 'asdf';
+	// TEMP TEMP TEMP (for faster development)
+			// $scope.myDisplays = [{'asdf': 'asdf'}];
+			// $scope.mySurveys = [{'asdf': 'asdf'}];
+			// $scope.campaign.name = 'asdf';
 	// TEMP TEMP TEMP
 
 	$scope.codeCopied = false;
@@ -366,6 +375,12 @@ var wizard = angular.module('pdWizard', [])
 	}
 
 	$scope.launchCampaign = function() {
+
+		if ($scope.campaignId === "") {
+			alert("Error, CampaignID is missing.")
+			return;
+		}
+
 		// update model
 		$scope.campaign.launched = true;
 
@@ -379,6 +394,7 @@ var wizard = angular.module('pdWizard', [])
 
 	// EMBED CODE
 	$scope.embedCode = "loading ...";
+	$scope.surveyUrl = "generating ...";
 
 	$scope.embedCodePart1 = "<script type=\"text/javascript\">"
 		+ "var jQl={q:[],dq:[],gs:[],ready:function(a){'function'==typeof a&&jQl.q.push(a);return jQl},getScript:function(a,c){jQl.gs.push([a,c])},unq:function(){for(var a=0;a<jQl.q.length;a++)jQl.q[a]();jQl.q=[]},ungs:function(){for(var a=0;a<jQl.gs.length;a++)jQuery.getScript(jQl.gs[a][0],jQl.gs[a][1]);jQl.gs=[]},bId:null,boot:function(a){'undefined'==typeof window.jQuery.fn?jQl.bId||(jQl.bId=setInterval(function(){jQl.boot(a)},25)):(jQl.bId&&clearInterval(jQl.bId),jQl.bId=0,jQl.unqjQdep(),jQl.ungs(),jQuery(jQl.unq()), 'function'==typeof a&&a())},booted:function(){return 0===jQl.bId},loadjQ:function(a,c){setTimeout(function(){var b=document.createElement('script');b.src=a;document.getElementsByTagName('head')[0].appendChild(b)},1);jQl.boot(c)},loadjQdep:function(a){jQl.loadxhr(a,jQl.qdep)},qdep:function(a){a&&('undefined'!==typeof window.jQuery.fn&&!jQl.dq.length?jQl.rs(a):jQl.dq.push(a))},unqjQdep:function(){if('undefined'==typeof window.jQuery.fn)setTimeout(jQl.unqjQdep,50);else{for(var a=0;a<jQl.dq.length;a++)jQl.rs(jQl.dq[a]); jQl.dq=[]}},rs:function(a){var c=document.createElement('script');document.getElementsByTagName('head')[0].appendChild(c);c.text=a},loadxhr:function(a,c){var b;b=jQl.getxo();b.onreadystatechange=function(){4!=b.readyState||200!=b.status||c(b.responseText,a)};try{b.open('GET',a,!0),b.send('')}catch(d){}},getxo:function(){var a=!1;try{a=new XMLHttpRequest}catch(c){for(var b=['MSXML2.XMLHTTP.5.0','MSXML2.XMLHTTP.4.0','MSXML2.XMLHTTP.3.0','MSXML2.XMLHTTP','Microsoft.XMLHTTP'],d=0;d<b.length;++d){try{a= new ActiveXObject(b[d])}catch(e){continue}break}}finally{return a}}};if('undefined'==typeof window.jQuery){var $=jQl.ready,jQuery=$;$.getScript=jQl.getScript}; jQl.loadjQ('//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');"
@@ -400,13 +416,13 @@ var wizard = angular.module('pdWizard', [])
 
 	$scope.updateEmbedCode = function(campaignId) {
 		$scope.embedCode = $scope.embedCodePart1 + campaignId + $scope.embedCodePart2;
+		$scope.surveyUrl = config.frontend + "/campaign/" + campaignId;
 	}
 
 
 	/* * * * * * * * * * * */
 	/*  6) CONGRATULATION  */
 	/* * * * * * * * * * * */
-
 
 
 
