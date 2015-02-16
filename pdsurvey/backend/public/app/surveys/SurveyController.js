@@ -75,9 +75,14 @@ app.controller("SurveyEditController", function($scope, $location, $routeParams,
 	Survey.get( {id: id}, function(data) {
 		$scope.survey = data;
 
+
+		console.log("data",data);
+		console.log("before",$scope.survey.category)
 		// Replace Object with ID for Preselect to work
-		if (typeof $scope.survey.category != 'undefined')
-			$scope.survey.category = $scope.survey.category._id;
+		// if (typeof $scope.survey.category != 'undefined')
+			// $scope.survey.category = $scope.survey.category._id;
+	console.log("after",$scope.survey.category)
+
 	}, function(err) {
 		$scope.error = err;
 	});

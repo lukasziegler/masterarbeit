@@ -58,12 +58,21 @@
 				<div class="form-group">
 				    <p><strong>Last step</strong></p>
 
-					<div class="row">
+					<div class="row" ng-show="!campaign.launched">
 						<div class="col-md-3">
 						    <a href="" class="btn" ng-class="{'btn-success': campaignLaunched, 'btn-warning': !campaignLaunched}" ng-click="launchCampaign()">Launch Campaign</a>
 				    	</div>
 						<div class="col-md-9">
-							<p>Until now your campaign is in invisible mode. Only when you launched the campaign, your campaign and surveys will go live and appear on your public display.</p>
+							<p>Until now your campaign is in invisible mode. Only after having launched the campaign, your surveys will go live and appear on your public display.</p>
+				    	</div>
+				    </div>
+
+					<div class="row" ng-show="campaign.launched">
+						<div class="col-md-3">
+						    <a href="" class="btn" ng-class="{'btn-success': campaignLaunched, 'btn-warning': !campaignLaunched}" ng-click="launchCampaign()">Campaign is live</a>
+				    	</div>
+						<div class="col-md-9">
+							<p>Your campaign is live and should show up on your public display on the next page refresh. Congrats!</p>
 				    	</div>
 				    </div>
 				</div>
