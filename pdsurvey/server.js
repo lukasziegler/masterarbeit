@@ -58,7 +58,7 @@ app.use('/lib', express.static(__dirname + '/backend/public/lib'));
 app.use('/tracking', express.static(__dirname + '/backend/public/tracking'));
 app.all('/*', function(req, res, next) {
 	// Allow Angular to support HTML5 mode
-    res.sendfile('/backend/public/index.html', { root: __dirname });
+    res.sendFile('/backend/public/index.html', { root: __dirname });
 });
 
 

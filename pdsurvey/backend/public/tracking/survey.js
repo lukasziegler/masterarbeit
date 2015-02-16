@@ -56,7 +56,7 @@ $(document).ready(function(){
     div.append(container);
 
     // Load JSON data via REST call
-    $.getJSON( api + 'standardSurvey' )
+    $.getJSON( api + 'surveys' )
     .done(function( data ) {
         
         if (debug) {

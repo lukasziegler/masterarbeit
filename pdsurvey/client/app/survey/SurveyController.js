@@ -56,7 +56,7 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 		"display": "5494310cf4e2b1000004bcb8", "session": 1};
 
 	// load Questionnaires
-	$http.get($rootScope.restApi + "/standardSurvey").success(function(response) {
+	$http.get($rootScope.restApi + "/surveys").success(function(response) {
 		$scope.questionnaires = response;
 		$scope.nextQuestion();
 	}).error(function(err) {
