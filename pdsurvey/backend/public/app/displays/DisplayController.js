@@ -46,7 +46,7 @@ var app = angular.module('pdsurvey')
 			// add to dynamicContexts List
 			scope.dynamicContexts.push( context );
 
-			// remove form Dropbown contextDynamic
+			// remove from Dropbown contextDynamic
 			var index = scope.contextDynamic.indexOf(context)
 			scope.contextDynamic.splice(index, 1);
 		}
