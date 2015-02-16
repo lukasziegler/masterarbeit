@@ -194,29 +194,32 @@ var wizard = angular.module('pdWizard', [])
 	});
 
 	// Load Context (for Autocomplete)
-	Context.getDynamic(function(data) {
-		$scope.dynamicContexts = data;
-	});
+	getContextDynamic();
+	function getContextDynamic() {
+		Context.getDynamic(function(data) {
+			$scope.dynamicContexts = data;
+		});
+	}
 
 	$scope.saveDisplay = function() {
 
 		var name = $scope.display.name;
 		var model = $scope.display.displayModel;
 
-		if (name != undefined && model != undefined) {
-
+		// save to DB
+		Display.save($scope.display, function() {
 			// update model
-			$scope.myDisplays.push( $scope.display );
-
-			// TODO save to REST / DB
+			$scope.myDisplays.push($scope.display);
+			$scope.displays.push($scope.display);
 
 			// clear old values
 			$scope.display = {};
-		}
-		else {
-			alert("Empty fields");
-			// TODO show notification in form fields
-		}
+			getContextDynamic();
+			$scope.contextDynamic = {};
+		}, function(err) {
+			$scope.error = err;
+		});
+
 	}
 
 	// add/remove Display to the myDisplays list
