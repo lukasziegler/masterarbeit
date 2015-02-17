@@ -28,7 +28,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="response in responses | orderBy : 'timestamp'">
+                                        <tr ng-repeat="response in responses | orderBy : '-timestamp'">
                                             <td>{{response.question.wording}}</td>
                                             <td>{{response.answer}}</td>
                                             <td>{{response.questionnaire.type}}</td>

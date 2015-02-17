@@ -5,16 +5,18 @@
 	        <div class="form-group">
 	        	<form ng-submit="submit()">
 
-	        		<div id="questionType" pd-load-question-type="htmlQuestionType"></div>
+	        		<!-- <div id="questionType" pd-load-question-type="htmlQuestionType"></div> -->
 					
-<!-- 					<input type="text" ng-model="response.answer" class="form-control" placeholder="Your Response" required>
- -->					
+					<input type="text" ng-model="response.answer" class="form-control" placeholder="Your Response" required>
+					
 	        	</form>
 	        </div>
 
 	        <div>
-				<a class="btn btn-lg btn-primary btn-reduced" href="#/survey" ng-click="nextQuestion()" role="button">Skip Question</a>
+				<a class="btn btn-lg btn-primary btn-reduced" href="/survey" ng-click="nextQuestion()" role="button">Skip Question</a>
 	        	<a class="btn btn-lg btn-success pull-right" href="" ng-click="submit()" role="button">Submit</a>
 			</div>
       </div>
     </div>
+
+{{response.answer}}

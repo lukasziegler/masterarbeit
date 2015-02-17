@@ -1,7 +1,9 @@
 var app = angular.module("pdsurvey")
 
 
-/** Directives **/
+//================================================
+// DIRECTIVES
+//================================================
 
 app.directive('pdLoadQuestionType', function ($compile) {
   return {
@@ -10,8 +12,8 @@ app.directive('pdLoadQuestionType', function ($compile) {
     link: function (scope, element, attrs) {
       scope.$watch(attrs.pdLoadQuestionType, function() {
 
-        var param = {"type": "radio", "num": 5, "minLabel": "I do not agree", "maxLabel": "I agree"};
-        // var param = {"type": "text"};
+        // var param = {"type": "radio", "num": 5, "minLabel": "I do not agree", "maxLabel": "I agree"};
+        var param = {"type": "text"};
 
 
         /** Generate Question Type **/
@@ -47,7 +49,10 @@ app.directive('pdLoadQuestionType', function ($compile) {
 
 
 
-/* Controller */
+//================================================
+// CONTROLLER
+//================================================
+
 app.controller("SurveyController", function($scope, $http, $rootScope) {	
 
 	// initializing Response object
@@ -102,11 +107,11 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 
 	// Submit Response
 	$scope.submit = function() {
-		if( $scope.response.answer == '') {
+		// if( $scope.response.answer == '') {
 			console.log($scope.response.answer);
 			// alert('Response is empty');
 			// return;
-		}
+		// }
 
 		$http.post("http://localhost:3000/api/responses", $scope.response)
 			.success(function(response) {
@@ -119,3 +124,4 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 			});
 	};
 })
+

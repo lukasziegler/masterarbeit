@@ -1,33 +1,26 @@
 var app = angular.module("pdsurvey")
 
-/* Defining root scope */
-.run(function($rootScope, $location) {
 
-	// parameters
-	$rootScope.restApi = "http://localhost:3000/api";
 
-	// specify .active class for top navigation
-	$rootScope.getClass = function(path) {
-	    if ($location.path().substr(0, path.length) == path) {
-	      return "active"
-	    } else {
-	      return ""
-	    }
-	}
+//================================================
+// Main Controller
+//================================================
 
-})
-
-/* Main Controller */
-.controller("MainController", function($scope, $http) {	
+.controller("MainController", function($scope) {	
 	$scope.message = "Angular.js test -";
 })
 
-/* /about */
+
+
+//================================================
+// About Controller
+//================================================
+
 .controller("AboutController", function($scope, $http, $rootScope, $location) {	
 	$scope.message = "Angular.js test -";
 
 	// load Questionnaires
-	$http.get($rootScope.restApi + "/standardSurvey").success(function(response) {
+	$http.get($rootScope.restApi + "/surveys").success(function(response) {
 		$scope.questionnaires = response;
 	}).error(function(err) {
 		$scope.error = err;
@@ -42,3 +35,15 @@ var app = angular.module("pdsurvey")
 		return num;
 	};
 })
+
+
+//================================================
+// Contact Controller
+//================================================
+
+.controller("ContactController", function($scope) {	
+	$scope.message = "foo";
+})
+
+
+

@@ -20,6 +20,16 @@ app.use(function (req, res, next) {
     next();
 });
 
+// Routing of static files
+app.use('/app', express.static(__dirname + '/client/app'));
+app.use('/css', express.static(__dirname + '/client/css'));
+app.use('/lib', express.static(__dirname + '/client/lib'));
+app.use('/jquery-approach', express.static(__dirname + '/client/jquery-approach'));
+app.all('/*', function(req, res, next) {
+	// Allow Angular to support HTML5 mode
+    res.sendFile('/client/index.html', { root: __dirname });
+});
+
 // Bootstrap Error Handling
 require('./server/error-handling');
 
