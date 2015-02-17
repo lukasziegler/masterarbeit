@@ -9,6 +9,7 @@ router.route('/surveys')
 	// GET 
 	.get(function (req, res, next) {
 		Survey.find({})
+		// .populate('sections.questions.type')
 		.populate('category')
 		.exec(function (err, surveys) {
 			if (err) return next(err);

@@ -9,7 +9,8 @@ router.route('/questions')
 	// GET 
 	.get(function (req, res, next) {
 		Question.find({})
-		.populate('type category', 'name')
+		// .populate('type')
+		.populate('category', 'name')
 		.exec(function (err, questions) {
 			if (err) {
 				return next(err);

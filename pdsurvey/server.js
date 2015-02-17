@@ -56,7 +56,11 @@ app.use('/app', express.static(__dirname + '/backend/public/app'));
 app.use('/css', express.static(__dirname + '/backend/public/css'));
 app.use('/lib', express.static(__dirname + '/backend/public/lib'));
 app.use('/tracking', express.static(__dirname + '/backend/public/tracking'));
+
+// HTML5 mode support for Angular
 app.all('/*', function(req, res, next) {
+	// exclude the API (probably a dirty workaround)
+	if (req.url.substring(0,4) == '/api') return next();
 	// Allow Angular to support HTML5 mode
     res.sendFile('/backend/public/index.html', { root: __dirname });
 });
