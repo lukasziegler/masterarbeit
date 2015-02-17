@@ -22,8 +22,8 @@ router.route('/campaigns')
 		var newCampaign = new Campaign({
 			name: req.body.name,
 			description: req.body.description,
-			display: req.body.display,
-			survey: req.body.survey,
+			displays: req.body.displays,
+			surveys: req.body.surveys,
 			contextDynamic: req.body.contextDynamic,
 			minResponses: req.body.minResponses,
 			numQuestionsPerPage: req.body.numQuestionsPerPage,
@@ -68,8 +68,8 @@ router.route('/campaigns/:id')
 			campaign.description = req.body.description,
 			campaign.startDate = new Date().toISOString(),
 			campaign.endDate = new Date().toISOString(),
-			campaign.display = req.body.display,
-			campaign.survey = req.body.survey,
+			campaign.displays = req.body.displays,
+			campaign.surveys = req.body.surveys,
 			campaign.contextDynamic = req.body.contextDynamic,
 			campaign.minResponses = req.body.minResponses,
 			campaign.numQuestionsPerPage = req.body.numQuestionsPerPage,
@@ -96,3 +96,20 @@ router.route('/campaigns/:id')
 			res.send({ message: 'Successfully deleted' });
 		});
 	})
+
+
+router.route('/campaigns/:id/questions')
+
+	// GET single element
+	.get(function (req, res, next) {
+		Campaign.find({ '_id': req.params.id })
+		.exec(function (err, campaign) {
+			if (err || !campaign) {
+				return next(err);
+			}
+
+			res.send(campaign);
+		});
+	})
+
+

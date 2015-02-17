@@ -315,6 +315,8 @@ var wizard = angular.module('pdWizard', [])
 
 	$scope.campaign = {};
 	$scope.campaignId = "";
+	$scope.campaign.displays = [];
+	$scope.campaign.surveys = [];
 
 
 	// call on tab switch (from campaign to embedCode)
@@ -322,6 +324,9 @@ var wizard = angular.module('pdWizard', [])
 		// for first call of function, create new Campaign (POST)
 		if ($scope.campaignId === "") {
 			$scope.campaign.contextDynamic = $scope.contextDynamic;
+
+			// copy Lists to Campaign-Object
+			campaignHelperCopyLists();
 
 			Campaign.save($scope.campaign, function(response) {
 				$scope.campaign = response;
@@ -344,12 +349,31 @@ var wizard = angular.module('pdWizard', [])
 
 	// call when user clicked on 'launch campaign'
 	$scope.updateCampaign = function() {
+		// copy Lists to Campaign-Object
+		campaignHelperCopyLists();
+
 		$scope.campaign.$update(function() {
 			if ($scope.campaignId === "")
 				alert("Error, CampaignID could not be retrieved. Please try again.");
 		}, function(err) {
 			$scope.error = err;
 		});
+	}
+
+
+	function campaignHelperCopyLists() {
+		// clear old IDs
+		$scope.campaign.displays = [];
+		$scope.campaign.surveys = [];
+
+		// copy DisplayIDs
+		for (var i = 0; i < $scope.myDisplays.length; i++) {
+			$scope.campaign.displays.push( $scope.myDisplays[i]._id );
+		};
+		// copy SurveyIDs
+		for (var i = 0; i < $scope.mySurveys.length; i++) {
+			$scope.campaign.surveys.push( $scope.mySurveys[i]._id );
+		}
 	}
 
 

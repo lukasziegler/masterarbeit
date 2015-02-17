@@ -12,10 +12,11 @@ app.directive('pdLoadQuestionType', function ($compile) {
     link: function (scope, element, attrs) {
       scope.$watch(attrs.pdLoadQuestionType, function() {
 
-      	/* FOR DEV PURPOSES */
+      	// var param = scope.question;
 
-        // var param = {"type": "radio", "num": 5, "minLabel": "I do not agree", "maxLabel": "I agree"};
-        var param = {"type": "text"};
+      	/* FOR DEV PURPOSES */
+        var param = {"type": "radio", "num": 5, "minLabel": "I do not agree", "maxLabel": "I agree"};
+        // var param = {"type": "text"};
 
 
         /** Generate Question Type **/
@@ -69,7 +70,45 @@ app.directive('pdLoadQuestionType', function ($compile) {
 // CONTROLLER
 //================================================
 
-app.controller("SurveyController", function($scope, $http, $rootScope) {	
+
+app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $routeParams) {	
+
+	var campaignId = $routeParams.id;
+
+	// initializing Response object
+	$scope.response = { "question": { "id": "", "type": "", "wording": ""}, 
+		"answer": "", "questionnaire": { "type": "", "ref": ""}, 
+		"display": "5494310cf4e2b1000004bcb8", "session": 1};
+
+
+	// load QuesitonTypes
+	$http.get($rootScope.restApi + "/questionTypes").success(function(response) {
+		$scope.questionTypes = response;
+	}).error(function(err) {
+		$scope.error = err;
+	});
+
+	// load Questions
+	$http.get($rootScope.restApi + "/campaigns/" + campaignId + "/questions").success(function(response) {
+		$scope.questions = response;
+		console.log(response)
+	}).error(function(err) {
+		alert("Invalid CampaignID");
+		$scope.error = err;
+	});
+
+
+
+
+
+})
+
+
+
+
+
+
+app.controller("SurveyRandomController", function($scope, $http, $rootScope) {	
 
 	var questionTypes = [];
 
@@ -78,13 +117,9 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 		"answer": "", "questionnaire": { "type": "", "ref": ""}, 
 		"display": "5494310cf4e2b1000004bcb8", "session": 1};
 
-	// // Load QuestionTypes
-	// QuestionType.query(function(data) {
-	// 	var questionTypes = data;
-	// 	console.log(questionTypes);
-	// });
 
-	// Load Questionnaires
+	/* Load Questionnaires (old approach, with rand()) */
+
 	$http.get($rootScope.restApi + "/surveys").success(function(response) {
 		$scope.questionnaires = response;
 		$scope.nextQuestion();
@@ -109,8 +144,6 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 
 	        // update Question object for View
 	        $scope.question = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion];
-
-console.log("nextQuestion",$scope.question);
 
 	        // update Response object
 	        $scope.response.question.id = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion]._id;

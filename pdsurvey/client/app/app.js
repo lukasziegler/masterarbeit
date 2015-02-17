@@ -30,7 +30,11 @@ var app = angular.module("pdclient", ["ngRoute"])
 		/* MAIN */
 		.when("/survey", {
 			templateUrl: "/app/survey/index.html",
-			controller: "SurveyController"
+			controller: "SurveyRandomController"
+		})
+		.when("/survey/campaign/:id", {
+			templateUrl: "/app/survey/index.html",
+			controller: "SurveyCampaignController"
 		})
 		.when("/about", {
 			templateUrl: "/app/main/about.html",
