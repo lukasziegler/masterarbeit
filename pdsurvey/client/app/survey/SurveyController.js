@@ -1,4 +1,4 @@
-var app = angular.module("pdsurvey")
+var app = angular.module("pdclient")
 
 
 //================================================
@@ -71,12 +71,20 @@ app.directive('pdLoadQuestionType', function ($compile) {
 
 app.controller("SurveyController", function($scope, $http, $rootScope) {	
 
+	var questionTypes = [];
+
 	// initializing Response object
 	$scope.response = { "question": { "id": "", "type": "", "wording": ""}, 
 		"answer": "", "questionnaire": { "type": "", "ref": ""}, 
 		"display": "5494310cf4e2b1000004bcb8", "session": 1};
 
-	// load Questionnaires
+	// // Load QuestionTypes
+	// QuestionType.query(function(data) {
+	// 	var questionTypes = data;
+	// 	console.log(questionTypes);
+	// });
+
+	// Load Questionnaires
 	$http.get($rootScope.restApi + "/surveys").success(function(response) {
 		$scope.questionnaires = response;
 		$scope.nextQuestion();
@@ -102,6 +110,8 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 	        // update Question object for View
 	        $scope.question = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion];
 
+console.log("nextQuestion",$scope.question);
+
 	        // update Response object
 	        $scope.response.question.id = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion]._id;
 	        $scope.response.question.type = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion].type;
@@ -123,11 +133,10 @@ app.controller("SurveyController", function($scope, $http, $rootScope) {
 
 	// Submit Response
 	$scope.submit = function() {
-		// if( $scope.response.answer == '') {
-			console.log($scope.response.answer);
-			// alert('Response is empty');
-			// return;
-		// }
+		if( $scope.response.answer == '') {
+			alert('Response is empty');
+			return;
+		}
 
 		$http.post("http://localhost:3000/api/responses", $scope.response)
 			.success(function(response) {
