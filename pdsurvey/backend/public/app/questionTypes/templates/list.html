@@ -29,7 +29,7 @@
                                         <tr ng-repeat="questionType in questionTypes | orderBy : 'name'">
                                             <td>{{questionType.name}}</td>
                                             <td>{{questionType.description}}</td>
-                                            <td>{{questionType.parameters}}</td>
+                                            <td>{{questionType.params.type}}</td>
                                             <td>{{questionType.constraints}}</td>
                                             <td><a href="/questionTypes/{{questionType._id}}/edit" class="btn btn-default btn-sm">Edit</a>
                                             <a href="" ng-click="deleteQuestionType(questionType)" class="btn btn-danger btn-sm">Delete</a></td>

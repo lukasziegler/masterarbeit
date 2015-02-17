@@ -16,27 +16,51 @@
 		</div>
 	</div>
 
+	<hr>
+
+	<!-- QUESTION TYPES -->
 
 	<div class="form-group">
-		<label for="questionType.parameters" class="col-sm-2 control-label">Parameters</label>
-		<div class="col-sm-10">
-<!-- 			<input id="questionType.parameters" class="form-control" placeholder="Parameters" ng-model="questionType.parameters"> -->
-			<input class="form-control" value="{{json | json}}">
+		<label for="questionType.params.type" class="col-sm-2 control-label">Input Type</label>
+		<div class="col-sm-4">
+			<select id="questionType.params.type" class="form-control" ng-model="questionType.params.type">
+				<option value="text">Text</option>
+				<option value="radio">Radio (Likert Scale)</option>
+			</select>		
 		</div>
 	</div>
 
-	<strong>Debug</strong>
-	<pre>{{questionType.parameters}}</pre>
-	<pre>{{jsonText | json}}</pre>
-	<span>{{jsonText}}</span>
 
-
-<!-- 	<div class="form-group">
-		<span class="col-sm-2 control-label">Type</span>
-		<div class="col-sm-10">
-			<input id="questionType.parameters" class="form-control" placeholder="Parameters" ng-model="questionType.parameters">
+	<div ng-if="questionType.params.type == 'radio'">
+		<div class="form-group" >
+			<span class="col-sm-2 control-label">NumOptions</span>
+			<div class="col-sm-10">
+				<input id="questionType.params.num" class="form-control" type="number" placeholder="Number of bullet points" ng-model="questionType.params.num">
+			</div>
 		</div>
-	</div> -->
+		
+		<div class="form-group" >
+			<span class="col-sm-2 control-label">Labels</span>
+			<div class="col-md-5">
+				<input id="questionType.params.maxLabel" class="form-control" placeholder="Text for Maximum" ng-model="questionType.params.maxLabel">
+			</div>
+			<div class="col-md-5">
+				<input id="questionType.params.minLabel" class="form-control" placeholder="Text for Minimum" ng-model="questionType.params.minLabel">
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="form-group">
+		<label for="questionType.parameters" class="col-sm-2 control-label"><i>Debug</i></label>
+		<div class="col-sm-10">
+			<pre>{{questionType.params}}</pre>
+		</div>
+	</div>
+
+
+	<hr>
 
 
 	<div class="form-group">

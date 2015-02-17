@@ -21,7 +21,7 @@ router.route('/questionTypes')
 		var newQuestionType = new QuestionType({
 			name: req.body.name,
 			description: req.body.description,
-			parameters: req.body.parameters,
+			params: req.body.params,
 			constraints: req.body.constraints
 		});
 
@@ -58,7 +58,7 @@ router.route('/questionTypes/:id')
 			// update object
 			questionType.name = req.body.name,
 			questionType.description = req.body.description,
-			questionType.parameters = req.body.parameters,
+			questionType.params = req.body.params,
 			questionType.constraints = req.body.constraints
 
 			return questionType.save(function(err) {

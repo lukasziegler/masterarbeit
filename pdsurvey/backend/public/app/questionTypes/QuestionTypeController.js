@@ -47,6 +47,8 @@ app.controller("QuestionTypeEditController", function($scope, $location, $routeP
 	$scope.questionType  = {};
 	var id = $routeParams.id;
 
+	$scope.questionType.params = {};
+
 	// Load data
 	QuestionType.get( {id: id}, function(data) {
 		$scope.questionType = data;
