@@ -51,6 +51,7 @@ router.post('/logout', function(req, res){
 
 // Questions
 require("./api/questions");
+require("./api/nextQuestion");
 
 // Responses
 require("./api/responses");

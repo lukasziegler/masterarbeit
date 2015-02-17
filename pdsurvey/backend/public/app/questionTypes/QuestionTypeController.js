@@ -54,6 +54,12 @@ app.controller("QuestionTypeEditController", function($scope, $location, $routeP
 		$scope.error = err;
 	});
 
+	// example JSON string
+	$scope.json = {id: 5, value: "test"};
+
+	$scope.jsonText = angular.fromJson({id: 5, value: "test"});
+
+
 	$scope.saveQuestionType = function() {
 		$scope.questionType.$update(function() {
 			$location.url("/questionTypes");
