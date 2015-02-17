@@ -358,9 +358,9 @@ var wizard = angular.module('pdWizard', [])
 	/* * * * * * * * * */
 
 	// TEMP TEMP TEMP (for faster development)
-			$scope.myDisplays = [{'asdf': 'asdf'}];
-			$scope.mySurveys = [{'asdf': 'asdf'}];
-			$scope.campaign.name = 'asdf';
+			// $scope.myDisplays = [{'asdf': 'asdf'}];
+			// $scope.mySurveys = [{'asdf': 'asdf'}];
+			// $scope.campaign.name = 'asdf';
 	// TEMP TEMP TEMP
 
 	$scope.codeCopied = false;

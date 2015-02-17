@@ -8,19 +8,23 @@ var app = angular.module("pdsurvey")
 app.directive('pdLoadQuestionType', function ($compile) {
   return {
     restrict: 'A',
-    replace: true,
+    replace: false,
     link: function (scope, element, attrs) {
       scope.$watch(attrs.pdLoadQuestionType, function() {
+
+      	/* FOR DEV PURPOSES */
 
         // var param = {"type": "radio", "num": 5, "minLabel": "I do not agree", "maxLabel": "I agree"};
         var param = {"type": "text"};
 
 
         /** Generate Question Type **/
-        var str ="";
+        var str = '';
 
-        // 1) Radio
+        // 1) RADIO BUTTONS
         if (param.type === "radio") {
+        	str += '<div class="radio-button">';
+
         	for (var i = 1; i <= param.num; i++) {
 
         		if (i == 1)	
@@ -33,13 +37,25 @@ app.directive('pdLoadQuestionType', function ($compile) {
 
         		if (i == param.num) 
         			str += '<label class="radio-label" for="radio'+i+'"> '+param.maxLabel+'</label>'; 
-        	};
+        	}
 
-        // 2) Text field
+        	str += '</div>';
+
+
+
+        // 2) TEXT FIELD
         } else if (param.type === "text") {
         	str += '<input type="text" ng-model="response.answer" class="form-control" placeholder="Your Response" required>';
+
         }
-        element.append(str);
+
+        // add Question to DOM
+        var question = angular.element($compile(str)(scope));
+        element.append(question);
+
+        // Dev Purposes
+        // var e1 = angular.element($compile('<input type="text" ng-model="response.answer" class="form-control" placeholder="Demo1" required>')(scope));
+        // element.append(e1);
 	    
       });
     }

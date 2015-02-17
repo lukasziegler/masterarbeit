@@ -43,16 +43,20 @@ footer p {
 
 /*** Question Types ***/
 
+#question-type {
+
+}
+
 /* Radio Buttons */
-#questionType {
+.radio-button {
 	text-align: center;
 	margin: 10px -60px 5px -60px;
 }
 
-#questionType label:first-child {
+.radio-button label:first-child {
 	padding-right: 10px;
 }
-#questionType label:last-child {
+.radio-button label:last-child {
 	padding-left: 10px;
 }
 
