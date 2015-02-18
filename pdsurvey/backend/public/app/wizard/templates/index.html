@@ -5,16 +5,10 @@
                 <!-- /.col-lg-12 -->
             </div>
 
-
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2" >
-
-                    <div class="panel panel-primary">
-                        <div class="panel-body">
-                            <p>{{ getTabHint(tabs.activeTab) }}</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="alert alert-info alert-dismissable" ng-show="tabs.showHints">
+                <button type="button" class="close" ng-click="tabs.showHints = false">×</button>
+                <!-- <i class="fa fa-info fa-3x"></i> -->
+                {{ getTabHint(tabs.activeTab) }}
             </div>
 
 

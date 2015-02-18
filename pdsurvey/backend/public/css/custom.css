@@ -48,7 +48,6 @@ tr.selectable {
 }
 
 
-
 /*
  * Datepicker element (AngularStrap)
  */
@@ -62,6 +61,22 @@ tr.selectable {
 .panel-categories a, .panel-categories a:hover, .panel-categories a:visited {
 	color: #fff;
 }
+
+/* ------------------------------ */
+/*  WIZARD
+/* ------------------------------ */
+
+/* Wizard: Hints */
+
+/*.wizard-hint {
+	
+}
+
+.fa-color-blue {
+	color: #6ba6df;
+}
+
+*/
 
 
 /* Wizard: Breadcrum-Navigation */
@@ -91,6 +106,8 @@ tr.selectable {
 }
 .breadcrumb li.active a:hover {
 }
+
+
 
 /* Wizard: OptionPanel / choosing an option */
 

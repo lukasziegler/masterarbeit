@@ -95,12 +95,13 @@ var wizard = angular.module('pdWizard', [])
 	
 	// Tabs for Wizard
 	$scope.tabs = [
-		{title:'Choose Displays', url: 'display', template: '/app/wizard/templates/_display.html', hint: 'First add all displays you own to the PDSurvey plattform. This allows you to assign questionnaires to specific displays and to evaluate key differences between individual displays. Many display models already exist in our database. In case your display type is missing, please take the time to add it to the system.'},
-		{title:'Choose Surveys', url: 'survey', template: '/app/wizard/templates/_survey.html', hint: 'asdf'},
-		{title:'Manage Campaigns', url: 'campaign', template: '/app/wizard/templates/_campaign.html', hint: 'In order to carry out surveys you first need to create a campaign and assign displays and surveys to it. In the next step you can configure and launch your campaigns.'},
-		{title:'Publish', url: 'embedcode', template: '/app/wizard/templates/_embedCode.html', hint: 'All there is left to do is to embed the following Java Script code at the bottom of your application code.'}
-	];
+		{title:'Choose Displays', url: 'display', template: '/app/wizard/templates/_display.html', hint: 'To get started with first select existing or enter new displays which you want to use for your evaluation.'},
+		{title:'Choose Surveys', url: 'survey', template: '/app/wizard/templates/_survey.html', hint: 'In this step select the surveys you want to assign to your previously selected displays and bring them in the desired order.'},
+		{title:'Manage Campaigns', url: 'campaign', template: '/app/wizard/templates/_campaign.html', hint: 'Now you can customize your Campaign with optional settings. A Campaign assigns surveys to displays and determines how the questions are asked. '},
+		{title:'Publish', url: 'embedcode', template: '/app/wizard/templates/_embedCode.html', hint: 'You are almost there! All there is left to do is to embed the following Java Script code in your application code.'}
+	]; 
 	$scope.tabs.activeTab = 0;
+	$scope.tabs.showHints = true;
 
 	initTabs();
 
