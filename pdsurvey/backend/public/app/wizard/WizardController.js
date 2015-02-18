@@ -14,7 +14,7 @@ var wizard = angular.module('pdWizard', [])
 					     '   <a href="" class="btn btn-default pull-left" ng-click="prevPill()" ng-hide="prevPillShow()">Previous Step</a>'+
 						 '   <a href="" class="btn btn-success" ng-class="{\'disabled\': !readyForNextStep()}" ng-if="tabs.activeTab != 2" ng-click="nextPill()" ng-hide="nextPillShow()">Next Step</a>'+
 						 '   <a href="" class="btn btn-warning" ng-class="{\'disabled\': !readyForNextStep()}" ng-if="tabs.activeTab == 2" ng-click="configureCampaign()" ng-hide="nextPillShow()">Configure Campaign</a>'+
-						 '   <a href="" class="btn btn-warning" ng-class="{\'disabled\': !readyForNextStep()}" ng-if="tabs.activeTab == 3 && !campaignLaunched" ng-click="launchCampaign()">Launch Campaign</a>'+
+						 '   <a href="" class="btn btn-warning" ng-class="{\'disabled\': !readyForNextStep()}" ng-if="tabs.activeTab == 3 && !campaign.launched" ng-click="launchCampaign()">Launch Campaign</a>'+
 					    '</div>'+
 					'</div>',
 		link: function(scope, elem, attrs) {
@@ -382,13 +382,13 @@ var wizard = angular.module('pdWizard', [])
 	/* * * * * * * * * */
 
 	// TEMP TEMP TEMP (for faster development)
-			// $scope.myDisplays = [{'asdf': 'asdf'}];
-			// $scope.mySurveys = [{'asdf': 'asdf'}];
-			// $scope.campaign.name = 'asdf';
+			$scope.myDisplays = [{'asdf': 'asdf'}];
+			$scope.mySurveys = [{'asdf': 'asdf'}];
+			$scope.campaign.name = 'asdf';
 	// TEMP TEMP TEMP
 
 	$scope.codeCopied = false;
-	$scope.campaignLaunched = false;
+	$scope.campaign.launched = false;
 
 	$scope.copyCode = function() {
 		// copy code
@@ -407,14 +407,15 @@ var wizard = angular.module('pdWizard', [])
 			return;
 		}
 
-		// update model
-		$scope.campaign.launched = true;
+		// update model + flag vor view
+		if ($scope.campaign.launched == false) {
+			$scope.campaign.launched = true;
+		} else {
+			$scope.campaign.launched = false;
+		}
 
 		// save changes to DB
 		$scope.updateCampaign();
-
-		// flag for view
-		$scope.campaignLaunched = true;
 	}
 
 
