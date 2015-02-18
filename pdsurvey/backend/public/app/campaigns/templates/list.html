@@ -28,7 +28,17 @@
                                     <tbody>
                                         <tr ng-repeat="campaign in campaigns | orderBy : 'name'">
                                             <td>{{campaign.name}}</td>
-                                            <td>{{campaign.startDate | date:'dd.MM.yyyy'}} - {{campaign.endDate | date:'dd.MM.yyyy'}}</td>
+
+
+                                            <td>
+                                                <span ng-if="!campaign.startDate && !campaign.endDate">continuous</span>
+                                                <span ng-if="campaign.startDate && !campaign.endDate">starting: {{campaign.startDate | date:'mediumDate'}}</span>
+                                                <span ng-if="!campaign.startDate && campaign.endDate">until: {{campaign.endDate | date:'mediumDate'}} </span>
+                                                <span ng-if="campaign.startDate && campaign.endDate">{{campaign.startDate | date:'mediumDate'}} - {{campaign.endDate | date:'mediumDate'}}        
+                                                </span>
+                                            </td>
+                                            
+
                                             <td class="text-center">
                                                 <a class="btn btn-default btn-xs disabled" ng-if="!campaign.launched">offline</a>
                                                 <a class="btn btn-success btn-sm" ng-if="campaign.launched" href="{{frontendURL}}/campaign/{{campaign._id}}" target="_blank">live</a>

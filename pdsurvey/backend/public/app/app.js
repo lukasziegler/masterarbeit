@@ -256,13 +256,15 @@ app.config(function($routeProvider, $httpProvider, $locationProvider, $modalProv
 
 
     //================================================
-    // AngularStrap: Configure Modals (Popups)
+    // AngularStrap: Configure Modules
     //================================================
 
+    // Popups (Modals)
 	angular.extend($modalProvider.defaults, {
 		html: true
 	});
 
+	// Time/Date Picker
 	angular.extend($datepickerProvider.defaults, {
 		dateFormat: 'mediumDate'
 		// startWeek: 1

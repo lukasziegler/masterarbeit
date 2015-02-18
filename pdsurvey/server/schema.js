@@ -101,8 +101,8 @@ exports.DisplayModel = mongoose.model('Display', DisplaySchema, 'displays');
 var CampaignSchema = mongoose.Schema({ 
     name: { type: String, required: true },
     description: String,
-    startDate: { type: Date, default: Date.now },
-    endDate: { type: Date, default: Date.now },
+    startDate: { type: Date },
+    endDate: { type: Date },
     content: { type: String },
     location: { type: String },
     displays: [{ type: ObjectId, ref: 'Display' }],
