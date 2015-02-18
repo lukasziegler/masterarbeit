@@ -22,13 +22,13 @@
                                             <th>Name</th>
                                             <th>Runtime</th>
                                             <th class="text-center">Launched</th>
+                                            <th></th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="campaign in campaigns | orderBy : 'name'">
                                             <td>{{campaign.name}}</td>
-
 
                                             <td>
                                                 <span ng-if="!campaign.startDate && !campaign.endDate">continuous</span>
@@ -37,15 +37,17 @@
                                                 <span ng-if="campaign.startDate && campaign.endDate">{{campaign.startDate | date:'mediumDate'}} - {{campaign.endDate | date:'mediumDate'}}        
                                                 </span>
                                             </td>
-                                            
 
                                             <td class="text-center">
-                                                <a class="btn btn-default btn-xs disabled" ng-if="!campaign.launched">offline</a>
-                                                <a class="btn btn-success btn-sm" ng-if="campaign.launched" href="{{frontendURL}}/campaign/{{campaign._id}}" target="_blank">live</a>
+                                                <a class="btn btn-default btn-xs" ng-if="!campaign.launched" ng-click="toggleCampaignLaunched(campaign)">offline</a>
+                                                <a class="btn btn-success btn-sm" ng-if="campaign.launched" ng-click="toggleCampaignLaunched(campaign)">live</a>
                                             </td>
-                                            <!-- <td>{{campaign.dateCreated}}</td> -->
-                                            <td><a href="/campaigns/{{campaign._id}}/edit" class="btn btn-default btn-sm">Edit</a>
-                                            <a href="" ng-click="deleteCampaign(campaign)" class="btn btn-danger btn-sm">Delete</a></td>
+
+                                            <td><a href="{{frontendURL}}/campaign/{{campaign._id}}" target="_blank" class="btn btn-default btn-sm">Preview</a></td>
+
+                                            <td>
+                                            <a href="/campaigns/{{campaign._id}}/edit" class="btn btn-default btn-sm" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
+                                            <a href="" ng-click="deleteCampaign(campaign)" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></a></td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -24,6 +24,21 @@ app.controller("CampaignListController", function($scope, Campaign, config) {
 		});
 	};
 
+	// Launch Campaign
+	$scope.toggleCampaignLaunched = function(campaign) {
+
+		// launch
+		if (campaign.launched == false)
+			campaign.launched = true;
+		else 
+			campaign.launched = false;
+
+		// update object
+		campaign.$update(success, function(err) {
+			$scope.error = err;
+		});
+	}
+
 });
 
 
