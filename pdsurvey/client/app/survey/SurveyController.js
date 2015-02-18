@@ -5,13 +5,17 @@ var app = angular.module("pdclient")
 // DIRECTIVES
 //================================================
 
-app.directive('pdLoadQuestionType', function ($compile) {
+app.directive('pdQuestionType', function ($compile) {
   return {
     restrict: 'A',
     replace: false,
     link: function (scope, element, attrs) {
-      scope.$watch(attrs.pdLoadQuestionType, function() {
+      scope.$watch(attrs.QuestionType, function() {
 
+console.log("questionType =", attrs.pdQuestionType);
+
+console.log(scope.questionTypes);
+		var questionType = attrs.pdQuestionType;
       	// var param = scope.question;
 
       	/* FOR DEV PURPOSES */
@@ -136,7 +140,7 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
         // update Question object for View
     	$scope.question = $scope.surveys[i].sections[j].questions[k];
 
-console.log("vars",i,j,k, $scope.question.question)
+console.log("vars",i,j,k, $scope.question)
 
 
 		// determine next question (k) of section (j) of survey (i)
