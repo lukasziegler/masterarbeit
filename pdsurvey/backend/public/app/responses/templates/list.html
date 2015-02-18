@@ -25,6 +25,7 @@
                                             <th>Display</th>
                                             <th>Session</th>
                                             <th>Time</th>
+                                            <th class="text-right">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -35,7 +36,7 @@
                                             <td>{{response.display}}</td>
                                             <td>{{response.session}}</td>
                                             <td>{{response.timestamp | date:'H:mm - dd.MM.yyyy'}}</td>
-                                            <td><a href="" ng-click="deleteResponse(response)" class="btn btn-danger btn-sm">Delete</a></td>
+                                            <td class="nowrap text-right"><a href="" ng-click="deleteResponse(response)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></td>
                                         </tr>
                                     </tbody>
                                 </table>

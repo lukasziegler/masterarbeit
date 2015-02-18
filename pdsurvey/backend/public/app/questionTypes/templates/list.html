@@ -23,6 +23,7 @@
                                             <th>Description</th>
                                             <th>Parameters</th>
                                             <th>Constraints</th>
+                                            <th class="text-right">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -31,8 +32,8 @@
                                             <td>{{questionType.description}}</td>
                                             <td>{{questionType.params.type}}</td>
                                             <td>{{questionType.constraints}}</td>
-                                            <td><a href="/questionTypes/{{questionType._id}}/edit" class="btn btn-default btn-sm">Edit</a>
-                                            <a href="" ng-click="deleteQuestionType(questionType)" class="btn btn-danger btn-sm">Delete</a></td>
+                                            <td class="nowrap text-right"><a href="/questionTypes/{{questionType._id}}/edit" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i></a>
+                                            <a href="" ng-click="deleteQuestionType(questionType)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></td>
                                         </tr>
                                     </tbody>
                                 </table>

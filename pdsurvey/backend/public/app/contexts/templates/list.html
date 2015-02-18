@@ -5,26 +5,44 @@
             </div>
 
 
-            <div class="table-responsive">
-                <table class="table table-hover table-striped table-v-centered">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Occurrences</th>
-                            <th>Aktionen</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="context in contexts | orderBy: ['type', 'name']">
-                            <td>{{context.name}}</td>
-                            <td>{{context.type}}</td>
-                            <td>TODO</td>
-                            <td><a href="/contexts/{{context._id}}/edit" class="btn btn-default btn-sm">Edit</a>
-                            <a href="" ng-click="deleteContext(context)" class="btn btn-danger btn-sm">Delete</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
 
-            <a href="/contexts/new" class="btn btn-primary">Add new Context</a>
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1" >
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">All Context Types</div>
+                        <div class="panel-body">
+
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped table-v-centered">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Occurrences</th>
+                                            <th class="text-right">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="context in contexts | orderBy: ['type', 'name']">
+                                            <td>{{context.name}}</td>
+                                            <td>{{context.type}}</td>
+                                            <td>TODO</td>
+                                            <td class="nowrap text-right"><a href="/contexts/{{context._id}}/edit" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i></a>
+                                            <a href="" ng-click="deleteContext(context)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <a href="/contexts/new" class="btn btn-primary">Add new Context</a>
+
+
+                        </div>
+                        <!-- /.panel-body -->
+
+                    </div>
+                    <!-- /.panel -->
+
+                </div>
+            </div>
