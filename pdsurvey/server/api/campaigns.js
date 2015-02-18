@@ -1,4 +1,5 @@
 var Campaign = Schema.CampaignModel;
+var Survey = Schema.SurveyModel;
 
 /** 
  * CAMPAIGNS
@@ -98,17 +99,36 @@ router.route('/campaigns/:id')
 	})
 
 
+
+
 router.route('/campaigns/:id/questions')
 
-	// GET single element
-	.get(function (req, res, next) {
-		Campaign.find({ '_id': req.params.id })
-		.exec(function (err, campaign) {
-			if (err || !campaign) {
-				return next(err);
-			}
 
-			res.send(campaign);
+	// GET all questions for all Surveys of a Campaign
+	.get(function (req, res, next) {
+
+		// Load Campaign (with SurveyIDs)
+		Campaign.findOne({ '_id': req.params.id })
+		.select('surveys')
+		.exec(function (err, campaign) {
+			if (err || !campaign) return next(err);
+
+			// console.log("Surveys", campaign.surveys)
+
+			// Load Surveys
+			for (var i = 0; i < campaign.surveys.length; i++) {
+				// console.log("Survey", i, campaign.surveys[i]);
+
+				Survey.findOne({ '_id': campaign.surveys[i]._id })
+				.populate('category')
+				.exec(function (err, survey) {
+					if (err || !survey) return next(err);
+					res.send(survey);
+				});
+			};
+
+
+			// res.send(campaign);
 		});
 	})
 

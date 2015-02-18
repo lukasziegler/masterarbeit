@@ -15,9 +15,11 @@ app.directive('pdLoadQuestionType', function ($compile) {
       	// var param = scope.question;
 
       	/* FOR DEV PURPOSES */
-        var param = {"type": "radio", "num": 5, "minLabel": "I do not agree", "maxLabel": "I agree"};
-        // var param = {"type": "text"};
-
+        // var param = {"type": "radio", "num": 5, "minLabel": "I do not agree", "maxLabel": "I agree"};
+        // var param = {"type": "radio", "num": 7, "minLabel": "I do not agree", "maxLabel": "I agree"};
+        // var param = {"type": "radio", "num": 2, "minLabel": "No", "maxLabel": "Yes"};
+        var param = {"type": "text"};
+        // var param = {"type": "number"};
 
         /** Generate Question Type **/
         var str = '';
@@ -47,6 +49,10 @@ app.directive('pdLoadQuestionType', function ($compile) {
         // 2) TEXT FIELD
         } else if (param.type === "text") {
         	str += '<input type="text" ng-model="response.answer" class="form-control" placeholder="Your Response" required>';
+
+        // 3) NUMBER FIELD
+        } else if (param.type === "number") {
+        	str += '<input type="number" ng-model="response.answer" class="form-control" placeholder="How many?" required>';
 
         }
 
@@ -141,6 +147,8 @@ app.controller("SurveyRandomController", function($scope, $http, $rootScope) {
 	        // check whether Question has been asked already
 	        	// TODO
 	        	// + clear blackList again in setQuestionType()
+
+        	console.log($scope.question)
 
 	        // update Question object for View
 	        $scope.question = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion];
