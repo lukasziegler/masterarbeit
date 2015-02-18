@@ -30,6 +30,10 @@
 		</div>
 	</div>
 
+
+	<hr>
+
+
 	<div class="form-group">
 		<label for="campaign.startDate" class="col-sm-2 control-label"><i class="fa fa-calendar"></i> Date range</label>
 		<div class="col-sm-5">
@@ -39,6 +43,25 @@
 			<input type="text" class="form-control" ng-model="campaign.endDate" data-min-date="{{campaign.startDate}}" placeholder="Until" bs-datepicker>
 		</div>
 	</div>
+
+
+	<div class="form-group">
+		<label for="campaign.content" class="col-sm-2 control-label">Description of Content</label>
+		<div class="col-sm-10">
+			<input id="campaign.content" class="form-control" placeholder="" type="text" ng-model="campaign.content">
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label for="campaign.location" class="col-sm-2 control-label">Description of Location</label>
+		<div class="col-sm-10">
+			<input id="campaign.location" class="form-control" placeholder="" type="text" ng-model="campaign.location">
+		</div>
+	</div>
+
+
+	<hr>
 
 
 	<div class="form-group">

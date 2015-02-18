@@ -22,13 +22,17 @@ router.route('/campaigns')
 	.post(function (req, res, next) {
 		var newCampaign = new Campaign({
 			name: req.body.name,
+			launched: req.body.launched,
 			description: req.body.description,
+			startDate: req.body.startDate,
+			endDate: req.body.endDate,
+			content: req.body.content,
+			location: req.body.location,
 			displays: req.body.displays,
 			surveys: req.body.surveys,
 			contextDynamic: req.body.contextDynamic,
 			minResponses: req.body.minResponses,
 			numQuestionsPerPage: req.body.numQuestionsPerPage,
-			launched: req.body.launched,
 			createdBy: req.body.createdBy,
 			dateCreated: new Date().toISOString()
 		});
@@ -66,9 +70,12 @@ router.route('/campaigns/:id')
 
 			// update object
 			campaign.name = req.body.name,
+			campaign.launched = req.body.launched,
 			campaign.description = req.body.description,
-			campaign.startDate = new Date().toISOString(),
-			campaign.endDate = new Date().toISOString(),
+			campaign.startDate = req.body.startDate,
+			campaign.endDate = req.body.endDate,
+			campaign.content = req.body.content,
+			campaign.location = req.body.location,
 			campaign.displays = req.body.displays,
 			campaign.surveys = req.body.surveys,
 			campaign.contextDynamic = req.body.contextDynamic,

@@ -103,6 +103,8 @@ var CampaignSchema = mongoose.Schema({
     description: String,
     startDate: { type: Date, default: Date.now },
     endDate: { type: Date, default: Date.now },
+    content: { type: String },
+    location: { type: String },
     displays: [{ type: ObjectId, ref: 'Display' }],
     surveys: [{ type: ObjectId, ref: 'Survey' }],
     contextDynamic: [mongoose.Schema.Types.Mixed],

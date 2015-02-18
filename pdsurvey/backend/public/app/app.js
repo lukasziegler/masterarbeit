@@ -30,7 +30,7 @@ app.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $loc
 }])
 
 // Routing
-app.config(function($routeProvider, $httpProvider, $locationProvider, $modalProvider) {
+app.config(function($routeProvider, $httpProvider, $locationProvider, $modalProvider, $datepickerProvider) {
 
 
     //================================================
@@ -262,5 +262,11 @@ app.config(function($routeProvider, $httpProvider, $locationProvider, $modalProv
 	angular.extend($modalProvider.defaults, {
 		html: true
 	});
+
+	angular.extend($datepickerProvider.defaults, {
+		dateFormat: 'mediumDate'
+		// startWeek: 1
+	});
+
 
 });
