@@ -40,7 +40,31 @@
 
 <button pd-next-tab></button>
 
-<div class="panel panel-default" ng-show="displays.length > 0">
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+	    Add New Display
+	</div>
+	<div class="panel-body option-panel">
+
+		<div class="col-lg-12 text-center" ng-show="displays.length == 0">
+			<a ng-click="setDisplayMode(2)">Add your first Display</a>
+		</div>
+
+		<div class="row" ng-show="displays.length > 0">
+			<div class="col-sm-6 text-center">
+				<a ng-click="setDisplayMode(1)">Choose existing Display</a>
+			</div>		
+			<div class="col-sm-6 text-center">
+				<a ng-click="setDisplayMode(2)">Or add a new Display</a>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<div class="panel panel-default" ng-show="displays.length > 0 && displayMode === 1">
     <div class="panel-heading">
         Choose Displays
     </div>
@@ -67,28 +91,6 @@
             </table>
         </div>
     </div>
-</div>
-
-<div class="panel panel-default" ng-hide="displayMode === 2">
-	<div class="panel-heading">
-	    Add New Display
-	</div>
-	<div class="panel-body option-panel">
-
-		<div class="col-lg-12 text-center" ng-show="displays.length == 0">
-			<a ng-click="setDisplayMode(2)">Add your first Display</a>
-		</div>
-
-		<div class="row" ng-show="displays.length > 0">
-			<div class="col-sm-6 text-center">
-				<a ng-click="setDisplayMode(1)">Choose existing Display</a>
-			</div>		
-			<div class="col-sm-6 text-center">
-				<a ng-click="setDisplayMode(2)">Or add a new Display</a>
-			</div>
-		</div>
-
-	</div>
 </div>
 
 

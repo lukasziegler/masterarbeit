@@ -1,4 +1,5 @@
 var Display = Schema.DisplayModel;
+var DisplayModel = Schema.DisplayModelModel;
 
 /** 
  * DISPLAYS
@@ -21,21 +22,55 @@ router.route('/displays')
 
 	// POST to create
 	.post(function (req, res, next) {
-		var newDisplay = new Display({
-			name: req.body.name,
-			displayModel: req.body.displayModel._id,
-			user: req.body.user,
-			location: req.body.location,
-			contextDynamic: req.body.contextDynamic
-		});
 
-	    newDisplay.save(function(err) {
-	        if (err) {
-	        	return next(err);
-	        }
+		/* DEV NOTES
+		 * Not solved nicely. A better approach would be to 
+		 * create a /model/displays.js with Getters/Setters
+		 * and to call createDisplayModel() from here and it
+		 * is finished, to call createDisplay().
+		 */
 
-    	    return res.send(newDisplay);
-	    });
+
+		// Case 1) New DisplayModel, to be added to our DB
+		if (typeof req.body.displayModel == "string") {
+
+			// add new DisplayModel to DB
+			var newDisplayModel = new DisplayModel({ name: req.body.displayModel });
+		    // save to DB
+		    var id = newDisplayModel.save(function(err) {
+				if (err) return next(err);
+				
+				// save ID to model
+				var newDisplay = new Display({
+					name: req.body.name,
+					displayModel: newDisplayModel._id,
+					user: req.body.user,
+					location: req.body.location,
+					contextDynamic: req.body.contextDynamic
+				});
+
+			    newDisplay.save(function(err) {
+			        if (err) return next(err);
+		    	    return res.send(newDisplay);
+			    });
+		    });
+
+		// Case 2) Normal procedure, DisplayModel already exists in DB
+		} else {
+			// new Display
+			var newDisplay = new Display({
+				name: req.body.name,
+				displayModel: req.body.displayModel._id,
+				user: req.body.user,
+				location: req.body.location,
+				contextDynamic: req.body.contextDynamic
+			});
+
+		    newDisplay.save(function(err) {
+		        if (err) return next(err);
+	    	    return res.send(newDisplay);
+		    });
+		}
 	})
 
 

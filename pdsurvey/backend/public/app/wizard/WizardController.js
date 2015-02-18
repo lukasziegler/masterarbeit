@@ -208,6 +208,17 @@ var wizard = angular.module('pdWizard', [])
 
 		// save to DB
 		Display.save($scope.display, function() {
+
+			console.log("before",$scope.display)
+
+			// workaround for 'on-the-fly' DisplayModel (commit XXXX)
+			if (typeof $scope.display.displayModel == "string") {
+				console.log("ENTERED")
+				$scope.display.displayModel = { 'name': $scope.display.displayModel };
+			}
+
+			console.log("after",$scope.display)
+
 			// update model
 			$scope.myDisplays.push($scope.display);
 			$scope.displays.push($scope.display);
