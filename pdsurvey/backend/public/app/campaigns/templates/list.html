@@ -10,12 +10,12 @@
                 <div class="col-lg-12" >
 
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            All Campaigns
-                        </div>
+
+                        <div class="panel-heading" ng-if="campaigns.length > 0">All Campaigns</div>
+                        <div class="panel-heading" ng-if="campaigns.length == 0">No campaigns found</div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="table-responsive">
+                            <div class="table-responsive" ng-if="campaigns.length > 0">
                                 <table class="table table-hover table-striped table-v-centered">
                                     <thead>
                                         <tr>
@@ -45,9 +45,8 @@
 
                                             <td><a href="{{frontendURL}}/campaign/{{campaign._id}}" target="_blank" class="btn btn-default btn-sm">Preview</a></td>
 
-                                            <td>
-                                            <a href="/campaigns/{{campaign._id}}/edit" class="btn btn-default btn-sm" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
-                                            <a href="" ng-click="deleteCampaign(campaign)" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></a></td>
+                                            <td class="nowrap"><a href="/campaigns/{{campaign._id}}/edit" class="btn btn-default btn-sm" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
+                                            <a href="" ng-click="deleteCampaign(campaign)" class="btn btn-danger btn-sm" title="Delete (permanent)"><i class="fa fa-trash"></i></a></td>
                                         </tr>
                                     </tbody>
                                 </table>

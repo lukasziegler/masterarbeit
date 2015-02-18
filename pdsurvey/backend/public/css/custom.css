@@ -1,7 +1,17 @@
 
-/* 
- * Addition to the normal Bootstrap Styling
- */
+
+/* ---------------------------------------- */
+/* Addition to the normal Bootstrap Styling */
+/* ---------------------------------------- */
+
+/* Helpers */
+
+td.nowrap {
+	white-space: nowrap;
+}
+
+
+ /* Tables */
 
  div.table-no-borders {
  	margin-bottom: 0;
@@ -109,10 +119,10 @@ tr.selectable {
 
 
 
-/* Wizard: OptionPanel / choosing an option */
+/* Wizard: OptionPanel (Allowing the user to choose an option) */
 
 .option-panel div {
-	margin: 2em 0;
+	margin: 1em 0;
 }
 
 .option-panel a {
@@ -126,4 +136,13 @@ tr.selectable {
 	.option-panel div:first-child {
 		border-right: 1px solid #ddd;
 	}
+}
+
+div.panel-highlight {
+	background-color: rgba(249, 255, 0, 0.56);
+	border-color: rgba(249, 255, 0, 0.56);
+	-webkit-transition: background 1s;
+	-moz-transition: background 1s;
+	-o-transition: background 1s;
+	transition: background 1s;
 }
