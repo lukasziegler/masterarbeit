@@ -80,6 +80,16 @@ app.directive('pdLoadQuestionType', function ($compile) {
 app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $routeParams) {	
 
 	var campaignId = $routeParams.id;
+	$scope.completed = false;
+
+	// counters for survey (i), section (j) and question (k)
+	var i = 0;	// survey
+	var j = 0;	// section
+	var k = 0; 	// question
+
+	$scope.question = {};
+	$scope.surveys = {};
+
 
 	// initializing Response object
 	$scope.response = { "question": { "id": "", "type": "", "wording": ""}, 
@@ -96,16 +106,78 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 
 	// load Questions
 	$http.get($rootScope.restApi + "/campaigns/" + campaignId + "/questions").success(function(response) {
-		$scope.questions = response;
-		console.log(response)
+		$scope.surveys = response.surveys;
+
+		// check if no surveys are linked
+		if ($scope.surveys.length === 0) {
+			console.log("No surveys found");
+			$scope.error = "No surveys found";
+		}
+		else {
+			// start with first question
+			$scope.nextQuestion();
+		}
+
 	}).error(function(err) {
-		alert("Invalid CampaignID");
+		console.err("Invalid CampaignID");
 		$scope.error = err;
 	});
 
 
+	// load nextQuestion
+	$scope.nextQuestion = function() {
+
+        // helpers
+        var lastQuestion = $scope.surveys[i].sections[j].questions.length;
+        var lastSection = $scope.surveys[i].sections.length;
+        var lastSurvey = $scope.surveys.length;
 
 
+        // update Question object for View
+    	$scope.question = $scope.surveys[i].sections[j].questions[k];
+
+console.log("vars",i,j,k, $scope.question.question)
+
+
+		// determine next question (k) of section (j) of survey (i)
+		if (k === lastQuestion-1 && j === lastSection-1 && i === lastSurvey-1) {
+			// $scope.completed = true;
+			// i = 0; j = 0; k = 0;
+			console.log("4: completed")
+
+		} else if (k === lastQuestion-1 && j === lastSection-1 && i < lastSurvey-1) {
+			i++;
+			k = 0; j = 0;
+			console.log("3: next survey")
+
+		} else if (k === lastQuestion-1 && j < lastSection-1) {
+			j++;	// next section
+			k = 0;	// first question
+			console.log("2: next section")
+
+		} else {
+			k++;	// next question
+			console.log("1: next question")
+		}
+		
+
+	}
+
+
+
+	/* Currently not really needed */
+	$scope.restart = function() {
+		$scope.completed = false;
+		// clear last response from view
+		$scope.response.answer = "";
+	};
+
+
+	// Submit Response
+	$scope.submit = function() {
+		// TODO
+
+	}
 
 })
 

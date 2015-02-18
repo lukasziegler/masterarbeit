@@ -3,10 +3,13 @@
  * CSS for Individual Styling 
  */
 
+.content {
+	margin-top: 35px;
+}
+
 /* Jumbotron fix */
 .jumbotron {
 	padding: 30px 15px;
-	margin-top: 30px;
 }
 
 .jumbotron h1,
@@ -24,6 +27,15 @@
 
 .btn-reduced:hover {
 	opacity: 0.7;
+}
+
+/* Alert */
+.alert {
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #f2dede;
+	font-size: 16px;
+	padding: 20px 30px;
 }
 
 
