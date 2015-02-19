@@ -85,6 +85,38 @@ var wizard = angular.module('pdWizard', [])
 	};
 })
 
+// 
+.directive('pdSelectText', function() {
+	return {
+		restrict: 'A',
+		link: function(scope, elem, attrs) {
+
+	      elem.bind('click', function () {
+	         this.select();
+	      });
+
+		}
+	};
+})
+
+
+
+
+
+// Preselect text for element 
+// .directive('pdTextSelected', function() {
+// 	return {
+// 		restrict: 'A',
+// 		link: function(scope, elem, attrs) {
+
+// 	      elem.bind('click', function () {
+// 	         this.select();
+// 	      });
+
+// 		}
+// 	};
+// })
+
 
 //================================================
 // CONTROLLERS
@@ -403,13 +435,9 @@ var wizard = angular.module('pdWizard', [])
 	$scope.campaign.launched = false;
 
 	$scope.copyCode = function() {
-		// copy code
-
-			// TODO
-			alert("TODO")
-
-		// set flag
-		$scope.codeCopied = true;
+		// select text
+		angular.element( document.querySelector( '#embedCode' ) ).select()
+		alert("Now press Ctrl+C or Cmd+C to copy the code")
 	}
 
 	$scope.launchCampaign = function() {

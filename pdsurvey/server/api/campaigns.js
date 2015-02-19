@@ -51,6 +51,7 @@ router.route('/campaigns/:id')
 	// GET single element
 	.get(function (req, res, next) {
 		Campaign.findOne({ '_id': req.params.id })
+		.populate('surveys displays', 'name')
 		.exec(function (err, campaign) {
 			if (err || !campaign) {
 				return next(err);

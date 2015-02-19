@@ -54,7 +54,7 @@
 					    	<a href="" class="btn" ng-click="copyCode()" ng-class="{'btn-success': codeCopied, 'btn-warning': !codeCopied}">Copy Code</a>
 				    	</div>
 						<div class="col-md-9">
-					    	<textarea id="embedCode" class="form-control" rows="3" ng-model="embedCode"></textarea>
+					    	<textarea id="embedCode" class="form-control" rows="3" ng-model="embedCode" ng-copy="codeCopied=true" pd-select-text></textarea>
 				    	</div>
 				    </div>
 				</div>

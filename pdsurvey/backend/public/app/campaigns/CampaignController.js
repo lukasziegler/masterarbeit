@@ -77,10 +77,15 @@ app.controller("CampaignCreateController", function($scope, $rootScope, $locatio
 
 /** EDIT **/
 
-app.controller("CampaignEditController", function($scope, $rootScope, $location, $routeParams, Campaign, Context) {
+app.controller("CampaignEditController", function($scope, $rootScope, $location, $routeParams, 
+	Campaign, Context, config) {
+
 	$scope.campaign  = {};
 	$scope.campaign.createdBy = $rootScope.userId;
 	var id = $routeParams.id;
+	$scope.campaignURL = "generating ...";
+	$scope.embedCode = "loading ...";
+
 
 	// Load data
 	Campaign.get( {id: id}, function(data) {
@@ -89,6 +94,11 @@ app.controller("CampaignEditController", function($scope, $rootScope, $location,
 		// copy values to temporary 
 		$scope.contextDynamic = $scope.campaign.contextDynamic;
 		$scope.campaign.contextDynamic = $scope.campaign.contextDynamic._id;
+		$scope.campaignURL = config.frontend + "/campaign/" + $scope.campaign._id;
+
+		// update EmbedCode
+		$scope.embedCode = Campaign.getEmbedCode(data._id);
+		
 	}, function(err) {
 		$scope.error = err;
 	});
