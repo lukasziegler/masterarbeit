@@ -1,4 +1,4 @@
 BonusCode	Timestamp	OptionChosen	FinalStage	Email
-1	timestamp	3	optionQRCode
-2	time	1	optionOnDisplay
+1	timestamp	3	optionQRCode	
+2	time	1	optionOnDisplay	
 3	time	2	optionEmail	lukas@lukasziegler.com
