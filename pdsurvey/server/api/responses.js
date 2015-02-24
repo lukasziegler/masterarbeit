@@ -8,7 +8,9 @@ router.route('/responses')
 
 	// GET 
 	.get(function (req, res, next) {
-		Response.find({}, function (err, categories) {
+		Response.find({})
+		.populate('campaign display', 'name')
+		.exec(function (err, categories) {
 			if (err) {
 				return next(err);
 			}
@@ -21,8 +23,9 @@ router.route('/responses')
 		var newResponse = new Response({
 			question: req.body.question,
 			answer: req.body.answer,
-			questionnaire: req.body.questionnaire,
 			display: req.body.display,
+			campaign: req.body.campaign,
+			survey: req.body.survey,
 			session: req.body.session,
 			timestamp: new Date().toISOString()
 		});

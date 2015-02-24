@@ -19,9 +19,9 @@
                                 <table class="table table-hover table-striped table-v-centered">
                                     <thead>
                                         <tr>
-                                            <th>Question</th>
                                             <th>Answer</th>
-                                            <th>Questionnaire</th>
+                                            <th>Question</th>
+                                            <th>Campaign</th>
                                             <th>Display</th>
                                             <th>Session</th>
                                             <th>Time</th>
@@ -30,10 +30,10 @@
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="response in responses | orderBy : '-timestamp'">
-                                            <td>{{response.question.wording}}</td>
                                             <td>{{response.answer}}</td>
-                                            <td>{{response.questionnaire.type}}</td>
-                                            <td>{{response.display}}</td>
+                                            <td>{{response.question.wording}}</td>
+                                            <td>{{response.campaign.name}}</td>
+                                            <td>{{response.display.name}}</td>
                                             <td>{{response.session}}</td>
                                             <td>{{response.timestamp | date:'H:mm - dd.MM.yyyy'}}</td>
                                             <td class="nowrap text-right"><a href="" ng-click="deleteResponse(response)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></td>

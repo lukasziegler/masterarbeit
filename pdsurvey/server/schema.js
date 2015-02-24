@@ -32,11 +32,9 @@ var ResponseSchema = mongoose.Schema({
         wording: { type: String }
     },
     answer: { type: String, required: true },
-    questionnaire: { 
-        type: { type: String, enum: ['Questionnaire', 'StandardSurvey'] },
-        ref: { type: ObjectId }
-    },
-    display: { type: ObjectId, ref: 'Display', required: true },
+    display: { type: ObjectId, ref: 'Display' },
+    campaign: { type: ObjectId, ref: 'Campaign' },
+    survey: { type: ObjectId, ref: 'Survey', required: true },
     session: { type: Number },
     timestamp: { type: Date, default: Date.now }
 });

@@ -7,7 +7,7 @@ var app = angular.module("pdclient")
 //================================================
 
 .controller("MainController", function($scope) {	
-	$scope.message = "Angular.js test -";
+
 })
 
 
