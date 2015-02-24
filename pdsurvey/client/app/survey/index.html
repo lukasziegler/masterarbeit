@@ -5,8 +5,12 @@
 	        <div class="form-group">
 	        	<form ng-submit="submit()">
 
-	        		<div id="question-type" pd-question-type="5489b2faaaaad87855ae8327"></div>
-										
+<!-- 	        		<div id="question-type" pd-question-type="5489b2faaaaad87855ae8327"></div>
+ -->							
+			     <!-- <div ng-include="questionTypeTemplate"></div> -->
+
+			     {{questionTypeTemplate}}
+
 	        	</form>
 	        </div>
 
@@ -16,6 +20,9 @@
 			</div>
       </div>
     </div>
+
+
+    <pre>DEBUG: {{response.answer}}</pre>
 
     <div class="row" ng-show="completed">
       	<div class="jumbotron col-lg-10 co-lg-offset-1 col-md-10 col-md-offset-1">

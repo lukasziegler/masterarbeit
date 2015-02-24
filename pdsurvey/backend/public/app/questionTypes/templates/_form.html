@@ -2,7 +2,7 @@
 
 
 	<div class="form-group">
-		<label for="questionType.name" class="col-sm-2 control-label">Name</label>
+		<label for="questionType.name" class="col-sm-2 control-label">Name*</label>
 		<div class="col-sm-10">
 			<input id="questionType.name" class="form-control" placeholder="Name" ng-model="questionType.name" required>
 		</div>
@@ -10,11 +10,20 @@
 
 
 	<div class="form-group">
-		<label for="questionType.description" class="col-sm-2 control-label">Description</label>
+		<label for="questionType.description" class="col-sm-2 control-label">Description*</label>
 		<div class="col-sm-10">
 			<input id="questionType.description" class="form-control" placeholder="Description" ng-model="questionType.description" required>
 		</div>
 	</div>
+
+
+	<div class="form-group">
+		<label for="questionType.abbreviation" class="col-sm-2 control-label">Abbreviation*</label>
+		<div class="col-sm-10">
+			<input id="questionType.abbreviation" class="form-control" placeholder="Name for html template (<abbr>.html)" ng-model="questionType.abbreviation" required>
+		</div>
+	</div>
+
 
 	<hr>
 

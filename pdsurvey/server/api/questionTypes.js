@@ -21,6 +21,7 @@ router.route('/questionTypes')
 		var newQuestionType = new QuestionType({
 			name: req.body.name,
 			description: req.body.description,
+			abbreviation: req.body.abbreviation,
 			params: req.body.params,
 			constraints: req.body.constraints
 		});
@@ -58,6 +59,7 @@ router.route('/questionTypes/:id')
 			// update object
 			questionType.name = req.body.name,
 			questionType.description = req.body.description,
+			questionType.abbreviation = req.body.abbreviation,
 			questionType.params = req.body.params,
 			questionType.constraints = req.body.constraints
 

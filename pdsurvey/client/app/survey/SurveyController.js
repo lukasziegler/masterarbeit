@@ -93,6 +93,7 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 
 	$scope.question = {};
 	$scope.surveys = {};
+	$scope.questionTypeTemplate = '';
 
 
 	// initializing Response object
@@ -104,9 +105,11 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 	// load QuesitonTypes
 	$http.get($rootScope.restApi + "/questionTypes").success(function(response) {
 		$scope.questionTypes = response;
+		console.log("QuestionType",response);
 	}).error(function(err) {
 		$scope.error = err;
 	});
+
 
 	// load Questions
 	$http.get($rootScope.restApi + "/campaigns/" + campaignId + "/questions").success(function(response) {
@@ -140,6 +143,17 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
         // update Question object for View
     	$scope.question = $scope.surveys[i].sections[j].questions[k];
 
+    	// update QuestionType
+    	$scope.questionTypeTemplate = 'app/survey/questionTypes/'+$scope.question.type+'.html';
+
+    	// var result = $.grep($scope.questionTypes, function(e){ return e.id == id; });
+    // 	for (var i = 0; i < $scope.questionTypes.length; i++) {
+    // 		console.log($scope.questionTypes[i]._id, $scope.question.type)
+    // 		if ($scope.questionTypes[i]._id == $scope.question.type) {
+				// $scope.questionTypeTemplate = 'app/survey/questionTypes/'+$scope.questionTypes[i].param.type+'.html';
+    // 			// break;
+    // 		}
+    // 	}
 console.log("vars",i,j,k, $scope.question)
 
 
