@@ -144,17 +144,15 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
     	$scope.question = $scope.surveys[i].sections[j].questions[k];
 
     	// update QuestionType
-    	$scope.questionTypeTemplate = 'app/survey/questionTypes/'+$scope.question.type+'.html';
+    	// find corresponding questionType
+		var newQuesitonType = $scope.questionTypes.filter(function( obj ) {
+		  return obj._id == $scope.question.type;
+		});
+    	console.log("newQuesitonType", newQuesitonType)
 
-    	// var result = $.grep($scope.questionTypes, function(e){ return e.id == id; });
-    // 	for (var i = 0; i < $scope.questionTypes.length; i++) {
-    // 		console.log($scope.questionTypes[i]._id, $scope.question.type)
-    // 		if ($scope.questionTypes[i]._id == $scope.question.type) {
-				// $scope.questionTypeTemplate = 'app/survey/questionTypes/'+$scope.questionTypes[i].param.type+'.html';
-    // 			// break;
-    // 		}
-    // 	}
-console.log("vars",i,j,k, $scope.question)
+    	$scope.questionTypeTemplate = 'app/survey/questionTypes/'+newQuesitonType[0].params.type+'.html';
+
+// console.log("vars",i,j,k, $scope.question)
 
 
 		// determine next question (k) of section (j) of survey (i)
