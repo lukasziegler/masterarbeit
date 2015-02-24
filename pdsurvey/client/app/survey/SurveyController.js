@@ -91,9 +91,11 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 	var j = 0;	// section
 	var k = 0; 	// question
 
-	$scope.question = {};
 	$scope.surveys = {};
 	$scope.questionTypeTemplate = '';
+
+	$scope.currentQuestion = {};
+	$scope.currentQuestionType = {};
 
 
 	// initializing Response object
@@ -141,44 +143,50 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 
 
         // update Question object for View
-    	$scope.question = $scope.surveys[i].sections[j].questions[k];
+    	$scope.currentQuestion = $scope.surveys[i].sections[j].questions[k];
 
     	// update QuestionType
     	// find corresponding questionType
 		var newQuesitonType = $scope.questionTypes.filter(function( obj ) {
-		  return obj._id == $scope.question.type;
+		  return obj._id == $scope.currentQuestion.type;
 		});
-    	console.log("newQuesitonType", newQuesitonType)
+		$scope.currentQuestionType = newQuesitonType[0];
+    	console.log("newQuesitonType", newQuesitonType[0].params.type)
 
-    	$scope.questionTypeTemplate = 'app/survey/questionTypes/'+newQuesitonType[0].params.type+'.html';
+    	$scope.questionTypeTemplate = 'app/survey/questionTypes/'+$scope.currentQuestionType.params.type+'.html';
 
-// console.log("vars",i,j,k, $scope.question)
+// console.log("vars",i,j,k, $scope.currentQuestion)
 
 
 		// determine next question (k) of section (j) of survey (i)
 		if (k === lastQuestion-1 && j === lastSection-1 && i === lastSurvey-1) {
-			// $scope.completed = true;
-			// i = 0; j = 0; k = 0;
+			$scope.completed = true;
+			i = 0; j = 0; k = 0;
 			console.log("4: completed")
 
 		} else if (k === lastQuestion-1 && j === lastSection-1 && i < lastSurvey-1) {
 			i++;
 			k = 0; j = 0;
-			console.log("3: next survey")
+			// console.log("3: next survey")
 
 		} else if (k === lastQuestion-1 && j < lastSection-1) {
 			j++;	// next section
 			k = 0;	// first question
-			console.log("2: next section")
+			// console.log("2: next section")
 
 		} else {
 			k++;	// next question
-			console.log("1: next question")
+			// console.log("1: next question")
 		}
 		
 
 	}
 
+
+	/* Helper Functions for QuestionTypes */
+	$scope.getNumRadioButtons = function() {
+		return new Array($scope.currentQuestionType.params.num);  
+	}
 
 
 	/* Currently not really needed */
@@ -192,6 +200,8 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 	// Submit Response
 	$scope.submit = function() {
 		// TODO
+
+		$scope.nextQuestion();
 
 	}
 
@@ -236,10 +246,10 @@ app.controller("SurveyRandomController", function($scope, $http, $rootScope) {
 	        	// TODO
 	        	// + clear blackList again in setQuestionType()
 
-        	console.log($scope.question)
+        	console.log($scope.currentQuestion)
 
 	        // update Question object for View
-	        $scope.question = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion];
+	        $scope.currentQuestion = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion];
 
 	        // update Response object
 	        $scope.response.question.id = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion]._id;

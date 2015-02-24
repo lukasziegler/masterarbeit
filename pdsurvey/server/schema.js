@@ -6,7 +6,7 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 var QuestionTypeSchema = mongoose.Schema({ 
     name: { type: String, required: true },
     description: { type: String, required: true },
-    abbreviation: { type: String, required: true },
+    // abbreviation: { type: String, required: true },
     params: mongoose.Schema.Types.Mixed,
     constraints: String
 });

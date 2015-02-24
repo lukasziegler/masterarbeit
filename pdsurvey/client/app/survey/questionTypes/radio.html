@@ -1,0 +1,12 @@
+<!-- RADIO BUTTONS -->
+
+<div class="radio-button">
+        <label class="radio-label" for="radio1">{{currentQuestionType.params.minLabel}}</label>
+        
+        <label ng-repeat-start="foo in getNumRadioButtons() track by $index" class="radio-inline"><input type="radio" ng-model="response.answer" name="optionsRadiosInline" id="radio{{$index+1}}" value="{{$index+1}}" class="input-lg">{{$index+1}}</label>
+
+        <br ng-if="">
+
+        <label ng-repeat-end ng-if="$last" class="radio-label" for="radio{{$index+1}}">{{currentQuestionType.params.maxLabel}}</label>
+
+</div>
