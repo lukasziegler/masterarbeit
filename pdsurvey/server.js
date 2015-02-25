@@ -45,6 +45,7 @@ app.use(function (req, res, next) {
     next();
 });
 
+console.log("dirname", __dirname)
 
 // Routing
 router = express.Router();
