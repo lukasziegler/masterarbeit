@@ -52,9 +52,15 @@ require('./server/routes');
 app.use('/api', router); // register routes
 
 // Routing of static files
-app.use('/app', express.static(__dirname + '/backend/public/app'));
-app.use('/css', express.static(__dirname + '/backend/public/css'));
-app.use('/lib', express.static(__dirname + '/backend/public/lib'));
+app.use('/app', express.static(__dirname + '/client/app'));
+app.use('/css', express.static(__dirname + '/client/css'));
+app.use('/lib', express.static(__dirname + '/client/lib'));
+app.use('/jquery-approach', express.static(__dirname + '/client/jquery-approach'));
+
+// app.use('/admin/app', express.static(__dirname + '/backend/public/app'));
+// app.use('/admin/css', express.static(__dirname + '/backend/public/css'));
+// app.use('/admin/lib', express.static(__dirname + '/backend/public/lib'));
+app.use('/admin', express.static(__dirname + '/backend/public'));
 app.use('/tracking', express.static(__dirname + '/backend/public/tracking'));
 
 // HTML5 mode support for Angular
@@ -62,7 +68,11 @@ app.all('/*', function(req, res, next) {
 	// exclude the API (probably a dirty workaround)
 	if (req.url.substring(0,4) == '/api') return next();
 	// Allow Angular to support HTML5 mode
+
+  if (req.url.substring(0,4) == '/admin')
     res.sendFile('/backend/public/index.html', { root: __dirname });
+  else
+    res.sendFile('/client/index.html', { root: __dirname });
 });
 
 
