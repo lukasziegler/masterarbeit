@@ -1,3 +1,63 @@
+
+
+/* ---------------------------------------- */
+/* Addition to the normal Bootstrap Styling */
+/* ---------------------------------------- */
+
+/* Helpers */
+
+td.nowrap {
+	white-space: nowrap;
+}
+
+
+ /* Tables */
+
+ div.table-no-borders {
+ 	margin-bottom: 0;
+ 	margin: 0 -15px;
+ }
+
+ div.table-no-borders > table {
+ 	margin-bottom: 0;
+ }
+
+table.table-v-centered td {
+	vertical-align: middle !important;
+}
+
+.panel-selected {
+	border-color: #6ba6df;
+}
+
+.panel-selected > .panel-heading {
+	background-color: #6ba6df;
+	border-color: #6ba6df;
+	color: #fff;
+}
+
+
+.table>tbody>tr.selected>td, 
+.table>tbody>tr.selected>th, 
+.table>tbody>tr>td.selected, 
+.table>tbody>tr>th.selected, 
+.table>tfoot>tr.selected>td, 
+.table>tfoot>tr.selected>th, 
+.table>tfoot>tr>td.selected, 
+.table>tfoot>tr>th.selected, 
+.table>thead>tr.selected>td, 
+.table>thead>tr.selected>th, 
+.table>thead>tr>td.selected, 
+.table>thead>tr>th.selected {
+	background-color: #cddff0;
+}
+
+/* .table.selectable>tbody>tr { */
+tr.selectable {
+	cursor: pointer;
+}
+
+
 /*
  * Datepicker element (AngularStrap)
  */
@@ -6,14 +66,83 @@
 .datepicker.dropdown-menu {
 }
 
-/*
- * Fix/Workaround for Bootstrap row-indentation
 
-.row-indent {
-	margin-left: 0;
+/** Individual Styling **/
+.panel-categories a, .panel-categories a:hover, .panel-categories a:visited {
+	color: #fff;
 }
 
-.form-group {
-	margin-right: 0 !important;
+/* ------------------------------ */
+/*  WIZARD
+/* ------------------------------ */
+
+/* Wizard: Hints */
+
+/*.wizard-hint {
+	
 }
+
+.fa-color-blue {
+	color: #6ba6df;
+}
+
 */
+
+
+/* Wizard: Breadcrum-Navigation */
+.breadcrumb {
+	margin-bottom: 0;
+	padding: 0;
+}
+
+
+.breadcrumb li a,
+.breadcrumb li.active a {
+	padding: 5px 8px 6px 7px;
+	font-weight: 500;
+	color: #333;
+	border-radius: 5px;
+}
+.breadcrumb li a:hover {
+	background-color: #dddddd;
+	text-decoration: none;
+}
+
+
+.breadcrumb li.active a {
+	background-color: #2563ab;
+	color: #fff;
+	font-weight: 400;
+}
+.breadcrumb li.active a:hover {
+}
+
+
+
+/* Wizard: OptionPanel (Allowing the user to choose an option) */
+
+.option-panel div {
+	margin: 1em 0;
+}
+
+.option-panel a {
+	font-size: 22px; 
+	font-weight: 300;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+@media (min-width: @screen-lg-min) {
+	.option-panel div:first-child {
+		border-right: 1px solid #ddd;
+	}
+}
+
+div.panel-highlight {
+	background-color: rgba(249, 255, 0, 0.56);
+	border-color: rgba(249, 255, 0, 0.56);
+	-webkit-transition: background 1s;
+	-moz-transition: background 1s;
+	-o-transition: background 1s;
+	transition: background 1s;
+}

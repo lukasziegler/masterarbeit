@@ -1,0 +1,30 @@
+body {
+  /*background-color: grey;*/
+}
+
+div.pdsurvey {
+	position: relative;
+}
+
+.pdsurvey div.container {
+	border: 1px solid grey;
+	border-radius: 10px;
+	background-color: #fff;
+
+	position: fixed;
+	bottom: 0;
+	right: 0;
+
+	float: right;
+	margin: 0 0.5em 0.5em 0;
+	padding: 1em;
+	width: 60%;
+}
+
+.pdsurvey h1 {
+	margin: 0 0 0.2em 0 !important;
+}
+
+.pdsurvey p {
+	margin: 0 !important;
+}

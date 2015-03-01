@@ -1,0 +1,49 @@
+<div class="control-group">
+
+	<div class="form-group">
+		<label for="question.name" class="col-sm-2 control-label">Question</label>
+		<div class="col-sm-10">
+			<input id="question.name" class="form-control" placeholder="Name" ng-model="question.name" required>
+		</div>
+	</div>
+	
+
+<!-- 	<div class="form-group">
+		<label for="question.state" class="col-sm-2 control-label">State</label>
+		<div class="col-sm-10">
+			<select id="question.state" class="form-control" ng-model="question.state">
+				<option>A</option>
+				<option>B</option>
+				<option>C</option>
+			</select>
+		</div>
+	</div> -->
+
+
+	<div class="form-group">
+		<label for="question.type" class="col-sm-2 control-label">Question Type</label>
+		<div class="col-sm-10">
+			<select id="question.type" class="form-control" ng-options="questionType._id as questionType.name for questionType in questionTypes" ng-model="question.type" required>
+			</select>
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label for="question.category" class="col-sm-2 control-label">Category</label>
+		<div class="col-sm-10">
+			<select id="question.category" class="form-control" ng-options="category._id as category.name for category in categories" ng-model="question.category" required>
+			</select>
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label for="question.explanation" class="col-sm-2 control-label">Explanation</label>
+		<div id="question.explanation" class="col-sm-10">
+			<textarea class="form-control" rows="3" ng-model="question.explanation"></textarea>
+		</div>
+	</div>
+
+</div>
+

@@ -9,7 +9,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>PDSurvey</title>
+    <title>PDBackend</title>
+
+    <base href="/admin/">
 
     <!-- Bootstrap Core CSS -->
     <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -22,13 +24,13 @@
 
     <!-- Custom CSS -->
     <link href="css/sb-admin-2.css" rel="stylesheet">
+    <link href="lib/angular-motion/dist/angular-motion.min.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <!-- NOTE! Only include Morris CSS / JS when actually using a Morris Chart!! -->
 <!--     <link href="lib/morris/morris.css" rel="stylesheet"> -->
 
-    
     <!-- Custom Fonts -->
     <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -54,64 +56,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">PDSurvey</a>
+                <a class="navbar-brand" href="/admin/">PDSurvey</a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Launched his activity</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>Florian Alt</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>2 days ago</em>
-                                    </span>
-                                </div>
-                                <div>Updated the research question you subscribed to</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>Lukas Ziegler</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>3 weeks ago</em>
-                                    </span>
-                                </div>
-                                <div>Added a new standardized questionnaire for the Usability section</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>Read All Messages</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-messages -->
-                </li>
                 <!-- /.dropdown -->
+                <li class="dropdown" id="isAdmin">
+                    <a href="/admin/settings" class="dropdown-toggle">
+                        <!--<span ng-show="isAdmin()" style="font-weight:500;">isAdmin</span>
+                        <span ng-hide="isAdmin()">regUser</span>-->
+                        <span>{{getUserRole()}}</span>
+
+                    </a>
+                </li>
+
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-tasks">
@@ -194,12 +155,12 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="/admin/settings/user"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="/admin/settings"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="/admin/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -210,7 +171,9 @@
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
+                    
                     <ul class="nav" id="side-menu">
+
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
                                 <input type="text" class="form-control" placeholder="Search...">
@@ -223,69 +186,76 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="#/"><i class="fa fa-newspaper-o fa-fw"></i> Dashboard</a>
+                            <a href="/admin/"><i class="fa fa-newspaper-o fa-fw"></i> Dashboard</a>
                         </li>
 
                         <li>
-                            <a href="#/surveys"><i class="fa fa-paper-plane-o fa-fw"></i> Get Started</a>
+                            <a href="/admin/wizard"><i class="fa fa-paper-plane-o fa-fw"></i> Getting Started</a>
                         </li>
 
                         <li>
-                            <a href="#/displays"><i class="fa fa-desktop fa-fw"></i> My Displays</a>
+                            <a href="/admin/displays"><i class="fa fa-desktop fa-fw"></i> Displays</a>
+                        </li>
+                        <li>
+                            <a href="/admin/campaigns"><i class="fa fa-files-o fa-fw"></i> Campaigns</a>
+                        </li>
+                        <li>
+                            <a href="/admin/surveys"><i class="fa fa-file-text-o fa-fw"></i> Surveys</a>
                         </li>
 
                         <!-- MODEL -->
-                        <li>
+                        <li data-restrict access="admin">
                             <a href="#"><i class="fa fa-cloud fa-fw"></i> Model<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#/campaigns"><i class="fa fa-files-o fa-fw"></i> Campaigns</a>
+                                    <a href="/admin/campaigns"><i class="fa fa-files-o fa-fw"></i> All Campaigns</a>
                                 </li>
                                 <li>
-                                    <a href="#/surveys"><i class="fa fa-file-text-o fa-fw"></i> Surveys</a>
+                                    <a href="/admin/surveys"><i class="fa fa-file-text-o fa-fw"></i> All Surveys</a>
                                 </li>
                                 <li>
-                                    <a href="#/categories"><i class="fa fa-file-o fa-fw"></i> Categories</a>
+                                    <a href="/admin/displays"><i class="fa fa-desktop fa-fw"></i> All Displays</a>
                                 </li>
                                 <li>
-                                    <a href="#/standardizedQuestions"><i class="fa fa-navicon fa-fw"></i> Standardized Questions</a>
+                                    <a href="/admin/questions"><i class="fa fa-list fa-fw"></i> Questions</a>
                                 </li>
                                 <li>
-                                    <a href="#/questions"><i class="fa fa-list fa-fw"></i> Questions</a>
+                                    <a href="/admin/questionTypes"><i class="fa fa-check-square-o fa-fw"></i> Question Types</a>
                                 </li>
                                 <li>
-                                    <a href="#/questionTypes"><i class="fa fa-tasks fa-fw"></i> Question Types</a>
+                                    <a href="/admin/contexts"><i class="fa fa-bullseye fa-fw"></i> Context</a>
                                 </li>
                                 <li>
-                                    <a href="#/users"><i class="fa fa-users fa-fw"></i> Users</a>
+                                    <a href="/admin/categories"><i class="fa fa-navicon fa-fw"></i> Categories</a>
                                 </li>
                                 <li>
-                                    <a href="#/contexts"><i class="fa fa-bullseye fa-fw"></i> Context</a>
+                                    <a href="/admin/responses"><i class="fa fa-file-text fa-fw"></i> Responses</a>
                                 </li>
                                 <li>
-                                    <a href="#/displays"><i class="fa fa-desktop fa-fw"></i> Displays</a>
+                                    <a href="/admin/displayModels"><i class="fa fa-tablet fa-fw"></i> Display Models</a>
                                 </li>
+                                <li>
+                                    <a href="/admin/users"><i class="fa fa-users fa-fw"></i> Users</a>
+                                </li>
+
+                                <!-- NOT IMPLEMENTED YET -->
+                                <li>
+                                    <a href="#"><i class="fa fa-wrench fa-fw"></i> Not Yet Implemented<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="#"><i class="fa fa-comments fa-fw"></i> Comments</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-area-chart fa-fw"></i> Statistics</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
                             </ul>
                         </li>
 
-                        <!-- NOT IMPLEMENTED YET -->
                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Not Yet Implemented<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#/responses"><i class="fa fa-file-text fa-fw"></i> Responses</a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-comments fa-fw"></i> Comments</a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-area-chart fa-fw"></i> Statistics</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="#"><i class="fa fa-cog fa-fw"></i> Settings</a>
+                            <a href="/admin/settings"><i class="fa fa-cog fa-fw"></i> Settings</a>
                         </li>
 
 
@@ -315,18 +285,31 @@
 
         <!-- AngularJS JavaScript -->
         <script src="lib/angular/angular.min.js"></script>
+        <script src="lib/angular-resource/angular-resource.min.js"></script>
         <script src="lib/angular-route/angular-route.min.js"></script>
+        <script src="lib/angular-animate/angular-animate.min.js"></script>
+        <script src="lib/angular-sanitize/angular-sanitize.min.js"></script>
         <script src="app/app.js"></script>
 
-        <script src="app/controllers/QuestionController.js"></script>
-        <script src="app/controllers/QuestionTypeController.js"></script>
-        <script src="app/controllers/CategoryController.js"></script>
-        <script src="app/controllers/SurveyController.js"></script>
-        <script src="app/controllers/StandardizedQuestionController.js"></script>
-        <script src="app/controllers/CampaignController.js"></script>
-        <script src="app/controllers/DisplayController.js"></script>
-        <script src="app/controllers/ContextController.js"></script>
-        <script src="app/controllers/UserController.js"></script>
+        <script src="app/services.js"></script>
+        <script src="app/authentication/AuthenticationController.js"></script>
+        <script src="app/authentication/AuthenticationDirective.js"></script>
+        <script src="app/authentication/AuthenticationService.js"></script>
+        <script src="app/dashboard/DashboardController.js"></script>
+        <script src="app/questions/QuestionController.js"></script>
+        <script src="app/questionTypes/QuestionTypeController.js"></script>
+        <script src="app/responses/ResponseController.js"></script>
+        <script src="app/categories/CategoryController.js"></script>
+        <script src="app/surveys/SurveyController.js"></script>
+        <script src="app/surveys/SurveyDirectives.js"></script>
+        <script src="app/campaigns/CampaignController.js"></script>
+        <script src="app/displayModels/DisplayModelController.js"></script>
+        <script src="app/displays/DisplayController.js"></script>
+        <script src="app/contexts/ContextController.js"></script>
+        <script src="app/wizard/WizardDirective.js"></script>
+        <script src="app/wizard/WizardController.js"></script>
+        <script src="app/users/UserController.js"></script>
+        <script src="app/settings/SettingsController.js"></script>
 
         <!-- Metis Menu Plugin JavaScript -->
         <script src="lib/metisMenu/dist/metisMenu.min.js"></script>
@@ -340,9 +323,9 @@
         <script src="lib/sb-admin-2.js"></script>
 
         <!-- AngularStrap -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.1.2/angular-strap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.1.2/angular-strap.tpl.min.js"></script>
-
+        <script src="lib/angular-strap/dist/angular-strap.min.js"></script>
+        <script src="lib/angular-strap/dist/angular-strap.tpl.min.js"></script>
+        
 </body>
 
 </html>

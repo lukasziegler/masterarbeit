@@ -1,0 +1,105 @@
+
+/** 
+ * CSS for Individual Styling 
+ */
+
+.content {
+	margin-top: 35px;
+}
+
+/* Jumbotron fix */
+.jumbotron {
+	padding: 30px 15px;
+}
+
+.jumbotron h1,
+.jumbotron .h1 {
+	font-size: 36px;
+}
+
+.jumbotron form {
+	padding: 15px 0;
+}
+
+.btn-reduced {
+	opacity: 0.5;
+}
+
+.btn-reduced:hover {
+	opacity: 0.7;
+}
+
+/* Alert */
+.alert {
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #f2dede;
+	font-size: 16px;
+	padding: 20px 30px;
+}
+
+
+/* Text Styling */
+.text-muted a, .text-muted a:visited, .text-muted a:hover {
+	color: #777;
+	text-decoration: none;
+}
+
+footer p {
+	font-size: 12px;
+	text-align: center;
+	color: #adadad;
+	padding: 5px 0;
+}
+
+
+/*** Question Types ***/
+
+#question-type {
+
+}
+
+/* Radio Buttons */
+.radio-button {
+	text-align: center;
+	margin: 10px -60px 5px -60px;
+}
+
+.radio-button label:first-child {
+	padding-right: 10px;
+}
+.radio-button label:last-child {
+	padding-left: 10px;
+}
+
+label {
+	font-size: 18px;
+	line-height: 56px;
+	cursor: pointer;
+}
+
+label * {
+	cursor: pointer;
+}
+
+.radio-label {
+	/*margin-top: -10px;*/
+}
+
+.radio-inline {
+	background-color: #e3e3e3;
+	border-radius: 10px;
+	padding: 5px 17px 5px 37px;
+	margin-bottom: 4px;
+	margin-top: 4px !important;
+}
+
+.radio-inline:hover {
+	background-color: #d9d9d9;
+}
+
+/* TEMP NOT NICE WAY, BUT quick and rity */
+/*input[type=text] {
+	margin-left: 60px;
+	width: 87%;
+}*/

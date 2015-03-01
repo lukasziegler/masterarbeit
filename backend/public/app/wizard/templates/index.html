@@ -1,0 +1,29 @@
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Getting Started</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+
+            <div class="alert alert-info alert-dismissable" ng-show="tabs.showHints">
+                <button type="button" class="close" ng-click="tabs.showHints = false">×</button>
+                <!-- <i class="fa fa-info fa-3x"></i> -->
+                {{ getTabHint(tabs.activeTab) }}
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12 col-lg-10 col-lg-offset-1" >
+                    <div class="bs-example" append-source>
+                    <!-- Tabs for Wizard / Pills -->
+                        <div bs-active-pane="tabs.activeTab" bs-tabs>
+                            <div ng-repeat="tab in tabs" title="{{ tab.title }}" bs-pane>
+                                <br>
+                                <div ng-include="tab.template"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br>

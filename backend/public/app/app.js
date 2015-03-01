@@ -1,148 +1,277 @@
-var app = angular.module("pdsurvey", ["ngRoute", "mgcrea.ngStrap"]);
+var app = angular.module('pdsurvey', ['ngRoute', 'ngResource', 'ngAnimate', 'ngSanitize', 
+	'mgcrea.ngStrap', 'pdWizard', 'pdAuthentication']);
+
+// Constants (Config)
+app.constant('config', { API: 'http://localhost:3000/api/', frontend: 'http://localhost:3000' } );
+
+// Root Scope
+app.run(function($rootScope, authService) {
+	$rootScope.user = "lukas";
+	$rootScope.userId = "54a6b51a276762fc510bb0f0";
+
+	$rootScope.getUserRole = function() {
+		return authService.getUserRole();
+	}
+
+
+
+});
+
+app.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $location) {
+	console.log($location)
+    var original = $location.path;
+    $location.path = function (path, reload) {
+        if (reload === false) {
+            var lastRoute = $route.current;
+            var un = $rootScope.$on('$locationChangeSuccess', function () {
+                $route.current = lastRoute;
+                un();
+            });
+        }
+        return original.apply($location, [path]);
+    };
+}])
 
 // Routing
-app.config(function($routeProvider) {
-	$routeProvider
+app.config(function($routeProvider, $httpProvider, $locationProvider, $modalProvider, $datepickerProvider) {
 
+
+    //================================================
+    // Check if the user is connected
+    //================================================
+    var checkLoggedin = function($q, $timeout, $http, $location, $rootScope){
+      // Initialize a new promise
+      var deferred = $q.defer();
+
+      // Make an AJAX call to check if the user is logged in
+      $http.get(config.API + '/loggedin').success(function(user){
+        // Authenticated
+        if (user !== '0')
+          $timeout(deferred.resolve, 0);
+
+        // Not Authenticated
+        else {
+          $rootScope.message = 'You need to log in.';
+          $timeout(function(){deferred.reject();}, 0);
+          $location.url('/login');
+        }
+      });
+
+      return deferred.promise;
+    };
+
+    
+    //================================================
+    // Add an interceptor for AJAX errors
+    //================================================
+    $httpProvider.interceptors.push(function($q, $location) {
+      return {
+        response: function(response) {
+          // do something on success
+          return response;
+        },
+        responseError: function(response) {
+          if (response.status === 401)
+            $location.url('/login');
+          return $q.reject(response);
+        }
+      };
+    });
+
+
+    //================================================
+    // Define all routes
+    //================================================
+
+	$routeProvider
 		/* USERS */
 		.when("/users", {
-			templateUrl: "/app/templates/users/list.html",
+			templateUrl: "/admin/app/users/templates/list.html",
 			controller: "UserListController"
 		})
 		.when("/users/new", {
-			templateUrl: "/app/templates/users/create.html",
+			templateUrl: "/admin/app/users/templates/create.html",
 			controller: "UserCreateController"
 		})
 		.when("/users/:id/edit", {
-			templateUrl: "/app/templates/users/edit.html",
+			templateUrl: "/admin/app/users/templates/edit.html",
 			controller: "UserEditController"
+		})
+
+		/* USERS LOGIN */
+		.when("/login", {
+			templateUrl: "/admin/app/authentication/templates/login.html",
+			controller: "AuthenticationController"
+		})
+
+		/* RESPONSES */
+		.when("/responses", {
+			templateUrl: "/admin/app/responses/templates/list.html",
+			controller: "ResponseListController"
 		})
 
 		/* QUESTIONS */
 		.when("/questions", {
-			templateUrl: "/app/templates/questions/list.html",
+			templateUrl: "/admin/app/questions/templates/list.html",
 			controller: "QuestionListController"
 		})
 		.when("/questions/new", {
-			templateUrl: "/app/templates/questions/create.html",
+			templateUrl: "/admin/app/questions/templates/create.html",
 			controller: "QuestionCreateController"
 		})
 		.when("/questions/:id/edit", {
-			templateUrl: "/app/templates/questions/edit.html",
+			templateUrl: "/admin/app/questions/templates/edit.html",
 			controller: "QuestionEditController"
 		})
 
 		/* QUESTION TYPES */
 		.when("/questionTypes", {
-			templateUrl: "/app/templates/questionTypes/list.html",
+			templateUrl: "/admin/app/questionTypes/templates/list.html",
 			controller: "QuestionTypeListController"
 		})
 		.when("/questionTypes/new", {
-			templateUrl: "/app/templates/questionTypes/create.html",
+			templateUrl: "/admin/app/questionTypes/templates/create.html",
 			controller: "QuestionTypeCreateController"
 		})
 		.when("/questionTypes/:id/edit", {
-			templateUrl: "/app/templates/questionTypes/edit.html",
+			templateUrl: "/admin/app/questionTypes/templates/edit.html",
 			controller: "QuestionTypeEditController"
 		})
 
 		/* CATEGORIES */
 		.when("/categories", {
-			templateUrl: "/app/templates/categories/list.html",
+			templateUrl: "/admin/app/categories/templates/list.html",
 			controller: "CategoryListController"
 		})
 		.when("/categories/new", {
-			templateUrl: "/app/templates/categories/create.html",
+			templateUrl: "/admin/app/categories/templates/create.html",
 			controller: "CategoryCreateController"
 		})
 		.when("/categories/:id/edit", {
-			templateUrl: "/app/templates/categories/edit.html",
+			templateUrl: "/admin/app/categories/templates/edit.html",
 			controller: "CategoryEditController"
+		})
+		.when("/categories/:id/", {
+			templateUrl: "/admin/app/categories/templates/view.html",
+			controller: "CategoryViewController"
 		})
 
 		/* SURVEYS */
 		.when("/surveys", {
-			templateUrl: "/app/templates/surveys/list.html",
+			templateUrl: "/admin/app/surveys/templates/list.html",
 			controller: "SurveyListController"
 		})
 		.when("/surveys/new", {
-			templateUrl: "/app/templates/surveys/create.html",
+			templateUrl: "/admin/app/surveys/templates/create.html",
 			controller: "SurveyCreateController"
 		})
 		.when("/surveys/:id/edit", {
-			templateUrl: "/app/templates/surveys/edit.html",
+			templateUrl: "/admin/app/surveys/templates/edit.html",
 			controller: "SurveyEditController"
-		})
-
-		/* STANDARDIZED QUESTIONNAIRE / SURVEY */
-		.when("/standardizedQuestions", {
-			templateUrl: "/app/templates/standardizedQuestions/list.html",
-			controller: "StandardizedQuestionListController"
-		})
-		.when("/standardizedQuestions/new", {
-			templateUrl: "/app/templates/standardizedQuestions/create.html",
-			controller: "StandardizedQuestionCreateController"
-		})
-		.when("/standardizedQuestions/:id/edit", {
-			templateUrl: "/app/templates/standardizedQuestions/edit.html",
-			controller: "StandardizedQuestionEditController"
 		})
 
 		/* CAMPAIGNS */
 		.when("/campaigns", {
-			templateUrl: "/app/templates/campaigns/list.html",
+			templateUrl: "/admin/app/campaigns/templates/list.html",
 			controller: "CampaignListController"
 		})
 		.when("/campaigns/new", {
-			templateUrl: "/app/templates/campaigns/create.html",
+			templateUrl: "/admin/app/campaigns/templates/create.html",
 			controller: "CampaignCreateController"
 		})
 		.when("/campaigns/:id/edit", {
-			templateUrl: "/app/templates/campaigns/edit.html",
+			templateUrl: "/admin/app/campaigns/templates/edit.html",
 			controller: "CampaignEditController"
 		})
 
+		/* DISPLAY MODELS */
+		.when("/displayModels", {
+			templateUrl: "/admin/app/displayModels/templates/list.html",
+			controller: "DisplayModelListController"
+		})
+		.when("/displayModels/new", {
+			templateUrl: "/admin/app/displayModels/templates/create.html",
+			controller: "DisplayModelCreateController"
+		})
+		.when("/displayModels/:id/edit", {
+			templateUrl: "/admin/app/displayModels/templates/edit.html",
+			controller: "DisplayModelEditController"
+		})
 
 		/* DISPLAYS */
 		.when("/displays", {
-			templateUrl: "/app/templates/displays/list.html",
+			templateUrl: "/admin/app/displays/templates/list.html",
 			controller: "DisplayListController"
 		})
 		.when("/displays/new", {
-			templateUrl: "/app/templates/displays/create.html",
+			templateUrl: "/admin/app/displays/templates/create.html",
 			controller: "DisplayCreateController"
 		})
 		.when("/displays/:id/edit", {
-			templateUrl: "/app/templates/displays/edit.html",
+			templateUrl: "/admin/app/displays/templates/edit.html",
 			controller: "DisplayEditController"
 		})
 
 		/* CONTEXTS */
 		.when("/contexts", {
-			templateUrl: "/app/templates/contexts/list.html",
+			templateUrl: "/admin/app/contexts/templates/list.html",
 			controller: "ContextListController"
 		})
 		.when("/contexts/new", {
-			templateUrl: "/app/templates/contexts/create.html",
+			templateUrl: "/admin/app/contexts/templates/create.html",
 			controller: "ContextCreateController"
 		})
 		.when("/contexts/:id/edit", {
-			templateUrl: "/app/templates/contexts/edit.html",
+			templateUrl: "/admin/app/contexts/templates/edit.html",
 			controller: "ContextEditController"
 		})
 
+		/* WIZARD / GETTING STARTED */
+		.when("/wizard", {
+			templateUrl: "/admin/app/wizard/templates/index.html",
+			controller: "WizardController"
+		})
+		.when("/wizard/:tab", {
+			templateUrl: "/admin/app/wizard/templates/index.html",
+			controller: "WizardController"
+		})
 
+		/* SETTINGS */
+		.when("/settings", {
+			templateUrl: "/admin/app/settings/templates/index.html",
+			controller: "SettingsController"
+		})
 
 		/* DASHBOARD */
 		.when("/", {
-			templateUrl: "/app/templates/dashboard/overview.html",
+			templateUrl: "/admin/app/dashboard/templates/overview.html",
 			controller: "DashboardController"
 		})
-		.otherwise({redirectTo: "/"})
-});
+
+		// .otherwise({redirectTo: "/"})
+	
+
+	//================================================
+    // Activate HTML5 Mode Routing (remove the ...//...)
+    //================================================
+
+	$locationProvider.html5Mode(true);
 
 
+    //================================================
+    // AngularStrap: Configure Modules
+    //================================================
 
-app.controller("DashboardController", function($scope, $http) {
-	$scope.message = "Welcome to PDSurvey";
+    // Popups (Modals)
+	angular.extend($modalProvider.defaults, {
+		html: true
+	});
+
+	// Time/Date Picker
+	angular.extend($datepickerProvider.defaults, {
+		dateFormat: 'mediumDate'
+		// startWeek: 1
+	});
+
+
 });

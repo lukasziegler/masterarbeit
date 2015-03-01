@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
-var dbURI = 'mongodb://localhost/pdsurvey';
+// var dbURI = 'mongodb://localhost/pdsurvey';
+var dbURI = 'mongodb://ds051720.mongolab.com:51720/pdsurvey';
 
 var options = {
   db: { native_parser: true },
@@ -34,4 +35,3 @@ process.on('SIGINT', function() {
     process.exit(0);
   });
 });
-

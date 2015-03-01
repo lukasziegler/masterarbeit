@@ -1,0 +1,16 @@
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Add Question</h1>
+                </div>
+            </div>
+
+            <form class="form-horizontal" ng-submit="createQuestion()">
+              <fieldset>
+
+                  <div ng-include="'/admin/app/questions/templates/_form.html'"></div>
+
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <a href="questions" class="btn btn-default">Cancel</a>
+
+              	</fieldset>
+            </form>

@@ -1,6 +1,6 @@
 {
-  "name": "client",
-  "version": "0.0.1",
+  "name": "pdsurvey-backend",
+  "version": "0.1.1",
   "description": "PDSurvey Web Client with AngularJS",
   "main": "server.js",
   "scripts": {

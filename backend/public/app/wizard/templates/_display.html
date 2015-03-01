@@ -1,0 +1,119 @@
+
+
+<div class="row" ng-show="displays.length > 0">
+    <div class="col-lg-12">
+        <div class="panel panel-selected">
+            <div class="panel-heading">
+                Selected Displays
+            </div>
+            <div class="panel-body">
+
+	            <div class="table-no-borders" ng-show="myDisplays.length > 0">
+	                <table class="table table-hover table-striped table-v-centered">
+	                    <thead>
+	                        <tr>
+	                            <th>Name</th>
+	                            <th>Model</th>
+	                            <th>Location</th>
+	                            <th></th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        <tr ng-repeat="myDisplay in myDisplays">
+	                            <td>{{myDisplay.name}}</td>
+	                            <td>{{myDisplay.displayModel.name}}</td>
+	                            <td>{{myDisplay.location}}</td>
+	                            <td><button pd-remove-display></button></td>
+	                        </tr>
+	                    </tbody>
+	                </table>
+                </div>
+
+                <div ng-show="myDisplays.length == 0">
+                	Please select at least one display
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<button pd-next-tab></button>
+
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+	    Select Displays to Configure
+	</div>
+	<div class="panel-body option-panel">
+
+		<div class="col-lg-12 text-center" ng-show="displays.length == 0">
+			<a ng-click="setDisplayMode(2)">Add your first Display</a>
+		</div>
+
+		<div class="row" ng-show="displays.length > 0">
+			<div class="col-sm-6 text-center">
+				<a ng-click="setDisplayMode(1)">Choose existing Display</a>
+			</div>		
+			<div class="col-sm-6 text-center">
+				<a ng-click="setDisplayMode(2)">Or add a new Display</a>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<div class="panel panel-default" ng-show="displays.length > 0 && displayMode === 1">
+    <div class="panel-heading">
+        Choose Displays
+    </div>
+    <div class="panel-body">
+
+        <div class="table-no-borders">
+            <table class="table table-hover table-striped table-v-centered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Model</th>
+                        <th>Location</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="selectable" ng-repeat="display in displays" ng-click="toggleDisplay(display)" ng-class="{selected: isDisplaySelected(display)}">
+                        <td>{{display.name}}</td>
+                        <td>{{display.displayModel.name}}</td>
+                        <td>{{display.location}}</td>
+                        <td><a class="btn btn-default pull-right"><i ng-class="{'fa fa-minus': isDisplaySelected(display), 'fa fa-plus': !isDisplaySelected(display) }"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="panel panel-default" ng-show="displayMode === 2">
+	<div class="panel-heading">
+	    Add Display
+	</div>
+	<div class="panel-body">
+
+		<form class="form-horizontal" ng-submit="saveDisplay()">
+		    <fieldset>
+
+				<div ng-include="'/admin/app/displays/templates/_form.html'"></div>
+				
+				<div class="pull-right">
+					<a class="btn btn-default" ng-click="setDisplayMode(0)">Cancel</a>
+					<button type="submit" class="btn btn-primary">Save Display</button>
+				</div>
+
+			</fieldset>
+		</form>
+
+	</div>
+</div>
+
+<button pd-next-tab></button>

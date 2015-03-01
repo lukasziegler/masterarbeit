@@ -1,0 +1,85 @@
+<div class="control-group">
+
+
+	<div class="form-group">
+		<label for="questionType.name" class="col-sm-2 control-label">Name*</label>
+		<div class="col-sm-10">
+			<input id="questionType.name" class="form-control" placeholder="Name" ng-model="questionType.name" required>
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label for="questionType.description" class="col-sm-2 control-label">Description*</label>
+		<div class="col-sm-10">
+			<input id="questionType.description" class="form-control" placeholder="Description" ng-model="questionType.description" required>
+		</div>
+	</div>
+
+
+<!-- 	<div class="form-group">
+		<label for="questionType.abbreviation" class="col-sm-2 control-label">Abbreviation*</label>
+		<div class="col-sm-10">
+			<input id="questionType.abbreviation" class="form-control" placeholder="Name for html template (<abbr>.html)" ng-model="questionType.abbreviation" required>
+		</div>
+	</div> -->
+
+
+	<hr>
+
+	<!-- QUESTION TYPES -->
+
+	<div class="form-group">
+		<label for="questionType.params.type" class="col-sm-2 control-label">Input Type</label>
+		<div class="col-sm-4">
+			<select id="questionType.params.type" class="form-control" ng-model="questionType.params.type">
+				<option value="text">Text</option>
+				<option value="number">Number</option>
+				<option value="radio">Radio (Likert Scale)</option>
+				<option value="none"> - </option>
+			</select>		
+		</div>
+	</div>
+
+
+	<div ng-if="questionType.params.type == 'radio'">
+		<div class="form-group" >
+			<span class="col-sm-2 control-label">NumOptions</span>
+			<div class="col-sm-10">
+				<input id="questionType.params.num" class="form-control" type="number" placeholder="Number of bullet points" ng-model="questionType.params.num">
+			</div>
+		</div>
+		
+		<div class="form-group" >
+			<span class="col-sm-2 control-label">Labels</span>
+			<div class="col-md-5">
+				<input id="questionType.params.maxLabel" class="form-control" placeholder="Text for Maximum" ng-model="questionType.params.maxLabel">
+			</div>
+			<div class="col-md-5">
+				<input id="questionType.params.minLabel" class="form-control" placeholder="Text for Minimum" ng-model="questionType.params.minLabel">
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="form-group">
+		<label for="questionType.parameters" class="col-sm-2 control-label"><i>Debug</i></label>
+		<div class="col-sm-10">
+			<pre>{{questionType.params}}</pre>
+		</div>
+	</div>
+
+
+	<hr>
+
+
+	<div class="form-group">
+		<label for="questionType.constraints" class="col-sm-2 control-label">Constraints</label>
+		<div class="col-sm-10">
+			<input id="questionType.constraints" class="form-control" placeholder="Constraints" ng-model="questionType.constraints">
+		</div>
+	</div>
+
+</div>
+

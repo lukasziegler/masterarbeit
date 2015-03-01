@@ -1,0 +1,124 @@
+<div class="control-group">
+
+
+	
+	<div class="form-group">
+		<label for="campaign.name" class="col-sm-2 control-label">Campaign*</label>
+		<div class="col-sm-10">
+			<input id="campaign.name" class="form-control" placeholder="Name" ng-model="campaign.name" required>
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label for="campaign.launched" class="col-sm-2 control-label">Launched</label>
+		<div id="campaign.launched" class="col-sm-10 btn-group" ng-model="campaign.launched" bs-radio-group>
+		  <label class="btn btn-default">
+		  	<input type="radio" class="btn btn-default" value="false" ng-model="campaign.launched" bs-radio>offline
+	  	</label>
+		  <label class="btn btn-default">
+		  	<input type="radio" class="btn btn-danger" value="true" ng-model="campaign.launched" bs-radio>live
+	  	</label>
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label for="campaign.description" class="col-sm-2 control-label">Description</label>
+		<div class="col-sm-10">
+		<input id="campaign.description" class="form-control" placeholder="Enter a short description" ng-model="campaign.description">
+		</div>
+	</div>
+
+
+	<hr>
+
+
+	<div class="form-group">
+		<label for="campaign.startDate" class="col-sm-2 control-label"><i class="fa fa-calendar"></i> Date range</label>
+		<div class="col-sm-5">
+			<input type="text" class="form-control" ng-model="campaign.startDate" data-max-date="{{campaign.endDate}}" placeholder="From" bs-datepicker>
+		</div>
+		<div class="col-sm-5">
+			<input type="text" class="form-control" ng-model="campaign.endDate" data-min-date="{{campaign.startDate}}" placeholder="Until" bs-datepicker>
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label for="campaign.content" class="col-sm-2 control-label">Description of Content</label>
+		<div class="col-sm-10">
+			<input id="campaign.content" class="form-control" placeholder="" type="text" ng-model="campaign.content">
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label for="campaign.location" class="col-sm-2 control-label">Description of Location</label>
+		<div class="col-sm-10">
+			<input id="campaign.location" class="form-control" placeholder="" type="text" ng-model="campaign.location">
+		</div>
+	</div>
+
+
+	<hr>
+
+
+	<div class="form-group">
+		<label for="campaign.display" class="col-sm-2 control-label">Display</label>
+		<div class="col-sm-10">
+			<input id="campaign.display" class="form-control" placeholder="TODO Dropdown" ng-model="campaign.display">
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label for="campaign.survey" class="col-sm-2 control-label">Survey</label>
+		<div class="col-sm-10">
+			<input id="campaign.survey" class="form-control" placeholder="TODO Dropdown" ng-model="campaign.survey">
+		</div>
+	</div>
+
+
+	<div class="form-group"> 
+		<label for="campaign.contextDynamic" class="col-sm-2 control-label">Dynamic Context</label>
+		<div class="col-sm-10">
+			<div class="input-group">
+ 				<select id="campaign.contextDynamic" class="form-control" ng-options="context as context.name for context in dynamicContexts" ng-model="campaign.contextDynamic" ng-change="addContext(campaign.contextDynamic)" pd-add-context-dynamic>
+ 					<option value=""> - Choose value from Dropdown - </option>
+ 				</select>
+			</div>
+ 		</div>
+	</div>
+
+
+	<div class="form-group" ng-repeat="context in contextDynamic">
+		<div class="col-sm-2 text-right">{{context.name}}</div>
+    	<div class="col-sm-6">
+			<div class="input-group">
+			    <span class="input-group-btn">
+ 					<button pd-remove-context-dynamic></button>
+				</span>
+				<input class="form-control" placeholder="" ng-model="context.value">
+			</div>
+    	</div>
+	</div>
+
+
+	<div class="form-group">
+		<label for="campaign.minResponses" class="col-sm-2 control-label">NumResponses</label>
+		<div class="col-sm-5">
+			<input id="campaign.minResponses" class="form-control" placeholder="Minimum number of responses" type="number" ng-model="campaign.minResponses">
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label for="campaign.createdBy" class="col-sm-2 control-label">Created By</label>
+		<div class="col-sm-10">
+			<input id="campaign.createdBy" class="form-control" placeholder="TODO autofill with session data" ng-model="campaign.createdBy" disabled>
+		</div>
+	</div>
+
+</div>
+

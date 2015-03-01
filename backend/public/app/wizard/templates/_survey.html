@@ -1,0 +1,116 @@
+
+
+<div class="alert alert-warning" ng-hide="readyToConfigure()">
+    You must first choose a <strong>display</strong>, in order to be able to select or surveys.
+</div>
+
+
+<div class="row" ng-show="readyToConfigure()">
+    <div class="col-lg-12">
+        <div class="panel panel-selected">
+            <div class="panel-heading">
+                Selected Surveys
+            </div>
+            <div class="panel-body">
+
+	            <div class="table-no-borders" ng-show="mySurveys.length > 0">
+	                <table class="table table-hover table-striped table-v-centered">
+	                    <thead>
+	                        <tr>
+	                            <th>Name</th>
+	                            <th>Category</th>
+	                            <th>Description</th>
+	                            <th></th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        <tr ng-repeat="mySurvey in mySurveys">
+	                            <td>{{mySurvey.name}}</td>
+	                            <td>{{mySurvey.category.name}}</td>
+	                            <td>{{mySurvey.description}}</td>
+	                            <td><button pd-remove-survey></button></td>
+                    		</tr>
+	                    </tbody>
+	                </table>
+                </div>
+
+                <div ng-show="mySurveys.length == 0">
+                	Please select at least one survey
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<button pd-next-tab ng-show="readyToConfigure()"></button>
+
+<div class="panel panel-default" ng-show="readyToConfigure()">
+	<div class="panel-heading">
+	    Choose Existing Survey
+	</div>
+	<div class="panel-body">
+
+        <div class="table-no-borders">
+            <table class="table table-hover table-striped table-v-centered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="selectable" ng-repeat="survey in surveys" ng-click="toggleSurvey(survey)" ng-class="{selected: isSurveySelected(survey)}">
+                        <td>{{survey.name}}</td>
+                        <td>{{survey.category.name}}</td>
+                        <td>{{survey.description}}</td>
+                        <td><a class="btn btn-default pull-right"><i ng-class="{'fa fa-minus': isSurveySelected(survey), 'fa fa-plus': !isSurveySelected(survey) }"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+	</div>
+</div>
+
+
+<div class="panel panel-default" ng-show="readyToConfigure() && surveyMode !== 2">
+	<div class="panel-heading">
+	    Add New Survey
+	</div>
+	<div class="panel-body option-panel">
+
+		<div class="col-md-12 text-center">
+			<a ng-click="setSurveyMode(2)">Or add your own custom Survey</a>
+		</div>
+
+	</div>
+</div>
+
+
+
+<div class="panel panel-default" ng-show="surveyMode === 2" ng-show="readyToConfigure()">
+	<div class="panel-heading">
+	    Create New Survey
+	</div>
+	<div class="panel-body">
+
+		<form class="form-horizontal" ng-submit="saveSurvey()">
+		    <fieldset>
+
+				<div ng-include="'/admin/app/surveys/templates/_form.html'"></div>
+
+				<div class="pull-right">
+					<a class="btn btn-default" ng-click="setSurveyMode(0)">Cancel</a>
+					<button type="submit" class="btn btn-primary">Add Survey</button>
+				</div>
+
+			</fieldset>
+		</form>
+
+	</div>
+</div>
+
+<button pd-next-tab></button>
