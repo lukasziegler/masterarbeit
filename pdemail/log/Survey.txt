@@ -2,11 +2,4 @@
 1	123	02/23/15 22:03:34	1232@123.com	Skip Choice	ShowFinal
 			23423.234@
 			lukas@lukasziegler.com
-			lukas@lukasziegler.com
-			lukas@lukasziegler.com
-			new line
-			new line
-			test
-			new line
-			new line
-			new
+			lukas.ziegler@campus.lmu.de

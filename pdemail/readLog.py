@@ -1,5 +1,6 @@
 import csv
 import re
+import sendMail
 
 ### Helper functions
 def is_number(s):
@@ -8,7 +9,6 @@ def is_number(s):
         return True
     except ValueError:
         return False
-
 
 
 lastLine = -1
@@ -31,17 +31,12 @@ for line in csv.reader(surveyLog, dialect="excel-tab"): #You can also use delimi
 	## 5. Choice	# 6. FinalStage
 
 	# if i >= lastLine:
-	if i >= int(lastLine):
-		print "new line",i
-		
+
 	## Check if Email is Valid
-	# if re.match(r"[^@]+@[^@]+\.[^@]+", line[3]):
-	# 	print "Send email to:",line[3]
-
-		## TODO: sendEmail(email)
-
-		## TODO: delete entry or mark as done
-		# print i
+	if i >= int(lastLine) and re.match(r"[^@]+@[^@]+\.[^@]+", line[3]):
+		# print "Send email to:",line[3]
+		# print "new line",i
+		sendMail.send(line[3])
 
 	i += 1
 
