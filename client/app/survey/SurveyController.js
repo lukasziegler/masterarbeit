@@ -145,7 +145,7 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 			return;
 		}
 
-		$http.post("http://localhost:3000/api/responses", $scope.response)
+		$http.post($rootScope.restApi + "/responses", $scope.response)
 			.success(function(response) {
 				console.log("successfully submitted response:", $scope.response.answer);
 				$scope.resetQuestion();
@@ -187,7 +187,7 @@ app.controller("SurveyRandomController", function($scope, $http, $rootScope) {
 	// load QuesitonTypes
 	$http.get($rootScope.restApi + "/questionTypes").success(function(response) {
 		$scope.questionTypes = response;
-		console.log("QuestionType",response);
+		// console.log("QuestionType",response);
 	}).error(function(err) {
 		$scope.error = err;
 	});
@@ -264,7 +264,7 @@ app.controller("SurveyRandomController", function($scope, $http, $rootScope) {
 			return;
 		}
 
-		$http.post("http://localhost:3000/api/responses", $scope.response)
+		$http.post($rootScope.restApi + "/responses", $scope.response)
 			.success(function(response) {
 				console.log("successfully submitted response:", $scope.response.answer);
 				$scope.resetQuestion();
