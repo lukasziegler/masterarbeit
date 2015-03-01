@@ -1,7 +1,9 @@
 var mongoose = require('mongoose');
-
-// var dbURI = 'mongodb://localhost/pdsurvey';
 var dbURI = 'mongodb://ds051720.mongolab.com:51720/pdsurvey';
+
+if (app.get('env') === 'development') {
+  dbURI = 'mongodb://localhost/pdsurvey';
+}
 
 var options = {
   db: { native_parser: true },

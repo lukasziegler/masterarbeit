@@ -26,7 +26,7 @@ require('./server/db');
 // Configure all environments
 app.set('views', __dirname + '/server/views');
 app.set('view engine', 'jade');
-if (app.get('env') !== 'production') app.use(logger('dev'));
+if (app.get('env') == 'development') app.use(logger('dev'));
 app.use(cookieParser()); 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());	// allow POST requests
@@ -44,8 +44,6 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Methods", "GET, PUT");
     next();
 });
-
-console.log("dirname", __dirname)
 
 // Routing
 router = express.Router();
@@ -69,8 +67,6 @@ app.all('/*', function(req, res, next) {
 	// exclude the API (probably a dirty workaround)
 	if (req.url.substring(0,4) == '/api') return next();
 	// Allow Angular to support HTML5 mode
-
-  console.log(__dirname);
 
   if (req.url.substring(0,4) == '/admin')
     res.sendFile('/backend/public/index.html', { root: __dirname });
