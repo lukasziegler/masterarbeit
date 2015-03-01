@@ -34,7 +34,7 @@ app.controller("CampaignListController", function($scope, Campaign, config) {
 			campaign.launched = false;
 
 		// update object
-		campaign.$update(success, function(err) {
+		campaign.$update(function(success) {}, function(err) {
 			$scope.error = err;
 		});
 	}

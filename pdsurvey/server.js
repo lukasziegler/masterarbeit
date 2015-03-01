@@ -70,6 +70,8 @@ app.all('/*', function(req, res, next) {
 	if (req.url.substring(0,4) == '/api') return next();
 	// Allow Angular to support HTML5 mode
 
+  console.log(__dirname);
+
   if (req.url.substring(0,4) == '/admin')
     res.sendFile('/backend/public/index.html', { root: __dirname });
   else

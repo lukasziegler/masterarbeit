@@ -35,7 +35,7 @@
                                             <td><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="{{question.explanation}}"><i class="fa fa-info"></i></button>
                                             </td>
                                             <td data-restrict access="admin">{{question.state}}</td>
-                                            <td class="nowrap text-right"><a href="/questions/{{question._id}}/edit" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i></a>
+                                            <td class="nowrap text-right"><a href="questions/{{question._id}}/edit" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i></a>
                                             <a href="" ng-click="deleteQuestion(question)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></td>
                                         </tr>
                                     </tbody>
@@ -43,7 +43,7 @@
                             </div>
                             <!-- /.table-responsive -->
 
-                            <a href="/questions/new" class="btn btn-primary">Add new Question</a>
+                            <a href="questions/new" class="btn btn-primary">Add new Question</a>
 
                         </div>
                         <!-- /.panel-body -->

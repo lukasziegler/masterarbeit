@@ -33,7 +33,7 @@
                                             <td>{{survey.category.name}}</td>
                                             <td>{{survey.description}}</td>
                                             <td data-restrict access="admin">{{survey.state}}</td>
-                                            <td class="nowrap text-right"><a href="/surveys/{{survey._id}}/edit" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i></a>
+                                            <td class="nowrap text-right"><a href="surveys/{{survey._id}}/edit" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i></a>
                                             <a href="" ng-click="deleteSurvey(survey)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></td>
                                         </tr>
                                     </tbody>
@@ -41,7 +41,7 @@
                             </div>
                             <!-- /.table-responsive -->
 
-                            <a href="/surveys/new" class="btn btn-primary">Add new Survey</a>
+                            <a href="surveys/new" class="btn btn-primary">Add new Survey</a>
 
                         </div>
                         <!-- /.panel-body -->

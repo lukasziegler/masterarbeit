@@ -2,7 +2,7 @@ var app = angular.module('pdsurvey', ['ngRoute', 'ngResource', 'ngAnimate', 'ngS
 	'mgcrea.ngStrap', 'pdWizard', 'pdAuthentication']);
 
 // Constants (Config)
-app.constant('config', { API: 'http://localhost:3000/api/', frontend: 'http://localhost:8080/survey' } );
+app.constant('config', { API: 'http://localhost:3000/api/', frontend: 'http://localhost:3000' } );
 
 // Root Scope
 app.run(function($rootScope, authService) {
@@ -13,9 +13,12 @@ app.run(function($rootScope, authService) {
 		return authService.getUserRole();
 	}
 
+
+
 });
 
 app.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $location) {
+	console.log($location)
     var original = $location.path;
     $location.path = function (path, reload) {
         if (reload === false) {
