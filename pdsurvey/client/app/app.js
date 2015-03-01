@@ -5,9 +5,10 @@ var app = angular.module("pdclient", ["ngRoute"])
 //================================================
 .run(function($rootScope, $location) {
 
-	// parameters
-	$rootScope.restApi = "http://localhost:3000/api";
+	// parameters, e.g. "http://localhost:3000/api"
+	$rootScope.restApi = $location.$$protocol+"://"+$location.$$host+":"+$location.$$port+"/api";
 	$rootScope.displayId = "54ec391b27699f6d1056d49f";
+	$rootScope.campaignId = "54f32bfffbf2d90e000a2cbf";
 
 	// specify .active class for top navigation
 	$rootScope.getClass = function(path) {
