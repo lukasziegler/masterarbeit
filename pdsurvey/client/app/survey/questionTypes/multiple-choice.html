@@ -1,9 +1,26 @@
 <!-- MULTIPLE CHOICE -->
-<input type="number" ng-model="response.answer" class="form-control" placeholder="How many?" style="width: 10em" class="text-center" required>
+
+<label class="radio-inline label-checkbox" ng-repeat-start="option in currentQuestion.options track by $index">
+  <input
+    type="checkbox"
+    id="answer{{$index}}"
+    ng-model="response.answer[option]"
+    value="{{option}}"
+    ng-checked="questionsSelected.indexOf(option) > -1"
+    ng-click="toggleSelection(option)"
+  ></label>
+
+<label for="answer{{$index}}">{{option}}</label>
+<br ng-repeat-end>
+
+Response: {{response.answer}}
+
+{{}}
 
 
+<!-- 
 <input type="checkbox" ng-model="response.answer" value="smartphone"> Smartphone<br>
 <input type="checkbox" ng-model="response.answer" value="mobile phone"> Mobile phone (without touch screen)<br>
 <input type="checkbox" ng-model="response.answer" value="tablet"> Tablet/iPad<br>
 <input type="checkbox" ng-model="response.answer" value="laptop"> Laptop<br>
-<input type="checkbox" ng-model="response.answer" value="desktop"> PC/Mac<br>>
+<input type="checkbox" ng-model="response.answer" value="desktop"> PC/Mac<br> -->

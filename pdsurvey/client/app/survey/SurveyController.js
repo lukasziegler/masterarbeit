@@ -28,8 +28,9 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 	$scope.surveys = {};
 	$scope.questionTypeTemplate = '';
 
-	$scope.currentQuestion = {};
-	$scope.currentQuestionType = {};
+	$scope.currentQuestion = {};		// ... displayed on the screen
+	$scope.currentQuestionType = {};	// used for ngInclude
+	$scope.questionsSelected = [];		// for multiple choice fields
 
 
 	// initializing Response object
@@ -133,6 +134,21 @@ console.log("$scope.surveys",response)
 	$scope.getNumRadioButtons = function() {
 		return new Array($scope.currentQuestionType.params.num);  
 	}
+
+	// toggle selection a option-field (checkbox/multiple-choice)
+	$scope.toggleSelection = function toggleSelection(option) {
+		var idx = $scope.questionsSelected.indexOf(option);
+
+		// is currently selected
+		if (idx > -1) {
+			$scope.questionsSelected.splice(idx, 1);
+		}
+
+		// is newly selected
+		else {
+			$scope.questionsSelected.push(option);
+		}
+	};
 
 
 	/* Currently not really needed */

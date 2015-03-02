@@ -56,18 +56,22 @@
 			<div class="col-sm-10">
 					
 				<div class="row">
-				<div class="col-xs-8">
-					<div class="input-group">
-					    <input type="text" class="form-control" placeholder="Question" value="{{question.question}}" ng-model="question.question">
-					    <span class="input-group-btn">
-					        <button pd-delete-question></button>
-					    </span>
+					<div class="col-xs-8">
+						<div class="input-group">
+						    <input type="text" class="form-control" placeholder="Question" value="{{question.question}}" ng-model="question.question">
+						    <span class="input-group-btn">
+						        <button pd-delete-question></button>
+						    </span>
+						</div>
+					</div>
+					<div class="col-xs-4">
+						<select id="" class="form-control" ng-options="questionType._id as questionType.name for questionType in questionTypes" ng-model="question.type" require></select>
 					</div>
 				</div>
-				<div class="col-xs-4">
-					<select id="" class="form-control" ng-options="questionType._id as questionType.name for questionType in questionTypes" ng-model="question.type" require></select>
-				</div>
-				</div>
+
+				<!-- <div class="row" ng-if="question.type == 5492af86867c60fbc2c979a0">
+					enter options: 
+				</div> -->
 
 			</div>
 		</div>
