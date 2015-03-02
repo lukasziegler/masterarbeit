@@ -180,7 +180,7 @@ app.controller("SurveyRandomController", function($scope, $http, $rootScope) {
 
 	// initializing Response object
 	$scope.response = { "question": { "id": "", "type": "", "wording": ""}, 
-		"answer": "", "display": "5494310cf4e2b1000004bcb8",
+		"answer": "", "display": "5494310cf4e2b1000004bcb8", "campaign": $rootScope.campaignId,
 		"survey": "", "session": 1};
 
 
