@@ -46,8 +46,12 @@ var app = angular.module("pdclient", ["ngRoute"])
 			templateUrl: "/app/main/templates/contact.html",
 			controller: "ContactController"
 		})
+		.when("/", {
+			templateUrl: "/app/main/templates/index.html",
+			controller: "MainController"
+		})
 
-		.otherwise({redirectTo: "/survey"});
+		.otherwise({redirectTo: "/"});
 
 	// enable HTML5 Mode
 	$locationProvider.html5Mode(true);

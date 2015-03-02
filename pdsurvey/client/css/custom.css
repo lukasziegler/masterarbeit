@@ -45,6 +45,10 @@
 	text-decoration: none;
 }
 
+p {
+	font-size: 15px;
+}
+
 footer p {
 	font-size: 12px;
 	text-align: center;
