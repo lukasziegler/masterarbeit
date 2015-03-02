@@ -6,7 +6,7 @@
     id="answer{{$index}}"
     ng-model="response.answer[option]"
     value="{{option}}"
-    ng-checked="questionsSelected.indexOf(option) > -1"
+    ng-checked="response.answer.indexOf(option) > -1"
     ng-click="toggleSelection(option)"
   ></label>
 
@@ -14,8 +14,6 @@
 <br ng-repeat-end>
 
 Response: {{response.answer}}
-
-{{}}
 
 
 <!-- 

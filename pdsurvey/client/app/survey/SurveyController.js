@@ -30,7 +30,6 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 
 	$scope.currentQuestion = {};		// ... displayed on the screen
 	$scope.currentQuestionType = {};	// used for ngInclude
-	$scope.questionsSelected = [];		// for multiple choice fields
 
 
 	// initializing Response object
@@ -58,7 +57,7 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 		}
 		else {
 			// start with first question
-console.log("$scope.surveys",response)
+// console.log("$scope.surveys",response)
 			$scope.loadNextQuestion();
 		}
 
@@ -70,8 +69,6 @@ console.log("$scope.surveys",response)
 
 	// load loadNextQuestion
 	$scope.loadNextQuestion = function() {
-
-		console.log("$scope.surveys",$scope.surveys)
 
         // helpers
         lastQuestion = $scope.surveys[i].sections[j].questions.length;
@@ -86,11 +83,16 @@ console.log("$scope.surveys",response)
 		  return obj._id == $scope.currentQuestion.type;
 		});
 
+		// Initialization for Checkbodes / Multiple-choice
+		if (typeof $scope.currentQuestion.type != undefined)
+			$scope.response.answer = [];
+
+
 		// update QuestionType
 		$scope.currentQuestionType = newQuesitonType[0];
     	$scope.questionTypeTemplate = 'app/survey/questionTypes/'+$scope.currentQuestionType.params.type+'.html';
 		
-		console.log("vars",i,j,k, $scope.currentQuestion)
+// console.log("vars",i,j,k, $scope.currentQuestion)
 
         // update Response object
         $scope.response.question.id = $scope.currentQuestion._id;
@@ -136,18 +138,31 @@ console.log("$scope.surveys",response)
 	}
 
 	// toggle selection a option-field (checkbox/multiple-choice)
-	$scope.toggleSelection = function toggleSelection(option) {
-		var idx = $scope.questionsSelected.indexOf(option);
+	$scope.toggleSelection = function(option) {
+
+		/* Dynamic initialization of $scope.response.answer to []
+		 * see above... */
+
+		// var firstStart = true;
+
+		// if (firstStart &&
+		// 	$scope.currentQuestion.options.constructor === Array) {
+		// 	$scope.response.answer = [];
+		// 	firstStart = false;
+		// }
+
+		var idx = $scope.response.answer.indexOf(option);
 
 		// is currently selected
 		if (idx > -1) {
-			$scope.questionsSelected.splice(idx, 1);
+			$scope.response.answer.splice(idx, 1);
 		}
 
 		// is newly selected
 		else {
-			$scope.questionsSelected.push(option);
+			$scope.response.answer.push(option);
 		}
+			
 	};
 
 
