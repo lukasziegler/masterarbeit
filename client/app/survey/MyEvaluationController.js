@@ -1,19 +1,9 @@
 var app = angular.module("pdclient")
 
 
-//================================================
-// DIRECTIVES
-//================================================
+.controller("MyEvaluationController", function($scope, $http, $rootScope) {	
 
-
-//================================================
-// CONTROLLER
-//================================================
-
-
-app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $routeParams) {	
-
-	var campaignId = $routeParams.id;
+	var campaignId = "54f32bfffbf2d90e000a2cbf";
 	$scope.completed = false;
 
 	// counters for survey (i), section (j) and question (k)
@@ -35,7 +25,7 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 	// initializing Response object
 	$scope.response = { "question": { "id": "", "type": "", "wording": ""}, 
 		"answer": "", "display": "5494310cf4e2b1000004bcb8", "campaign": "",
-		"survey": "", "session": 1};
+		"survey": "", "session": 1, "options": []};
 
 
 	// load QuesitonTypes
@@ -84,8 +74,8 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 		});
 
 		// Initialization for Checkbodes / Multiple-choice
-		if (typeof $scope.currentQuestion.type != undefined)
-			$scope.response.answer = [];
+		// if (typeof $scope.currentQuestion.options != undefined)
+		// 	$scope.response.answer = [];
 
 
 		// update QuestionType
@@ -151,16 +141,16 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 		// 	firstStart = false;
 		// }
 
-		var idx = $scope.response.answer.indexOf(option);
+		var idx = $scope.response.options.indexOf(option);
 
 		// is currently selected
 		if (idx > -1) {
-			$scope.response.answer.splice(idx, 1);
+			$scope.response.options.splice(idx, 1);
 		}
 
 		// is newly selected
 		else {
-			$scope.response.answer.push(option);
+			$scope.response.options.push(option);
 		}
 			
 	};
@@ -176,11 +166,27 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 	$scope.resetQuestion = function() {
 		// clear last response from view
 		$scope.response.answer = "";
+		$scope.response.options = [];
+	};
+
+	var stringifyCheckboxes = function() {
+		var stringValue = "";
+
+		for (var i = 0; i < $scope.response.options.length; i++) {
+			stringValue += $scope.response.options[i] + ";";
+		};
+
+		return stringValue;
 	};
 
 
 	// Submit Response
 	$scope.submit = function() {
+
+		if( $scope.response.options.length > 0) {
+			$scope.response.answer = stringifyCheckboxes();
+		}
+
 		if( $scope.response.answer == '') {
 			alert('Response is empty');
 			return;
@@ -190,131 +196,12 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 			.success(function(response) {
 				console.log("successfully submitted response:", $scope.response.answer);
 				$scope.resetQuestion();
-				$scope.loadNextQuestion();
+				$scope.determineNextQuestion();
 			})
 			.error(function(response) {
 				console.log("error sending response");
 				alert("Error submitting response");
 			});
-
-		$scope.determineNextQuestion();
 	}
 
 })
-
-
-
-
-
-
-app.controller("SurveyRandomController", function($scope, $http, $rootScope) {	
-
-	var questionTypes = [];
-
-	$scope.surveys = {};
-	$scope.questionTypeTemplate = '';
-
-	$scope.currentQuestion = {};
-	$scope.currentQuestionType = {};
-
-	$scope.completed = false;
-
-	// initializing Response object
-	$scope.response = { "question": { "id": "", "type": "", "wording": ""}, 
-		"answer": "", "display": "5494310cf4e2b1000004bcb8", "campaign": $rootScope.campaignId,
-		"survey": "", "session": 1};
-
-
-	// load QuesitonTypes
-	$http.get($rootScope.restApi + "/questionTypes").success(function(response) {
-		$scope.questionTypes = response;
-		// console.log("QuestionType",response);
-	}).error(function(err) {
-		$scope.error = err;
-	});
-
-
-	/* Load Questionnaires (old approach, with rand()) */
-	$http.get($rootScope.restApi + "/surveys").success(function(response) {
-		$scope.questionnaires = response;
-		$scope.loadNextQuestion();
-	}).error(function(err) {
-		$scope.error = err;
-	});
-
-
-	$scope.loadNextQuestion = function() {
-		var randSurvey = 0, 
-			randSection = 0,
-			randQuestion = 0;
-
-		if (typeof $scope.questionnaires !== 'undefined') {
-			// choose random question
-	        randSurvey = Math.floor(Math.random() * $scope.questionnaires.length);
-	        randSection = Math.floor(Math.random() * $scope.questionnaires[randSurvey].sections.length);
-	        randQuestion = Math.floor(Math.random() * $scope.questionnaires[randSurvey].sections[randSection].questions.length);
-
-	        // check whether Question has been asked already
-	        	// TODO
-	        	// + clear blackList again in setQuestionType()
-
-	        // update Question object for View
-	        $scope.currentQuestion = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion];
-
-	    	// find corresponding questionType
-			var newQuesitonType = $scope.questionTypes.filter(function( obj ) {
-			  return obj._id == $scope.currentQuestion.type;
-			});
-
-			// update QuestionType
-			$scope.currentQuestionType = newQuesitonType[0];
-	    	$scope.questionTypeTemplate = 'app/survey/questionTypes/'+$scope.currentQuestionType.params.type+'.html';
-
-
-	        // update Response object
-	        $scope.response.answer = $scope.answer;
-	        
-	        $scope.response.question.id = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion]._id;
-	        $scope.response.question.type = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion].type;
-	        $scope.response.question.wording = $scope.questionnaires[randSurvey].sections[randSection].questions[randQuestion].question;
-
-	        $scope.response.display = $rootScope.displayId;
-	        // $scope.response.campaign = '';
-	        $scope.response.survey = $scope.questionnaires[randSurvey]._id
-
-		}
-	};
-
-	$scope.resetQuestion = function() {
-		// clear last response from view
-		$scope.response.answer = "";
-	};
-
-	/* Helper Functions for QuestionTypes */
-	$scope.getNumRadioButtons = function() {
-		return new Array($scope.currentQuestionType.params.num);  
-	}
-
-
-
-
-	// Submit Response
-	$scope.submit = function() {
-		if( $scope.response.answer == '') {
-			alert('Response is empty');
-			return;
-		}
-
-		$http.post($rootScope.restApi + "/responses", $scope.response)
-			.success(function(response) {
-				console.log("successfully submitted response:", $scope.response.answer);
-				$scope.resetQuestion();
-				$scope.loadNextQuestion();
-			})
-			.error(function(response) {
-				console.log("error sending response");
-				alert("Error submitting response");
-			});
-	};
-})
-

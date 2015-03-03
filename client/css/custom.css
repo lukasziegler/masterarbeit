@@ -90,6 +90,14 @@ label * {
 	cursor: pointer;
 }
 
+.label {
+	background-color: #e3e3e3;
+	border-radius: 10px;
+	padding: 5px 17px 5px 37px;
+	margin-bottom: 4px;
+	margin-top: 4px !important;
+}
+
 .radio-label {
 	/*margin-top: -10px;*/
 }
@@ -104,6 +112,26 @@ label * {
 
 .radio-inline:hover {
 	background-color: #d9d9d9;
+}
+
+.label-checkbox {
+	padding: 0 25px;
+	margin-right: 15px;
+}
+
+/* Individual styling for Checkboxes */
+input[type=checkbox] {
+	/*background-color: #fff;
+	-webkit-appearance: none; 
+	-moz-appearance: none; 
+	-o-appearance: none;*/
+
+	/* Double-sized Checkboxes */
+	-ms-transform: scale(2); /* IE */
+	-moz-transform: scale(2); /* FF */
+	-webkit-transform: scale(2); /* Safari and Chrome */
+	-o-transform: scale(2); /* Opera */
+	padding: 10px;
 }
 
 /* TEMP NOT NICE WAY, BUT quick and rity */

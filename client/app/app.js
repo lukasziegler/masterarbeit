@@ -6,6 +6,7 @@ var app = angular.module("pdclient", ["ngRoute"])
 .run(function($rootScope, $location) {
 
 	// parameters, e.g. "http://localhost:3000/api"
+	// $rootScope.restApi = "http://pdsurvey.herokuapp.com/api";
 	$rootScope.restApi = $location.$$protocol+"://"+$location.$$host+":"+$location.$$port+"/api";
 	$rootScope.displayId = "54ec391b27699f6d1056d49f";
 	$rootScope.campaignId = "54f32bfffbf2d90e000a2cbf";
@@ -32,7 +33,8 @@ var app = angular.module("pdclient", ["ngRoute"])
 		/* MAIN */
 		.when("/survey", {
 			templateUrl: "/app/survey/index.html",
-			controller: "SurveyRandomController"
+			controller: "MyEvaluationController"
+			// controller: "SurveyRandomController"
 		})
 		.when("/campaign/:id", {
 			templateUrl: "/app/survey/index.html",
