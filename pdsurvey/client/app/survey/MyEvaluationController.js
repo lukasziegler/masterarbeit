@@ -186,11 +186,11 @@ var app = angular.module("pdclient")
 		if( $scope.response.options.length > 0) {
 			$scope.response.answer = stringifyCheckboxes();
 		}
-
-		if( $scope.response.answer == '') {
-			alert('Response is empty');
-			return;
-		}
+		
+		// if( $scope.response.answer == '') {
+		// 	alert('Response is empty');
+		// 	return;
+		// }
 
 		$http.post($rootScope.restApi + "/responses", $scope.response)
 			.success(function(response) {
