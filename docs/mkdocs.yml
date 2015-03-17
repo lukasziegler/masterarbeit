@@ -1,1 +1,8 @@
-site_name: My Docs
+site_name: PDSurvey Platform
+repo_url: https://github.com/lukasziegler/masterarbeit/
+theme: readthedocs
+pages:
+- ['index.md', 'PDSurvey']
+- ['developer/index.md', 'Developers']
+- ['maintenance/index.md', 'Maintenance']
+- ['user/index.md', 'Users']
