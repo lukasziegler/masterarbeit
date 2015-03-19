@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>PDClient</title>
+    <base href="/">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body ng-app="pdclient" class="ng-scope">
+
+    <div class="container">
+
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" ng-class="getClass('/survey')"><a href="1.html">Survey</a>
+                    </li>
+                    <li role="presentation" ng-class="getClass('/about')"><a href="about.html">About</a>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted"><a href="/">PDSurvey</a></h3>
+        </div>
+
+        <!-- ngView:  -->
+        <div class="content ng-scope" ng-view="">
+            <div class="row ng-scope" ng-hide="error || completed">
+                <div class="jumbotron col-lg-10 co-lg-offset-1 col-md-10 col-md-offset-1">
+                    <h1 class="ng-binding">How often have you used this display before?</h1>
+
+                    <div class="form-group">
+                        <form ng-submit="submit()" class="ng-pristine ng-invalid ng-invalid-required">
+
+                            <!-- ngInclude: questionTypeTemplate -->
+                            <div ng-include="questionTypeTemplate" class="ng-scope">
+                                <!-- NUMBER -->
+                                <input type="number" ng-model="response.answer" class="form-control ng-pristine ng-untouched ng-scope ng-invalid ng-invalid-required" placeholder="How many?" style="width: 10em" required="">
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div>
+                        <!-- <a class="btn btn-lg btn-primary btn-reduced" ng-click="determineNextQuestion()" style="visibility: hidden" role="button">Skip Question</a> -->
+                        <a class="btn btn-lg btn-success pull-right" href="2.html" role="button">Submit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© LMU Munich 2015</p>
+        </footer>
+    </div>
+    <!-- /container -->
+
+</body>
+
+</html>
