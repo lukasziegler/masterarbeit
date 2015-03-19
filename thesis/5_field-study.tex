@@ -92,30 +92,32 @@
 	\subsubsection{Apparatus}
 		% give details of any equipment used, including thinkgs like questionnaires and other tests
 
-		The apparatus consisted of a XXX-inch TV screen, a Samsung Galaxy tablet, two questionnaires (one for participants, one for passerby), a voice-recorder (smartphone), and the client of the PDSurvey platform installed on the TV screen and on the tablet.
+		The apparatus consisted of a XXX-inch TV screen, a Samsung Galaxy tablet, two questionnaires (one for participants, one for passerby), a voice-recorder (smartphone), and the client of the PDSurvey platform installed on the TV screen and on the tablet. The TV screen and the tablet to the right of it (see figure \ref{fig:5-study-setup}) were there permanently, the other devices only while conducting semi-structured interviews.
 
-		+ SHOW A PHOTO OF THE STUDY SETUP
+		\begin{figure}
+		    \begin{center}
+		        \includegraphics[width=\columnwidth]{img/5_field-study/study-setup.jpg}
+		    \end{center}
+		 \caption{Overview of the study setup in the entrance hall of the faculty building.}
+		 \label{fig:5-study-setup}
+		\end{figure}
 
-		Our object of investigation was theTV screen with touch support, running an interactive \textit{Balloon Shooter} game. After completing the game users were asked to complete a questionnaire via one of the four offered feedback channels. 
+		Our object of investigation was the TV screen with touch support, running an interactive \textit{Balloon Shooter} game. After users completed the game, they were asked via a notice inside of the game to fill out a questionnaire on one of the four provided feedback channels. 
+		
 
-		Each user had the opportunity to respond directly on the TV display (1), to the right on a tablet (2), via their smartphone (3) or via email (4). The first option was embedded directly into the Balloon Shooter game, offering a consistent UI and the most direct feedback channel (see screenshot TODO \ref{screenshot:5-options}). Choosing the tablet option users were prompted to move to the right and to answer five questions on the tablet (see screenshot \ref{screenshot:5-tablet}). The Galaxy Samsung Tab 10.1 was displaying the responsive frontend of PDClient, being enclosed in a Android Kiosk App, namely KioWare Lite\footnote{http://www.kioware.com/android.aspx}. Choosing the option to use a smartphone prompted the user to either scan a QR code or to access a URL (see figure \ref{screenshot:5-mobile}). The last option consisted of an input field embedded into the Balloon Shooter game on the TV screen, asking the user to enter their email address. The address was logged to a txt-file on the Windows machine and processed by a Python script, which sent a ... 
-
-		% reference and embed all four screenshots for every feedback channel, show with what the user was confronted with.
+		Each user had the opportunity to respond directly on the TV display (1), on a tablet to the right of the big TV (2), via their own smartphone (3) or via email (4). The first option was embedded directly into the Balloon Shooter game, offering a consistent UI and the most direct feedback channel. Choosing the tablet as an option, the users were prompted to move to the right and to answer five questions on the tablet. The Samsung Galaxy Tab 10.1 was displaying the responsive frontend of PDClient, being enclosed in a Android Kiosk App, namely KioWare Lite\footnote{http://www.kioware.com/android.aspx}. Choosing the option to use a smartphone prompted the user to either scan a QR code or to access a URL. The last option consisted of an input field embedded into the Balloon Shooter game on the TV screen, asking the user to enter their email address. The address was logged from inside of the game to a txt-file which was scanned every 5 minutes by a Windows task scheduler. For sending the email via SMTP a Python script was used\footnote{https://github.com/lukasziegler/python-send-mail}.Screenshots of all four options can be found in the Appendix on page \pageref{appendix:screenshots-balloon-shooter}.
 
 		% maybe also show a flow of actions, but not sure if this is needed, when the user can also simply read the previous paragraph.
 
 
-		% + state how we motivated the users to participate: only 5 questions, results are for a MA thesis
+		For the evaluation in the field study itself a self-made questionnaire was used, since the focus was on finding which channels and question types are best suited in general for being used on public display. This was the reason why we did not use any of the standardized questionnaires mentioned in section \ref{sec:questionnaires}. The questionnaires used can be found in the Appendix.
+
 
 		% + give more information about the balloon shooter game.
-
-
-		For the evaluation in the field study itself a self-made questionnaire was used, since the focus was on finding which channels and question types are best suited in general for being used on public display. This was the reason why we did not use any of the standardized questionnaires mentioned in section \ref{sec:questionnaires}. The questionnaires used can be found in the Appendix.
+		% + ask Jiamin, whether and which screenshots of the game I am allowed to post?
 
 		More information regarding the Balloon Shooter game can be found here XXXXX. 
 		The main application installed on the public display was a game called \textit{Balloon Shooter} developed and run by Jiamin Shi, a PhD student at the Group for Media Informatics at LMU Munich. It was first installed on January 7th 2015 and has been running in different versions since then. Public audience was already used to it for roughly two months and adapted to it well.
-
-		% + ask Jiamin, whether and which screenshots of the game I am allowed to post?
 
 
 
@@ -162,6 +164,10 @@
 
 
 \subsection{Methodology}
+	% tell the reader how the study was carried out in practice
+
+
+		% + state how we motivated the users to participate: only 5 questions, results are for a MA thesis
 
 
 
