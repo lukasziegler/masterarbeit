@@ -8,6 +8,7 @@
 
 
 
+
 \subsection{Research Questions}
 
 	% MOTIVATE: explain why we make this field study, explain what we hope to expect. what are our assumptions. what did we expect from the questionnaires, what did we expect from the interviews?
@@ -32,9 +33,7 @@
 		% The first step was to ask ourselves the question, which channel is suited for gathering responses from the audience. ...
 
 		% We already had an application running on a public display in a faculty building which attracted lots of regular and new users. Our interest was how we could best integrate questionnaires on and after the application itself (a balloon shooter game).
-
 	\item (assessed between the lines) What motivated our users to fill out surveys?
-
 	\end{enumerate}
 
 
@@ -49,25 +48,89 @@
 	\item (Not treated): How can we best break down a standardized survey with 10+ questions and spread a subset of the questions across multiple users?
 	\end{itemize}
 
-
 	In addition to these questions we were also interested in user stories, in the feedback real-world users gave us in regards to answering surveys on screens in the public. For this reason we also conducted semi-structured interviews in parallel to the quantitative evaluation of the PDSurvey platform.
+
+
 
 
 \subsection{Study Setup}
 
-	% \paragraph{Participants}
+	Both quantitative and qualitative data was gathered as part of the field study. Quantitative data was obtained through the PDSurvey system and qualitative data was collected through semi-structured interviews. To facilitate comparison between quantitative and qualitative data some quantitative questions were asked redundantly at the end of the semi-structured interview, in order to make the mapping of participant to semi-structured interview easier.
+
+	% \subsubsection{Design}
+
+	% 	\begin{enumerate}
+	% 	\item provide an overview of the overall structure of your experiment. 
+	% 	\item what were the independent variables in the study? what were the factors that I manipulated? >> none! 
+	% 	\item how many conditions were there: ... i would say none, since I didn't vary any parameters
+	% 	\item describe what was measured, what were the dependent variables?
+	% 	\item >>> I would actually say, that I didn't carry out any experiment, I only made an observation with evaluation. I didn't vary any parameters, I only configured a study setup and observed + interviewed the participants
+	% 	\end{enumerate}
+
+
 	\subsubsection{Participants}
+		% provide the necessary information about the people who took part in your experiment
 
-	\subsubsection{Apparatus}
+		The questionnaires were filled out by a random number of people with different backgrounds. What they had in common was their affiliation to LMU Munich, either being a student, staff or otherwise related (parents, pensioner, industry partner).
 
-		Our object of investigation was a large touchscreen with four feedback channels for completing a survey.
+		In regards to the field study all participants can be differentiated in three study groups: participants who approached the display by themselves (and were observed doing so), people passing by the display (noticing the display, however not approaching it) and the last group of people (simple passing by, not having any intention to approach the display).
 
-		The survey was run on a XXXXX display . The main application installed on the public display was a game called \textit{Balloon Shooter} developed and run by Jiamin Shi, a PhD student at the Group for Media Informatics at LMU Munich.
+		+ STATE THE NUMBERS
+
+		In total 
 
 		\begin{enumerate}
-		\item list as detailed information regarding the game as possible
-		\item ask Jiamin, whether I can post screenshots of the game?
+		\item give details on how many participants you used
+		\item how many took part in which condition
+		\item include information about demographic values (age, gender)
+		\item also deliver brief details on how you obtained the participants: they didn't get any reward for participating. XX were passerby, XX participated in the game from their own motivation.
+		\item describe the population of my participants. what was their background?
+		\item  Before starting the interviews the people participating and passing by were asked whether they noticed the option to fill out a survey, and XX out of XX didn't notice the option. 
+		\item think about which information is relevant. for me the devices they possess might be of relevance. people not possessing a smartphone or tablet, might be less willing to use these devices.  
 		\end{enumerate}
+
+	\subsubsection{Apparatus}
+		% give details of any equipment used, including thinkgs like questionnaires and other tests
+
+		The apparatus consisted of a XXX-inch TV screen, a Samsung Galaxy tablet, two questionnaires (one for participants, one for passerby), a voice-recorder (smartphone), and the client of the PDSurvey platform installed on the TV screen and on the tablet.
+
+		+ SHOW A PHOTO OF THE STUDY SETUP
+
+		Our object of investigation was theTV screen with touch support, running an interactive \textit{Balloon Shooter} game. After completing the game users were asked to complete a questionnaire via one of the four offered feedback channels. 
+
+		Each user had the opportunity to respond directly on the TV display (1), to the right on a tablet (2), via their smartphone (3) or via email (4). The first option was embedded directly into the Balloon Shooter game, offering a consistent UI and the most direct feedback channel (see screenshot TODO \ref{screenshot:5-options}). Choosing the tablet option users were prompted to move to the right and to answer five questions on the tablet (see screenshot \ref{screenshot:5-tablet}). The Galaxy Samsung Tab 10.1 was displaying the responsive frontend of PDClient, being enclosed in a Android Kiosk App, namely KioWare Lite\footnote{http://www.kioware.com/android.aspx}. Choosing the option to use a smartphone prompted the user to either scan a QR code or to access a URL (see figure \ref{screenshot:5-mobile}). The last option consisted of an input field embedded into the Balloon Shooter game on the TV screen, asking the user to enter their email address. The address was logged to a txt-file on the Windows machine and processed by a Python script, which sent a ... 
+
+		% reference and embed all four screenshots for every feedback channel, show with what the user was confronted with.
+
+		% maybe also show a flow of actions, but not sure if this is needed, when the user can also simply read the previous paragraph.
+
+
+		% + state how we motivated the users to participate: only 5 questions, results are for a MA thesis
+
+		% + give more information about the balloon shooter game.
+
+
+		For the evaluation in the field study itself a self-made questionnaire was used, since the focus was on finding which channels and question types are best suited in general for being used on public display. This was the reason why we did not use any of the standardized questionnaires mentioned in section \ref{sec:questionnaires}. The questionnaires used can be found in the Appendix.
+
+		More information regarding the Balloon Shooter game can be found here XXXXX. 
+		The main application installed on the public display was a game called \textit{Balloon Shooter} developed and run by Jiamin Shi, a PhD student at the Group for Media Informatics at LMU Munich. It was first installed on January 7th 2015 and has been running in different versions since then. Public audience was already used to it for roughly two months and adapted to it well.
+
+		% + ask Jiamin, whether and which screenshots of the game I am allowed to post?
+
+
+
+
+
+	\subsubsection{Procedure}
+		% tell the reader how the study was carried out in practice
+		= equivalent to the method section?
+
+
+
+		\begin{enumerate}
+		\item How I introduced the scenario to the passerby. Imagine you are in a shopping mall or at an airport using one of those large displays to find some information. In the end you get asked to answer a short questionnaire. (How would you react to it? And to the more qualified students with the right background I also asked how they would feel when getting asked quantitative or qualitative data. / KW-student) 
+		\end{enumerate}
+
 
 	\subsubsection{Location}
 
@@ -75,7 +138,7 @@
 
 	The study setup was in the entrance hall of the university building, .
 
-	% Show Diagram of User paths inside the entrance hall.
+	+ SHOW A DIAGRAM OF THE User paths inside the entrance hall.
 
 
 	\subsubsection{Limitations}
@@ -145,7 +208,10 @@
 
 \subsection{Qualitative Results}
 
-
+	%% Evaluation based on Grounded Theory
+	% for systematic evaluation of qualitative data (interview transcripts)
+	% while having the goal of generating a theory
+	% > datengestützte Theoriebildung = auf Empirie bezogene Bildung von Hypothesen / Theorien
 
 
 \subsection{Discussion AND/OR Summary}
