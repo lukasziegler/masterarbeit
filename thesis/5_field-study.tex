@@ -33,7 +33,7 @@
 		% The first step was to ask ourselves the question, which channel is suited for gathering responses from the audience. ...
 
 		% We already had an application running on a public display in a faculty building which attracted lots of regular and new users. Our interest was how we could best integrate questionnaires on and after the application itself (a balloon shooter game).
-	\item (assessed between the lines) What motivated our users to fill out surveys?
+	\item (assessed between the lines) What motivated our users to fill in surveys?
 	\end{enumerate}
 
 
@@ -55,7 +55,7 @@
 
 \subsection{Study Setup}
 
-	Both quantitative and qualitative data was gathered as part of the field study. Quantitative data was obtained through the PDSurvey system and qualitative data was collected through semi-structured interviews. To facilitate comparison between quantitative and qualitative data some quantitative questions were asked redundantly at the end of the semi-structured interview, in order to make the mapping of participant to semi-structured interview easier.
+	Both quantitative and qualitative data was gathered as part of the field study. Quantitative data was obtained through the PDSurvey system and qualitative data was collected through semi-structured interviews. To facilitate comparison between quantitative and qualitative data some quantitative questions were asked redundantly at the end of the semi-structured interview.
 
 	% \subsubsection{Design}
 
@@ -71,13 +71,35 @@
 	\subsubsection{Participants}
 		% provide the necessary information about the people who took part in your experiment
 
-		The questionnaires were filled out by a random number of people with different backgrounds. What they had in common was their affiliation to LMU Munich, either being a student, staff or otherwise related (parents, pensioner, industry partner).
+		In total 54 questionnaires were completed and 28 semi-structured interviews were conducted during the two week study period.
 
-		In regards to the field study all participants can be differentiated in three study groups: participants who approached the display by themselves (and were observed doing so), people passing by the display (noticing the display, however not approaching it) and the last group of people (simple passing by, not having any intention to approach the display).
+		\textit{Questionnaires} were completed by a random number of people with different backgrounds. What they all had in common was their affiliation to LMU Munich, either because of being a student, staff or otherwise related (parents, pensioner, industry partner). Since our research focus was on finding which feedback channel is best suited for conducting automated questionnaires in public, we only included one question to collect demographic data. Based on the fourth question (In which area do you study / work?) it can be seen, that most of the participants are doing something related to computer science.
+			+++ describe the rest of the data, refer to a table +++
+		 ... 
+			54 submissions, 43 non-empty submissions which could be assigned to a study field.
 
-		+ STATE THE NUMBERS
+		For the participants in the \textit{semi-structured interview} demographic data was also collected. Out of the 28 participants
+		20 were male and 18 were female. The age of all people interviewed ranged between 20 and 69, with an average age of 31,5 years.
+		Due to the wide variety of faculties and the public library located in the building, various technical backgrounds were present. Two retirees, three workers and 23 students were interviewed. The study fields which were most frequently represented are computer science (4), japanology (4), ethnology (3), political science (3). Besides that students studying sociology, communication science, law, physics or engineering were interviewed.
 
-		In total 
+
+		\begin{table}[h]
+		\begin{tabular}{lllll}
+		   & \textbf{people participated in survey} &  &   & \textbf{people interviewed}             \\
+		10 & Informatics                            &  & 4 & Informatics                             \\
+		6  & Political Science                      &  & 4 & Japanology                              \\
+		5  & Anthropology                           &  & 3 & Ethnology                               \\
+		4  & Cultural Science                       &  & 3 & Political Science                       \\
+		4  & Business                               &  & 1 & Communication Science                   \\
+		2  & Physics                                &  & 1 & Sociology                               \\
+		2  & Sociology                              &  & 1 & Law                                     \\
+		1  & Ethnology                              &  & 1 & Physics                                 \\
+		1  & Communication Science                  &  & 1 & Engineering                             \\
+		1  & Sports                                 &  & 3 & workers (PhD, public officer, SysAdmin) \\
+		1  & Science and Technology                 &  & 2 & in pension                             
+		\end{tabular}
+		\end{table}
+
 
 		\begin{enumerate}
 		\item give details on how many participants you used
@@ -85,9 +107,20 @@
 		\item include information about demographic values (age, gender)
 		\item also deliver brief details on how you obtained the participants: they didn't get any reward for participating. XX were passerby, XX participated in the game from their own motivation.
 		\item describe the population of my participants. what was their background?
-		\item  Before starting the interviews the people participating and passing by were asked whether they noticed the option to fill out a survey, and XX out of XX didn't notice the option. 
+		\item  Before starting the interviews the people participating and passing by were asked whether they noticed the option to fill in a survey, and XX out of XX didn't notice the option. 
 		\item think about which information is relevant. for me the devices they possess might be of relevance. people not possessing a smartphone or tablet, might be less willing to use these devices.  
 		\end{enumerate}
+
+
+		% + differentiate between 
+		% 1) on its own completed questionnaire
+		% 2) semi-structured interview
+
+		In regards to the semi-structured interview the participants can be differentiated into three groups: participants who approached the display by themselves (and were observed doing so), people passing by the display (noticing the display, however not approaching it) and the last group of people simply passing by (not having noticed the display). To increase the amount of feedback, we approached people from all three groups. The distribution between the group was as follows: 9 direct participants, 17 passerby (XX observed, XX didn't approach it)
+		The number of surveys was not explicitly increased thereby.
+
+
+
 
 	\subsubsection{Apparatus}
 		% give details of any equipment used, including thinkgs like questionnaires and other tests
@@ -102,7 +135,7 @@
 		 \label{fig:5-study-setup}
 		\end{figure}
 
-		Our object of investigation was the TV screen with touch support, running an interactive \textit{Balloon Shooter} game. After users completed the game, they were asked via a notice inside of the game to fill out a questionnaire on one of the four provided feedback channels. 
+		Our object of investigation was the TV screen with touch support, running an interactive \textit{Balloon Shooter} game. After users completed the game, they were asked via a notice inside of the game to fill in a questionnaire on one of the four provided feedback channels. 
 		
 
 		Each user had the opportunity to respond directly on the TV display (1), on a tablet to the right of the big TV (2), via their own smartphone (3) or via email (4). The first option was embedded directly into the Balloon Shooter game, offering a consistent UI and the most direct feedback channel. Choosing the tablet as an option, the users were prompted to move to the right and to answer five questions on the tablet. The Samsung Galaxy Tab 10.1 was displaying the responsive frontend of PDClient, being enclosed in a Android Kiosk App, namely KioWare Lite\footnote{http://www.kioware.com/android.aspx}. Choosing the option to use a smartphone prompted the user to either scan a QR code or to access a URL. The last option consisted of an input field embedded into the Balloon Shooter game on the TV screen, asking the user to enter their email address. The address was logged from inside of the game to a txt-file which was scanned every 5 minutes by a Windows task scheduler. For sending the email via SMTP a Python script was used\footnote{https://github.com/lukasziegler/python-send-mail}.Screenshots of all four options can be found in the Appendix on page \pageref{appendix:screenshots-balloon-shooter}.
@@ -209,7 +242,17 @@
 
 	The first question (numeric) was completed in all surveys. 
 
+
+	% ggf. unterscheiden nach den drei Gruppen:
+		% 1 participants who approached the display
+		% 2 people passing by the display
+		% 3 passing by, not having any intention to approach the display
+
+
 	To find out more about the motive we carried out semi-structured interviews on location.
+
+
+
 
 
 \subsection{Qualitative Results}
@@ -218,6 +261,13 @@
 	% for systematic evaluation of qualitative data (interview transcripts)
 	% while having the goal of generating a theory
 	% > datengestützte Theoriebildung = auf Empirie bezogene Bildung von Hypothesen / Theorien
+
+
+	% ggf. unterscheiden nach den drei Gruppen:
+		% 1 participants who approached the display
+		% 2 people passing by the display
+		% 3 passing by, not having any intention to approach the display
+
 
 
 \subsection{Discussion AND/OR Summary}
