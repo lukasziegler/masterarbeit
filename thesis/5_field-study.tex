@@ -54,18 +54,23 @@
 
 
 \subsection{Study Setup}
+	% = METHOD Section
+	% give the reader enough information to replicate the experiment
+	% consists of 1 Design, 2 Participants, 3 Apparatus, 4 Procedure
 
 	Both quantitative and qualitative data was gathered as part of the field study. Quantitative data was obtained through the PDSurvey system and qualitative data was collected through semi-structured interviews. To facilitate comparison between quantitative and qualitative data some quantitative questions were asked redundantly at the end of the semi-structured interview.
 
-	% \subsubsection{Design}
+	\subsubsection{Design}
+	outlines the formal structure of the study. identifies the experiments dependent and independent variables.
+	also state here which study design I have chosen: 1 independent-measures, repeated-measures, mixed-design
 
-	% 	\begin{enumerate}
-	% 	\item provide an overview of the overall structure of your experiment. 
-	% 	\item what were the independent variables in the study? what were the factors that I manipulated? >> none! 
-	% 	\item how many conditions were there: ... i would say none, since I didn't vary any parameters
-	% 	\item describe what was measured, what were the dependent variables?
-	% 	\item >>> I would actually say, that I didn't carry out any experiment, I only made an observation with evaluation. I didn't vary any parameters, I only configured a study setup and observed + interviewed the participants
-	% 	\end{enumerate}
+		\begin{enumerate}
+		\item provide an overview of the overall structure of your experiment. 
+		\item what were the independent variables in the study? what were the factors that I manipulated? >> none! 
+		\item how many conditions were there: ... i would say none, since I didn't vary any parameters
+		\item describe what was measured, what were the dependent variables?
+		\item >>> I would actually say, that I didn't carry out any experiment, I only made an observation with evaluation. I didn't vary any parameters, I only configured a study setup and observed + interviewed the participants
+		\end{enumerate}
 
 
 	\subsubsection{Participants}
@@ -140,6 +145,10 @@
 
 		Each user had the opportunity to respond directly on the TV display (1), on a tablet to the right of the big TV (2), via their own smartphone (3) or via email (4). The first option was embedded directly into the Balloon Shooter game, offering a consistent UI and the most direct feedback channel. Choosing the tablet as an option, the users were prompted to move to the right and to answer five questions on the tablet. The Samsung Galaxy Tab 10.1 was displaying the responsive frontend of PDClient, being enclosed in a Android Kiosk App, namely KioWare Lite\footnote{http://www.kioware.com/android.aspx}. Choosing the option to use a smartphone prompted the user to either scan a QR code or to access a URL. The last option consisted of an input field embedded into the Balloon Shooter game on the TV screen, asking the user to enter their email address. The address was logged from inside of the game to a txt-file which was scanned every 5 minutes by a Windows task scheduler. For sending the email via SMTP a Python script was used\footnote{https://github.com/lukasziegler/python-send-mail}.Screenshots of all four options can be found in the Appendix on page \pageref{appendix:screenshots-balloon-shooter}.
 
+		For this quantitative part of the evaluation the following data was logged for all four options: The timestamp of the users choice, which feedback channel the user chose to respond to the survey and whether they skipped the call to participate in the survey or if they stopped playing the game (measured via timeout). 
+		% For option 1 being chosen (responding directly on the TV screen) all five responses were logged. For options 2 and 3 the user accessed the PDClient frontend, leading to a logging of the data in the RESTful backend. And for option 4, responding via email, the email address was logged In the case that options 2 to 4 were chosen, all data was directly collected on the PDSurvey platform itself.
+
+
 		% maybe also show a flow of actions, but not sure if this is needed, when the user can also simply read the previous paragraph.
 
 
@@ -158,22 +167,76 @@
 
 	\subsubsection{Procedure}
 		% tell the reader how the study was carried out in practice
-		= equivalent to the method section?
+		= Is this section equivalent to the method section?
 
+		MY FIRST NOTES FOR WRITING
+
+		% Duration
+		The field study consisted of a two week gathering of log data. During this time we recorded 
+
+
+		% Adjustments on the day prior to the evaluation
+		The day prior to the launch of the actual field study was used for assembly and for last adjustments, like change of font size, adjustment to the position of certain UI elements, and for getting indirect feedback from users observing but not approaching the display.
+		From observing it could be seen that a more effective call-to-action was needed. Many people looked at the display, noticed that something has changed with the setup, but no one started interacting with the new setup or was willing to complete the questionnaire. Therefore a more catchy start screen was introduced for the tablet (see \ref{fig:5-pdclient-intro}) and the option panel of the TV screen was also modified () see screenshot \ref{screenshot:options}. 
+		This observation is very much in line with the findings of Richard Ryan and Edward Deci published as the self-determination theory\cite{ryan2000self}.
+
+
+		% Instructions
 
 
 		\begin{enumerate}
 		\item How I introduced the scenario to the passerby. Imagine you are in a shopping mall or at an airport using one of those large displays to find some information. In the end you get asked to answer a short questionnaire. (How would you react to it? And to the more qualified students with the right background I also asked how they would feel when getting asked quantitative or qualitative data. / KW-student) 
 		\end{enumerate}
 
+		META-INFORMATION FOR THIS CHAPTER
+		\begin{enumerate}
+		\item This section gives details of how you carried out the experiment in practice.
+		\item Describe how you executed your experiment. How you approached the scenario, what you did, which parameters were measured and which conditions/parameters were changed? 
+		\item how long were the interviews? 2:30 to 4 minutes
+		\item which instructions were given to the participants? none! 
+		\item + state how we motivated the users to participate: only 5 questions, results are for a MA thesis
+
+		\end{enumerate}
+
+
+
+
+		% DONT FORGET - only give RELEVANT INFORMATION to the reader!!
+		% > only provide details if they are needed for replication
+		% > or if they are relevant to the outcome of the experiment
+
+
+
+
+\subsection{Not sure where it belongs to}
 
 	\subsubsection{Location}
 
-	Faculty building for computer science, ethnology, political science, japanologie and physics. m,m
+	All parts of the field study were carried out in the faculty building for computer science, a building where other research institutes for ethnology, political science, Japanese studies, and physics are also located.
 
-	The study setup was in the entrance hall of the university building, .
+	The study was carried out in the entrance hall of the university building. Figure \ref{fig:5-entrance-hall} shows an excerpt of the universities floor plan for the entrance hall, allowing for a better understanding of the dynamics.
 
-	+ SHOW A DIAGRAM OF THE User paths inside the entrance hall.
+	\begin{figure}
+	    \begin{center}
+	        \includegraphics[width=.7\columnwidth]{img/5_field-study/entrance-hall.png}
+	    \end{center}
+	 \caption{Floor map of the entrance hall where the field study was carried out. User paths, and the surrounding environment including facilities such as the library can be seen here.}
+	 \label{fig:5-entrance-hall}
+	\end{figure}
+
+	- which path users choose
+	- that they are usually in a hurry
+	- having a break
+	- or waiting for somebody
+	- facilities near by are: the library, smoking area outside, toilets, lockers
+
+
+	\textbf{FRAGEN AN FLORIAN}
+	\begin{enumerate}
+	\item Die \textit{Situation}, wie viele Leute welchen Pfad gewaehlt haben, siehe BA von Sandra Zollner, wuerde ich jetzt nicht nochmal explizit erheben oder auffuehren.
+	\item Ist es fuer mich relevant?
+	\item Falls Ja >> auf die BA von Sandra verweisen.
+	\end{enumerate}
 
 
 	\subsubsection{Limitations}
@@ -184,23 +247,22 @@
 	\end{enumerate}
 
 
+	\subsubsection{Conditions}
 
-\subsection{Conditions}
-
-	Feedback channel: 
-	\begin{enumerate}
-	\item on public display
-	\item on tablet, next to the large TV display
-	\item via smartphone: 
-	\item via email, from home:
-	\end{enumerate}
-
-
-\subsection{Methodology}
-	% tell the reader how the study was carried out in practice
+		Feedback channel: 
+		\begin{enumerate}
+		\item on public display
+		\item on tablet, next to the large TV display
+		\item via smartphone: 
+		\item via email, from home:
+		\end{enumerate}
 
 
-		% + state how we motivated the users to participate: only 5 questions, results are for a MA thesis
+	\subsubsection{Methodology}
+		% tell the reader how the study was carried out in practice
+
+
+
 
 
 
@@ -270,7 +332,8 @@
 
 
 
-\subsection{Discussion AND/OR Summary}
+
+\subsection{Discussion}
 
 	% 1) Start with a few sentences that summarize the most important results (+ see \url{http://www.ldeo.columbia.edu/~martins/sen_sem/thesis_org.html}).
 
