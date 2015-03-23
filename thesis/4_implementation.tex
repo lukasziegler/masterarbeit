@@ -1,0 +1,140 @@
+\section{Implementation}
+\label{sec:implementation}
+	% Chapter concerning the Technical Realization
+
+	In this chapter we will deal with the infrastructure and technical realization of the public display survey platform. First off we will start with the requirements for the survey platform (section \ref{sec:implementation:requirements}). Subsequently the architecture resulting from the design decisions will be our main focus (section \ref{sec:implementation:design-decisions}). To facilitate the training period for successors we will also take a brief look at the software model (section \ref{sec:implementation:modeling}). For more specific information and for information regarding maintenance of the project, please refer to the Documentation found on the CD enclosed or on the GitHub repository (see Appendix \ref{appendix:documentation}).
+
+	In figure \ref{fig:4-pdsurvey-platform} a brief overview of the \textit{PDSurvey} platform and its components is given. The platform consists of three major parts: a backend for display providers (PDAdmin), a RESTful server (PDServer) and the user interface itself, being embedded on the end user devices (public displays, tablets, smartphones or other devices). 
+
+
+
+
+
+
+\subsection{Requirements}
+\label{sec:implementation:requirements}
+
+	The starting point for the PDSurvey platform was the Master' thesis announcement, which already included first requirements (see page \pageref{aufgabenstellung}). 
+
+	% Official Problem statement
+	\begin{enumerate}[itemsep=0pt] 
+	\item development of a survey tool that allows interactive public display installations to be comprehensively assessed 
+	\item a web-based survey platform will be implemented that can easily be used to evaluate and compare public displays through different channels 
+	\item different channels to support: 1) evaluation directly at
+	the display or 2) through a (mobile) website that allows participation also via a smartphone
+	or tablet.
+	\item configuration options for public display owners
+	\end{enumerate}
+
+	After the analysis of the thesis' problem statement, the following requirements were derived, already having an impact on the later chosen architecture:
+
+	% Derived requirements
+	\begin{enumerate}[itemsep=0pt] 
+	\item JavaScript embed code, for public displays
+	\item supporting multiple devices: public displays, mobile (smartphone, tablet), desktop
+	\item responsive web design
+	\end{enumerate}
+
+	Additional requirements, self proposed:
+	\begin{enumerate}[itemsep=0pt] 
+	\item scalable
+	\item modular / extensible
+	\item multilingual / internationalization (i18n)
+	\end{enumerate}
+
+
+
+
+
+
+\clearpage
+% \input{4b_architecture}
+\subsection{Design Decisions}
+\label{sec:implementation:design-decisions}
+
+	% Due to the requirements discussed in section ...
+
+	After having assessed all requirements for the platform (see \ref{sec:implementation:requirements}), the next step was making design decisions for the software, programming language and frameworks to use, having an impact on the architecture.
+
+
+
+	\begin{enumerate}
+	\item \textbf{Programing language}
+	\item due to the the requirements and objective to support a large number of devices, JavaScript is the choice
+
+
+	\item \textbf{Frontend Framework}
+	\item AngularJS + Bootstrap
+	\item link to 2 articles with comparisions
+	\item say why I chose these two: best documentation, big community (fast support), allowing me for making fast progress
+
+
+	\item \textbf{Backend}
+	\item give a short overview of alternatives
+	\item say because of embedding + frontend, it seems obvious to choose JavaScript
+	\item Server: NodeJS is currently becoming the de-facto standard for scalable and RESTful web services.
+
+
+	\item \textbf{Interaction / Communication}
+	
+	\item \textbf{Database}
+	\item SQL vs NoSQL: NoSQL better for 
+	\item MongoDB is the most popular NoSQL database as of now and integrates seamlessly with the MEAN stack (MongoDB, ExpressJS, AngularJS, NodeJS).
+
+	\item \textbf{Hosting}
+	\item copy + paste!
+
+	\end{enumerate}
+
+
+
+Bits and pieces
+
+		Should a component not support HTML and JavaScript execution, then the required surveys can still be communicated directly with the REST API of PDServer.
+
+		For administrative purposes we created a RESTful backend (PDBackend), which enables the creation, management and distribution of surveys to public displays. Attached to this backend there is the   a responsive client 
+
+
+
+
+
+
+
+
+
+\clearpage
+\input{4c_modeling}
+\label{sec:implementation:modeling}
+
+Modeling
+	Software Model
+	+ Dependencies in between them
+	Users
+	User Stories
+	REST API
+
+
+
+
+
+
+
+
+% \clearpage
+% \input{4d_implementation}
+
+\subsection{Not sure about}
+
+	\begin{enumerate}
+
+	\item \textbf{4.4 Implementation}
+		\item leave out!!
+		\item these aspets are all part of the MKDOCS documentation inside the repository!
+
+	\item \textbf{Maybe:}
+		\item challenges		>> for presentation
+		\item problems		>> presentation or docu
+		\item frameworks 		>> documentation
+		\item deployment		>> documentation
+
+	\end{enumerate}
