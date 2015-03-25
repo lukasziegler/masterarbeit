@@ -1,6 +1,12 @@
 # Developer Documentation
 
 
+## Help to get started
+
+* [Which IDE to choose](http://www.sitepoint.com/javascript-internet-things/)
+* 
+
+
 ## Authentication
 
 1. Login mechanisms: good explanation of the differences for Single-Page Applications (SPA) = https://vickev.com/#!/article/authentication-in-single-page-applications-node-js-passportjs-angularjs

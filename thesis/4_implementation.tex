@@ -2,7 +2,7 @@
 \label{sec:implementation}
 	% Chapter concerning the Technical Realization
 
-	In this chapter we will deal with the infrastructure and technical realization of the public display survey platform. First off we will start with the requirements for the survey platform (section \ref{sec:implementation:requirements}). Subsequently the architecture resulting from the design decisions will be our main focus (section \ref{sec:implementation:design-decisions}). To facilitate the training period for successors we will also take a brief look at the software model (section \ref{sec:implementation:modeling}). For more specific information and for information regarding maintenance of the project, please refer to the Documentation found on the CD enclosed or on the GitHub repository (see Appendix \ref{appendix:documentation}).
+	In this chapter we will deal with the infrastructure and technical realization of the public display survey platform. First off, we will start with the requirements for the survey platform (section \ref{sec:implementation:requirements}). Subsequently the architecture resulting from the design decisions will be the main focus (section \ref{sec:implementation:design-decisions}). To facilitate the training period for successors we will also take a brief look at the software model (section \ref{sec:implementation:modeling}). For more specific information and for information regarding maintenance of the project, please refer to the Documentation found on the CD enclosed or on the GitHub repository (see Appendix \ref{appendix:documentation}).
 
 	In figure \ref{fig:4-pdsurvey-platform} a brief overview of the \textit{PDSurvey} platform and its components is given. The platform consists of three major parts: a backend for display providers (PDAdmin), a RESTful server (PDServer) and the user interface itself, being embedded on the end user devices (public displays, tablets, smartphones or other devices). 
 
@@ -14,7 +14,7 @@
 \subsection{Requirements}
 \label{sec:implementation:requirements}
 
-	The starting point for the PDSurvey platform was the Master' thesis announcement, which already included first requirements (see page \pageref{aufgabenstellung}). 
+	The starting point for the PDSurvey platform and the Master's thesis itself was the official announcement\footnote{\url{http://www.medien.ifi.lmu.de/lehre/arbeiten/detail.xhtml-php?pub=alt_pdsurvey} (accessed on March 24, 2015)}, describing the scope of the thesis. This problem statement already included first requirements for the platform to develop, and was also a trigger for further literature research and talks with people from the industry.
 
 	% Official Problem statement
 	\begin{enumerate}[itemsep=0pt] 
@@ -26,65 +26,82 @@
 	\item configuration options for public display owners
 	\end{enumerate}
 
-	After the analysis of the thesis' problem statement, the following requirements were derived, already having an impact on the later chosen architecture:
+
+	% RESULTS FROM LITERATURE RESEARCH
 
 	% Derived requirements
 	\begin{enumerate}[itemsep=0pt] 
-	\item JavaScript embed code, for public displays
-	\item supporting multiple devices: public displays, mobile (smartphone, tablet), desktop
-	\item responsive web design
-	\end{enumerate}
-
-	Additional requirements, self proposed:
-	\begin{enumerate}[itemsep=0pt] 
-	\item scalable
-	\item modular / extensible
-	\item multilingual / internationalization (i18n)
+	\item easy embedding of questionnaires on websites of public display owners (provide API / embed code)
+	\item support various devices: public displays of all sizes, tablets, phablets, smartphones, desktop devices (responsive web design)
+	\item create an open research platform (host project and documentation on GitHub, release it as open source)
 	\end{enumerate}
 
 
+	These derived requirements had an impact on the chosen architecture, which will be discussed in the following.
 
 
 
 
-\clearpage
-% \input{4b_architecture}
+
 \subsection{Design Decisions}
 \label{sec:implementation:design-decisions}
 
-	% Due to the requirements discussed in section ...
-
-	After having assessed all requirements for the platform (see \ref{sec:implementation:requirements}), the next step was making design decisions for the software, programming language and frameworks to use, having an impact on the architecture.
+	After having assessed all requirements for the platform (see section \ref{sec:implementation:requirements}), the next step was making design decisions for the software, programming language and frameworks to use, having an impact on the architecture.
 
 
+	\paragraph{Programming language}
 
-	\begin{enumerate}
-	\item \textbf{Programing language}
-	\item due to the the requirements and objective to support a large number of devices, JavaScript is the choice
+		Due to the requirements and objective to support a large number of devices, operating systems, and form factors, a device-independent programming language was preferred. 
+		The choice fell on Javascript, since it can be used on the biggest number of devices, also having the benefit of only having to use one programming language for developing the backend as well as the frontend, thanks to the MEAN stack.
 
-
-	\item \textbf{Frontend Framework}
-	\item AngularJS + Bootstrap
-	\item link to 2 articles with comparisions
-	\item say why I chose these two: best documentation, big community (fast support), allowing me for making fast progress
+		Alternative languages considered were: PHP, Python, Ruby, Java and ASP.NET. The biggest drawback was the additional workload on having to maintain the object model on multiple platforms. With Javascript it is possible to use the same model across all platforms (backend, frontend, server).
 
 
-	\item \textbf{Backend}
-	\item give a short overview of alternatives
-	\item say because of embedding + frontend, it seems obvious to choose JavaScript
-	\item Server: NodeJS is currently becoming the de-facto standard for scalable and RESTful web services.
 
+	\paragraph{Frontend}
 
-	\item \textbf{Interaction / Communication}
+		The next question to be answered was which frontend technologies to use, leading to the question whether to follow the single-page application approach or not.
+
+		As of 2014 the JavaScript model-view frameworks most frequently used for creating single-page apps are Angular.js, Ember.js and Backbone.js. Purely based on numbers Angular.js is the clear favorite, it has by far the largest user base on GitHub, Stackoverflow, and Youtube. When comparing the number of third-party modules, Angular.js also takes the lead with 800 ngmodules vs. 236 Backbone.js backplugs vs. 21 emberaddons. Each framework having its advantages and disadvantages, we chose Angular.js
+		\footnote{\url{https://www.airpair.com/js/javascript-framework-comparison} (accessed on January 11, 2015)}.
+
+		For the CSS framework of the PDSurvey platform, Bootstrap\footnote{\url{http://getbootstrap.com/} (accessed on December 1, 2014)} was our framework of choice. Reasons for choosing Bootstrap were the large community, extensive documentation with helpful examples, large number of free tutorials and templates, its integration with Angular.js (AngulatStrap\footnote{\url{http://mgcrea.github.io/angular-strap/}} and AngularUI), and its short training time.
+		Alternatives considered were Foundation Framework by Zurb, however at the time of writing there was no prefabricated integration for Foundation and Angular.js.
+		A good overview of currently popular frontend frameworks: \url{http://www.sitepoint.com/grid-system-comparison-bootstrap-vs-foundation/} (accessed March 24, 2015).
 	
-	\item \textbf{Database}
-	\item SQL vs NoSQL: NoSQL better for 
-	\item MongoDB is the most popular NoSQL database as of now and integrates seamlessly with the MEAN stack (MongoDB, ExpressJS, AngularJS, NodeJS).
 
-	\item \textbf{Hosting}
-	\item copy + paste!
 
-	\end{enumerate}
+	\paragraph{Backend}
+
+		> give a short overview of alternatives
+		> say because of embedding + frontend, it seems obvious to choose JavaScript
+		> Server: NodeJS is currently becoming the de-facto standard for scalable and RESTful web services.
+
+		reasons for choosing Node.js
+
+			\begin{enumerate}[itemsep=0pt] 
+			\item scalable
+			\item modular / extensible
+			\item multilingual / internationalization (i18n)
+			\end{enumerate}
+
+
+	\paragraph{Interaction / Communication}
+	
+		> REST API
+
+
+	\paragraph{Database}
+		> SQL vs NoSQL: NoSQL better for 
+		> MongoDB is the most popular NoSQL database as of now and integrates seamlessly with the MEAN stack (MongoDB, ExpressJS, AngularJS, NodeJS).
+
+	\paragraph{Hosting}
+		 > copy + paste! from already written chapter
+
+
+
+
+	Based on these requirements and the feedback received from industry experts, a choice towards Node.js and the MEAN stack was self-evident.
 
 
 
@@ -115,15 +132,13 @@ Modeling
 
 
 
+\subsection{Prestudy}
+
+First feedback regarding the platform, before launching it. Either I will use this section, or I will make the expert interview (see section \ref{sec:expert-interview}).
 
 
 
-
-
-% \clearpage
-% \input{4d_implementation}
-
-\subsection{Not sure about}
+\subsection{Not sure about...}
 
 	\begin{enumerate}
 
