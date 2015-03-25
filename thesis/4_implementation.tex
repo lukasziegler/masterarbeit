@@ -14,7 +14,7 @@
 \subsection{Requirements}
 \label{sec:implementation:requirements}
 
-	The starting point for the PDSurvey platform and the Master's thesis itself was the official announcement\footnote{\url{http://www.medien.ifi.lmu.de/lehre/arbeiten/detail.xhtml-php?pub=alt_pdsurvey} (accessed on March 24, 2015)}, describing the scope of the thesis. This problem statement already included first requirements for the platform to develop, and was also a trigger for further literature research and talks with people from the industry.
+	The starting point for the PDSurvey platform and the Master's thesis itself was the official announcement\footnote{\url{http://www.medien.ifi.lmu.de/lehre/arbeiten/detail.xhtml-php?pub=alt_pdsurvey} (accessed on March 24, 2015)}, describing the scope of the thesis. This problem statement already included first requirements for the survey platform to develop, and was also a trigger for further literature research and talks with people from the industry.
 
 	% Official Problem statement
 	\begin{enumerate}[itemsep=0pt] 
@@ -26,20 +26,19 @@
 	\item configuration options for public display owners
 	\end{enumerate}
 
-
-	% RESULTS FROM LITERATURE RESEARCH
+	Additional requirements, dervived from the previous and complemented with additional ones, are listed below:
 
 	% Derived requirements
-	\begin{enumerate}[itemsep=0pt] 
-	\item easy embedding of questionnaires on websites of public display owners (provide API / embed code)
-	\item support various devices: public displays of all sizes, tablets, phablets, smartphones, desktop devices (responsive web design)
-	\item create an open research platform (host project and documentation on GitHub, release it as open source)
-	\end{enumerate}
+	\begin{itemize}[itemsep=0pt] 
+	\item easy \textbf{embedding of questionnaires} on websites of public display owners (provide API / embed code)
+	\item support of \textbf{various devices}: public displays of all sizes, tablets, phablets, smartphones, desktop devices (responsive web design)
+	\item create an \textbf{open research platform} (host project and documentation on GitHub, release it as open source, publish and invite fellow researchers)
+	\item allow for both \textbf{quantitative and qualitative} metods of data collection
+	\end{itemize}
 
+	% + RESULTS FROM LITERATURE RESEARCH (TODO)
 
 	These derived requirements had an impact on the chosen architecture, which will be discussed in the following.
-
-
 
 
 
@@ -68,6 +67,9 @@
 		For the CSS framework of the PDSurvey platform, Bootstrap\footnote{\url{http://getbootstrap.com/} (accessed on December 1, 2014)} was our framework of choice. Reasons for choosing Bootstrap were the large community, extensive documentation with helpful examples, large number of free tutorials and templates, its integration with Angular.js (AngulatStrap\footnote{\url{http://mgcrea.github.io/angular-strap/}} and AngularUI), and its short training time.
 		Alternatives considered were Foundation Framework by Zurb, however at the time of writing there was no prefabricated integration for Foundation and Angular.js.
 		A good overview of currently popular frontend frameworks: \url{http://www.sitepoint.com/grid-system-comparison-bootstrap-vs-foundation/} (accessed March 24, 2015).
+
+
+		% Express.js was chosen over Resty, simply due to its popularity and because it already suits the MEAN stack philosophy
 	
 
 
@@ -131,10 +133,20 @@ Modeling
 	REST API
 
 
+Used the extreme programming\footnote{\url{http://www.extremeprogramming.org/rules.html} (accessed on November 13, 2014)} approach: user stories, release planning, release schedule, small releases, iterating
 
-\subsection{Prestudy}
 
-First feedback regarding the platform, before launching it. Either I will use this section, or I will make the expert interview (see section \ref{sec:expert-interview}).
+
+
+\subsection{PDSurvey Platform}
+
+\begin{enumerate}
+\item begin with describing what the platform does, which views it has (show screenshots).
+\item describe the client
+\item also show the mockup / technical demonstration of the JavaScript embed code. It was a proof-of-concept, demonstrating the feasibility of embedding questionnaires as an overlay (additional DIV layer), injected via one (minified) line of Javascript. % bereits geloest (pdsurvey/public/tracking/survey.js bzw. testing/tracking-code/index.html)
+\end{enumerate}
+
+
 
 
 
@@ -153,3 +165,8 @@ First feedback regarding the platform, before launching it. Either I will use th
 		\item deployment		>> documentation
 
 	\end{enumerate}
+
+
+	\subsubsection{Prestudy}
+
+	First feedback regarding the platform, before launching it. Either I will use this section, or I will make the expert interview (see section \ref{sec:expert-interview}).

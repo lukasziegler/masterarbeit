@@ -26,6 +26,7 @@ In the \textbf{display} collection all displays connected to the PDSurvey platfo
 
 All \textbf{responses} made to each survey are logged in the Response collection. The queries are carried out individually per user, per display and per campaign. This model will be the base for further extensions, amongst others the automatic evaluation of the survey responses and the comparison inbetween an entire display network, to be able to find out which properties of a display might be related to certain effects.
 
+
 \begin{figure}%[btph]
     \begin{center}
         \includegraphics[width=.8\columnwidth]{img/4_implementation/4-dependency-campaign}
@@ -34,6 +35,10 @@ All \textbf{responses} made to each survey are logged in the Response collection
  \caption{Campaign model dependencies}
  \label{fig:4-dependency-campaign}
 \end{figure}
+
+
+++ neue Namensgebung, um in der domain specific language zu bleiben --> application provider / display provider / space provider (anstatt Operator). Wir werden aber nur mit dem Application Provider (anstatt Operator) im System arbeiten
+
 
 
 
@@ -48,17 +53,21 @@ Concept from extreme programming.
 
 
 
++ User Centered Design (paper nr 31): ``constitutes an iterative process of system design, deployment and evaluation'' (quote from paper 31)
+
+
+
+
 
 
 \subsubsection{User roles}
 
 As of now only two roles are implemented, the admin-role and the guest-role.
 
-In the long term it would be desirable to 
+% FEEDBACK VON FLORIAN: nein, nicht zu komplex machen. Es sollte sogar reichen, nur zwischen Admin & Operator (= Application Provider) zu unterscheiden, da der end user (das Public Display) ja sowieso nur auf die öffentlichen REST API Zugriff hat. (2014-11-14)
 
-List of user roles: Admin, Operator, Evaluator, DisplayApplication
 
-Rights: read only,  read and write, none
+In the long term it would be desirable to have the following user roles: Admin, Operator, Evaluator, DisplayApplication.
 
 
 
