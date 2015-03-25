@@ -51,18 +51,15 @@
 	\paragraph{Programming language}
 
 		Due to the requirements and objective to support a large number of devices, operating systems, and form factors, a device-independent programming language was preferred. 
-		The choice fell on Javascript, since it can be used on the biggest number of devices, also having the benefit of only having to use one programming language for developing the backend as well as the frontend, thanks to the MEAN stack.
+		The choice fell on Javascript, not just due to the growing popularity\footnote{\url{http://www.sitepoint.com/javascript-internet-things/} (accessed on November 27, 2014)} since it can be used on the biggest number of devices, also having the benefit of only having to use one programming language for developing the backend as well as the frontend, thanks to the MEAN stack.
 
 		Alternative languages considered were: PHP, Python, Ruby, Java and ASP.NET. The biggest drawback was the additional workload on having to maintain the object model on multiple platforms. With Javascript it is possible to use the same model across all platforms (backend, frontend, server).
 
-
+		% TODO: add citation
 
 	\paragraph{Frontend}
 
-		The next question to be answered was which frontend technologies to use, leading to the question whether to follow the single-page application approach or not.
-
-		As of 2014 the JavaScript model-view frameworks most frequently used for creating single-page apps are Angular.js, Ember.js and Backbone.js. Purely based on numbers Angular.js is the clear favorite, it has by far the largest user base on GitHub, Stackoverflow, and Youtube. When comparing the number of third-party modules, Angular.js also takes the lead with 800 ngmodules vs. 236 Backbone.js backplugs vs. 21 emberaddons. Each framework having its advantages and disadvantages, we chose Angular.js
-		\footnote{\url{https://www.airpair.com/js/javascript-framework-comparison} (accessed on January 11, 2015)}.
+		The next question to be answered was which frontend technologies to use, leading to the question whether to follow the single-page application approach or not. As of 2014 the JavaScript model-view frameworks most frequently used for creating single-page apps are Angular.js, Ember.js and Backbone.js. Purely based on numbers Angular.js is the clear favorite, it has by far the largest user base on GitHub, Stackoverflow, and Youtube. When comparing the number of third-party modules, Angular.js also takes the lead with 800 ngmodules vs. 236 Backbone.js backplugs vs. 21 emberaddons. All these factors together indicate a short training time and give hope for making good progress for beginners. These were amongst other things	\footnote{\url{https://www.airpair.com/js/javascript-framework-comparison} (accessed on January 11, 2015)} the reasons why we chose Angular.js for this project, since the scope is also for other students to further enhance the PDSurvey platform.
 
 		For the CSS framework of the PDSurvey platform, Bootstrap\footnote{\url{http://getbootstrap.com/} (accessed on December 1, 2014)} was our framework of choice. Reasons for choosing Bootstrap were the large community, extensive documentation with helpful examples, large number of free tutorials and templates, its integration with Angular.js (AngulatStrap\footnote{\url{http://mgcrea.github.io/angular-strap/}} and AngularUI), and its short training time.
 		Alternatives considered were Foundation Framework by Zurb, however at the time of writing there was no prefabricated integration for Foundation and Angular.js.
@@ -75,46 +72,85 @@
 
 	\paragraph{Backend}
 
+		For the backend server it was of importance to have an easy administrator interface and easily being able to exchange data with all clients. 
+
+
+			Node.js
+			Express.js
+			Mongoose.js\footnote{\url{http://mongoosejs.com/} (accessed on November 14, 2014)}
+
+
 		> give a short overview of alternatives
 		> say because of embedding + frontend, it seems obvious to choose JavaScript
 		> Server: NodeJS is currently becoming the de-facto standard for scalable and RESTful web services.
 
 		reasons for choosing Node.js
 
+
 			\begin{enumerate}[itemsep=0pt] 
 			\item scalable
 			\item modular / extensible
 			\item multilingual / internationalization (i18n)
+
+	        \item \textbf{Backend}: Why I chose Node.js
+	        \item Frameworks in Node.js: Connect, Express, Koa, ... which ones I chose why
+	        \item Discussion of pro/con Node.js: http://www.heise.de/developer/artikel/2x-Nein-4x-Ja-Szenarien-fuer-Node-js-2111050.html
+	        \item Prinzip und Verwendung von Middlewares in Node.js (wegen der Internationalisierung und Authentisierung) http://www.heise.de/developer/artikel/REST-Webservices-mit-Node-js-Teil-1-Connect-als-Fundament-1802258.html?view=print
+
 			\end{enumerate}
 
 
-	\paragraph{Interaction / Communication}
+		% + Interaction / Communication
 	
-		> REST API
+		> REST vs SOAP: why I chose REST
+
+		Should a component not support HTML or JavaScript execution, then the required surveys can still be communicated directly with the REST API through rudimentary HTTP function calls.
+
+		Based on these requirements and the feedback received from industry experts, a choice towards Node.js and to fully go along with MEAN stack was self-evident.
+
+
 
 
 	\paragraph{Database}
+
+		Another fundamental aspect presented the question where to store all of the data. A big variety of professional and open-source database management systems (DBMS) already exist on the market, but ...
+
+		Criteria for choosing the right DBMS for this project: size of community, suitability for prototyping, and integration with Node.js/Angular.js.
+
+		
+
+		% Comparison in between ...
+
+		% My choice
+
+		Not only due to it's popularity, but also 
+		% - wanted to learn something new
+		% - popular in industry
+		% - MEAN stack
+
+
 		> SQL vs NoSQL: NoSQL better for 
 		> MongoDB is the most popular NoSQL database as of now and integrates seamlessly with the MEAN stack (MongoDB, ExpressJS, AngularJS, NodeJS).
 
+
+
+
 	\paragraph{Hosting}
-		 > copy + paste! from already written chapter
+
+		For the hosting of the platform a free and easy scalable solution was of importance. Our first choice was Heroku\footnote{https://www.heroku.com/}, due to its simplicity of setup, its native support of Node.js and the seamless integration with Mongolab\footnote{https://mongolab.com/}, hosting our MongoDB.
+
+		% TODO: IaaS vs PaaS: https://www.youtube.com/watch?v=Q8jZHc0NS6A
+		% give reasons why I chose PaaS (Platform as a Service)
+
+		    % Heroku        PaaS
+		    % IBM BlueMix   PaaS
+		    % Amawon AWS    IaaS
+		    % self hosting  IaaS
+
+		    %   comparison  http://smashingboxes.com/ideas/heroku-vs-amazon-web-services
 
 
-
-
-	Based on these requirements and the feedback received from industry experts, a choice towards Node.js and the MEAN stack was self-evident.
-
-
-
-Bits and pieces
-
-		Should a component not support HTML and JavaScript execution, then the required surveys can still be communicated directly with the REST API of PDServer.
-
-		For administrative purposes we created a RESTful backend (PDBackend), which enables the creation, management and distribution of surveys to public displays. Attached to this backend there is the   a responsive client 
-
-
-
+		Alternative were Google App Engine, IBM BlueMix, Amazon Web Services (Amazon EC2) or hosting everything on local or virtualized machines at our university. However for our scenario all of the above options had their drawbacks in comparison to Heroku. Google App Engine (as of December 2014) still had no native support for Node.js and custom runtimes had to be used to get Node.js support up and running. IBM BlueMix just got overhauled, offered full out-of-the-box Node.js support, however they only the first 30 days were free and the pricing model wasn't as attractive. Amazon Web Services offering a Infrastructure as a Service (IaaS), would have required too much administration of the server, which would have slowed down the main objective of the project, the development of the survey platform. The same goes for the last option, hosting a MEAN-stack environment on our own servers at LMU Munich. All of the above are well-known solutions in the industry, however due to simplicity and ease of use we chose Heroku.
 
 
 
@@ -140,12 +176,34 @@ Used the extreme programming\footnote{\url{http://www.extremeprogramming.org/rul
 
 \subsection{PDSurvey Platform}
 
-\begin{enumerate}
-\item begin with describing what the platform does, which views it has (show screenshots).
-\item describe the client
-\item also show the mockup / technical demonstration of the JavaScript embed code. It was a proof-of-concept, demonstrating the feasibility of embedding questionnaires as an overlay (additional DIV layer), injected via one (minified) line of Javascript. % bereits geloest (pdsurvey/public/tracking/survey.js bzw. testing/tracking-code/index.html)
-\end{enumerate}
+	The architecture for the public survey platform can be split into three main sections
 
+	\begin{figure}%[btph]
+	    \begin{center}
+	        \includegraphics[width=.7\columnwidth]{img/4_implementation/4-overview}
+	    \end{center}
+	 \caption{Overview of the PDSurvey platform}
+	 \label{fig:4-pdsurvey-platform}
+	\end{figure}
+
+
+	\begin{enumerate}
+	\item begin with describing what the platform does, which views it has (show screenshots).
+	\item describe the client
+	\item also show the mockup / technical demonstration of the JavaScript embed code. It was a proof-of-concept, demonstrating the feasibility of embedding questionnaires as an overlay (additional DIV layer), injected via one (minified) line of Javascript. % bereits geloest (pdsurvey/public/tracking/survey.js bzw. testing/tracking-code/index.html)
+	\end{enumerate}
+
+
+		For administrative purposes we created a RESTful backend (PDBackend), which enables the creation, management and distribution of surveys to public displays. Attached to this backend there is the   a responsive client 
+
+
+	\subsubsection{Embed Code}
+
+	https://developers.google.com/analytics/resources/concepts/gaConceptsTrackingOverview
+
+	http://en.wikipedia.org/wiki/Web_bug
+
+	http://stackoverflow.com/questions/3534524/how-does-the-embedded-google-analytics-javascript-work
 
 
 
