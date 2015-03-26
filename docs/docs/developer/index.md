@@ -10,6 +10,21 @@ __Sublime__
 * Install [AngularJS Sublime-Plugin](https://sublime.wbond.net/packages/AngularJS)
 
 
+__Package Managers__
+
+* using NPM and Bower (were chosen, instead of Browserify)
+* Reasons, why I did / didn't check in the code for npm / bower components: http://addyosmani.com/blog/checking-in-front-end-dependencies/
+* > to be independent of other services and thus to garantee a longer life for the tool
+* benefits of package managers: "prevent bad dependencies from breaking their app" + "the longevity of package managers and their tooling"
+
+
+__Database / MongoDB__
+
+* [The MEAN Stack: Mistakes You’re Probably Making With MongooseJS, And How To Fix Them](http://blog.mongodb.org/post/52299826008/the-mean-stack-mistakes-youre-probably-making)
+* [node.js and mongo (using mongoose) tutorial](http://blog.modulus.io/getting-started-with-mongoose)
+
+* [File Structure of Mongoose & NodeJS Project](http://stackoverflow.com/questions/9230932/file-structure-of-mongoose-nodejs-project?answertab=votes#tab-top)
+* [Saving nested objects in mongoose](http://stackoverflow.com/questions/21243502/saving-nested-objects-in-mongoose)
 
 
 ## Links

@@ -1,26 +1,6 @@
 
 
 
-%%  DATABASE  %%
-\subsubsection{Database}
-
-
-\paragraph{SQL: MySQL}
-
-\begin{enumerate}
-\item http://www.mysql.com/
-\item "MySQL ist aus gutem Grund das Arbeitstier der Open-Source-Welt geworden: Es bietet viele der M\"oglichkeiten grosser kommerzieller Datenbanken - und ist dabei kostenlos. In seiner aktuelen Form ist MySQL performant und besitzt viele Features." \cite{hughes2012einfuhrung} (Quelle: Buch - Einf\"uhrung in Node.js, Tom Hughes-Croucher \& Mike Wilson, O'Reilly, Seite 134)
-\end{enumerate}
-
-
-\paragraph{SQL: PostgreSQL}
-
-\begin{enumerate}
-\item http://www.postgresql.org/
-\item "Postgres (sp\"ater PostgreSQL) ist ein objektorientiertes RDBMS, das urspr\"unglich an der University of California in Berkeley entwickelt wurde. Vater des Projekts war Professor Michael Sonebraker, der es als Nachfolger seines \"alteren Ingres-Datenbank-Systems ansah. [...] Nach der Zeit in Berkeley übernahmen Open-Source-Entwickler das Projekt, ersetzten den ursprünglichen QUEL-Sprachinterpreter durch einen SQL-Sprachinterpreter und benannen das Projekt in PostgreSQL um." \cite{hughes2012einfuhrung} (Quelle: Buch - Einf\"uhrung in Node.js, Tom Hughes-Croucher \& Mike Wilson, O'Reilly, Seite 141)
-\end{enumerate}
-
-
 \paragraph{NoSQL: CouchDB}
 
 \begin{enumerate}
@@ -35,32 +15,21 @@
 \item "Redis ist eine In-Memory-Datenbank mit einer Schl\"ussel/Wert-Ablage, die Ihnen sehr vertraut vorkommen sollte, wenn Sie schon \"uber Erfahrungen mit Schl\"usse/Wert-Caches wie Memcache verf\"ugen. Redis wird verwendet, wenn Performance und Skalierbarkeit wichtig sind. In vielen F\"allen entscheiden sich die Entwickler daf\"ur, es als Cache f\"ur die von einer relationealen Datenbank wie MySQL empfangenen Daten einzusetzen, auch wenn es deutlich mehr kann." \cite{hughes2012einfuhrung} (Quelle: Buch - Einf\"uhrung in Node.js, Tom Hughes-Croucher \& Mike Wilson, O'Reilly, Seite 121)
 \end{enumerate}
 
+
+
+
+
 \paragraph{NoSQL: MongoDB}
 
 "NoSQL databases came back into the mainstream when developers needed better performance and were ok with giving up the relational aspect of RDBs (unions, joins, etc)" \url{http://psitsmike.com/2012/02/node-js-and-mongo-using-mongoose-tutorial/}
 
 \begin{enumerate}
-\item http://www.mongodb.org/
 \item MongoDB is document database, storing all data in the form of JavaScript objects, PHP arrays, Python dicts or Ruby hashes. This significantly facilitates the handover from JavaScript to the database management system (DBMS).
 \item "Da Mongo eine JavaScript-Umgebung mit BSON-Objektspeichern (einer Bin\"ar-Adaption von JSON) mitbringt, ist das Lesen und Schreiben von Daten aus Node heraus ausgesprochen effizient. Mongo speichert eintreffende Datens\"atze im Speicher, daher ist es in Situationen mit viel Schreibvorg\"angen eine ideale Wahl. Jede neue Version bietet verbessertes Clustering, bessere Replikation und Sharding. Da die eintreffenden Datens\"atze im Speicher abgelegt werden, ist das Einf\"ugen von Daten in Mongo nicht blockierend, womit es ideal f\"ur das Protokollieren von Operationen und Telemetriedaten ist. Mongo unterst\"utzt JavaScript-Funktionen in Abfragen. Dadurch ist es beim Lesen sehr leistungsf\"ahig, so zum Beispiel bei MapReduce-Anfragen. Mit dem dokumentenbasierten Datenspeicher von MongoDB k\"onnen Sie in Eltern-Datens\"atzen auch Kind-Datens\"atze ablegen. So kann zum Beispiel ein Blogartikel mit all seinen Kommentaren in einem einzelnen Datensatz gespeichert werden, wodurch er sich auch wieder sehr schnell auslesen l\"asst."  \cite{hughes2012einfuhrung}
 \end{enumerate}
 
-Reasons for using MongoDB
-\begin{enumerate}
-\item ideal for lots of write procedures
-\item non-blocking write operations, ideal for Node.js and for logging data (good for our future work)
-\item good read performance
-\item good scalability
-\item fully supports JSON syntax
-\item good integration with Node.js, see Mongoose\footnote{http://mongoosejs.com/}
-\end{enumerate}
 
 
-Notes from the MondoDB University M101JS Class
-\begin{enumerate}
-\item is non-relational, ideal for JSON data
-\item MongoDB is schemaless. Two documents in the same collection can have different schemas.
-\item MongoDB provides a good compromise between scalability/performance and the depth of funcitonality
-\item Drawback: MongoDB does not support Joins or Transactions
-\end{enumerate}
+
+
 
