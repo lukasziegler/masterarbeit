@@ -1,7 +1,11 @@
 \section{Related Work}
 \label{sec:related-work}
 
-%\begin{itemize}[itemsep=0pt] 
+
+	The goal of the literature review was to find out how other researchers evaluate public displays. The aim was to identify important aspects of public display deployments - both from a researcher's as well form a practitioner's perspective. Furthermore it was of interest to develop an understanding of how these aspects could be addressed through surveys. 
+
+
+
 	\begin{enumerate}
 	\item give an overview of related work
 	\item give background information to this thesis
@@ -13,52 +17,90 @@
 %%% 
 \subsection{Evaluation of Public Displays}
 
-	Ovweview of papers with a relevance for the construction of surveys for public displays.
+
+	%%%  1st part: Book
+	\textbf{1) How to evaluate? A short recap of best-practices.}
+
+		\begin{enumerate}
+		\item How to Design and Report Experiments \cite{field2003design}
+		\item explain how researchers usually proceed (quantitative, qualitative)
+		\item things they have to take care of, some elements which can be optimized (quantitative analysis)
 
 
-	\textbf{Creating questionnaires for public displays}
-	\begin{enumerate}
-	\item Jacucci: Worlds of Information (paper 25: \url{http://www.hiit.fi/u/morrison/chi2010.pdf})
+		\item Kirakowski [201 Questionnaires in Usability Engineering.pdf] - A list of FAWs: What is a questionnaire? What kind of questions are there? What kind of questionnaires are there? What are the advantages and disadvantages of using a questionnaire? 		--   A MUST READ / REFERENCE !!!
+
+
+
+		\item Alt et al. \cite{Alt2012HowToEvaluate}  -  The publication ``How to evalaute public displays'' by Alt et al. gives a first foundation on how to evaluate public displays. \url{http://uc.inf.usi.ch/sites/all/files/ispd2012-alt.pdf} % ++ STATE 3 KEY FINDINGS ++ % 
+
+		\item Mueller et al. \cite{muller2014mirrortouch} give an overview of evaluation methods for public display. According to their findings almost exclusively descriptive field studies are used in the area of public display evaluation. \url{http://joergmueller.info/pdf/MHCI14MuellerMirrorTouch.pdf}
+
+		\end{enumerate}
+
+
+
+
+	\textbf{2) Overview of papers with a relevance for the construction / or with a good evaluation.}
+
+		\begin{enumerate}
+		\item Jacucci: Worlds of Information (paper 25: \url{http://www.hiit.fi/u/morrison/chi2010.pdf}) liefert einen erstklassigen Ueberblick ueber die Evaluationsmethoden
+		\item Papers on which I did a meta-analysis, comparing and evaluating how they approached the evaluation via questionnaires.
 	\end{enumerate}
 
 
 
 
-%%%
-\subsection{Conducting Surveys}
+	\textbf{3) Motivate why a platform such as the PDSurvey is of use. }
 
-	\begin{itemize}[itemsep=0pt] 
-	\item state how complex it is to administer / execute / conduct a survey or questionnaire
-	\item encourage the motivation for creating a plattform like this!
-	\item differentiate between surveys and questionnaires. survey = Umfrage, questionnaire = Fragebogen
-	\item 
-	\end{itemize}
-
+		\begin{itemize}[itemsep=0pt] 
+		\item state how complex it is to administer / execute / conduct a survey or questionnaire
+		\item encourage the motivation for creating a plattform like this!
+		\item discrepancy between field and lab study: \cite{Ojala2011}.
+		\item field studies are much more time consuming and usually spread over a larger area to assess. Being able to automate certain parts, such as the collection of quantitative or qualitative data, will facilitate the evaluation process for researchers and give new insights for display operators.
+		\end{itemize}
 
 
 
-%%% 
-\subsection{Related Tools}
 
-	Give an overview of other tools 
+	\textbf{Guidelines for the construction of Public Display Applications}
 
-	%\begin{itemize}[itemsep=0pt] 
-	\begin{enumerate}
-	\item give an overview of similar tools
-	\item LimeSurvey (\url{http://de.wikipedia.org/wiki/LimeSurvey})
-	\item SosciSurvey/LMU (\url{https://www.soscisurvey.de/})
-	\item TODO look for more tools out there
-	\item +Folgerungen aus anderen Bereichen (?)
-	\end{enumerate}
+		\begin{enumerate}
+		\item is this SECTION NEEDED?
 
-	and clarify what the difference is between the already existing approaches to my approach.
+		\item papers 23 (Overcoming Assumptions and Uncovering Practices, Huang), 25 (Worlds of Information, Jacucci): Best-practices / guidelines for designing good public display applications
+
+
+		\item Further insights by Peltonen et al. \cite{peltonen2008s}: noticing others use the display, stepwise approach, parallel use, teamwork, conflict management, floor- and turn-taking, expressive and pondering gestures, and joint activities. The unsaid negotiation of social role taking between multiple users.
+		\item Social behaviors arising from public display usage: crowding, massively parallel interaction, teamwork, games, negotiations of transitions and handovers, conflict management, gestures and overt remarks to co-present people, marking the display for others. \cite{peltonen2008s}
+
+
+		\item \cite{redhead2009designing}: ``the display should clearly convey low commitment interaction, that it is quick and enjoyable. People preferred to interact with the display as objects, rather than via text based navigation.'' (find source, not sure whether I paraphrased it or if it's a citation)
+
+		\end{enumerate}
+
+
+
+	\textbf{4) Give an overview of other tools, possibly related to ours.}
+
+		%\begin{itemize}[itemsep=0pt] 
+		\begin{enumerate}
+		\item give an overview of similar tools
+		\item LimeSurvey (\url{http://de.wikipedia.org/wiki/LimeSurvey})
+		\item SosciSurvey/LMU (\url{https://www.soscisurvey.de/})
+		\item TODO look for more tools out there
+		\item +Folgerungen aus anderen Bereichen (?)
+		\end{enumerate}
+
+		and clarify what the difference is between the already existing approaches to my approach.
 
 
 
 
 
 % In the last part, restate that our approach is new, and that we are not aware of any similar approach before. 
-What is unique about our approach: That we will have the opportunity to conduct surveys across a broad number of devices (large displays, tablets, smartphones, desktops), since they all access the same platform via a RESTful API. Which allows the greatest possible coverage of display providers' public displays and end consumer devices.
+	\textbf{5) What is unique about our approach:}
+
+		That we will have the opportunity to conduct surveys across a broad number of devices (large displays, tablets, smartphones, desktops), since they all access the same platform via a RESTful API. Which allows the greatest possible coverage of display providers' public displays and end consumer devices.
 
 
 
@@ -69,18 +111,9 @@ What is unique about our approach: That we will have the opportunity to conduct 
 % - - - Collection of Papers to reference - - - - %
 \subsection{Temp}
 
-	The goal while reading papers for literature review was to find out how others evaluate public displays. The aim was to identify important aspects of public display deployments - both from a researcher's as well form a practitioner's perspective. Furthermore it was of interest to develop an understanding of how these aspects could be addressed through surveys. The 
+	Temporary notes, found while reviewing my related work.
+
 
 	\begin{enumerate}
-	\item Paper 25: \textit{Worlds of Information: Designing for Engagement at a Public Multi-touch Display (von Jacucci)} liefert einen erstklassigen Ueberblick ueber die Evaluationsmethoden
-	\item Paper 106: \textit{MirrorTouch: Combining Touch and Mid-air Gestures for Public Displays} (von Joerg Mueller) liefert den Stand von 2014
-
-	\item papers 23, 25: Best-practices / guidelines for designing good public display applications
-
-	\item discrepancy between field and lab study: \cite{Ojala2011}.
-
-	\item : Social behaviors arising from public display usage: crowding, massively parallel interaction, teamwork, games, negotiations of transitions and handovers, conflict management, gestures and overt remarks to co-present people, marking the display for others. \cite{peltonen2008s}
-
-	\item \cite{redhead2009designing}: ``the display should clearly conved low commitment interaction, that it is quick and enjoyable. People preferred to interact with the display as objects, rather than via text based navigation.'' (find source, not sure whether I paraphrased it or if it's a citation)
-
+	\item foo
 	\end{enumerate}
