@@ -2,13 +2,9 @@
 
 \subsection{PDSurvey Platform}
 
-	The architecture for the public disply survey (PDSurvey) platform can be split into three main sections (see Figure \ref{fig:4-pdsurvey-platform}). 
+	+ describe what it is about + describe the main goals / ambitions
 
-	\begin{itemize}
-	\item \textbf{PDAdmin}: 
-	\item \textbf{PDServer}: 
-	\item \textbf{PDClient}:
-	\end{itemize}
+	The architecture for the public disply survey (PDSurvey) platform can be split into three main sections: PDAdmin, PDServer, and PDClient (see Figure \ref{fig:4-pdsurvey-platform}). \textit{PDAdmin} contains the administrative interface, allowing display providers to configure questionnaires for their public displays. \textit{PDServer} accommodates the REST service, the persistence layer, and the majority of the application logic. \textit{PDClient} encloses 
 
 	\begin{figure}%[btph]
 	    \begin{center}
@@ -29,7 +25,7 @@
 
 	\subsubsection{PDAdmin}
 
-		For administrative purposes we created an interface, enabling display providers to create, manage and distribute surveys to public displays. 
+		For administrative purposes we created an admin interface, enabling display providers to create, manage and distribute surveys to public displays. 
 
 		% admins
 		Display providers have the ability to create their own questionnaires or to select from a list of standardized questionnaires (introduced in section \ref{sec:questionnaires}).
@@ -62,22 +58,24 @@
 
 	\subsubsection{PDClient}
 
-		Our client tool was kept as simple and minimalistic as possible. It is running on a completely different code base than PDBackend, the only communication between the two is via REST, exchanging JSON objects.
+		Our client tool was kept as simple and minimalistic as possible. It is running on a separated code base than PDBackend, the only communication between the two is via REST, exchanging JSON objects. Reasons for this were on the one hand reduction of the application size, on the other hand different requirements for constructing a PDAdmin interface for a limited number of users, compared with PDClient, being embedded at large scale.
 
+		% TODO: maybe move this paragraph to Section "Implementation: PDClient"
+		The goal is to reduce logic and complexity on client-side. Currently PDClient is implemented as follows: The client either receives all questions for the questionnaire (caching the questions), or it loads just the next question on-demand. For this purpose the REST interface provides the /nextQuestion API is provided. For production use one sub-page per campaign gets created, individualized via the campaign ID.
 		
-			Goal: reduce logic and complexity on client-side. The client either receives all questions for the questionnaire (caching-ability), or it always only loads the next question on-demand. For this purpose the REST interface provides the /nextQuestion API.
-		
-			% Optional: campaign specific view
 
-		Overview of elements:
-
-		\textbf{Survey page}: all questions are loaded at once on initial startup, then one question gets displayed at a time. Settings for the survey can be modified in the PDBackend (e.g. number of questions to display, duration of the survey, ...). Once the user makes a choice, it is directly logged on the server. In case that a participant aborts answering the survey, the questions answered so far are still recorded.
-
-		\textbf{About page}: giving information about the research project. Some people are sceptical and have doubts 
-
-		\textbf{Welcome page} (to teaser people to participate). It turned out that a significant larger number of people were willing to participate in a survey, after knowing that it doesn't take long, is university-related and for what it will be used for. These arguments were amongst others stated in semi-structured interviews during the field study.
+		% Overview of elements
+		PDClient has three main components (see Figure \ref{fig:4-pdclient-screenshots}). The principal part being the \textit{Survey page}. All questions are loaded at once on initial startup, then one question gets displayed at a time. Settings for the survey can be modified in the PDBackend (e.g. number of questions to display and duration of the survey). Once the user makes a choice, it is directly logged on the server. In case that a participant aborts answering the survey, the questions answered so far are still recorded. The \textit{About page} was added, since employees from university gave feedback to us regarding the public display installation, prior to the beginning of development for the PDSurvey platform. They said they were skeptical and had doubts regarding the research project, when having no information whatsoever regarding which information is logged. To motivate people to participate, a \textit{Welcome page} was added. It turned out that a significant larger number of people were willing to participate in a survey, after knowing that it doesn't take long, the research is university-related and that it will be used for a Master's thesis. These arguments were amongst others stated in semi-structured interviews, carried out as part of the field study (see chapter \ref{sec:field-study}).
 
 
+		% TODO EMBED SCREENSHOTS HERE!!
+		\begin{figure}%[btph]
+		    \begin{center}
+		        \includegraphics[width=\columnwidth]{img/screenshots/pdclient-overview}
+		    \end{center}
+			\caption[Overview of PDClient]{PDClient: (a) Welcome Page, (b) Survey page, (c) About page}
+		 \label{fig:4-pdclient-screenshots}
+		\end{figure}
 
 
 
@@ -113,6 +111,13 @@
 
 		\url{http://stackoverflow.com/questions/3534524/how-does-the-embedded-google-analytics-javascript-work}
 
+	\subsubsection{Feedback Channels}
+
+	As of now PDSurvey offers a ready built survey tool for all devices being capable of running a browser and displaying the PDClient website. Thus a large number of feedback channels is conceivable. For our scenario these were a tablet, smartphone, and laptop/desktop. Integrating PDClient on a public display itself is also no problem, as long as the public display application is a web application itself (embed code), or it supports embedding a browser window on top of the application. 
+
+	In case that the application does not integrate well with a web page being displayed on top of the actual application, then a custom integration needs to be built making use of the REST calls. All REST calls needed to receive the questionnaire and send responses to the PDSurvey platform (in JSON format) can be found in the documentation (see Appendix \ref{appendix:documentation}).
+
+
 
 	\subsubsection{Future Work}
 
@@ -121,4 +126,8 @@
 		Authentication: using passport, HTTPS was not offered in the beginning. As of now it is not needed, since we only had one client. All REST Update and Delete functionality was restricted to the URI of the PDServer, which is also the desired approach in the production setting.
 
 		Evaluation of results: dynamic queries, information visualization
+
+		Context: refine the Context model and build the evaluation of the responses based on the Context model, assigned to each and every display and/or campaign.
+
+		Unit testing: not done yet
 

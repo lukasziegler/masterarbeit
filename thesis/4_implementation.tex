@@ -49,18 +49,23 @@
 
 	Two weeks were taken for assessing all of the possibilities, on the one hand to get informed again what is buzzing, on the other hand because every choice also has a significant impact on the later architecture. Changing a technology in between would not be a smart choice in such a short time-frame. 
 
+	% TODO: relativ schnell hat ziemlich vieles auf den MEAN stack hingewiesen, eine SPA Ansatz zu wählen, rein JavaScript basiert zu arbeiten. Im Folgenden werden wir die einzelnen Teile betrachten und jeweils Vergleiche ziehen und Alternativen anschauen.
+
 
 	\paragraph{Programming language}
 
 		Due to the requirements and objective to support a large number of devices, operating systems, and form factors, a device-independent programming language was preferred. 
 		The choice fell on Javascript, not just due to the growing popularity\footnote{\url{http://www.sitepoint.com/javascript-internet-things/} (accessed on November 27, 2014)}, but also because it can be used on the largest number of devices. Furthermore another huge benefit, only having to use JavaScript on all tiers, from client to server to persistence layer.
 
-		This approach has become very popular in recent years, now often being referred to as the MEAN stack, consisting of MongoDB, Express.js, Angular.js, and Node.js. Some fundamental differences to the LAMP stack (Linux, Apache, MySQL, PHP) are its shift form server-side to client-side single-page applications (SPA), faster prototyping, shift from synchronous to asynchronous, fast page loading times, less time spent writing SQL (schemaless), and the shift to using RESTful services for the backend\footnote{\url{http://www.ibm.com/developerworks/library/wa-mean1/index.html} (accessed on March 26, 2015). Additional, the feedback from the industry contacts also played a role. 
+		This approach has become very popular in recent years, now often being referred to as the MEAN stack, consisting of MongoDB, Express.js, Angular.js, and Node.js. Some fundamental differences to the LAMP stack (Linux, Apache, MySQL, PHP) are its shift form server-side to client-side single-page applications (SPA), faster prototyping, shift from synchronous to asynchronous, fast page loading times, less time spent writing SQL (schemaless), and the shift to using RESTful services for the backend\footnote{\url{http://www.ibm.com/developerworks/library/wa-mean1/index.html} (accessed on March 26, 2015)}. Additional, the feedback from the industry contacts also played a role. 
 		% This already led to the thought of choosing the MEAN stack\footnote{\url{http://mean.io/} (accessed on March 26, 2015)} for the entire development.
 
 		Alternative languages considered were: PHP, Python, Ruby, Java and ASP.NET. The biggest drawback was the additional workload on having to maintain the object model on multiple platforms. With Javascript it is possible to work with the same object model and easily keeping it consistent across all platforms (backend, frontend, server).
 
 		% say because of embedding, it seems obvious to choose JavaScript
+
+				Based on these requirements and the feedback received from industry experts, a choice towards Node.js and to fully go along with MEAN stack was self-evident.
+
 
 
 	\paragraph{Frontend}
@@ -77,50 +82,34 @@
 		% Express.js was chosen over Resty, simply due to its popularity and because it already suits the MEAN stack philosophy
 	
 
-
 	\paragraph{Backend}
 
 		For the backend it was most important to have a solid and scalable solution with good performance, since our system might need to scale in the future, having a multiplicity of clients attached to the survey platform, all submitting responses and querying for different questionnaires. Additionally an administrator interface and easily being able to exchange data with all clients was of importance. For this reason a backend built solely on the principles of a RESTful API was preferred, being able to use the same data on no matter which platform.
 
 		% get curve to MEAN, say why we chose it now
+		Based on the decision to use JavaScript for all tiers, it was clear to also use Node.js as the underlying platform for building web applications. Reasons speaking for Node.js are its scalability and modular approach, only requiring the parts needed for your project. Another benefit is the easy implementation of authentication or internationalization, due to the concept of middlewares \footnote{\url{http://www.heise.de/developer/artikel/REST-Webservices-mit-Node-js-Teil-1-Connect-als-Fundament-1802258.html?view=print} (accessed on November 24, 2014)}. 
 
-		Going along with the MEAN stack it was clear to use Node.js as the underlying platform for building web applications. 
+				(Discussion of pro/con Node.js: http://www.heise.de/developer/artikel/2x-Nein-4x-Ja-Szenarien-fuer-Node-js-2111050.html)
 
-		% now it was the question whether to use 
-		> give a short overview of alternatives
+		% Which framework to use
+		The question which web framework to use for Node.js was not as straight forward to answer. A list of current options being Express.js, Conncet, Koa and Restify. 
 
-		 - Express.js
-		 - Connect
-		 - Koa
-		 - Restify
-
-
-		% Reasons for choosing Node.js
-		NodeJS is currently becoming the de-facto standard for scalable and RESTful web services. Another benefit of using Node.js being easily able to implement authentication or internationalization of the whole platform through the concept of the middlewares \footnote{\url{http://www.heise.de/developer/artikel/REST-Webservices-mit-Node-js-Teil-1-Connect-als-Fundament-1802258.html?view=print} (accessed on November 24, 2014)}. 
-
-			\begin{enumerate}[itemsep=0pt] 
-			\item scalable
-			\item modular / extensible
-			\item multilingual / internationalization (i18n)
-
-	        \item \textbf{Backend}: Why I chose Node.js
-	        \item Frameworks in Node.js: Connect, Express, Koa, ... which ones I chose why
-	        \item Discussion of pro/con Node.js: http://www.heise.de/developer/artikel/2x-Nein-4x-Ja-Szenarien-fuer-Node-js-2111050.html
-			\end{enumerate}
+		% + TODO compare these options
+				+ say which one I chose why
 
 
 		% Choosing Object Model ... Layer
-		Mongoose.js\footnote{\url{http://mongoosejs.com/} (accessed on November 14, 2014)}
+		To facilitate the object modeling process Mongoose\footnote{\url{http://mongoosejs.com/} (accessed November 14, 2014)} was chosen. Mongoose is a object modeling package for Node.js, allowing to model the application data based on schemas. This simplifies making incremental changes to ... and keeping the model synchronized across all layers. 	Mongoose also takes care of performing CRUD applications.
+
+		% Communication: RESTful interaction
+
+		Due to the decision to build a single-page application it became vital to separate the data from presentation layer. Using a RESTful service is the current de facto standard. An alternative would be to use SOAP for message exchange, however leading to an increase of data overhead, more logic on server.side, and the loss of statelessness.
+
+		% + TODO citation for REST vs SOAP
+
+		Should a component not support HTML or JavaScript execution, then the required surveys can still be communicated directly with the REST API through rudimentary HTTP function calls, being another benefit for using a RESTful API.
 
 
-
-		% + Interaction / Communication
-	
-		> REST vs SOAP: why I chose REST
-
-		Should a component not support HTML or JavaScript execution, then the required surveys can still be communicated directly with the REST API through rudimentary HTTP function calls.
-
-		Based on these requirements and the feedback received from industry experts, a choice towards Node.js and to fully go along with MEAN stack was self-evident.
 
 
 
@@ -131,10 +120,10 @@
 
 		The first question presented whether to choose a SQL or a NoSQL DBMS. Because NoSQL is better for rapid prototyping, its Schema can be mixed inside of one collection and develop over time. Combined with the benefit of having a better scalability, a schemaless data representation, faster response time and a decreased development time\cite{vaish2013getting}, these are all reasons speaking for using a NoSQL DBMS for our scenario. 
 
-		Out of the NoSQL databases MondoDB\footnote{\url{http://www.mongodb.org/}} represents the most popular DBMS, especially since it integrates seamlessly into the MEAN stack. With the help of Mongoose\footnote{\url{http://mongoosejs.com/} (accessed November 14, 2014)}, a object modeling package for Node.js, performing CRUD applications on MongoDB and maintaining a solid object model (schema) gets even easier.
-
+		Out of the NoSQL databases MondoDB\footnote{\url{http://www.mongodb.org/}} represents the most popular DBMS, especially since it integrates seamlessly into the MEAN stack. With the help of Mongoose, a object modeling package for Node.js, performing CRUD applications on MongoDB and maintaining a solid object model (schema) gets even easier.
 
 		Benefits of MongoDB are being non-relational (and schemaless), plus its ability to directly store JavaScript object inside the database, being the biggest advantage. One disadvantage is that MongoDB does not support joins or transactions. For our use case, however, this is no major drawback. The benefits outweigh the disadvantages.
+
 
 			% Reasons for using MongoDB
 			% \begin{enumerate}
@@ -143,21 +132,19 @@
 			% \item good read performance
 			% \item good scalability
 			% \item fully supports JSON syntax
-			% \item good integration with Node.js, see Mongoose\footnote{http://mongoosejs.com/}
+			% \item good integration with Node.js, see Mongoose
 			% \end{enumerate}
 
 			% Notes from the MondoDB University M101JS Class
 			% \begin{enumerate}
 			% \item is non-relational, ideal for JSON data
 			% \item MongoDB is schemaless. Two documents in the same collection can have different schemas.
-			% \item MongoDB provides a good compromise between scalability/performance and the depth of funcitonality
-			% \item Drawback: MongoDB does not support Joins or Transactions
+			% \item MongoDB provides a good compromise between scalability/performance and the depth of funcitonality. MongoDB does not support Joins or Transactions
 			% \end{enumerate}
 
 
+
 		Alternatives looked at were CouchDB and Redis\footnote{\url{http://kkovacs.eu/cassandra-vs-mongodb-vs-couchdb-vs-redis} (accessed March 26, 2015)}. Redis being useful for fast changing data, which is not the case for our platform. CouchDB would be an alternative worth looking at, having a better replication and conflict resolution. This additional securitry is however not needed. The speed benefits of MongoDB, also being able to make dynamic queries, are preferred.
-
-
 
 
 
@@ -179,7 +166,9 @@
 		Alternative were Google App Engine, IBM BlueMix, Amazon Web Services (Amazon EC2) or hosting everything on local or virtualized machines at our university. However for our scenario all of the above options had their drawbacks in comparison to Heroku. Google App Engine (as of December 2014) still had no native support for Node.js and custom runtimes had to be used to get Node.js support up and running. IBM BlueMix just got overhauled, offered full out-of-the-box Node.js support, however they only the first 30 days were free and the pricing model wasn't as attractive. Amazon Web Services offering a Infrastructure as a Service (IaaS), would have required too much administration of the server, which would have slowed down the main objective of the project, the development of the survey platform. The same goes for the last option, hosting a MEAN-stack environment on our own servers at LMU Munich. All of the above are well-known solutions in the industry, however due to simplicity and ease of use we chose Heroku.
 
 
-		\paragraph{MEAN (maybe here)}
+
+
+		\paragraph{MEAN}
 			In the end, as already predicted in the beginning, it turned out to be the classic MEAN stack. 
 
 			The clear benefit, being able to use JavaScript from client to server to persistence level. 
@@ -195,14 +184,14 @@
 \input{4c_modeling}
 \label{sec:implementation:modeling}
 
-Modeling
-	Software Model
-	+ Dependencies in between them
-	Users
-	User Stories
-	REST API
 
+	% FIRST OUTLINE
 
-Used the extreme programming\footnote{\url{http://www.extremeprogramming.org/rules.html} (accessed on November 13, 2014)} approach: user stories, release planning, release schedule, small releases, iterating
+		% Modeling
+		% 	Software Model
+		% 	+ Dependencies in between them
+		% 	Users
+		% 	User Stories
+		% 	REST API
 
 
