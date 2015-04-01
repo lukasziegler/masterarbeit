@@ -1,6 +1,8 @@
-\section{Standardized Questionnaires}
+\section{Background}
 \label{sec:questionnaires}
-% TODO: think about the common theme, maybe rename this chapter
+% 1 Standardized Questionnaires
+% 2 Background
+
 
 As a result of the literature review, besides getting a better understanding of how public displays were evaluated so far, a side effect was getting an overview of the questions asked to evaluate public displays and their applications. This turned out to be a quite valuable approach, since we haven't seen any compilation of questionnaires used for public display evaluation so far. Our goal was to find patterns and to build clusters of questionnaires being useful for the evaluation through automated public survey display platforms.
 
@@ -11,8 +13,9 @@ In the following we will first describe how all information was gathered, how th
 
 
 
-\subsection{Approach for Collecting Information}
-% My Process
+\subsection{Methodology}
+\label{sec:questionnaires-methodology}
+% My Process: Approach for Collecting Information
 
 	The procedure for the selection of papers to review, was as follows. As a starting point all papers form the appendix of Florian Alt's doctoral thesis \cite{alt2013thesis} were read. Afterwards interesting related work and citations were followed based on the papers from the previous step. This was supplemented with targeted research on Google Scholar and the APM Digital Library. To round off the literature review the publications of two authors, who are very active in this field, were reviewed. A full list of all papers reviewed can be found in Appendix \ref{appendix:papers}.
 
@@ -44,25 +47,51 @@ In the following we will first describe how all information was gathered, how th
 
 
 
-\subsection{Categorization of Questionnaires}
+\subsection{Standardized Questionnaires}
 
 
 	% As a result of the literature review process the following overview of questionnaires arose. 
 		% % OR % %
 	% The findings from literature review were fitted to the categories presented in  research questions found in 
 
-	Based on Alt's \cite{alt2013thesis} findings the following research questions were popular in the past, serving as a guidline for our classification of standardized questionnaires: audience behaviour, user experience, user acceptance, user performance, display effectiveness, privacy, and social impact. 
+	All questionnaires found during the literature review phase were categorized into a schema, inspired by the research questions introduced by Alt \cite{alt2013thesis} (chapter 2.8.2), serving as a guideline for our classification of standardized questionnaires. Since not all research questions from Alt can be evaluated through Questionnaires, the research questions Audience behavior and User performance are not represented.
 
-		% \textit{Audience behavior} includes effects such as the honeypot, sweet spot and landing zone, which can be assessed ``observations and log data''. The focus lies on ``how the audience behaves around a display''.
+	We extended the prior categorization with findings from the literature review, described in the previous section \ref{sec:questionnaires-methodology}, resulting in the following categorization: user experience, usability, user acceptance, user performance, display effectiveness, privacy, social impact, context, and demographics.
+
+	% new categories: usability, context, demographics, other
+
+	For a list of papers using the standardized questionnaires for evaluation, refer to Appendix \ref{appendix:} or pages 54-55 from Alt \cite{alt2013thesis}.
+
+
+
+	\subsubsection{User Experience}
 
 		\textit{User experience} describes the overall satisfaction and experience the user has with a display. The evaluation can be carried out through questionnaires.
+	
+	\subsubsection{Usability}
+
+	\subsubsection{User Acceptance}
+
 		\textit{User acceptance} analyzes user's motives and incentives for approaching the display. The evaluation can be carried out qualitatively (subjective feedback, focus groups) or quantitatively (questionnaires).
-		% \textit{User performance} measures the effectiveness from a user's perspective, based on quantitative measures such as task completion time or error rates.
+
+	\subsubsection{Display Effectiveness}
 		\textit{Display effectiveness} evaluates the economic perspective of display efficiency. 
+
+	\subsubsection{Privacy}
 		\textit{Privacy} takes a look at the users privacy concerns.
+
+	\subsubsection{Social Impact}
 		\textit{Social impact} considers everything related to social behavior, the influence on social interaction and communities, as well as social effects.
 
-	For citations and practical examples for the above mentioned research questions, refer to \cite{alt2013thesis}, pages 54 to 55.
+
+
+
+	% TWO of the CATEGORIES NOT MATCHABLE from Florians categorization
+
+		% \textit{Audience behavior} includes effects such as the honeypot, sweet spot and landing zone, which can be assessed ``observations and log data''. The focus lies on ``how the audience behaves around a display''.
+		% \textit{User performance} measures the effectiveness from a user's perspective, based on quantitative measures such as task completion time or error rates.
+
+
 
 
 
@@ -93,13 +122,14 @@ In the following we will first describe how all information was gathered, how th
 
 \subsection{Findings}
 
+	% NOT SURE ABOUT THIS ONE HERE, MAYBE COMBINE "FINDINGS" WITH 
+
 	Findings: 
 	\begin{enumerate}
 	\item use both quantitative and qualitative methods for data collection (explain why this is important, teaser this as a requirement for the platform, how it could be implemented)
 	\item support mutliple sections, all displayed at once or (optionally) spread across multiple users
 	\item support various question types (e.g. 5-point and 7-point Likert scale, multiple choice, numeric responses, comments)
 	\end{enumerate}
-
 
 
 
