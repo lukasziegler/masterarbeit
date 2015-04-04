@@ -2,7 +2,7 @@
 \label{sec:field-study}
 
 
-	The field study took place during the first two weeks of March, from 3/3/2015 to 3/15/2015 in Oettingenstrasse 67, a faculty building of Ludwig-Maximilians-Universit\"at M\"unchen. Data was collected from the displays on 14 consecutive days and 28 semi-structured interviews were carried out on five working days during the same two weeks. A total of 117 interactions were registered with the public display installation and 58 survey responses were recorded.
+	The field study took place during the first two weeks of March, from 3/3/2015 to 3/15/2015 in Oettingenstrasse 67, a faculty building of Ludwig-Maximilians-Universit\"at M\"unchen. Data was collected from the displays on 14 consecutive days and 28 semi-structured interviews were carried out on five working days during the same two weeks. A total of 117 interactions were registered with the public display installation and 57 survey responses were recorded.
 
 	The goal of this study was to validate our research questions, and to see how users respond to questionnaires being conducted on displays in the public. We chose to conduct a descriptive study, since our research prototype is still in a early stage.
 
@@ -58,9 +58,11 @@
 
 
 	\subsubsection{Design}
+	\label{sec:field-study:design}
+
 
 	% Goal: Which Feedback Channel
-	Our primary goal was to find out which channel users preferred to respond to surveys in public. Each user had the choice to respond to the questionnaire on a TV display, on a tablet to the right of the TV screen, via their own smartphone or via email. We displayed the same five questions on all four feedback channels (see Table \ref{table:5-questions-asked}).
+	Our primary goal was to find out which channel users preferred to respond to surveys in public. Each user had the choice to respond to the questionnaire on a TV display, on a tablet to the right of the TV screen, via their own smartphone or via email. We displayed the same five questions on all four feedback channels (see Table \ref{table:5-questions-asked}). We chose to limit the number of questions asked via all four channels to 5, to avoid a low participation and response rate. 
 
 	% Questions
 	\input{tables/5-questions-asked}
@@ -124,7 +126,7 @@
 
 		Out of all people passing by no one has noticed the option to fill in a survey. Out of the active participants, 4 out of 11 have noticed the option to respond to a survey on different channels.
 
-		To increase the amount of feedback, we approached people from all three groups. The number of surveys completed by asking passerby was not explicitly increased thereby.
+		To increase the amount of feedback, we approached people from all three groups. The number of survey responses was not artificially increased by asking passersby was.
 
 
 		% MENTION RELEVANCE OF FIELDS (MAYBE)
@@ -141,7 +143,7 @@
 	\label{sec:field-study:apparatus}
 		% give details of any equipment used, including thinkgs like questionnaires and other tests
 
-		The apparatus consisted of a XXX-inch TV screen, a Samsung Galaxy tablet, two questionnaires (one for participants, one for passerby), a voice-recorder (smartphone), and the client of the PDSurvey platform installed on the TV screen and on the tablet. The TV screen and the tablet to the right of it (see figure \ref{fig:5-study-setup}) were there permanently, the other devices only while conducting semi-structured interviews.
+		The permanent setup consisted of a XXX-inch TV screen, connected to a laptop running Windows 7, and a Samsung Galaxy Tab 10.1 tablet positioned to the right of the TV screen on a console. Our object of investigation was the TV screen with touch support, running an interactive game called \textit{Balloon Shooter}, developed by Jiamin Shi. After users completed the game, they were asked via a notice to fill in a questionnaire on one of the four provided feedback channels (see Figure \ref{fig:5-feedback-options}). The courtesy for the Balloon Shooter game and the survey implementation on the TV screen goes to Jiamin Shi.
 
 		\begin{figure}
 		    \begin{center}
@@ -151,26 +153,29 @@
 		 \label{fig:5-study-setup}
 		\end{figure}
 
-		Our object of investigation was the TV screen with touch support, running an interactive \textit{Balloon Shooter} game. After users completed the game, they were asked via a notice inside of the game to fill in a questionnaire on one of the four provided feedback channels. 
-		
+		Each user had the opportunity to respond to the questionnaire either directly on TV screen (1), on a tablet to the right of the big TV (2), via their own smartphone (3) or via email (4). The first option was embedded natively into the Balloon Shooter game, offering a consistent UI and the most direct feedback channel. Choosing the tablet as an option, the users were prompted to move to the right and to answer five questions on the tablet. The Samsung Galaxy Tab 10.1 was displaying the responsive frontend of PDClient, being enclosed in an Android Kiosk App, namely KioWare Lite\footnote{http://www.kioware.com/android.aspx}. Choosing the third option prompted the user to either scan a QR code with their smartphone or to open a URL in their mobile browser. The last option consisted of an input field embedded into the Balloon Shooter game on the TV screen, asking the user to enter their email address. The address was logged to a txt-file, which was scanned every 5 minutes by a Windows task scheduler. An email reminder was sent to the user with the request to complete the survey. For sending the email from the TV screen a Python script was written to send the email via the universities SMTP server\footnote{https://github.com/lukasziegler/python-send-mail}. Screenshots of all four options can be found in the Appendix on page \pageref{appendix:screenshots-balloon-shooter}.
 
-		Each user had the opportunity to respond directly on the TV display (1), on a tablet to the right of the big TV (2), via their own smartphone (3) or via email (4). The first option was embedded directly into the Balloon Shooter game, offering a consistent UI and the most direct feedback channel. Choosing the tablet as an option, the users were prompted to move to the right and to answer five questions on the tablet. The Samsung Galaxy Tab 10.1 was displaying the responsive frontend of PDClient, being enclosed in a Android Kiosk App, namely KioWare Lite\footnote{http://www.kioware.com/android.aspx}. Choosing the option to use a smartphone prompted the user to either scan a QR code or to access a URL. The last option consisted of an input field embedded into the Balloon Shooter game on the TV screen, asking the user to enter their email address. The address was logged from inside of the game to a txt-file which was scanned every 5 minutes by a Windows task scheduler. For sending the email via SMTP a Python script was used\footnote{https://github.com/lukasziegler/python-send-mail}.Screenshots of all four options can be found in the Appendix on page \pageref{appendix:screenshots-balloon-shooter}.
-
-		For this quantitative part of the evaluation the following data was logged for all four options: The timestamp of the users choice, which feedback channel the user chose to respond to the survey and whether they skipped the call to participate in the survey or if they stopped playing the game (measured via timeout). 
-		% For option 1 being chosen (responding directly on the TV screen) all five responses were logged. For options 2 and 3 the user accessed the PDClient frontend, leading to a logging of the data in the RESTful backend. And for option 4, responding via email, the email address was logged In the case that options 2 to 4 were chosen, all data was directly collected on the PDSurvey platform itself.
-
+		For the permanent setup the following data was logged on all four feedback channels: The timestamp of the users choice, which feedback channel the user chose to respond to the survey, and whether they skipped the call to participate in the survey or if they stopped playing the game (determined via timeout). 
 
 		% maybe also show a flow of actions, but not sure if this is needed, when the user can also simply read the previous paragraph.
 
 
-		For the evaluation in the field study itself a self-made questionnaire was used, since the focus was on finding which channels and question types are best suited in general for being used on public display. This was the reason why we did not use any of the standardized questionnaires mentioned in section \ref{sec:questionnaires}. The questionnaires used can be found in the Appendix.
+		% II) SEMI STRUCTURED INTERVIEW
+		For conducting the semi-structured interviews two questionnaires (one for participants, one for passerby), a voice-recorder (smartphone) were used in addition to the permanent setup.
 
+		For the evaluation in the field study itself a self-made questionnaire was used, since the focus was on finding which channels and question types are best suited in general for being used on public display. This was the reason why we did not use any of the standardized questionnaires mentioned in section \ref{sec:questionnaires}. Screenshots of the questionnaire run on the PDClient can be found on the enclosed CD.
+
+
+
+
+		% III) BALLOON SHOOTER GAME
+
+		% More information regarding the Balloon Shooter game can be found here XXXXX. 
+
+		The main application installed on the public display was a game called \textit{Balloon Shooter} developed and run by Jiamin Shi, a PhD student at the Group for Media Informatics at LMU Munich. It was first installed on January 7th 2015 and has been running in different versions since then. Public audience was already used to it for roughly two months and adapted to it well.
 
 		% + give more information about the balloon shooter game.
 		% + ask Jiamin, whether and which screenshots of the game I am allowed to post?
-
-		More information regarding the Balloon Shooter game can be found here XXXXX. 
-		The main application installed on the public display was a game called \textit{Balloon Shooter} developed and run by Jiamin Shi, a PhD student at the Group for Media Informatics at LMU Munich. It was first installed on January 7th 2015 and has been running in different versions since then. Public audience was already used to it for roughly two months and adapted to it well.
 
 
 
@@ -194,7 +199,7 @@
 	\subsubsection{Procedure}
 		% tell the reader how the study was carried out in practice
 
-		All participants of the semi-structured interview were asked a similar set of questions (see Appendix \ref{appendix:interviews}). Based on the group they belonged to, either questionnaire 1 (for participants of the display setup) or questionnaire 2 (for passers-by) was chosen. In order to speed up the interviewing process and to get away from a plain question-response schema, the questions on the printed out questionnaire only survey as a rough guideline. 
+		All participants of the semi-structured interview were asked a similar set of questions (see Appendix \ref{appendix:interviews}). Based on the group they belonged to, either questionnaire 1 (for participants of the display setup) or questionnaire 2 (for passersby) was chosen. In order to speed up the interviewing process and to get away from a plain question-response schema, the questions on the printed out questionnaire only survey as a rough guideline. 
 
 		% Instructions given
 		For people having trouble understanding the concept of the public display installation, the situation was described as follows. ``Imagine you are in a shopping mall or at an airport using one of those large displays to find some information. After having found what you were looking for, you get asked to answer a short questionnaire. How would you react to it?'' A full transcription of all questions and responses can also be found on the enclosed CD. 
@@ -259,43 +264,35 @@ No treatments were applied to the dataset. Descriptive statistics will follow
 
 
 
+	We received a total of 57 filled in surveys, submitted via all four of the provided feedback channels. 
 
-% SURVEY DATA
+
+	The majority of the surveys were submitted on the tablet (87.72\%). Four responses were recorded directly on the TV (7.02\%), two via smartphone (3.51\%), and one via email (1.75\%). Since this listing only contains the number of responses, it should not be taken as a base for the comparison of the feedback channels' popularity. %% interpretation !! %% 
+	Due to the tablets sole purpose to be used to fill in surveys in our setup, and the additional intrinsic motivation given on this channel (see section \ref{sec:field-study:design}), this ratio has to be treated with caution. For a comparison of the feedback channels the log data from the option panel and the responses from the semi-structured interviews are better suited (see Tablet \ref{table:5-feedback-channel}).
+
+	% PREFERRED CHANNEL
+	After having completed one session of the game users had the option to choose a feedback channel. Based on this log data of the TV screen a better comparison of the feedback channels can be made, since all direct responses made on the tablet are excluded from this summary. The most popular feedback channel was the tablet (46.15\%), followed by the TV screen (30.77\%), smartphone (15.38\%), and email (7.69\%).
+	% based on >Interviews
+	In order to have another source of input, the same question was asked at the end of every semi-structured interview. Based on this quantitative data from the interviews the response via tablet (42.86\%) was most popular again, followed by the TV screen (32.14\%). Interestingly, for the interview data the option to respond via email (17.86\%) is more popular than smartphone (7.14\%). 
+		
+	\input{tables/5-feedback-channel}
+
+	% short summary
+			% It is interesting to see that the tablet is the most popular feedback channel in all scenarios, although responding via the TV screen would be more a more direct approach and not require moving to another device. Reasons given for this were XXXXXXXXXXXXXXXXXX (less people watching, others can play in the same time, ...) XXXXXXXXXXXXXXXXXX
+			% Two groups can be differentiated. One part wants to complete the survey right in place, that's why they choose the response via TV or tablet. The other group stated ``XXXXXXXXX security, privacy concerns XXXXXXXXX'' for not wanting to respond in place. 
 
 
-	We received a total of 57 filled in surveys, submitted via all four of the provided feedback channels. The majority of the surveys were submitted directly on the tablet (87.72\%). 
 
-	% NumQuestions
-	% Due to the phenomena described by Alt et al. \cite{TODOTODOTODO}, we aimed to only use a minimum number of questions.
+% SURVEY RESPONSES
 
-	We chose to limit the number of questions asked via all four channels to 5, to avoid a low participation and response rate. 
+	% How OFTEN have the users USED this display BEFORE?
+	In our questionnaire executed on the public displays we asked five questions. Out of the 57 responses people have on average used the display 6.9 times before. For 43.86\% of the users it was the first time using the display setup, 19.30\% have used it once before, 31.58\% between two and ten times, and the remaining 5.26\% more than ten times.
 
-	% Demographics
-	Regarding the demographics of the participants only the occupation of each participant can be derived from the questionnaire. As far as was indicated, all people playing with the game in our scenario were students. Majority of people interacting with the TV screen study informatics (23.8\%), followed by political science (14.3\%), japanology (11.9\%), anthropology (11.9\%), cultural science (9.5\%), and business (9.5\%). Table \ref{table:demographics} shows a full list of which study field or work field the participants specified.
+	% How LIKELY is it that you will USE THIS DEVICE AGAIN?
+	For the second question ``How likely is it that you will use this display in the future again?'' (based on a 5-point Likert scale), the response was fairly uniformly distributed (average=3.04, SD=1.46).
 
-	% Likeliness to play / participate again
-	The likeliness to use the tablet again for further 
-
-		> for the large TV screen a much smaller number survey responses were recorded, the overall likeliness for using the display again was much higher (average=4.5, median=5, SD=0.87).
-
-	% How often have the users used this display before?
-
-	% Which devices the users possess
-
-	On average 2.4 devices were 
-
-	The following combinations were most frequent:
-		12	smartphone, tablet, laptop
-		12	smartphone, laptop
-		6 	smartphone, laptop, desktop
-		3 	only smartphone
-
-	When looking at an aggregated version, allowing the clustering of subsets in between patterns, than the laptop (PERCENTAGE) is the most popular device:
-		34 	smartphone + laptop (possibly combined with other devices)
-		18	smartphone + tablet
-		15	tablet + laptop
-		12	smartphone + desktop
-		10 	laptop + desktop
+	% DEVICES the users possess
+	On average each participant possessed 2.4 devices. 
 
 	Overall, the majority of the people participating in the survey already owned a smartphone (79.3\%)
 
@@ -305,14 +302,60 @@ No treatments were applied to the dataset. Descriptive statistics will follow
 		39	laptop (73.6\%)
 		13	desktop (26.4\%)
 
+	The following combinations were most frequent: 
+		12x smartphone, tablet and laptop
+		12x smartphone and laptop
+		6x smartphone, laptop and desktop
+		3x only smartphone
+
+	When looking at an aggregated version, allowing the clustering of subsets in between patterns, than the laptop (PERCENTAGE) is the most popular device:
+		34 	smartphone + laptop (possibly combined with other devices)
+		18	smartphone + tablet
+		15	tablet + laptop
+		12	smartphone + desktop
+		10 	laptop + desktop
+
+
+
+	% RESONS FOR APPROACHING
+
+
+	% DEMOGRAPHICS
+	Regarding the demographics of the participants only the occupation of each participant can be derived from the questionnaire. As far as was indicated, all people playing with the game in our scenario were students. Majority of people interacting with the TV screen study informatics (23.8\%), followed by political science (14.3\%), japanology (11.9\%), anthropology (11.9\%), cultural science (9.5\%), and business (9.5\%). Table \ref{table:demographics} shows a full list of which study field or work field the participants specified.
+
+	% Likeliness to play / participate again
+	The likeliness to use the tablet again for further 
+		> for the large TV screen a much smaller number survey responses were recorded, the overall likeliness for using the display again was much higher (average=4.5, median=5, SD=0.87).
+
+
+		The response time for responding to the five questions was on average 1:02 minutes, ranging from 0:36 to 3:06 minutes.
+
+
+	% QUESTION TYPES preferred
+
+
+	% How many questions were completed, which ones were left empty
+	The first question (numeric) was completed in all surveys. 
+
+
+
+
+
+
+
 
 %% OBSERVATIONS
 
-Two behaviors noticed during the field study, which match with the insights form Peltonen et al. \cite{peltonen2008s}. On the one hand the interaction with high parallel usage. People tend to share the display space with their friends, they were all interacting with the game at once. Once the game was over and the options for responding to the survey showed up, the more dominant person standing in the middle in front of the screen responded to the questionnaire. Another effect visible was that people using the display attracts more users to participate.
-In our scenario most people approached the public display installation directly, skipping the stepwise approach.
+Two behaviors noticed during the field study, which match with the insights form Peltonen et al. \cite{peltonen2008s}: On the one hand the interaction with high parallel usage. People tend to share the display space with their friends, they were all interacting with the game at once. Once the game was over and the options for responding to the survey showed up, the more dominant person standing in the middle in front of the screen responded to the questionnaire. Another effect visible was that people using the display attracts more users to participate. In our scenario most people approached the public display installation directly, skipping the stepwise approach.
 
 
-%% INTERVIEW DATA
+
+
+
+
+%% INTERVIEW DATA >> QUALITATIVE RESULTS > a combination of facts + evaluation
+
+\paragraph{Interviews}: As mentioned earlier, we also conducted semi-structured interviews.
 
 A total of 28 semi-structured interviews were conducted, of which 72.4\% of the participants were male and 28.6\% were female. The average age was 31.5 years, with an age distribution ranging from 20 years up to 69 years (median=25.5, SD=13.2). Eleven of the 28 interviews were conducted with actual participants of the public display study setup (39.3\%), the remaining 17 interviews (60.7\%) consisted of people passing by the display. 
 
@@ -322,64 +365,12 @@ Looking at the scientific background of all 28 participants, 79.2\% are students
 
 From what has been mentioned, the main reason for approaching the public displays was in 6 out of 8 cases ``curiosity'' (6x). Two other reasons were ``for fun'' (1x) and ``waiting for someone'' (1x). Reasons for not approaching the display were ``no time'' (2x) and ``it is in the entry zone of the university, it feels strange when one plays with it'' (1x).
 
-% b Channel preferred
-Based on the interview data, the 
-The most interesting feedback channel for 
-B 
-
-
-FROM DATA
-30.77%
-46.15%
-15.38%
-7.69%
-
-FROM INTERVIEW
-32.14\%
-42.86\%
-7.14\%
-17.86\%
-
-% c plus reason why
-
-
-	\input{tables/5-feedback-channel}
-
-
-
-	\begin{enumerate}
-	\item For a good SAMPLE of how to list the basic population (x male, y female) of the survey, have a look at paper number 25 from the Appendix. (WIP)
-
-
-	\item e.g. 1) prefered feedback channel, 2) number of acceptable answers, 3) preferred setting
-	\end{enumerate}
-	
-
-
-	% How many questions were completed, which ones were left empty
-	The first question (numeric) was completed in all surveys. 
-
-	% ggf. unterscheiden nach den drei Gruppen:
-		% 1 participants who approached the display
-		% 2 people passing by the display
-		% 3 passing by, not having any intention to approach the display
-
 
 	% >>> look at paper 29: great read, how they deconstructed their interviews and paraphrased all relevant data in a very compact way! <<<
 
-	% >>> reason, that people prefer using smaller displays for more sensitive data, since they feel safer there, has also already been stated by: paper 23 \cite{Huang2004}
+	% >> reason, that people prefer using smaller displays for more sensitive data, since they feel safer there, has also already been stated by: paper 23 \cite{Huang2004}
 
-	% >>> paper #101 [CHI12BaillyShoeSense.pdf] "ShoeSense" contains another good evaluation
-
-
-
-	% II) Inferential Statistics
-
-	% are the results of statistical tests, showing the SIGNIFICANCE between groups and conditions
-
-
-
-%%% QUALITATIVE RESULTS %%%	 > a combination of facts + evaluation
+	% > paper #101 [CHI12BaillyShoeSense.pdf] "ShoeSense" contains another good evaluation
 
 
 	Evaluation based on Grounded Theory
@@ -394,7 +385,11 @@ FROM INTERVIEW
 		% 3 passing by, not having any intention to approach the display
 
 
-	TODO: ASK WHETHER I SHOULD COMBINE THESE TWO SECTIONS
+	\begin{enumerate}
+	\item For a good SAMPLE of how to list the basic population (x male, y female) of the survey, have a look at paper number 25 from the Appendix. (WIP)
+	\item e.g. 1) prefered feedback channel, 2) number of acceptable answers, 3) preferred setting
+	\end{enumerate}
+
 
 
 
@@ -419,6 +414,8 @@ FROM INTERVIEW
 	Some of these observations were also in compliance with the five adaptation factors stated by Huang et al. \cite{Huang2004}: task specificity and deep integration, tool flexibility and generality, visibility and exposure to others' interaction, low barriers to use, dedicated core group of users.
 
 	\begin{enumerate}
+	\item \textbf{number of responses}: Due to the tablets sole purpose to be used to fill in surveys in our setup, and the additional intrinsic motivation given on this channel, the absolute number of responses collected on all four devices has to be treated with caution. The comparison of feedback channels is better to be compared based on the interview data and the log data from the option panel of the TV.
+
 	\item \textbf{questions in the public} / questionnaires on public displays are best suited for quantitative surveys. Users want a short interaction time, not having to think much about their answers and for roughly XXXXX percent of the participants it holds true, that they do not like being observed while making responses in public.
 
 	\item From this observation, the implication for the \textbf{question types} can be derived: question types ideally with a single-click interaction are preferred (e.g. Likert scale, multiple choice with all options given, yes/no-questions). Then followed by numeric, dropdown and multiple choice questions with an open end. For these question types the user has to think a little bit more, he has to assess more precisely in order to make his response. One example stated by a participant, in regards to the numeric question `How often have you used this display before?', was that ``It would be great if you had the possibility to choose from a predefined range, because typing is not always optimal. I would prefer if areas would be given instead of oneself having to think about the exact number.'' Last, being no big surprise, are text fields combined with open-ended questions. As a take away for text fields: wherever possible rephrase the question so that you can respond to it as short as possible.
