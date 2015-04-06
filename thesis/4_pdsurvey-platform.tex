@@ -113,31 +113,24 @@
 
 		% also show the mockup / technical demonstration of the JavaScript embed code. It was a proof-of-concept, demonstrating the feasibility of embedding questionnaires as an overlay (additional DIV layer), injected via one (minified) line of Javascript. 
 
-		% -Solutions: (pdsurvey/public/tracking/survey.js bzw. testing/tracking-code/index.html)
-
 		% Use Case
-		An example use case is exemplified here ...
+		An example use case is exemplified here ... \textbf{TODO TODO TODO}
+			% -Solutions: (pdsurvey/public/tracking/survey.js bzw. testing/tracking-code/index.html)
+		
 
 
 		% Implementation
+		The implementation is quite simple. A JavaScript code snippet will be given to the display provider, which has to be added before the closing body-tag. This minified line of JavaScript code adds a HTML <script>-tag to the DOM of the HTML page, injecting a remote JavaScript file from the PDSurvey platform. This personalized scripts first loads jQuery and/or Angular.js asynchronously, and thereafter creates another instance of the PDClient on client side, inside of the primary website DOM. All questions for the questionnaire get loaded via REST API from the server and the responses get sent back to the server for logging.
 
-		The implementation is quite simple. 
-		 - giving one unique line of JavaScript code to the display provider
-		 - add it to the end of the HTML body tag
-		 - this minified one-liner adds a HTML script-tag to the DOM,
-		 - loading a personalized JavaScript file from the PDBackend
-		 - jQuery and/or Angular.js get loaded asynchronously
-		 - a copy of PDClient gets dynamically built on client side
-		 - all questions for the questionnaire get loaded via REST API from the server
-		 - and the responses get sent back to the server for logging
+		% order to create an overlay with questionnaires (see Figure \textbf{... TODO TODO TODO ...}).
 
-		Useful links can be found here:
+		One important aspect is to prefix all classes and files with a unique namespace, to prevent any sort of collisions with the main program, where the code gets injected into. For this prototype all CSS Bootstrap classes were prefixed with $pd-$.
 
-		\url{https://developers.google.com/analytics/resources/concepts/gaConceptsTrackingOverview}
+		Useful links for the development of this prototype were Google Analytics concept of tracking\footnote{\url{https://developers.google.com/analytics/resources/concepts/gaConceptsTrackingOverview} (last visited on November 26, 2014)}, Wikipedia describing the Web Bug \footnote{\url{http://en.wikipedia.org/wiki/Web_bug} (last visited on November 26, 2014)}, and a Stackoverflow discussion regarding embed codes \footnote{\url{http://stackoverflow.com/questions/3534524/how-does-the-embedded-google-analytics-javascript-work} (last visited on November 26, 2014)}.
 
-		\url{http://en.wikipedia.org/wiki/Web_bug}
+		For inspiration, of what the finished embed code functionality could have looked like, have a look at the Qualtrics blog article ``Website Feedback Surveys''\footnote{\url{http://www.qualtrics.com/site-intercept/website-feedback/} (last visited on April 6, 2015)} and at the demo of Qualtrics Site Intercept.
 
-		\url{http://stackoverflow.com/questions/3534524/how-does-the-embedded-google-analytics-javascript-work}
+
 
 	\subsubsection{Feedback Channels}
 
