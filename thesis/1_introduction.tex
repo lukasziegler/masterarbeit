@@ -4,87 +4,61 @@
 
 \subsection{Outline}
 
-	\textbf{How Ismail approaches it}
-		\begin{enumerate}
-		\item Motivation
-		\item Problemstellung
-		\item Zielsetzung
-		\item Ueberblick
-		\end{enumerate}
+	% 1 Introduction
+	In recent years there is a clear trend towards more interactive displays in public areas. At airports they are used for finding your gate, in shopping malls as a store locator and in other brand stores for assessing user satisfaction or to give users a more immersive shopping experience. The applications for public displays are ever growing, however still no common design guidelines exist \cite{Alt2012HowToEvaluate}. This reinforces the need for evaluating all new lab studies via lab or field studies. The evaluation of public displays requires prior knowledge and is rather time intensive. To facilitate this step and to allow for better comparison and analysis of public display setups, we suggest the development of PDSurvey, a public display survey platform.
+
+			% give details about / define
+			there is an increasing number of public displays, used for more public displays.
+
+	% 2 Background information
+	Public displays have been an object of research since XXXXX. They differ from other interactive displays by being owned by a display provider, and not by the user using it. In recent years public displays have evolved from originally replacing billboards with digital signage (advertisement on digital screens), to becoming ever more interactive in their area of application. Examples in research for new interactive applications are CityWall \cite{peltonen2008s}, MirrorTouch \cite{muller2014mirrortouch}, Digifieds \cite{}, Looking Glass \cite{}, ...
+			% + definition of public displays
+			% TODO: cite related public display research
+
+	This interactive capability of displays in recent years also provides the basis for conducting surveys on-screen. Surveys can be conducted via different research methods, such as questionnaires, interviews, observations, focus groups or logging. The interactive capability of public displays is of similar importance for conducting questionnaires as the emergence of the web in the early 21st century for online survey platforms. It is now possible to conduct questionnaires and log data directly from public displays and use it as a feedback channel to the display provider.
+			% In recent years public displays have evolved from static advertisement on digital screens (digital signage, replacing public noticeboards), to becoming ever more interactive.
+
+	Already in 1983 a study was conducted by Sproull and Kiesler, comparing email with traditional mail surveys. Their findings were a faster and cheaper conduction of surveys via email, with less social desirability. Possible restrictions were the limited spread of computers and thus a distorted population \cite{sproull1986reducing}. In 1998 commercial companies like SurveyMonkey were founded, providing online survey platforms. 
+
+	% 3 Motivate
+	The same counts for surveys being conducted on public displays, which opens up a whole new feedback channel. With the introduction of the iPhone in 2007 and the iPad in 2010 users became much more accustomed to using screens with touch support. The increasing acceptance of touch screens combined with more sophisticated touch screen technology opens the path for interactive questionnaires in public settings.
+
+	% 4 Our contribution + research question
+	Our research contributions are the categorization of questionnaires being used for the evaluation of public displays, based on an extensive literature review. Furthermore we introduce the PDSurvey platform, and present first practical experiences from our field study. Which feedback channel is preferred, and what the motivation was for approaching the public display and questionnaire.
+	Our main research question is how to automatically evaluate public display setups via surveys carried out on the displays themselves.
+
+		% 1) Wie wurden Public Displays bisher ausgewertet? Welche Cluster von Fragen / Fragebögen gibt es?
+
+	In the following we will ... 
+	%  (motivate the reader to proceed reading)
+	
+	% 5 Overview
+	The rest of this thesis is structured as follows. Chapter \ref{chapter:background_related-work} gives an overview of related work, introduces the reader to the area of public display evaluation, and presents our clustering of standardized questionnaires. Chapter \ref{chapter:implementation} deals with the implementation of the PDSurvey platform. First the requirements and design decision are discussed, followed by a short overview of the architecture, and concluded with an in-depth overview of the finished platform. In chapter \ref{chapter:field-study} the descriptive field study presented and our survey platform evaluated. Future work is discussed in Chapter \ref{chapter:future-work}. A conclusion complements the thesis.
 
 
 
-	\textbf{Notes gathered throughout the last weeks}
+
+
+
+
+
+
+	\textbf{My Outline}
   
 	\begin{enumerate}
-		\item Introduction to the topic: there seems to be a clear trend towards more public displays and an increasing ratio of ...
-
-		\item \textbf{Context and Goal of Thesis}: State the goal of the paper: why the study was undertaken / the paper was written. Do not repeat the abstract. 
-
-		\item Sufficient \textbf{background information} to allow the reader to understand the context and significance of the question you are trying to address. 
-
-		\item \textit{not sure about this one...}: Proper acknowledgement of the \textit{previous work} on which you are building. Sufficient references such that a reader could, by going to the library, achieve a sophisticated understanding of the context and significance of the question.  >> doesn't this belong in the next chapter?
-
-
+		\item Introduction: clear trend
+		\item Goal of thesis: why the study was undertaken. >> Do not repeat the abstract !!
+		\item \textbf{background information}: present sufficient information, allow the reader to understand the context and significance of the question you are trying to address. 
 		\item \textbf{Motivate} your reader to read the rest of the thesis. You should draw the reader in and make them want to read the rest of the paper. An important/interesting scientific problem that your paper either solves or addresses.
-
-		\item Already state the \textbf{research question} here!?!? I would say so, because introducing it in chapter 4 is a little to late. How about stating the general research question here (``How to automatically evaluate public display setups via surveys carried out on the displays themselves.''), and in chapter 4 getting more specific and talking about the 1) feedback channel, 2) question types, 3)motivation for approaching the display, and 4) the categorization of standardized questionnaires (literature review).
-
-			% 1) Wie wurden Public Displays bisher ausgewertet? Welche Cluster von Fragen / Fragebögen gibt es?
-			% 2) feedback channel
-
-
-		\item \textbf{Give Overview}: A verbal \textit{road map} or verbal \textit{table of contents} guiding the reader to what lies ahead. 
-
-		\item \textbf{where??}: Explain the scope of your work, what will and will not be included. 
+		\item Present the \textbf{research question}
+		\item \textbf{Give an Overview}: guide the reader to what lies ahead. 
 	\end{enumerate}
 
-
-
-
-Important things to keep in mind!
-
-  \begin{enumerate}
-  \item Make sure that it is obvious where the introductory material (the \textit{old stuff}) ends and where your contribution (\textit{new stuff}) starts?
-  \end{enumerate}
-
-
-
-
-
-
-\subsection{First draft (notes)}
 
 	Scope for the practical part of the thesis. What is the system supposed to look like. What is the current state of the practical work in research and in the industry. Which partners do we have, where do we want to deploy this system. What are the goals for this evaluation platform?
 
-	% + motivate why we built this platform, why is it needed for our research question?
 
-
-	\begin{enumerate}
-	\item Describe the increase of interactive displays in public, get the shift to airports, shopping malls, universities. Growing research area.
-	
-	\item What is the current situation like?
-	\end{enumerate}
-
-
-
-
-
-\subsection{not sure where to mention it}
-
-	\begin{enumerate}
-	\item What are public displays?
-	\item Survey vs Questionnaire
-	\end{enumerate}
-
-
-	\subsection{Research Question}
-
-
-
-	\subsection{Approach}
-
-
+	% NOT SURE WHETHER TO MENTION IT
 
 	Benefits of PDSurvey platform:
 
@@ -93,27 +67,7 @@ Important things to keep in mind!
 	\end{itemize}
 
 
-	\subsection{Overview}
-
-
-
-	\subsection{Our Contribution}
-
-	\begin{enumerate}
-	\item categorization of questionnaires being useful for the evaluation through automated public survey display platforms
-	\item research platform
-
-	\end{enumerate}
-
-
-
-
-
-
-
-
 	\subsection{Other introductions for inspiration}
-
 	\begin{enumerate}
 	\item paper 60 mueller2010mm - Requirements and Design Space for  Interactive Public Displays: Good introduction from Mueller et al. \cite{muller2010requirements}: ``Digital immersion is moving into public space. [...] analogies to HCI (utility, usability, likeability) often hold true, but not always! These need to be evaluated individually.''
 
@@ -124,5 +78,6 @@ Important things to keep in mind!
 	\item copy further notes from https://docs.google.com/document/d/1f2MJHMh5Yvvh9d4hhIT0WmgdlBbZ9rX5bG8dNkS50vg/edit
 	\end{enumerate}
 
-
+	Important things to keep in mind!
+	Make sure that it is obvious where the introductory material (the old stuff) ends and where your contribution (new stuff) starts?
 
