@@ -88,38 +88,36 @@ Verantw. Hochschullehrer: & Prof. Dr. Florian Alt
 \end{tabular}
 %________________________________________________________
 
-\clearpage
+\cleardoublepage
 
     \input{0_abstract}
 
-\clearpage
 
-    \input{0_problem_statement}
-
-
-\vfill % add vertical fill / align text to the bottom of the page
-
-\noindent Ich erkl\"are hiermit, dass ich die vorliegende Arbeit
-selbstst\"andig angefertigt, alle Zitate als solche kenntlich gemacht
-sowie alle benutzten Quellen und Hilfsmittel angegeben habe.
-
-\bigskip\noindent M\"unchen, \today
-
-\vspace{4ex}\noindent\makebox[7cm]{\dotfill}
-
-%________________________________________________________
-
-
-\clearpage
+\cleardoublepage
 
     \input{0_dedication}
 
-\clearpage
 
 \cleardoublepage
-\pagestyle{fancy}
-\pagenumbering{roman} % Roemische Seitenzahlen
-\setcounter{page}{1}
+
+    \input{0_problem_statement}
+
+    \vfill % align text to the bottom of the page
+
+    \noindent Ich erkl\"are hiermit, dass ich die vorliegende Arbeit
+    selbstst\"andig angefertigt, alle Zitate als solche kenntlich gemacht
+    sowie alle benutzten Quellen und Hilfsmittel angegeben habe.
+
+    \bigskip\noindent M\"unchen, \today
+
+    \vspace{4ex}\noindent\makebox[7cm]{\dotfill}
+
+
+\cleardoublepage
+
+    \pagestyle{fancy}
+    \pagenumbering{roman} % Roemische Seitenzahlen
+    \setcounter{page}{1}
 
 % Inhaltsverzeichnis erzeugen
 \tableofcontents
@@ -134,29 +132,24 @@ sowie alle benutzten Quellen und Hilfsmittel angegeben habe.
 % Arabische Seitenzahlen
 \pagenumbering{arabic}
 \setcounter{page}{1}
-% Ge�ndertes Format f�r Seitenr�nder, arabische Seitenzahlen
+% neues Seitenformat
 \fancyhead[LE,RO]{\rightmark}
 \fancyhead[LO,RE]{\leftmark}
 \fancyfoot[LE,RO]{\thepage}
 
 
+%________________________________________________________
+
 %%%  INTRODUCTION  %%%
 
-% \chapter{Introduction and Theory}
-
     \input{1_introduction}
-
     
-% Der Befehl \cleardoublepage erscheint nur vor \section, nicht vor
-% den "kleineren" Gliederungsbefehlen wie \subsection!
 
-\cleardoublepage % Neue rechte Seite anfangen
+%________________________________________________________
+
+\cleardoublepage % Neue rechte Seite anfangen (nur vor \section)
 
     \input{2_related-work}
-
-%\________________________________________________________
-
-% \cleardoublepage
 
     \input{3_questionnaires}
 
@@ -166,8 +159,6 @@ sowie alle benutzten Quellen und Hilfsmittel angegeben habe.
 
     \input{4_implementation}
 
-    \cleardoublepage
-
     \input{4_pdsurvey-platform}
 
 %\________________________________________________________
@@ -175,13 +166,6 @@ sowie alle benutzten Quellen und Hilfsmittel angegeben habe.
 \cleardoublepage
 
     \input{5_field-study}
-
-%________________________________________________________
-
-
-% \cleardoublepage
-
-%     \input{6_expert-interview}
 
 %________________________________________________________
 
@@ -204,14 +188,6 @@ sowie alle benutzten Quellen und Hilfsmittel angegeben habe.
 
     \input{appendix}
 
-
-
-%________________________________________________________
-
-% \cleardoublepage
-
-% \input{8_documentation}
-
 %________________________________________________________
 
 \cleardoublepage
@@ -221,39 +197,7 @@ sowie alle benutzten Quellen und Hilfsmittel angegeben habe.
 
 %%  Literature / BibTex  %%
 
-%%%\begin{thebibliography}{99}
-
-%% Import for 'literature.bib' file
-\bibliography{literature}{}
-
-%%%\bibliographystyle{plain}
-
-%%%%% TODOO: remove double heading! %%%%%
-%% http://tex.stackexchange.com/a/22654 %%
-
-%%%\bibitem{Ivory01}
-
-%%%  M.\ Y.\ Ivory, M.\ Hearts:
-%%%  \href{http://www.ischool.washington.edu/myivory/thesis/thesis.pdf}{%
-%%%    An Empirical Foundation for Automated Web Interface Evaluation}.
-%%%  Ph.D. thesis, University of California at Berkeley, 2001
-
-
-
-
-%%  Web References  %%
-\clearpage
-
-\hspace{-\leftmargin}{\Large\bfseries Web References}
-
-\begin{thebibliography}{99}
 \bibliographystyle{plain}
+\bibliography{literature}{} % import 'literature.bib'
 
-\bibitem{NielsenAlertbox}
-
-  J.\ Nielsen: Alertbox: Current Issues in Web Usability
-  \url{http://useit.com/alertbox/}, accessed April~24, 2005.
-
-
-\end{thebibliography}
 \end{document}
