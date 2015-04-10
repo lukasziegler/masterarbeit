@@ -2,48 +2,52 @@
 
 \subsection{PDSurvey Platform}
 
-	+ describe what it is about + describe the main goals / ambitions
+	The public display survey (\textit{PDSurvey}) platform aims to facilitate the conduction and evaluation of surveys on and for public displays. 
+		% We developed this platform with the aim for ...
+	The interactive survey platform, which can be embedded directly onto public displays and be used as a direct feedback channel from inside another application, can be split into three main parts: PDAdmin, PDServer, and PDClient (see Figure \ref{fig:4-pdsurvey-platform}). \textit{PDAdmin} contains the administrative interface, allowing display providers to configure questionnaires for their public displays. \textit{PDServer} accommodates the REST service, the persistence layer, and the majority of the application logic. \textit{PDClient} is a web based interface, containing one possibility for responding to the deployed surveys. 
 
-	The architecture for the public disply survey (PDSurvey) platform can be split into three main sections: PDAdmin, PDServer, and PDClient (see Figure \ref{fig:4-pdsurvey-platform}). \textit{PDAdmin} contains the administrative interface, allowing display providers to configure questionnaires for their public displays. \textit{PDServer} accommodates the REST service, the persistence layer, and the majority of the application logic. \textit{PDClient} encloses 
+	The code base of all three parts is deliberately separated from each other, allowing the independent refinement and less dependencies between the frontend, the backend, and the server.
+
+	% The \textit{PDSurvey} platform can be split into three main sections:
+
+
 
 	\begin{figure}%[btph]
 	    \begin{center}
 	        \includegraphics[width=.7\columnwidth]{img/4_implementation/4-overview}
 	    \end{center}
-	 \caption[Overview of the PDSurvey platform]{Overview of the PDSurvey platform: (a) PDServer containing the Node.js server, (b) PDBackend the Angular.js frontend for administrators and (c) PDClient the interface included on public displays and optimized for mobile devices.}
+	 \caption[Overview of the PDSurvey platform]{Overview of the PDSurvey platform: (a) PDServer containing the Node.js server, (b) PDBackend is the entry point for administrators and (c) PDClient the interface included on public displays and optimized for mobile devices.}
 	 \label{fig:4-pdsurvey-platform}
 	\end{figure}
 
 
 
-	\begin{enumerate}
-	\item begin with describing what the platform does, which views it has (show screenshots).
-	\item describe the client
-	\end{enumerate}
-
-
 
 	\subsubsection{PDAdmin}
 
-		For administrative purposes we created an admin interface, enabling display providers to create, manage and distribute surveys to public displays. 
+		For administrative purposes we created an admin interface, enabling display providers to create, manage and distribute surveys to public displays. 		Display providers have the ability to create their own questionnaires or to select from a list of standardized questionnaires (introduced in section \ref{sec:questionnaires}).
 
-		% admins
-		Display providers have the ability to create their own questionnaires or to select from a list of standardized questionnaires (introduced in section \ref{sec:questionnaires}).
-
+		The entry point for PDAdmin is the dashboard. There a user gets an overview of information such as how their campaigns are running, and how many responses have been submitted already. 
+		% Wizard
+		For new users who haven't created any campaigns, questionnaires or displays yet, get prompted to use the Getting Started wizard (see figure \ref{}).
 
 		% normal process
 
+			% SCREENSHOTS from WIZARD
 
-		% Wizard
+			
 
-		% eigene Module
-			advancing > modular aufgebaut
+		% detail views of each panel
+			% A displays
+			% B surveys
+			% C campaigns
+
+
+		% TODO add Screenshots
 
 			% SCREENSHOT: Wizard
 			% SCREENSHOT: individually accessing 1 Display / 2 Surveys / 3 Campaigns
 			% SCREENSHOT: Dashboard
-
-		All data and actions get transmitted to the server via HTTP request/response calls.
 
 	\subsubsection{PDServer}
 
