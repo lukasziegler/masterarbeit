@@ -33,6 +33,7 @@ __Help to get started__
 
 * [Which IDE to choose](http://www.sitepoint.com/javascript-internet-things/) + [Review of 10 JavaScript editors](http://www.javaworld.com/article/2094847/enterprise-java/review-10-javascript-editors-and-ides-put-to-the-test.html)
 * [Node.js Tools](https://www.totaljs.com/tools/)
+* [How do I get started with Node.js?](http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js)
 * [RESTful API Design](http://code.tutsplus.com/tutorials/restful-api-design-with-nodejs-restify--cms-22637)
 
 __Links for usability-field__
