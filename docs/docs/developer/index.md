@@ -76,10 +76,11 @@ For authentication there are the following common approaches, suited for RESTful
 
 ## Nice to haves
 
-Konfigurations-Infos tendenziell im Backend verwalten
-neue DIV Layer mit z-index 1
-Versuchen so viel wie möglich bereits im Backend speichern und basierend auf der ID bereits ausliefern
-Position, Farbe, Anzahl der Fragen, usw.
-einmal beim Erstellen des Embed Codes angeben und dann automatisch so ausliefern, aber die Möglichkeit bieten das über zusätzliche Parameter zu überschreiben
-manuelle Überschreibungsmöglichkeit über Parameter beim client-seitigen Aufruf: <script src=”.../survey.js?size=X&color=X”>
-→ das ist deutlich besser für das Debugging!
+* Das [SB Admin 2](http://startbootstrap.com/template-overviews/sb-admin-2/) Template durch dessen Angular-Variante [angular-bp-sbadmin2](https://github.com/ardeearam/angular-bp-sbadmin2), dadurch sind dann alle MorrisChart Themes automatisch wieder funktionsfähig! Aktuell kommt es zu Konflikten zwischen jQuery, AngularJS und MorrisJS
+
+
+* Konfigurations-Infos im Backend verwalten
+* neue DIV Layer mit z-index 1
+* Versuchen so viel wie möglich bereits im Backend speichern und basierend auf der ID bereits ausliefern: Position, Farbe, Anzahl der Fragen, usw. der Umfrage
+* einmal beim Erstellen des Embed Codes angeben und dann automatisch so ausliefern, aber die Möglichkeit bieten das über zusätzliche Parameter zu überschreiben
+* manuelle Überschreibungsmöglichkeit über Parameter beim client-seitigen Aufruf: <script src=”.../survey.js?size=X&color=X”> → das ist deutlich besser für das Debugging!
