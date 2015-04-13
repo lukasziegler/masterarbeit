@@ -3,8 +3,33 @@
 
 	% get inspired by: http://publications.lib.chalmers.se/records/fulltext/131908.pdf
 	
+% Ueberleitung
+Based on the development process of the \textit{PDSurvey} platform, and inspired by the literature review, survey responses and semi-structured interview, we came to the following thoughts of what else might be of interest for follow-up studies.
+
+
+
+\paragraph{Survey Platform}
+
+For the survey platform itself we had to cut back on our goals early, due to the limited resources and development time of 2,5 months.
+Since this was only a first prototype and is intended for fellow students to further improve on the platform, it would be interesting to see some of the following extensions to \textit{PDSurvey}.
+	% Since this was intended as a first approach, with further ...
+
+	% first improvement: visualization
+	The first and biggest need for improvement is a proper visualization of the quantitative and qualitative results. With the use of information visualization and dynamic JavaScript libraries such as D3.js\footnote{\url{http://d3js.org/} (last visited on April 13, 2015)} or Morris.js\footnote{\url{http://morrisjs.github.io/morris.js/} (last visited on April 13, 2015)}. Because this was not our main focus for this thesis, we only implemented a fundamental logging of all results.
+
+	 % Second improvement: more logging
+	A second point for improvement would be supporting more data sources for evaluating public displays. Currently `only' data from questionnaires are logged, but it could also be of interest to support the logging of video feeds, audio feeds, touch interaction (pixel coordinates), or other meta data from the display setups. For logging large amounts of data an integration with services such as Dropbox and their Dropbox API\footnote{\url{https://www.dropbox.com/developers/datastore} (last visited on April 13, 2015)} might be of interest.
+		
+	% Third, automated evaluation
+	When offering more sophisticated evaluation mechanisms, combined with more log data, better insights into areas such as user performance are established. Integrating evaluation mechanisms, known from tools such as SPSS, will simplify the evaluation of public displays and achieve higher quality results for researchers. 
+	\textit{+ validity, reliability, standard deviation, etc.}
+
+
+
 
 \paragraph{Research Questions}
+
+	For the research questions, ...
 
 	Research questions which came up during the six month editing period of the thesis
 
@@ -16,33 +41,41 @@
 	\item Getting a better understanding of the influence of the environment, e.g. how personal questions can get in public, and how much privacy the display should offer (the smaller the display, the more private the context seems).
 	\item How can we best break down a standardized survey with 10+ questions across multiple users, each getting their own subset of questions?
 	\item When is the best timing for interrupting a user from his primary task? What are the chances that he will take the time to answer questionnaires in public? How can we best integrate questionnaires on and after the application itself.
+	\item Influence of the display size on parameters such as perceived privacy and security.
 	\end{itemize}
 
 
 
-\paragraph{Survey Platform}
 
-	\begin{enumerate}
-	\item Logging, adding more data sources (for tracking of ``User performance'', see chapter \ref{sec:questionnaires})
-	\item Support the logging of video feeds. One possible approach would be to save the raw data in a dropbox account, to submit the file names via REST calls, and to access the files from PDSurvey via the Dropbox API
-	\item Dynamically evaluating \textit{reliability} and \textit{validity} in the platform, ideally on-the-fly.
-	\item also for pervasive displays?
-	\end{enumerate}
+
+
+
 
 
 \paragraph{Evaluation}
 
-	\begin{enumerate}
-	\item Number of questions tollerated on each evaluation channel (public display, tablet, smartphone, laptop/desktop)
-	\item to also impose variables: context, content, location / setting and to vary those in experimental studies
-	\item splitting 
-	\item finding the similarities between different standardized questionnaires. As Jacucci et al. \cite{jacucci2010worldsofinformation} mentioned, there are often significant similarities between standardized questionnaires. It might be possible to break down each questionnaire to its principal parts, to bundle all conformities, in order to reduce the total amount of questions and to be able to split all questions across multiple users on the same display.
-	\end{enumerate}
+While executing the field study we thought of additional research questions, which would be of interest, but go beyond the scope of this thesis. % first: feedback channel. 
+One such question is the number of questions tolerated per feedback channel. While executing the field study and semi-structured interviews some people noted that they would be more willing to give more in-depth responses when they would be at home and could do it on paper or web-based. To find out the constraints and parameters per feedback channels, such as the average number of questions tolerated, would be of high interest for the construction and deployment of questionnaires in public settings.
 
 
-\paragraph{Other}
-	\begin{enumerate}
-	\item How should a survey be constructed to take best advantage of the PDSurvye platform? How many quantitative and how many qualitative questions?
-	\end{enumerate}
+% TODO: long questionnaires, SPLITTING UP?
+Furthermore / Additional ... HOW GOOD CAN LARGE QUESTIONNAIRES BE USED for public displays? Are users willing to respond to such in-depth questionnaires? Is it possible to split long questionnaires across multiple users, and aggregate the results, taking into account that the derived findings will not be as extensive.
+
+	% TODO: ATOMAR PARTS? 
+	Based on Jacucci et al. \cite{jacucci2010worldsofinformation} there are often significant similarities between standardized questionnaires. Therefore it would be of interest to identify all atomic 
+	 
+	 >> finding the similarities between different standardized questionnaires. As Jacucci et al. \cite{jacucci2010worldsofinformation} mentioned, there are often significant similarities between standardized questionnaires. It might be possible to break down each questionnaire to its principal parts, to bundle all conformities, in order to reduce the total amount of questions and to be able to split all questions across multiple users on the same display.
+
+	Or will it be possible to decide based on metrics such as user involvement, or chosen feedback channel, which questionnaires to assign to the user?
+
+
+% third: controlled lab experiments
+Last but not least getting better insights from controlled experiments in lab settings on the effects of the content, context, location and additional parameters would be interesting to find out. Also being able to assess how many qualitative questions can be assessed with high quality in public settings, would be of interest. 
+How many quantitative and how many qualitative questions?
+ \textbf{MAEEEHH, Englisch, schwere Sprache... ;)}
+
+
+% Concluding
+All these questions would lead to getting better insights into how surveys should be constructed to take best advantage of the PDSurvey platform.
 
 
