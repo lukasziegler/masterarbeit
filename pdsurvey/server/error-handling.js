@@ -1,7 +1,5 @@
 
 
-
-
 // error handler
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
@@ -14,6 +12,8 @@ app.use(function(err, req, res, next) {
     	res.send();
     }
 });
+
+
 
 
 
