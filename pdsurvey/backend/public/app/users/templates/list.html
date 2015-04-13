@@ -34,7 +34,7 @@
                                             <td>{{user.email}}</td>
                                             <td>{{user.rights}}</td>
                                             <td>{{user.dateRegistered | date:'mediumDate'}}</td>
-                                            <td class="nowrap text-right"><a href="/users/{{user._id}}/edit" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i></a>
+                                            <td class="nowrap text-right"><a href="users/{{user._id}}/edit" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i></a>
                                             <a href="" ng-click="deleteUser(user)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></td>
                                         </tr>
                                     </tbody>
@@ -42,7 +42,7 @@
                             </div>
                             <!-- /.table-responsive -->
 
-                            <a href="/users/new" class="btn btn-primary">Add new User</a>
+                            <a href="users/new" class="btn btn-primary">Add new User</a>
 
                         </div>
                         <!-- /.panel-body -->

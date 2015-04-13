@@ -1,0 +1,35 @@
+
+
+
+\paragraph{NoSQL: CouchDB}
+
+\begin{enumerate}
+\item http://couchdb.apache.org/
+\item "CouchDB bietet einen MVCC-basierten (Multi-Version Concurrency Control) Dokumentenspeicher in einer JavaScript Umgebung. Werden Dokumente (Datens\"atze) in CouchDB hinzugef\"ugt oder aktualisiert, dann wird der gesamte Datensatz gespeichert und \"altere Versionen der Daten als obsolet markiert. Diese \"alteren Versionen des Datensazes k\"onnen immer noch in die neueste Version \"ubernommen werden, aber es wird immer eine neue Version erzeugt und f\"ur einen schnellen Lesezugriff in fortlaufenden Speicherbereichen abgelegt" \cite{hughes2012einfuhrung} (Quelle: Buch - Einf\"uhrung in Node.js, Tom Hughes-Croucher \& Mike Wilson, O'Reilly, Seite 113)
+\end{enumerate}
+
+\paragraph{NoSQL: Redis}
+
+\begin{enumerate}
+\item http://redis.io/
+\item "Redis ist eine In-Memory-Datenbank mit einer Schl\"ussel/Wert-Ablage, die Ihnen sehr vertraut vorkommen sollte, wenn Sie schon \"uber Erfahrungen mit Schl\"usse/Wert-Caches wie Memcache verf\"ugen. Redis wird verwendet, wenn Performance und Skalierbarkeit wichtig sind. In vielen F\"allen entscheiden sich die Entwickler daf\"ur, es als Cache f\"ur die von einer relationealen Datenbank wie MySQL empfangenen Daten einzusetzen, auch wenn es deutlich mehr kann." \cite{hughes2012einfuhrung} (Quelle: Buch - Einf\"uhrung in Node.js, Tom Hughes-Croucher \& Mike Wilson, O'Reilly, Seite 121)
+\end{enumerate}
+
+
+
+
+
+\paragraph{NoSQL: MongoDB}
+
+"NoSQL databases came back into the mainstream when developers needed better performance and were ok with giving up the relational aspect of RDBs (unions, joins, etc)" \url{http://psitsmike.com/2012/02/node-js-and-mongo-using-mongoose-tutorial/}
+
+\begin{enumerate}
+\item MongoDB is document database, storing all data in the form of JavaScript objects, PHP arrays, Python dicts or Ruby hashes. This significantly facilitates the handover from JavaScript to the database management system (DBMS).
+\item "Da Mongo eine JavaScript-Umgebung mit BSON-Objektspeichern (einer Bin\"ar-Adaption von JSON) mitbringt, ist das Lesen und Schreiben von Daten aus Node heraus ausgesprochen effizient. Mongo speichert eintreffende Datens\"atze im Speicher, daher ist es in Situationen mit viel Schreibvorg\"angen eine ideale Wahl. Jede neue Version bietet verbessertes Clustering, bessere Replikation und Sharding. Da die eintreffenden Datens\"atze im Speicher abgelegt werden, ist das Einf\"ugen von Daten in Mongo nicht blockierend, womit es ideal f\"ur das Protokollieren von Operationen und Telemetriedaten ist. Mongo unterst\"utzt JavaScript-Funktionen in Abfragen. Dadurch ist es beim Lesen sehr leistungsf\"ahig, so zum Beispiel bei MapReduce-Anfragen. Mit dem dokumentenbasierten Datenspeicher von MongoDB k\"onnen Sie in Eltern-Datens\"atzen auch Kind-Datens\"atze ablegen. So kann zum Beispiel ein Blogartikel mit all seinen Kommentaren in einem einzelnen Datensatz gespeichert werden, wodurch er sich auch wieder sehr schnell auslesen l\"asst."  \cite{hughes2012einfuhrung}
+\end{enumerate}
+
+
+
+
+
+

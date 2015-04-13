@@ -21,11 +21,15 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 	var j = 0;	// section
 	var k = 0; 	// question
 
+    var lastQuestion = 0;
+    var lastSection = 0;
+    var lastSurvey = 0;
+
 	$scope.surveys = {};
 	$scope.questionTypeTemplate = '';
 
-	$scope.currentQuestion = {};
-	$scope.currentQuestionType = {};
+	$scope.currentQuestion = {};		// ... displayed on the screen
+	$scope.currentQuestionType = {};	// used for ngInclude
 
 
 	// initializing Response object
@@ -53,7 +57,8 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 		}
 		else {
 			// start with first question
-			$scope.nextQuestion();
+// console.log("$scope.surveys",response)
+			$scope.loadNextQuestion();
 		}
 
 	}).error(function(err) {
@@ -62,29 +67,44 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 	});
 
 
-	// load nextQuestion
-	$scope.nextQuestion = function() {
+	// load loadNextQuestion
+	$scope.loadNextQuestion = function() {
 
         // helpers
-        var lastQuestion = $scope.surveys[i].sections[j].questions.length;
-        var lastSection = $scope.surveys[i].sections.length;
-        var lastSurvey = $scope.surveys.length;
+        lastQuestion = $scope.surveys[i].sections[j].questions.length;
+        lastSection = $scope.surveys[i].sections.length;
+        lastSurvey = $scope.surveys.length;
 
-		// $scope.resetQuestion();
-
-        // update Question object for View
+        // update Question object ViewModel
     	$scope.currentQuestion = $scope.surveys[i].sections[j].questions[k];
 
-    	
     	// find corresponding questionType
 		var newQuesitonType = $scope.questionTypes.filter(function( obj ) {
 		  return obj._id == $scope.currentQuestion.type;
 		});
 
+		// Initialization for Checkbodes / Multiple-choice
+		if (typeof $scope.currentQuestion.type != undefined)
+			$scope.response.answer = [];
+
+
 		// update QuestionType
 		$scope.currentQuestionType = newQuesitonType[0];
     	$scope.questionTypeTemplate = 'app/survey/questionTypes/'+$scope.currentQuestionType.params.type+'.html';
-		// console.log("vars",i,j,k, $scope.currentQuestion)
+		
+// console.log("vars",i,j,k, $scope.currentQuestion)
+
+        // update Response object
+        $scope.response.question.id = $scope.currentQuestion._id;
+        $scope.response.question.type = $scope.currentQuestion.type;
+        $scope.response.question.wording = $scope.currentQuestion.question;
+
+        $scope.response.display = $rootScope.displayId;
+        $scope.response.campaign = campaignId;
+        $scope.response.survey = $scope.surveys[i]._id;
+	}
+
+	$scope.determineNextQuestion = function() {
 
 		// determine next question (k) of section (j) of survey (i)
 		if (k === lastQuestion-1 && j === lastSection-1 && i === lastSurvey-1) {
@@ -107,15 +127,8 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 			// console.log("1: next question")
 		}
 
-
-        // update Response object
-        $scope.response.question.id = $scope.currentQuestion._id;
-        $scope.response.question.type = $scope.currentQuestion.type;
-        $scope.response.question.wording = $scope.currentQuestion.question;
-
-        $scope.response.display = $rootScope.displayId;
-        $scope.response.campaign = campaignId;
-        $scope.response.survey = $scope.surveys[i]._id;
+        // update ViewModel
+        $scope.loadNextQuestion();
 	}
 
 
@@ -123,6 +136,34 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 	$scope.getNumRadioButtons = function() {
 		return new Array($scope.currentQuestionType.params.num);  
 	}
+
+	// toggle selection a option-field (checkbox/multiple-choice)
+	$scope.toggleSelection = function(option) {
+
+		/* Dynamic initialization of $scope.response.answer to []
+		 * see above... */
+
+		// var firstStart = true;
+
+		// if (firstStart &&
+		// 	$scope.currentQuestion.options.constructor === Array) {
+		// 	$scope.response.answer = [];
+		// 	firstStart = false;
+		// }
+
+		var idx = $scope.response.answer.indexOf(option);
+
+		// is currently selected
+		if (idx > -1) {
+			$scope.response.answer.splice(idx, 1);
+		}
+
+		// is newly selected
+		else {
+			$scope.response.answer.push(option);
+		}
+			
+	};
 
 
 	/* Currently not really needed */
@@ -145,18 +186,18 @@ app.controller("SurveyCampaignController", function($scope, $http, $rootScope, $
 			return;
 		}
 
-		$http.post("http://localhost:3000/api/responses", $scope.response)
+		$http.post($rootScope.restApi + "/responses", $scope.response)
 			.success(function(response) {
 				console.log("successfully submitted response:", $scope.response.answer);
 				$scope.resetQuestion();
-				$scope.nextQuestion();
+				$scope.loadNextQuestion();
 			})
 			.error(function(response) {
 				console.log("error sending response");
 				alert("Error submitting response");
 			});
 
-		$scope.nextQuestion();
+		$scope.determineNextQuestion();
 	}
 
 })
@@ -180,14 +221,14 @@ app.controller("SurveyRandomController", function($scope, $http, $rootScope) {
 
 	// initializing Response object
 	$scope.response = { "question": { "id": "", "type": "", "wording": ""}, 
-		"answer": "", "display": "5494310cf4e2b1000004bcb8",
+		"answer": "", "display": "5494310cf4e2b1000004bcb8", "campaign": $rootScope.campaignId,
 		"survey": "", "session": 1};
 
 
 	// load QuesitonTypes
 	$http.get($rootScope.restApi + "/questionTypes").success(function(response) {
 		$scope.questionTypes = response;
-		console.log("QuestionType",response);
+		// console.log("QuestionType",response);
 	}).error(function(err) {
 		$scope.error = err;
 	});
@@ -196,13 +237,13 @@ app.controller("SurveyRandomController", function($scope, $http, $rootScope) {
 	/* Load Questionnaires (old approach, with rand()) */
 	$http.get($rootScope.restApi + "/surveys").success(function(response) {
 		$scope.questionnaires = response;
-		$scope.nextQuestion();
+		$scope.loadNextQuestion();
 	}).error(function(err) {
 		$scope.error = err;
 	});
 
 
-	$scope.nextQuestion = function() {
+	$scope.loadNextQuestion = function() {
 		var randSurvey = 0, 
 			randSection = 0,
 			randQuestion = 0;
@@ -264,11 +305,11 @@ app.controller("SurveyRandomController", function($scope, $http, $rootScope) {
 			return;
 		}
 
-		$http.post("http://localhost:3000/api/responses", $scope.response)
+		$http.post($rootScope.restApi + "/responses", $scope.response)
 			.success(function(response) {
 				console.log("successfully submitted response:", $scope.response.answer);
 				$scope.resetQuestion();
-				$scope.nextQuestion();
+				$scope.loadNextQuestion();
 			})
 			.error(function(response) {
 				console.log("error sending response");

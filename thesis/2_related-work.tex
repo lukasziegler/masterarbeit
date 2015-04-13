@@ -1,0 +1,94 @@
+\section{Background and Related Work} % ODER "Background and Related Work"
+\label{chapter:background_related-work}
+
+	% Brief introduction
+	Our research is based on an extensive literature review, with over 100 papers viewed. This led to the development of the public display survey platform (see chapter \ref{sec:implementation}) and the categorization of standardized questionnaires (see section \ref{sec:questionnaires}). A short summary of the most relevant paper is described in section \ref{sec:related-work}.
+	The goal of the literature review was to find out how other researchers evaluated public displays and to develop an understanding of how these aspects can be addressed through surveys. The aim was to identify important aspects of public display deployments, both from a researcher's as well form a practitioner's perspective. 
+
+
+\subsection{Related Work}
+\label{sec:related-work}
+
+	% Previous evaluation
+	Public display evaluation has already been addressed in literature. Alt et al. \cite{Alt2012HowToEvaluate} give an overview of study types, research paradigms, and evaluation methods used for evaluating public displays. M{\"u}ller et al. present with MirrorTouch \cite{muller2014mirrortouch} an updated evaluation and additionally extract metrics used for quantitative field studies. According to their findings almost exclusively descriptive field studies are used in the area of public display evaluation. For a more in-depth introduction to public display evaluation the doctoral thesis of Alt \cite{alt2013thesis} gives a good overview.
+	% General introduction to Evaluation 
+	For a general recap of how to best design, evaluate, and report experiments, the book by Field and Hole \cite{field2003design} was used. Kirakowski \cite{kirakowski2000questionnaireFAQ} provides a good introduction for practitioners of what to watch out for while conducting surveys, with his list of FAQs
+
+	% >> 2) Overview of relevant papers / with a good evaluation <<
+	Papers which inspired us and which themselves have a good approach towards the evaluation of public displays, are amongst others: Overcoming Assumptions by Huang et al. \cite{huang2008overcoming}, Worlds of Information by Jacucci et al. \cite{jacucci2010worldsofinformation}, and Looking Glass by M{\"u}ller et al. \cite{Muller2012LookingGlass}. 
+		\textbf{TODO: describe each of the papers in one short sentence}
+	% > Jacucci et al. \cite{jacucci2010worldsofinformation} (Worlds of Information) provide a superb overview of the evaluation methods.
+
+	% Motivation, why we need a survey platform
+	Based on the previous evaluation of related work and the time-consuming nature of field studies (even for small quantitative questionnaires) the demand for a simplification or automation of the evaluation process becomes clear. Due to the essential importance for the validation of public display installations and research in general, a toolset such as the PDSurvey platform can be a great relief. 
+
+	One constraint of public display research represents the opportunistic nature of the setups and the discrepancy between lab studies and field studies \cite{Ojala2011}. Thus there is an additional demand for evaluating each public display setup individually and if possible directly in the field.
+
+
+%%%  TEMPORARY NOTES  %%%
+
+		% \item state how complex it is to administer / execute / conduct a survey or questionnaire
+		% \item encourage the motivation for creating a plattform like this!
+		% \item discrepancy between field and lab study: \cite{Ojala2011}.
+		% \item field studies are much more time consuming and usually spread over a larger area to assess. Being able to automate certain parts, such as the collection of quantitative or qualitative data, will facilitate the evaluation process for researchers and give new insights for display operators.
+
+%%%  TEMPORARY NOTES  %%%
+
+
+
+
+	% Other tools, possibly related to ours.}
+	Before we started developing the research platform, we did some research on which similar tools there are available on market. 
+
+	% In order to verify that a survey platform how we intended it to be doesn't already exist,
+
+
+	A set of related survey platforms aiming for a similar goal ...
+
+	The first one we looked at was SosciSurvey \footnote{\url{https://www.soscisurvey.de/} (last visited on November 26, 2014)}, a popular tool developed by the Institute for Communication Science at our university. One major drawback of their approach was the difficulty of extending and embedding the SociSurvey platform. For our purpose it was easier to build a new platform already supporting a responsive layout and RESTful interaction. Other tools similar to the SociSurvey platform are LimeSurvey \footnote{\url{http://de.wikipedia.org/wiki/LimeSurvey} (last visited on April 6, 2015)}, an open-source PHP project.
+
+
+	Commercial solutions which support far more than the free platforms, are 
+	
+		eSurvey Creator \footnote{\url{https://www.esurveycreator.com/} (last visited on April 6, 2015)}
+
+		SurveyMonkey \footnote{\url{https://www.surveymonkey.com} (last visited on April 6, 2015)}, might be the toughest opponent based on the functionality of the tool. But it is not visible that they offer running dedicated public displays in a dedicated mode for the evaluation platform. One
+		They also offer a set of sample surveys, available for use in their platform \footnote{\url{https://www.surveymonkey.com/blog/en/sample-survey-questionnaire-templates/} (last visited on April 6, 2015)}, however they 
+
+		SoGoSurvey \footnote{\url{http://www.sogosurvey.com/Features/List-of-All-Features.aspx} (last visited on April 6, 2015)}. One of the best solutions!
+
+		UX Suite by UsabilityTools \footnote{\url{http://usabilitytools.com/ux-suite/} (last visited on April 6, 2015)}, has a handy backend for configuring the surveys, although it is lacking the pre-configured standardized questionnaires. 
+
+		SurveyPlanet () seems to be the best solution found so far! However the embed code is only based on iframes.
+
+		Qualtrics \footnote{\url{http://www.qualtrics.com/site-intercept/} (last visited on April 6, 2015)}
+
+		For additional information on currently available web-based survey tools, refer to \cite{Capterra2015SurveyTools} and ... >> \textbf{FOOTNOTE or CITATION?}
+
+		\footnote{\url{http://www.capterra.com/survey-software/} and \url{http://www.idealware.org/articles/fgt_online_surveys.php} (last visited on April 6, 2015)}.
+
+		Free Online Surveys is missing some question types (e.g. the Likert scale) and freeonlinesurveys.com
+
+
+	+++ clarify what the difference is between the already existing approaches to our approach.
+	+++ REST API is missing, not designed for use on public displays. Thus no overlay and seamless integration into public display applications is possible. The only exception so far migth be Qualtrics, based assessing their Site Intercept demo.
+
+
+
+
+	% What is unique about our approach
+	Unique about our approach is the fact that we will have the opportunity to conduct surveys across a broad number of devices and platforms, due to its modular and RESTful architecture. The benefit is that the whole platform retrieves all data via a RESTful API, allowing the greatest possible coverage of public displays and end consumer devices. Additionally we offer a range of standardized questionnaires, which specifically aim at usage on public displays, introduced in section \ref{sec:questionnaires-categorization}.
+
+
+
+
+
+%%%  REMINDERS  %%%
+
+	% The introduction should be focused on the thesis question(s).  All cited work should be directly relevent to the goals of the thesis.  This is not a place to summarize everything you have ever read on a subject.
+
+	% 1. give an overview of related work
+	% 2. give background information to this thesis
+	% 3. describe the work of others, what have they done so far?
+
+	% The goal of the literature review was to find out how other researchers evaluate public displays. The aim was to identify important aspects of public display deployments - both from a researcher's as well form a practitioner's perspective. Furthermore it was of interest to develop an understanding of how these aspects could be addressed through surveys. 

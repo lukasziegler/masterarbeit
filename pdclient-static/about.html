@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>PDClient</title>
+    <base href="/">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body ng-app="pdclient">
+
+    <div class="container">
+
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" ng-class="getClass('/survey')"><a href="1.html">Survey</a>
+                    </li>
+                    <li role="presentation" ng-class="getClass('/about')"><a href="about.html">About</a>
+                    </li>
+                    <!--           <li role="presentation" ng-class="getClass('/contact')"><a href="/contact">Contact</a></li>
+ -->
+                </ul>
+            </nav>
+            <h3 class="text-muted"><a href="/">PDSurvey</a></h3>
+        </div>
+
+        <div class="content ng-scope" ng-view="">
+            <div class="row ng-scope">
+                <div class="jumbotron col-lg-10 co-lg-offset-1 col-md-10 col-md-offset-1">
+                    <h1>Pervasive Displays</h1>
+                    <p class="lead">With this installation we aim at studying various research questions of displays in the public, amongst others how they can be used to facilitate conducting surveys.
+
+                        <!-- amongst others conducting surveys for collecting quantitative data. -->
+                    </p>
+                    <p><a class="btn btn-lg btn-success" href="1.html" role="button">Support us, answer our surveys</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row ng-scope">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h3>Research at LMU Munich</h3>
+                    <p>In the Group for Media Informatics at the University of Munich Prof. Dr. Florian Alt studies how people can be enticed to interact in public spaces, and how novel interaction techniques can be created for open pervasive displays. His research interest is at the crossroads of ubiquitous computing and HCI. Find out more on <a href="http://www.florian-alt.org/academic/">florian-alt.org</a>.</p>
+                </div>
+            </div>
+
+            <div class="row ng-scope">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h3>PDSurvey Plattform</h3>
+                    <p>With this installation in Oettingenstraße 67 we aim to simplify the conception, execution and evaluation of questionnaires. Our goal is to create a research plattform allowing display providers and fellow researchers to conduct surveys on their public display networks. Here you see the frontend of the survey plattform, developed by Lukas Ziegler as part of his Master's thesis.</p>
+                </div>
+            </div>
+
+            <div class="row ng-scope">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h3>Collected Data</h3>
+                    <p>All of the collected data is used for research purposes exclusively and saved anonymously. For this survey plattform we only log your responses which you explicitly submit via the survey tool.</p>
+                </div>
+            </div>
+
+            <div class="row ng-scope">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h3>Contact</h3>
+                    <p>For further questions regarding this installation and the survey plattform please contact: <a href="mailto:public.display@medien.ifi.lmu.de">public.display@medien.ifi.lmu.de</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; LMU Munich 2015</p>
+        </footer>
+    </div>
+    <!-- /container -->
+
+</body>
+
+</html>
