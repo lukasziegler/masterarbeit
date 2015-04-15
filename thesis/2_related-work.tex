@@ -1,31 +1,50 @@
-\section{Background and Related Work} % ODER "Background and Related Work"
-\label{chapter:background_related-work}
+\section{Related Work}
+\label{chapter:related-work}
 
 	% Brief introduction
-	Our research is based on an extensive literature review, with over 100 papers viewed. This led to the development of the public display survey platform (see chapter \ref{sec:implementation}) and the categorization of standardized questionnaires (see section \ref{sec:questionnaires}). A short summary of the most relevant paper is described in section \ref{sec:related-work}.
-	The goal of the literature review was to find out how other researchers evaluated public displays and to develop an understanding of how these aspects can be addressed through surveys. The aim was to identify important aspects of public display deployments, both from a researcher's as well form a practitioner's perspective. 
+	The goal of the literature review was to find out how other researchers evaluated public displays and to develop an understanding of how these aspects can be addressed through surveys. The aim was to identify important aspects of public display deployments, both from a researcher's as well form a practitioner's perspective. A short summary of the most relevant papers are described in the following.
 
 
-\subsection{Related Work}
-\label{sec:related-work}
+	\subsection{Evaluation of Public Displays} % Previous evaluation
 
-	% Previous evaluation
-	Public display evaluation has already been addressed in literature. Alt et al. \cite{Alt2012HowToEvaluate} give an overview of study types, research paradigms, and evaluation methods used for evaluating public displays. M{\"u}ller et al. present with MirrorTouch \cite{muller2014mirrortouch} an updated evaluation and additionally extract metrics used for quantitative field studies. According to their findings almost exclusively descriptive field studies are used in the area of public display evaluation. For a more in-depth introduction to public display evaluation the doctoral thesis of Alt \cite{alt2013thesis} gives a good overview.
+	Public display evaluation has already been addressed in literature. Alt et al. \cite{Alt2012HowToEvaluate} give an overview of study types, research paradigms, and evaluation methods used for evaluating public displays. M{\"u}ller et al. \cite{muller2014mirrortouch} present with MirrorTouch a follow-up evaluation and additionally extract metrics used for quantitative field studies. According to their findings almost exclusively descriptive field studies are used in the area of public display evaluation. For a more in-depth introduction to public displays, the doctoral thesis from Alt \cite{alt2013thesis} gives a good overview.
 	% General introduction to Evaluation 
 	For a general recap of how to best design, evaluate, and report experiments, the book by Field and Hole \cite{field2003design} was used. Kirakowski \cite{kirakowski2000questionnaireFAQ} provides a good introduction for practitioners of what to watch out for while conducting surveys, with his list of FAQs
 
-	% >> 2) Overview of relevant papers / with a good evaluation <<
+
+
+
+	\subsection{Papers with good approach for evaluation (rephrase)}
+
 	Papers which inspired us and which themselves have a good approach towards the evaluation of public displays, are amongst others: Overcoming Assumptions by Huang et al. \cite{huang2008overcoming}, Worlds of Information by Jacucci et al. \cite{jacucci2010worldsofinformation}, and Looking Glass by M{\"u}ller et al. \cite{Muller2012LookingGlass}. 
-		\textbf{TODO: describe each of the papers in one short sentence}
-	% > Jacucci et al. \cite{jacucci2010worldsofinformation} (Worlds of Information) provide a superb overview of the evaluation methods.
 
-	% Motivation, why we need a survey platform
-	Based on the previous evaluation of related work and the time-consuming nature of field studies (even for small quantitative questionnaires) the demand for a simplification or automation of the evaluation process becomes clear. Due to the essential importance for the validation of public display installations and research in general, a toolset such as the PDSurvey platform can be a great relief. 
 
-	One constraint of public display research represents the opportunistic nature of the setups and the discrepancy between lab studies and field studies \cite{Ojala2011}. Thus there is an additional demand for evaluating each public display setup individually and if possible directly in the field.
+\textbf{TODO: describe each of the papers in one short sentence}
+
+	\paragraph{Huang} Overcoming Assumptions \cite{huang2008overcoming}
+	\paragraph{IM Here \#22} by Huang uses observations, informal conversations and questionnaires. Focus of their evaluation is social awareness and collaboration aspects. ... they conduct questionnaires before and after the primary task.
+
+	\paragraph{Jacucci} Worlds of Information by Jacucci et al. \cite{jacucci2010worldsofinformation} not only provide a superb overview of  evaluation methods, but also the way they evaluate is exemplary. All of the questions asked are stated. They used video ethnography and a variety of questionnaires for their evaluation. They cover Flow (GameFlow), Presence (MEC), and Intrinsic Motivation (IMI) questionnaires.
+
+	\paragraph{UBI Hotspot \#41} Ojala et al. conduct their survey in-situ. They have the longest and most extensive evaluation during our literature review. Their evaluation uses Nielsen's system acceptance model.
+
+	\paragraph{Mueller} Looking Glass by M{\"u}ller et al. \cite{Muller2012LookingGlass}. 
+
+	\paragraph{Digifieds \#2} Alt et al. \cite{alt2011digifieds} - used observations, interviews and field trials. Questionnaires used are structured in a general section, a practical section, and two SUS questionnaires.
+
+	\paragraph{Ballagas 2005 \#3} used a background, subjective and a ISO 9241-9 based questionnaire, for measuring performance.
+
+	\paragraph{Beyer \#4} Beyer et al. start off with a demographic questionnaire, a short briefing, executing the actual task and conducting an AttrakDiff questionnaire in the end.
+
+	\paragraph{Cheverst \#11} Cheverst et al. - their focus is determining the \textit{sense of community} index. They first collect ethnographic and cultural data, followed by a focus group and a design workshop.
+		
+		\textbf{Hermes Photo Display \#10} also focus on the community aspect, measuring the ``notions of community'' and some individual questions. However in this paper no standardized questions are used, but rather individual questions from the researchers.
+
 
 
 %%%  TEMPORARY NOTES  %%%
+
+		% >> introduce the reader to the area of public display evaluation, how they have been evaluated, what has to be known, and so on
 
 		% \item state how complex it is to administer / execute / conduct a survey or questionnaire
 		% \item encourage the motivation for creating a plattform like this!
@@ -37,47 +56,54 @@
 
 
 
-	% Other tools, possibly related to ours.}
-	Before we started developing the research platform, we did some research on which similar tools there are available on market. 
-
-	% In order to verify that a survey platform how we intended it to be doesn't already exist,
 
 
-	A set of related survey platforms aiming for a similar goal ...
+	\subsection{Overview of Survey Platforms}
+	% Other tools, possibly related to ours.
+	Before we started developing the research platform, we did some research on which similar tools there are available on market. To verify that a toolset like ours doesn't already exist and to better understand how web-based survey platforms are caried out, we checked which similar approaches already exist on the market today.
 
+	% LMU: SosciSurvey
 	The first one we looked at was SosciSurvey \footnote{\url{https://www.soscisurvey.de/} (last accessed on November 26, 2014)}, a popular tool developed by the Institute for Communication Science at our university. One major drawback of their approach was the difficulty of extending and embedding the SociSurvey platform. For our purpose it was easier to build a new platform already supporting a responsive layout and RESTful interaction. Other tools similar to the SociSurvey platform are LimeSurvey \footnote{\url{http://de.wikipedia.org/wiki/LimeSurvey} (last accessed on April 6, 2015)}, an open-source PHP project.
 
-
+	% Commercial solutions
 	Commercial solutions which support far more than the free platforms, are 
 	
 		eSurvey Creator \footnote{\url{https://www.esurveycreator.com/} (last accessed on April 6, 2015)}
-
-		SurveyMonkey \footnote{\url{https://www.surveymonkey.com} (last accessed on April 6, 2015)}, might be the toughest opponent based on the functionality of the tool. But it is not visible that they offer running dedicated public displays in a dedicated mode for the evaluation platform. One
-		They also offer a set of sample surveys, available for use in their platform \footnote{\url{https://www.surveymonkey.com/blog/en/sample-survey-questionnaire-templates/} (last accessed on April 6, 2015)}, however they 
-
-		SoGoSurvey \footnote{\url{http://www.sogosurvey.com/Features/List-of-All-Features.aspx} (last accessed on April 6, 2015)}. One of the best solutions!
+		Free Online Surveys is missing some question types (e.g. the Likert scale) and freeonlinesurveys.com
 
 		UX Suite by UsabilityTools \footnote{\url{http://usabilitytools.com/ux-suite/} (last accessed on April 6, 2015)}, has a handy backend for configuring the surveys, although it is lacking the pre-configured standardized questionnaires. 
+		
+
+		SurveyMonkey \footnote{\url{https://www.surveymonkey.com} (last accessed on April 6, 2015)} provide sample surveys\footnote{\url{https://www.surveymonkey.com/blog/en/sample-survey-questionnaire-templates/} (last accessed on April 6, 2015)} and a mobile app for conducting and evaluating surveys. Their approach already comes closer to what we are looking for. However they do not offer an API for embeding platforms with other programing languges and the standardized questionnaires are relevant to public display research.
+
+		SoGoSurvey \footnote{\url{http://www.sogosurvey.com/Features/List-of-All-Features.aspx} (last accessed on April 6, 2015)}. One of the best solutions!
 
 		SurveyPlanet () seems to be the best solution found so far! However the embed code is only based on iframes.
 
 		Qualtrics \footnote{\url{http://www.qualtrics.com/site-intercept/} (last accessed on April 6, 2015)}
 
-		For additional information on currently available web-based survey tools, refer to \cite{Capterra2015SurveyTools} and ... >> \textbf{FOOTNOTE or CITATION?}
 
-		\footnote{\url{http://www.capterra.com/survey-software/} and \url{http://www.idealware.org/articles/fgt_online_surveys.php} (last accessed on April 6, 2015)}.
+	The most interesting was the solution of XXX ...
 
-		Free Online Surveys is missing some question types (e.g. the Likert scale) and freeonlinesurveys.com
-
-
-	+++ clarify what the difference is between the already existing approaches to our approach.
-	+++ REST API is missing, not designed for use on public displays. Thus no overlay and seamless integration into public display applications is possible. The only exception so far migth be Qualtrics, based assessing their Site Intercept demo.
+	For additional information on currently available web-based survey tools, refer to \cite{Capterra2015SurveyTools, Idealware2011SurveyTools}
 
 
 
 
+
+	\subsection{What makes our platform unique (rephrase)}
 	% What is unique about our approach
-	Unique about our approach is the fact that we will have the opportunity to conduct surveys across a broad number of devices and platforms, due to its modular and RESTful architecture. The benefit is that the whole platform retrieves all data via a RESTful API, allowing the greatest possible coverage of public displays and end consumer devices. Additionally we offer a range of standardized questionnaires, which specifically aim at usage on public displays, introduced in section \ref{sec:questionnaires-categorization}.
+	The key difference between our approach and the already existing evaluation platforms, is the ability to associate each survey with the display on which the survey is carried out on, and that the platform is tailored specifically for public display evaluation.
+	By default \textit{PDSurvey} asks the display operator to specify the context of every display connected to the platform. When enough context data is specified, this will allow for a thorough evaluation and comparison of public display installations.
+	Further technical differences, which are not yet standard on all of the free and commercial solutions yet, is the ability to conduct surveys across a broad number of devices and platforms, due to its modular and RESTful architecture. The benefit is that the whole platform retrieves all data via a RESTful API, as of now allowing for the greatest possible coverage of end consumer devices. Additionally we offer a range of standardized questionnaires, simplifying the evaluation of public displays. These questionnaires used for evaluation will be introduced in section \ref{section:questionnaires:categorization}.
+
+	These measures allow for a simplified evaluation of public displays. Standardized questionnaires useful for public display evaluation are already implemented by default.
+
+	% REST API is missing, not designed for use on public displays. Thus no overlay and seamless integration into public display applications is possible. The only exception so far might be Qualtrics, based assessing their Site Intercept demo.
+
+	> NEW: by having a clear focus on public display evaluation, this also allows us tweak and modify the question types to better be suited for public displays. Some question types from traditional web-based questionnaires are not well-suited for large displays.
+
+
 
 
 
@@ -85,7 +111,7 @@
 
 %%%  REMINDERS  %%%
 
-	% The introduction should be focused on the thesis question(s).  All cited work should be directly relevent to the goals of the thesis.  This is not a place to summarize everything you have ever read on a subject.
+	% The introduction should be focused on the thesis question(s). All cited work should be directly relevant to the goals of the thesis. This is not a place to summarize everything you have ever read on a subject.
 
 	% 1. give an overview of related work
 	% 2. give background information to this thesis

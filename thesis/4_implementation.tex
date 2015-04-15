@@ -1,9 +1,8 @@
 \section{Implementation}
 \label{chapter:implementation}
-\label{sec:implementation}
 	% Chapter concerning the Technical Realization
 
-	In this chapter we will deal with the infrastructure and technical realization of the public display survey platform. First, the requirements for the survey platform are discussed (section \ref{sec:implementation:requirements}). Subsequently the architecture resulting from the design decisions will be the main focus (section \ref{sec:implementation:design-decisions}). To facilitate the training period for successors we will also take a brief look at the software model (section \ref{sec:implementation:modeling}). For more specific information and for information regarding maintenance of the project, please refer to the documentation found on the CD enclosed or on the GitHub repository (see Appendix \ref{appendix:documentation}).
+	In this chapter we will deal with the infrastructure and technical realization of the public display survey platform. First, the requirements for the survey platform are discussed (section \ref{chapter:implementation:requirements}). Subsequently the architecture resulting from the design decisions will be the main focus (section \ref{chapter:implementation:design-decisions}). To facilitate the training period for successors we will also take a brief look at the software model (section \ref{chapter:implementation:modeling}). For more specific information and for information regarding maintenance of the project, please refer to the documentation found on the CD enclosed or on the GitHub repository (see Appendix \ref{appendix:documentation}).
 
 	In figure \ref{fig:4-pdsurvey-platform} a brief overview of the PDSurvey platform and its components is given. The platform consists of three major parts: a backend for display providers (PDAdmin), a RESTful server (PDServer) and the user interface itself, being embedded on the end user devices (public displays, tablets, smartphones or other devices). 
 
@@ -12,7 +11,7 @@
 
 
 \subsection{Requirements}
-\label{sec:implementation:requirements}
+\label{chapter:implementation:requirements}
 
 	The starting point for the PDSurvey platform, and the Master's thesis itself, was the official announcement\footnote{\url{http://www.medien.ifi.lmu.de/lehre/arbeiten/detail.xhtml-php?pub=alt_pdsurvey} (last accessed on March 24, 2015)}, describing the scope of the thesis. This problem statement already included first requirements for the survey platform to develop, and was also a trigger for further literature review and talks with people from the industry.
 
@@ -43,9 +42,9 @@
 
 
 \subsection{Design Decisions}
-\label{sec:implementation:design-decisions}
+\label{chapter:implementation:design-decisions}
 
-	After having assessed all requirements for the platform (see section \ref{sec:implementation:requirements}), the next step was making design decisions for the software, programming language and frameworks to use, before starting with the practical implementation of the platform. 
+	After having assessed all requirements for the platform (see section \ref{chapter:implementation:requirements}), the next step was making design decisions for the software, programming language and frameworks to use, before starting with the practical implementation of the platform. 
 
 	Two weeks were taken for assessing all of the possibilities, on the one hand to get informed what is currently buzzing, on the other hand because every decision made has an impact on the architecture. Changing a technology half way through the project is not an option for the duration of this Master thesis.
 
@@ -116,7 +115,7 @@
 \clearpage
 
 \subsection{Modeling}
-\label{sec:implementation:modeling}
+\label{chapter:implementation:modeling}
 
 	The development process of the PDSurvey platform was inspired and influenced by the concept of extreme programing\footnote{\url{http://www.extremeprogramming.org/rules.html} (last accessed on April 10, 2015)}, making iterative improvements, and working agile and user centered. First user stories were written and assessed in a small group\footnote{\url{http://www.tigertech.de/wie-schreibe-ich-eine-gute-user-story-und-was-ist-das-uberhaupt/} (last accessed April 10, 2015)}. The next step was to transfer these stories to user models, describing in detail which functionality the stakeholders of PDSurvey are supposed to have. Later a first software architecture and software model was built. Dependencies between models were defined and the model was continuously refined and improved throughout the development phase. The last phase included screen designs, getting a clear view of what the interface might later look like.
 

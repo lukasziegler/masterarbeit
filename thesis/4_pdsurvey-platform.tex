@@ -4,7 +4,7 @@
 
 	The public display survey (\textit{PDSurvey}) platform aims to facilitate the conduction and evaluation of surveys on and for public displays. 
 		% We developed this platform with the aim for ...
-	The interactive survey platform, which can be embedded directly onto public displays and be used as a direct feedback channel from inside another application, can be split into three main parts: PDAdmin, PDServer, and PDClient (see Figure \ref{fig:4-pdsurvey-platform}). \textit{PDAdmin} contains the administrative interface, allowing display providers to configure questionnaires for their public displays. \textit{PDServer} accommodates the REST service, the persistence layer, and the majority of the application logic. \textit{PDClient} is a web based interface, containing one possibility for responding to the deployed surveys. 
+	The interactive survey platform, which can be embedded directly onto public displays and be used as a direct feedback channel from inside another application, can be split into three main parts: PDAdmin, PDServer, and PDClient (see figure \ref{fig:4-pdsurvey-platform}). \textit{PDAdmin} contains the administrative interface, allowing display providers to configure questionnaires for their public displays. \textit{PDServer} accommodates the REST service, the persistence layer, and the majority of the application logic. \textit{PDClient} is a web based interface, containing one possibility for responding to the deployed surveys. 
 
 	The code base of all three parts is deliberately separated from each other, allowing the independent refinement and less dependencies between the frontend, the backend, and the server.
 
@@ -25,7 +25,7 @@
 
 	\subsubsection{PDAdmin}
 
-		For administrative purposes we created an admin interface, enabling display providers to create, manage and distribute surveys to public displays. 		Display providers have the ability to create their own questionnaires or to select from a list of standardized questionnaires (introduced in section \ref{sec:questionnaires}).
+		For administrative purposes we created an admin interface, enabling display providers to create, manage and distribute surveys to public displays. 		Display providers have the ability to create their own questionnaires or to select from a list of standardized questionnaires (introduced in chapter \ref{chapter:literature-evaluation}).
 
 		The entry point for PDAdmin is the dashboard. There a user gets an overview of information such as how their campaigns are running, and how many responses have been submitted already. 
 		% Wizard
@@ -126,7 +126,7 @@
 		% Implementation
 		The implementation is quite simple. A JavaScript code snippet will be given to the display provider, which has to be added before the closing body-tag. This minified line of JavaScript code adds a HTML <script>-tag to the DOM of the HTML page, injecting a remote JavaScript file from the PDSurvey platform. This personalized scripts first loads jQuery and/or Angular.js asynchronously, and thereafter creates another instance of the PDClient on client side, inside of the primary website DOM. All questions for the questionnaire get loaded via REST API from the server and the responses get sent back to the server for logging.
 
-		% order to create an overlay with questionnaires (see Figure \textbf{... TODO TODO TODO ...}).
+		% order to create an overlay with questionnaires (see figure \textbf{... TODO TODO TODO ...}).
 
 		One important aspect is to prefix all classes and files with a unique namespace, to prevent any sort of collisions with the main program, where the code gets injected into. For this prototype all CSS Bootstrap classes were prefixed with $pd-$.
 
@@ -143,18 +143,4 @@
 	In case that the application does not integrate well with a web page being displayed on top of the actual application, then a custom integration needs to be built making use of the REST calls. All REST calls needed to receive the questionnaire and send responses to the PDSurvey platform (in JSON format) can be found in the documentation (see Appendix \ref{appendix:documentation}).
 
 
-
-	\subsubsection{(Future Work)}
-
-		PROBABLY PUT THIS IN THE VERY END OF THE PLATFORM; BEFORE CONCLUSION
-
-		% what is still missing
-
-		Authentication: using passport, HTTPS was not offered in the beginning. As of now it is not needed, since we only had one client. All REST Update and Delete functionality was restricted to the URI of the PDServer, which is also the desired approach in the production setting.
-
-		Evaluation of results: dynamic queries, information visualization
-
-		Context: refine the Context model and build the evaluation of the responses based on the Context model, assigned to each and every display and/or campaign.
-
-		Unit testing: not done yet
 
