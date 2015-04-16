@@ -4,7 +4,7 @@
 	Our research is based on an extensive literature review, with over 100 papers viewed. This led to the development of the public display survey platform (see chapter \ref{chapter:implementation}) and the categorization of standardized questionnaires (see section \ref{section:questionnaires:categorization}). A side effect of the literature review was, besides getting a better understanding of how public displays were evaluated, getting an overview of the questions asked to evaluate public displays and their applications. This turned out to be a quite valuable approach, since we haven't seen any compilation of questionnaires used for public display evaluation so far. Our goal was to find patterns and to build clusters of questionnaires being useful for the evaluation through automated public survey display platforms.
 
 	% Overview of this chapter
-	In the following we will first describe our methodology for gathering the information (section \ref{section:questionnaires:methodology}), followed by a categorization of standardized questionnaires (section \ref{section:questionnaires:categorization}), concluded with a summary of our findings (section \ref{section:questionnaires:findings}) and the requirements for the platform (section \ref{section:questionnaires:requirements}). The categorization of the standardized questionnaires can be found in table \ref{table:standardized-questionnaires}.
+	In the following we will first describe our methodology for gathering the information (section \ref{section:questionnaires:methodology}), followed by a categorization of standardized questionnaires (section \ref{section:questionnaires:categorization}), concluded with a summary of our findings (section \ref{section:questionnaires:findings}). The categorization of the standardized questionnaires can be found in table \ref{table:standardized-questionnaires}.
 
 
 
@@ -134,8 +134,19 @@
 	Findings: 
 	\begin{enumerate}
 	\item use both quantitative and qualitative methods for data collection (explain why this is important, teaser this as a requirement for the platform, how it could be implemented)
+
 	\item support mutliple sections, all displayed at once or (optionally) spread across multiple users
+
 	\item support various question types (e.g. 5-point and 7-point Likert scale, multiple choice, numeric responses, comments)
+
+	\item support lots of end devices (restful)
+
+	\item also support non web-based platforms, some public display applications are written in native Java, Flash or other proprietary software packages
+
+	\item evaluate not just the application running on the display, but also the entire environment. Differences in the context of the public display often result in different perceptions and user interaction.
+
+	\item 	One constraint of public display research represents the opportunistic nature of the setups and the discrepancy between lab studies and field studies \cite{Ojala2011}. Thus there is an additional demand for evaluating each public display setup individually and if possible directly in the field.
+
 	\end{enumerate}
 
 

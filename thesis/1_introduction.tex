@@ -1,41 +1,37 @@
 \section{Introduction}
 \label{sec:introduction}
 
-
-\subsection{Outline}
-
 	% 1 Introduction
-	In recent years there is a clear trend towards more interactive displays in public areas. At airports they are used for finding your gate, in shopping malls as a store locator, in other brand stores for assessing user satisfaction or to give users a more immersive shopping experience. The applications and areas of application for public displays are ever growing, however still no common design guidelines exist \cite{Alt2012HowToEvaluate}. This reinforces the need of evaluating all new applications through lab or field studies. The evaluation of public displays requires prior knowledge and is rather time intensive. To facilitate this step and to allow for better a comparison and analysis of public display setups, we developmed \textit{PDSurvey}, an interactive public display survey platform.
-
-	% 2 Trend / Background information
-	Public displays have been an object of research since XXXXX. They differ from other interactive displays by being owned by a display provider, and not by the user using it. In recent years public displays have evolved from originally replacing billboards with digital signage (advertisement on digital screens), to becoming ever more interactive in their area of application. Examples in research for new interactive applications are CityWall \cite{peltonen2008s}, MirrorTouch \cite{muller2014mirrortouch}, Digifieds \cite{}, Looking Glass \cite{}, ...
-			% + definition of public displays
+	Throughout the last decade public displays have evolved from screens used for advertisement, to interactive displays with bidirectional capability, enabling an entirely new type of interactive experiences. With the rise of touch and gesture input, a new era of interactive applications is waiting to be used. At airports public displays can already be used for finding your gate, in shopping malls as a store locator, or in brand stores for assessing user satisfaction and giving users a more immersive shopping experience. The areas of application for public displays are ever growing, however still no common design guidelines exist \cite{Alt2012HowToEvaluate} and an individual evaluation of each setup is of importance \cite{muller2010requirements}. This reinforces the need for evaluating all new applications through lab or field studies. The evaluation of public displays however is a rather time-consuming task and requires prior knowledge. 
 
 
-	% Interactive capabilities
-	Surveys can be conducted via different research methods, such as questionnaires, interviews, observations, focus groups or logging. The growing interactive capability of displays in recent years also provides the basis for conducting surveys on-screen. 
-
-	 The interactive capability of public displays is of similar importance for conducting questionnaires as the emergence of the web in the early 21st century for online survey platforms. It is now possible to conduct questionnaires and log data directly from public displays and use it as a feedback channel to the display provider.
-			% In recent years public displays have evolved from static advertisement on digital screens (digital signage, replacing public noticeboards), to becoming ever more interactive.
-
-
-
-	% 3 Motivate
-	% Development in the last years (TODO, maybe leave it out)
-	Already in 1983 a study was conducted by Sproull and Kiesler, comparing email with traditional mail surveys. Their findings were a faster and cheaper conduction of surveys via email, with less social desirability. Possible restrictions were the limited spread of computers and thus a distorted population \cite{sproull1986reducing}. In 1998 commercial companies like SurveyMonkey were founded, providing online survey platforms. The same counts for surveys being conducted on public displays, which opens up a whole new feedback channel. With the introduction of the iPhone in 2007 and the iPad in 2010 users became much more accustomed to using screens with touch support. The increasing acceptance of touch screens combined with more sophisticated touch screen technology opens the path for interactive questionnaires in public settings. 
-
-	\textbf{OR OR OR}
-	
 	% Motivation, why we need a survey platform
 	Based on the evaluation of related work and the time-consuming nature of field studies (even for small quantitative questionnaires) the demand for a simplification and automation of the evaluation process becomes apparent. Due to the essential importance for the validation of public display installations and research in general, such an evaluation platform can be a great relief. 
 	One constraint of public display research represents the opportunistic nature of the setups and the discrepancy between lab studies and field studies \cite{Ojala2011}. Thus there is an additional demand for evaluating each public display setup individually and if possible directly in the field.
 
 
-
-	% 4 Our contribution + research question
-	Our research contributions are the categorization of questionnaires being used for the evaluation of public displays, based on an extensive literature review. Furthermore we introduce the \textit{PDSurvey} platform, and present first practical experiences from our field study. We assess which feedback channel is preferred for responding to the survey. Additionally we present results from the field study, including the motivation for approaching display setup. Our fundamental question is facilitate the evaluation of public display setups via interactive surveys on the displays themselves.
+	% 2 Present Solutions / parallels to the Internet
 	
-	% 5 Overview
+	% With the advent of the Internet a similar trend was visible. 
+	With the advent of the Internet similar problems arose, combined with new capabilities. The development process of new commercial web sites requires extensive evaluation, which was facilitated with the ability of direct responses through new survey platforms. Due to this possibility amongst others, first web survey platforms were created in the late 1990s, to simplify and speed up the evaluation process. SurveyMonkey is one such example, founded in 1999, and currently being one of the most popular solutions our there for conducting web-based surveys \cite{SurveyMonkeyAboutUs}. % + solutions so far, web survey platforms
+	Other well established solutions are eSurvey Creator, SoGoSurvey, and UX Suite by UsabilityTools. A closer evaluation can be found in chapter \ref{chapter:related-work}. These survey platforms focus on evaluating the users' opinion through web-based or mobile interfaces. 
+
+
+	% 3 show their problems
+	For our use case however the already existing approaches aren't enough, since the evaluation of public displays states additional requirements. One significant difference for evaluating public display setups is the additional abstraction layer. Not only is of interest to understand how the user perceives the application, or to assess the users opinion independently of the display setup, but in particular what influence the context of the public display setup has on the users perception. Another important difference is that not only the application itself needs to be evaluated, but the whole display setup including other determining factors. So far none of the platforms reviewed offers this level of evaluation.
+	% Additionally a larger number of form factors, platforms and end devices needs to be supported. 
+
+
+	% 4 give REASONS, why to DEVELOP an new platform (new requirements)
+	To facilitate this step and to allow for a better comparison and analysis of public display setups, we developed \textit{PDSurvey}, an interactive public display survey platform. The interactive capability of public displays is of similar importance for our setup as the rising of the web in the late 1990s for online survey platforms. It is now possible to conduct surveys and to log data directly from public displays and to use the display itself as a feedback channel to the display provider.
+	% state the benefits of our platform
+	This allows us to collect quantitative and qualitative data from whole public display setups with various settings. When assigning detailed information regarding the context to each survey response, and later comparing the responses across different display setups, new insights into the influence of the surrounding environment of each public display can be gathered. Interesting questions for analysis are amongst other, which role the context plays on how the users' perception of the public display setup, when running identical software settings, but only varying the context.
+
+
+	% 5 Our contribution + research question
+	Our research contributions are the categorization of questionnaires being used for the evaluation of public displays, based on an extensive literature review. Furthermore we introduce the \textit{PDSurvey} platform, and present first practical experiences from our field study. We assess which feedback channel is preferred for responding to surveys. Our fundamental goal is to facilitate the evaluation of public display setups via interactive surveys on the displays themselves. Additionally we present results from the field study, including the motivation for approaching the display setup.
+
+	% 6 Overview
 	The rest of this thesis is structured as follows. Chapter \ref{chapter:related-work} gives an overview of related work and introduces the reader to the area of public display evaluation. In chapter \ref{chapter:literature-evaluation} we present the results of the literature evaluation and our clustering of standardized questionnaires. Chapter \ref{chapter:implementation} deals with the implementation of the \textit{PDSurvey} platform. First the requirements and design decision are discussed, followed by a short overview of the architecture, and concluded with an in-depth overview of the finished platform. In chapter \ref{chapter:field-study} the descriptive field study presented and our survey platform evaluated. Future work is discussed in chapter \ref{chapter:future-work}. A conclusion complements the thesis.
 
 
@@ -44,44 +40,10 @@
 
 
 
+%% WIP NOTES FROM WRITING
 
+	% Public displays differ from other interactive displays by being owned by a display provider, and not by the user who is using it. 
 
-\clearpage
+	% Examples in research for new interactive applications are CityWall \cite{peltonen2008s}, MirrorTouch \cite{muller2014mirrortouch}, Digifieds \cite{}, Looking Glass \cite{}, ...
 
-\textbf{Outline}
-
-	%%%  TEMPORARY NOTES  %%%
-	\begin{enumerate}
-
-		\item Goal of thesis: why the study was undertaken. (>> Do not repeat the abstract !!)
-
-		\item \textbf{background information}: present sufficient information, allow the reader to understand the context and significance of the question you are trying to address. 
-
-		\item \textbf{Motivate} your reader to read the rest of the thesis. You should draw the reader in and make them want to read the rest of the paper. An important/interesting scientific problem that your paper either solves or addresses.
-
-		\item Present the \textbf{research question}
-
-		\item \textbf{Give an Overview}: guide the reader to what lies ahead. 
-
-	\end{enumerate}
-
-
-
-	% NOT SURE WHETHER TO MENTION IT
-
-	Benefits of PDSurvey platform:
-	>>  being able to work with big data. collecting a large number of responses from a variety of displays in various settings, and assigning a specific context to every display connected to PDSurvey. Once enough data is collected, having the ability to evaluate and compare the displays between each other. Interesting questions for analysis would be, which role the context plays on how the users behave, when running identical software settings on the displays, but only varying the context (position, size of display, surrounding environment of the display, positioning it outdoors or indoors, influence of the weather, type of building it is positioned in) -- see Chapter 4: Modeling
-
-
-
-	\textbf{Other introductions for INSPIRATION}
-
-	\begin{enumerate}
-		\item paper 60 mueller2010mm - Requirements and Design Space for  Interactive Public Displays: Good introduction from Mueller et al. \cite{muller2010requirements}: ``Digital immersion is moving into public space. [...] analogies to HCI (utility, usability, likeability) often hold true, but not always! These need to be evaluated individually.''
-
-		\item ``MyPosition: Sparking Civic Discourse by a Public Interactive Poll Visualization'' >> check out the introduction there! \cite{valkanova2014myposition}
-
-		\item paper 18 cites Mark Weiser, on his predictions regarding Ubiquitous Computing and how it will be the third revolution after main frame (1st) and personal computer (2nd). for the quote see GDrive `Quotes and Notes from Literature'
-
-		\item copy further notes from https://docs.google.com/document/d/1f2MJHMh5Yvvh9d4hhIT0WmgdlBbZ9rX5bG8dNkS50vg/edit
-	\end{enumerate}
+	% Already twenty years ago Mark Weiser described a new, third wave of computing, referred to as calm computing \cite{Weiser1995UbiqComp}.
