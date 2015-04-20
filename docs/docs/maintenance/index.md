@@ -12,3 +12,20 @@ Not really sure if this one is needed, since for this project the developer will
 * Practical deployment, best practices, how I proceeded, and why
 * 1 running a GitHub Repo
 * 2 Deployment to Heroku
+
+
+
+## Manual Changes
+
+Here is an overview of some places where manual changes are needed:
+
+* Changing the _Multiple Choice_ question types: you need to add the response options directly in the _surveys_ collection of MongoDB / MongoLab.
+``
+    "options": [
+        "Smartphone",
+        "Mobile phone (without touch screen)",
+        "Tablet/iPad",
+        "Laptop",
+        "PC/Mac"
+    ],
+``

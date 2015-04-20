@@ -72,6 +72,7 @@ For authentication there are the following common approaches, suited for RESTful
 * evaluation of the results
 * deal with reliability and validity in my tool, discuss and display both values
 * make sure all questions contribute to each scale/category with equal weight
+* add the /nextQuestion functionality in `/server/api/nextQuestion.js
 
 
 ## Nice to haves
