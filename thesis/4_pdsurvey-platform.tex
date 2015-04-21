@@ -62,10 +62,7 @@
 
 	\subsubsection{PDClient}
 
-		Our client tool was kept as simple and minimalistic as possible. It is running on a separated code base than PDBackend, the only communication between the two is via REST, exchanging JSON objects. Reasons for this were on the one hand reduction of the application size, on the other hand different requirements for constructing a PDAdmin interface for a limited number of users, compared with PDClient, being embedded at large scale.
-
-		% TODO: maybe move this paragraph to Section "Implementation: PDClient"
-		The goal is to reduce logic and complexity on client-side. Currently PDClient is implemented as follows: The client either receives all questions for the questionnaire (caching the questions), or it loads just the next question on-demand. For this purpose the REST interface provides the /nextQuestion API is provided. For production use one sub-page per campaign gets created, individualized via the campaign ID.
+		Our client tool was kept as simple and minimalistic as possible. It is running on a separated code base than PDBackend, the only communication between the two is via REST, exchanging JSON objects. Reasons for this were on the one hand reduction of the application size, on the other hand different requirements for constructing a PDAdmin interface for a limited number of users, compared with PDClient, being embedded at large scale. The goal is to reduce logic and complexity on client-side. Currently PDClient loads all questions for the questionnaire at startup and caches them for later access. 
 		
 
 		% Overview of elements
