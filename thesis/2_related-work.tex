@@ -38,22 +38,15 @@
 	% Looking Glass (Müller) - 2012
 	M{\"u}ller et al. \cite{Muller2012LookingGlass} present an in-depth evaluation of \textit{Looking Glass}, an interactive display setup inside of a shop window. Looking Glass gave visual feedback to passers-by and mirrored their movements. Their evaluation consisted of a pre-study, a controlled lab-study, and an ``in the wild'' field study. Both quantitative and qualitative data was collected, however, no questionnaires were used. Mueller et al. relied on observations, semi-structured interviews, and manual video recording, combined with interaction logs and a depth video log for quantitative data.
 
+	% Other publications, semi helpful
+	The publication by Beyer et al. \cite{Beyer2011} used the AttrakDiff questionnaire for evaluating user experience in their lab study. 
+	% Ballagas: Sweep and Point and Shoot - 2005 - #3
+	Ballagas et al. \cite{Ballagas2005} used a background, subjective and a ISO 9241-9 based questionnaire, for measuring performance.
+	% Cheverst
+	In the \textit{Hermes Photo Display} publication by Cheverst et al. \cite{cheverst2005hermes} a non-standardized questionnaire is used. The questionnaire is split up into four sections. The first section collected background information, ``the second section consisted of seven questions related to interface issues and general acceptability. The third section contained 14 questions related to social and community issues. Finally the fourth section contained two questions relating to possible future features.'' All questions were answered on a 5-point Likert scale. The focus was on measuring the ``notions of community''.
+	A later publication by Cheverst et al. \cite{Cheverst2008} focused on determining the ``sense of community'' index. They first collected ethnographic and cultural data, followed by a focus group and a design workshop.
 
 
-
-
-	\textbf{TODO}
-
-	% Audience Behaviour (Beyer) - 2011 - #4
-	\paragraph{Beyer et al.} start off with a demographic questionnaire, a short briefing, executing the actual task and conducting an AttrakDiff questionnaire in the end.
-
-	% Sweep and Point and Shoot (Ballagas) - 2005 - #3
-	\paragraph{Ballagas 2005 \#3} used a background, subjective and a ISO 9241-9 based questionnaire, for measuring performance.
-
-	% "The Challenge of Evaluating Situated Display-based" - 2008
-	\paragraph{Cheverst \#11} Cheverst et al. - their focus is determining the \textit{sense of community} index. They first collect ethnographic and cultural data, followed by a focus group and a design workshop.
-		% 2005		
-		\textbf{Hermes Photo Display \#10} also focus on the community aspect, measuring the ``notions of community'' and some individual questions. However in this paper no standardized questions are used, but rather individual questions from the researchers.
 
 
 
@@ -75,32 +68,29 @@
 
 	\subsection{Overview of Survey Platforms}
 	% Other tools, possibly related to ours.
-	Before we started developing the research platform, we did some research on which similar tools there are available on market. To verify that a toolset like ours doesn't already exist and to better understand how web-based survey platforms are caried out, we checked which similar approaches already exist on the market today.
+	To verify that a toolset like ours doesn't already exist and to better understand how web-based survey platforms are carried out, we did some research on which similar approaches already exist on the market today.
 
 	% LMU: SosciSurvey
 	The first one we looked at was SosciSurvey \footnote{\url{https://www.soscisurvey.de/} (last accessed on November 26, 2014)}, a popular tool developed by the Institute for Communication Science at our university. One major drawback of their approach was the difficulty of extending and embedding the SociSurvey platform. For our purpose it was easier to build a new platform already supporting a responsive layout and RESTful interaction. Other tools similar to the SociSurvey platform are LimeSurvey \footnote{\url{http://de.wikipedia.org/wiki/LimeSurvey} (last accessed on April 6, 2015)}, an open-source PHP project.
 
 	% Commercial solutions
-	Commercial solutions which support far more than the free platforms, are 
-	
-		eSurvey Creator \footnote{\url{https://www.esurveycreator.com/} (last accessed on April 6, 2015)}
-		Free Online Surveys is missing some question types (e.g. the Likert scale) and freeonlinesurveys.com
+	Commercial solutions considered, which often offer a much larger variety of features compared to free to use solutions, are eSurvey Creator\footnote{\url{https://www.esurveycreator.com/} (last accessed on April 6, 2015)}, Free Online Surveys\footnote{\url{https://www.freeonlinesurveys.com/} (last accessed on April 6, 2015)}, UX Suite by UsabilityTools\footnote{\url{http://usabilitytools.com/ux-suite/} (last accessed on April 6, 2015)}, SurveyMonkey\footnote{\url{https://www.surveymonkey.com} (last accessed on April 6, 2015)}, SoGoSurvey\footnote{\url{http://www.sogosurvey.com/Features/List-of-All-Features.aspx} (last accessed on April 6, 2015)}, SurveyPlanet\footnote{\url{https://surveyplanet.com/} (last accessed on April 6, 2015)}, and Qualtrics\footnote{\url{http://www.qualtrics.com/site-intercept/} (last accessed on April 6, 2015)}. For a full list of currently available web-based survey tools, refer to \cite{Capterra2015SurveyTools, Idealware2011SurveyTools}.
 
-		UX Suite by UsabilityTools \footnote{\url{http://usabilitytools.com/ux-suite/} (last accessed on April 6, 2015)}, has a handy backend for configuring the surveys, although it is lacking the pre-configured standardized questionnaires. 
-		
+	Many of these solutions already support a large number of question types and a sophisticated administration panel. However, their main disadvantage is their lacking support of mobile phones, the missing REST API, and lack of functionality for embedding pre-configured standardized questionnaires. % Like the solutions by eSurvey Creator and Free Online Surveys
 
-		SurveyMonkey \footnote{\url{https://www.surveymonkey.com} (last accessed on April 6, 2015)} provide sample surveys\footnote{\url{https://www.surveymonkey.com/blog/en/sample-survey-questionnaire-templates/} (last accessed on April 6, 2015)} and a mobile app for conducting and evaluating surveys. Their approach already comes closer to what we are looking for. However they do not offer an API for embeding platforms with other programing languges and the standardized questionnaires are relevant to public display research.
+	UX Suite by UsabilityTools has a handy backend for configuring surveys, although it is lacking the pre-configured standardized questionnaires. 
+	SurveyMonkey provides sample surveys\footnote{\url{https://www.surveymonkey.com/blog/en/sample-survey-questionnaire-templates/} (last accessed on April 6, 2015)} and a mobile app for conducting and evaluating surveys. Their approach already comes closer to what we are looking for. However they do not offer an API for embedding platforms with other programing languages and the standardized questionnaires are relevant to public display research.
 
-		SoGoSurvey \footnote{\url{http://www.sogosurvey.com/Features/List-of-All-Features.aspx} (last accessed on April 6, 2015)}. One of the best solutions!
+	The best commercial solutions found on the market were SoGoSurvey, SurveyPlanet and Qualtrics. 
 
-		SurveyPlanet () seems to be the best solution found so far! However the embed code is only based on iframes.
+		> SoGoSurvey. One of the best solutions!
 
-		Qualtrics \footnote{\url{http://www.qualtrics.com/site-intercept/} (last accessed on April 6, 2015)}
+		> SurveyPlanet () seems to be the best solution found so far! However the embed code is only based on iframes.
+
+		> Qualtrics
 
 
-	The most interesting was the solution of XXX ... \textbf{TODO TODO}
 
-	For additional information on currently available web-based survey tools, refer to \cite{Capterra2015SurveyTools, Idealware2011SurveyTools}
 
 
 
