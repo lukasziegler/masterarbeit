@@ -8,7 +8,8 @@
 
 	\begin{figure}[btph]
 	    \begin{center}
-	        \includegraphics[width=.7\columnwidth]{img/4_implementation/4-overview}
+	        % \includegraphics[width=.7\columnwidth]{img/4_implementation/4-overview}
+	        \includegraphics[width=.7\columnwidth]{img/screenshots/pdsurvey-overview/pdsurvey-platform.png}
 	    \end{center}
 	 \caption[Overview of the PDSurvey platform]{Overview of the PDSurvey platform: (a) PDServer containing the Node.js server, (b) PDBackend is the entry point for administrators and (c) PDClient the interface included on public displays and optimized for mobile devices.}
 	 \label{fig:4-pdsurvey-platform}
@@ -30,7 +31,7 @@
 
 	\begin{figure}%[btph]
 	    \begin{center}
-	        \includegraphics[width=.7\columnwidth]{img/screenshots/pdadmin/dashboard.png}
+	        \includegraphics[width=.8\columnwidth]{img/screenshots/pdadmin/dashboard.png}
 	    \end{center}
 	 \caption[PDAdmin Dashboard]{Dashboard of PDAdmin}
 	 \label{fig:pdadmin-dashobard}
@@ -38,7 +39,7 @@
 
 	\begin{figure}%[btph]
 	    \begin{center}
-	        \includegraphics[width=.7\columnwidth]{img/screenshots/pdadmin/wizard-display_selected.png}
+	        \includegraphics[width=.8\columnwidth]{img/screenshots/pdadmin/wizard-display_selected.png}
 	    \end{center}
 	 \caption[PDAdmin Wizard]{Wizard for PDAdmin}
 	 \label{fig:pdadmin-wizard}
@@ -51,7 +52,7 @@
 
 		The server was written in Node.js and to the outside only offers a RESTful API. All interactions users or developers make with the server are HTTP calls. When performing CRUD operations, all REST calls need to be executed and JSON objects are returned.
 		Besides this REST functionality a rudimentary authentication mechanism is already implemented on the server and the capability for further logic, determining which client should ask which question next. This functionality might become of interest when trying to spread standardized questionnaires of longer length across multiple users or multiple displays. It would be intended for the server to keep track which questions have already been answered and to tell each instance of PDClient which question to ask next, in order to achieve a balanced question profile.
-		The specification of PDServer's REST API can be found in the documentation (see Appendix \ref{appendix:documentation}).
+		The specification of PDServer's REST API can be found on GitHub\footnote{\url{https://github.com/lukasziegler/masterarbeit/tree/master/docs} (last accessed on April 15, 2015)} and on the enclosed CD (see Appendix \ref{appendix:cd-contents}).
 
 
 

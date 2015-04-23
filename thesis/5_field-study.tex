@@ -31,11 +31,13 @@
 
 
 
+\clearpage
+\subsection{Pre-Study}
 
-\subsection{Pre-Study (optional)}
+	Smaller Pre-studies accompanied the development of \textit{PDSurvey} and the related field study, in order to get early feedback in the development process. 
+	% PDAdmin
+	For the backend it was good to find out more about the ...
 
-
-	\textbf{TODO TODO TODO}
 
 	\begin{enumerate}
 	\item intrinsic motivation
@@ -43,6 +45,10 @@
 	\item Backend: wizard
 	\end{enumerate}
 
+
+
+	% Adjustments on the day prior to the evaluation
+	The day prior to the launch of the actual field study was used for assembly and for last adjustments, like change of font size, adjustment to the position of certain UI elements, and for collecting implicit feedback from users observing but not approaching the display. Only from observing it could be seen that a more effective call-to-action was needed. Many people looked at the display, noticed that something has changed with the setup, but no one started interacting or was willing to complete the questionnaire. Therefore a more catchy start screen was introduced for the tablet (see \ref{fig:5-pdclient-intro}) and the option panel of the TV screen was also modified \ref{screenshot:options}. This observation is very much in line with the self-determination theory by Richard Ryan and Edward Deci \cite{ryan2000self}.
 
 
 	\begin{figure}
@@ -56,9 +62,14 @@
 
 	% Intrinsic motivation
 	To increase the motivation for users to participate, additional intrinsic motivation was given to increase the response and acceptance rate of the public surveys, as proven by Richard Ryan in his self-determination theory\footnote{http://www.selfdeterminationtheory.org/} \cite{ryan2000self}. We stated that the questionnaire consists of five questions, that it will only take one minute to complete and the results are for a Master's thesis at the university. This information was displayed as a splash screen on the tablet (see figure \ref{fig:5-pdclient-intro}).
+
+
+
 	
 
 
+
+\clearpage
 \subsection{Study}
 
 	% give the reader enough information to replicate the experiment
@@ -78,7 +89,7 @@
 
 	\begin{figure}
 	    \begin{center}
-			\includegraphics[width=.8\columnwidth]{img/screenshots/balloon-game/options-overview.jpg}
+			\includegraphics[width=.7\columnwidth]{img/screenshots/balloon-game/options-overview.jpg}
 	    \end{center}
 	 \caption[Feedback Channel: Options Panel]{Options panel to choose a feedback channel}
 	 \label{fig:5-feedback-options}
@@ -86,10 +97,10 @@
 
 	% Table: Questions asked on PDClient
 	\begin{table}[h]
+		\label{table:5-questions-asked}
 		\small
 		\center
 		\input{tables/5-questions-asked}
-		\label{table:5-questions-asked}
 		\caption[Questions asked]{Questions asked on all four feedback channels}
 	\end{table}
 
@@ -121,7 +132,7 @@
 		Eleven of the 28 interviews were conducted with actual participants of the public display study setup (39.3\%), the remaining 17 interviews (60.7\%) consisted of people passing by the display setup.
 
 
-		\begin{table}[h]
+		\begin{table}[bh]
 			\small
 			\center
 			\input{tables/5-demographics}
@@ -148,7 +159,7 @@
 	\label{chapter:field-study:apparatus}
 		% give details of any equipment used, including thinkgs like questionnaires and other tests
 
-		The permanent setup consisted of a XXX-inch TV screen, connected to a laptop running Windows 7, and a Samsung Galaxy Tab 10.1 tablet positioned to the right of the TV screen on a console. Our object of investigation was the TV screen with touch support, running an interactive game called \textit{Balloon Shooter}, developed by Jiamin Shi. After users completed the game, they were asked via a notice to fill in a questionnaire on one of the four provided feedback channels (see figure \ref{fig:5-feedback-options}). The courtesy for the Balloon Shooter game and the survey implementation on the TV screen goes to Jiamin Shi.
+		The permanent setup consisted of a 55-inch touch-sensitive TV screen, connected to a laptop running on Windows 7, and a Samsung Galaxy Tab 10.1 tablet positioned to the right of the TV screen on a console. The TV screen was positioned on a 60cm high stand, resulting in a positioning at eye level. The tablet was placed on and fixed to a conductor's stand to the right of the TV screen (see figure \ref{fig:5-study-setup}). Our object of investigation was the TV screen with touch support, running an interactive game called \textit{Balloon Shooter}, developed by Jiamin Shi. After users completed the game, they were asked via a prompt to fill in a questionnaire on one of the four provided feedback channels (see figure \ref{fig:5-feedback-options}). The courtesy for the Balloon Shooter game and the survey implementation on the TV screen goes to Jiamin Shi.
 
 		\begin{figure}
 		    \begin{center}
@@ -158,47 +169,36 @@
 		 \label{fig:5-study-setup}
 		\end{figure}
 
-		Each user had the opportunity to respond to the questionnaire either directly on TV screen (1), on a tablet to the right of the big TV (2), via their own smartphone (3) or via email (4). The first option was embedded natively into the Balloon Shooter game, offering a consistent UI and the most direct feedback channel. Choosing the tablet as an option, the users were prompted to move to the right and to answer five questions on the tablet. The Samsung Galaxy Tab 10.1 was displaying the responsive frontend of PDClient, being enclosed in an Android Kiosk App, namely KioWare Lite\footnote{http://www.kioware.com/android.aspx}. Choosing the third option prompted the user to either scan a QR code with their smartphone or to open a URL in their mobile browser. The last option consisted of an input field embedded into the Balloon Shooter game on the TV screen, asking the user to enter their email address. The address was logged to a txt-file, which was scanned every 5 minutes by a Windows task scheduler. An email reminder was sent to the user with the request to complete the survey. For sending the email from the TV screen a Python script was written to send the email via the universities SMTP server\footnote{https://github.com/lukasziegler/python-send-mail}. Screenshots of all four options can be found in the Appendix on page \pageref{appendix:screenshots-balloon-shooter}.
-
-		For the permanent setup the following data was logged on all four feedback channels: The timestamp of the users choice, which feedback channel the user chose to respond to the survey, and whether they skipped the call to participate in the survey or if they stopped playing the game (determined via timeout). 
-
-		% maybe also show a flow of actions, but not sure if this is needed, when the user can also simply read the previous paragraph.
-
+		Each user had the opportunity to respond to the \textit{questionnaire} either directly on the TV screen (1), on the tablet to the right of the big TV (2), via their own smartphone (3) or via email (4). The first option was embedded natively into the Balloon Shooter game, offering a consistent UI and the most direct feedback channel. When choosing the tablet as an option, users were prompted to move to the right and to answer five questions on the tablet. The Android tablet was running KioWare Lite\footnote{\url{http://www.kioware.com/android.aspx} (last accessed on April 21, 2015)}, a kiosk app for Android, and displaying the responsive frontend of PDClient for the entire time of the study. Choosing the third option prompted the user to either scan a QR code with their smartphone or to open a URL\footnote{\url{https://pdsurvey.herokuapp.com/} (last accessed on April 21, 2015)} in their mobile browser. The last option consisted of an input field embedded into the Balloon Shooter game on the TV screen, asking the user to enter their email address. The address was logged to a txt-file, which was scanned every 5 minutes by the Windows task scheduler. An email reminder was sent to the user with a request to complete the survey. For sending the email from the TV screen, a Python script\footnote{\url{https://github.com/lukasziegler/python-send-mail} (accessed on March 15, 2015)} was written, using a modified version of TLS authentication in order to comply with the university's SMTP server. Screenshots of all four options can be found in Appendix \ref{appendix:screenshots-balloon-shooter} on page \pageref{appendix:screenshots-balloon-shooter}.
+		% What was logged
+		For the permanent setup the following data was logged: the timestamp of the users choice, which feedback channel the user chose to respond to the survey, and whether they skipped the call to participate in the survey or if they stopped playing the game (determined via timeout). 
+		% Questionnaire used
+		On all four feedback channels a self-made questionnaire was used, since the focus was on finding which channels and question types are best suited in general for being used on public display. This was the reason why we did not use any of the standardized questionnaires mentioned in chapter \ref{chapter:literature-evaluation}. 
 
 		% II) SEMI STRUCTURED INTERVIEW
-		For conducting the semi-structured interviews two questionnaires (one for participants, one for passerby), a voice-recorder (smartphone) were used in addition to the permanent setup.
-
-		For the evaluation in the field study itself a self-made questionnaire was used, since the focus was on finding which channels and question types are best suited in general for being used on public display. This was the reason why we did not use any of the standardized questionnaires mentioned in section \ref{chapter:literature-evaluation}. Screenshots of the questionnaire run on the PDClient can be found on the enclosed CD.
-
-
-
-
+		For conducting the \textit{semi-structured interviews}, two questionnaires were used as a rough guidance, one for participants, and one for passerby. A voice-recorder (smartphone) was used additionally to record the interviews, to be able transcribe and code all of conducted interviews. Each semi-structured interview loosely followed the outline presented on page \pageref{appendix:semi-structured-interview}. Audio recordings and transcriptions are on the attached CD.
 		% III) BALLOON SHOOTER GAME
-
-		% More information regarding the Balloon Shooter game can be found here XXXXX. 
-
-		The main application installed on the public display was a game called \textit{Balloon Shooter} developed and run by Jiamin Shi, a PhD student at the Group for Media Informatics at LMU Munich. It was first installed on January 7th 2015 and has been running in different versions since then. Public audience was already used to it for roughly two months and adapted to it well.
-
-		% + give more information about the balloon shooter game.
-		% + ask Jiamin, whether and which screenshots of the game I am allowed to post?
-
+		The main application installed on the public display was a game called \textit{Balloon Shooter} developed and run by Jiamin Shi, a PhD student at the Group for Media Informatics at LMU Munich. It was first installed on January 7th 2015 and has been running in different versions since then. Public audience was already used to it for roughly two months and adapted to it well. In 2,5 weeks in February\footnote{Based on the evaluation of log data from 05/02/2015 to 23/02/2015, reported by Jiamin Shi.} usage statistics reported that the game was played a total of 305 times.
 
 
 
 	\subsubsection{Location}
 
-	All parts of the field study were carried out in Oettingenstrasse 67, the faculty building for Computer Science. In the same building there are also research institutes for Ethnology, Political Science, Japanese Studies, and Physics. The study was carried out in the entrance hall of the university building. Figure \ref{fig:5-entrance-hall} gives an overview of the entrance hall and of the paths most people take while crossing the room. The excerpt is based on the universities floor plan\footnote{\url{http://www.uni-muenchen.de/funktionen/gebaeudeplaene/7070_d_00.pdf} (last accessed on March 22, 2015)} and was inspired by Sandra Zollner \cite{zollner2014thesis}. There she also published that at the time of her study ``approximately 59\% of all passers-by used path 1'', to get something from the lockers or to leave through the door to the library. 28\% of the people were taking path 2 and 13\% were taking path 3.
+		All parts of the field study were carried out in Oettingenstrasse 67, the faculty building for Computer Science of Ludwig-Maximilians-Universit\"at M\"unchen. In the same building research institutes for Ethnology, Political Science, Japanese Studies, and Physics are also located. The study was carried out in the entrance hall of the university building. Figure \ref{fig:5-entrance-hall} gives an overview of the entrance hall and of the paths most people take while crossing the room. The excerpt is based on the universities floor plan\footnote{\url{http://www.uni-muenchen.de/funktionen/gebaeudeplaene/7070_d_00.pdf} (last accessed on March 22, 2015)}, and was inspired by Sandra Zollner \cite{zollner2014thesis}. For her bachelor's thesis she conducted a study in the same location one year ago and analyzed the visitor flow. According to Zollner ``approximately 59\% of all passers-by used path 1'' to get something from the lockers or to leave through the door to the library. 28\% of the people were taking path 2 and 13\% were taking path 3.
+		% My observations
+		In our field study it was also evident that the majority of the visitors took path 1. This group usually was fairly target-orientated, or in a hurry. Otherwise, on days with bad weather, people had their break in the entrance hall, or waited for someone. On days with good weather people usually took their breaks outside and only passed through the entrance hall, coming from the library, picking up something from the locker room and going outside.
 
-	\begin{figure}
-	    \begin{center}
-	     \fbox{		        \includegraphics[width=.7\columnwidth]{img/5_field-study/entrance-hall.pdf}
-	     }
-	    \end{center}
-	 \caption[Floor Map of Entrance Hall]{Floor map of the entrance hall, where the field study was carried out. User paths, and the surrounding environment including facilities such as the library can be seen.}
-	 \label{fig:5-entrance-hall}
-	\end{figure}
+		\begin{figure}[hb]
+		    \begin{center}
+		     \fbox{	
+		     	\includegraphics[width=.7\columnwidth]{img/5_field-study/entrance-hall.pdf}
+		     }
+		    \end{center}
+			 \caption[Floor Map of Entrance Hall]{Floor map of the entrance hall, where the field study was carried out. User paths, and the surrounding environment including facilities such as the library can be seen.}
+			 \label{fig:5-entrance-hall}
+		\end{figure}
 
-	In our field study it was also evident that the majority of the visitors took path 1 were usually fairly target-orientated or in a hurry. Otherwise, on days with bad weather people had their break in the entrance hall or waited for someone. On days with good weather people usually took their breaks outside and only passed through the entrance hall, coming from the library, picking up something from the locker room and going outside.
+
 
 
 	\subsubsection{Procedure}
@@ -209,11 +209,6 @@
 		% Instructions given
 		For people having trouble understanding the concept of the public display installation, the situation was described as follows. ``Imagine you are in a shopping mall or at an airport using one of those large displays to find some information. After having found what you were looking for, you get asked to answer a short questionnaire. How would you react to it?'' A full transcription of all questions and responses can also be found on the enclosed CD. 
 
-	% Adjustments on the day prior to the evaluation
-		% The day prior to the launch of the actual field study was used for assembly and for last adjustments, like change of font size, adjustment to the position of certain UI elements, and for collecting implicit feedback from users observing but not approaching the display. From observing it could be seen that a more effective call-to-action was needed. Many people looked at the display, noticed that something has changed with the setup, but no one started interacting with the new setup or was willing to complete the questionnaire. Therefore a more catchy start screen was introduced for the tablet (see \ref{fig:5-pdclient-intro}) and the option panel of the TV screen was also modified \ref{screenshot:options}. This observation is very much in line with the self-determination theory by Richard Ryan and Edward Deci \cite{ryan2000self}.
-
-
-
 		The participants for the PDSurvey questionnaire were not additionally motivated. All they saw was the options panel after completing the Balloon Shooter game (see figure \ref{fig:5-feedback-options}) or the welcome screen of the tablet (see figure \ref{fig:5-pdclient-intro}) while passing through the entrance hall. A complete copy of what the users were able to interact with, can be seen on the attached CD (see Appendix \ref{appendix:cd-contents}).
 
 
@@ -223,7 +218,7 @@
 
 
 
-
+\clearpage
 \subsection{Results}
 
 %%% QUANTITATIVE DATA %%% = pure facts
@@ -353,7 +348,7 @@
 
 
 % here you told that would you found
-
+\clearpage
 \subsection{Discussion}
 
 % here you tell them what it actually means for your research question
