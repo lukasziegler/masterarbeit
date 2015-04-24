@@ -3,8 +3,7 @@
 
 
 	The field study took place during the first two weeks of March, from 3/3/2015 to 3/15/2015 in Oettingenstrasse 67, a faculty building of Ludwig-Maximilians-Universit\"at M\"unchen. Data was collected from the display setup on 14 consecutive days and 28 semi-structured interviews were carried out on five working days during the same two weeks. A total of 117 interactions were registered with the public display installation and 57 survey responses were recorded.
-
-	The goal of this study was to validate our research questions, and to see how users respond to questionnaires being conducted on public displays. We chose to conduct a descriptive study, with a focus on ecological validity, since our research prototype is still in an early stage of development. 
+	The goal of this study was to validate our research questions, and to see how users respond to questionnaires conducted on public displays. We chose to carry out a descriptive study, with a focus on ecological validity, since our research prototype is still in an early stage of development. 
 
 
 
@@ -12,7 +11,7 @@
 \subsection{Research Questions}
 
 	% MOTIVATE: Why did we bother to do this study?
-	One of the main reasons why we conducted this field study, was to get a better understanding of our assumptions and to see how users react to questionnaires on displays in public. Besides, it was of importance to conduct a study ``in the wild'', because there often is a discrepancy between lab studies and field studies. This phenomena has been discussed by Ojala and Kostakos in 2011: ``The first important conclusion we have arrived at is that there exists a huge difference between results obtained in a lab and in the wild using the exact same configuration''\cite{Ojala2011}.
+	One of the main reasons why we conducted this field study, was to get a better understanding of our assumptions and to see how users react to questionnaires on displays in public settings. Besides, it was of importance to conduct a study ``in the wild'', because there often is a discrepancy between lab studies and field studies. This phenomena has been discussed by Ojala and Kostakos in 2011: ``The first important conclusion we have arrived at is that there exists a huge difference between results obtained in a lab and in the wild using the exact same configuration''\cite{Ojala2011}.
 
 	% What do we assume  /  What do we want to know
 	One hypothesis we made for the development of our first research prototype of the \textit{PDSurvey} platform was that we can simplify the process of conducting and deploying surveys to large public display networks. Since this is a rather large claim, we broke down this hypothesis to the following more fine-grained statements:
@@ -21,12 +20,10 @@
 		\item Which feedback channels are best suited for completing surveys in public?
 		\item Why did users approach the display? What motivates them to fill in surveys in public? 
 		\item How did the user notice and perceive the survey on the display?
-		\item Which question types are best suited for questionnaires carried out in public? 
 	\end{enumerate}
 
 	In addition to these questions we were also interested in user stories, the feedback real-world users gave us in regards to answering surveys on screens in public. For this reason we also conducted semi-structured interviews in parallel to the quantitative evaluation of the \textit{PDSurvey} platform. In order to get as authentic and personal feedback as possible, we stuck loosely to the designated questions of the semi-structured interview (see Appendix \ref{appendix:interviews}), in order to allow users to also tell us new stories, which we wouldn't have thought of before.
-
-	These research questions were represented in the \textit{PDSurvey} questionnaires and semi-structured interviews. Questions which would go beyond the scope of this thesis, and might serve as follow-up questions for further research, are gathered in chapter \ref{chapter:future-work}, Future Work.
+	These research questions influenced the questionnaire we deployed using \textit{PDSurvey} and the questions we asked in the semi-structured interviews. Questions which would go beyond the scope of this thesis, and might serve as follow-up questions for further research, are gathered in chapter \ref{chapter:future-work}, Future Work.
 
 
 
@@ -34,34 +31,21 @@
 \clearpage
 \subsection{Pre-Study}
 
-	Smaller Pre-studies accompanied the development of \textit{PDSurvey} and the related field study, in order to get early feedback in the development process. 
-	% PDAdmin
-	For the backend it was good to find out more about the ...
+	Before starting the field study, multiple small pre-studies were made with fellow students and research staff at the chair for Media Informatics. We wanted to get early feedback in the development process for \textit{PDSurvey}. 
+	% Backend
+	For PDAdmin findings include providing a suitable entry point, general comments regarding how to improve layout and user flow, and to offer a Wizard for beginners. For the admin interface it turned out to be important to reduce all available features to a minimalistic interface, even though the platform is designed to support a wide variety of options. 
 
-
-	\begin{enumerate}
-	\item intrinsic motivation
-	\item adjusted font-size for large / small screens
-	\item Backend: wizard
-	\end{enumerate}
-
-
-
-	% Adjustments on the day prior to the evaluation
-	The day prior to the launch of the actual field study was used for assembly and for last adjustments, like change of font size, adjustment to the position of certain UI elements, and for collecting implicit feedback from users observing but not approaching the display. Only from observing it could be seen that a more effective call-to-action was needed. Many people looked at the display, noticed that something has changed with the setup, but no one started interacting or was willing to complete the questionnaire. Therefore a more catchy start screen was introduced for the tablet (see \ref{fig:5-pdclient-intro}) and the option panel of the TV screen was also modified \ref{screenshot:options}. This observation is very much in line with the self-determination theory by Richard Ryan and Edward Deci \cite{ryan2000self}.
-
-
+	% Figure PDClient Welcome Screen
 	\begin{figure}
 	    \begin{center}
 	        \includegraphics[width=.7\columnwidth]{img/5_field-study/pdclient-startscreen.png}
 	    \end{center}
-	 \caption{PDClient: Using intrinsic motivation to motivate users to participate in a short questionnaire}
+	 \caption{The Welcome Screen of PDClient, using intrinsic motivation to motivate users to participate in a short questionnaire.}
 	 \label{fig:5-pdclient-intro}
 	\end{figure}
-	
 
-	% Intrinsic motivation
-	To increase the motivation for users to participate, additional intrinsic motivation was given to increase the response and acceptance rate of the public surveys, as proven by Richard Ryan in his self-determination theory\footnote{http://www.selfdeterminationtheory.org/} \cite{ryan2000self}. We stated that the questionnaire consists of five questions, that it will only take one minute to complete and the results are for a Master's thesis at the university. This information was displayed as a splash screen on the tablet (see figure \ref{fig:5-pdclient-intro}).
+	% Adjustments for Field Study / Intrinsic Motivation
+	The days prior to the launch of the actual field study were used for assembly and for last adjustments, like change of font size, adjustment to the position of certain UI elements, and for collecting implicit feedback from users observing but not approaching the display. Already by watching the people passing-by, it could be seen that a more effective call-to-action was needed. Many people looked at the display, noticed that something has changed with the setup, but no one started interacting or was willing to complete the questionnaire. To increase the motivation for users to participate, the start screens were improved based on the findings of the self-determination theory introduced by Richard Ryan\footnote{http://www.selfdeterminationtheory.org/} \cite{ryan2000self}. We stated on the Welcome screen of the tablet (see figure \ref{fig:5-pdclient-intro}) and on the Option panel of the TV Screen (see figure \ref{fig:5-feedback-options}) that the questionnaire only consists of five questions, that it will only take one minute to complete and the results are for a Master's thesis at the university. This resulted in an increased response and acceptance rate of the survey.
 
 
 
@@ -73,8 +57,7 @@
 \subsection{Study}
 
 	% give the reader enough information to replicate the experiment
-	We deployed the \textit{PDSurvey} platform to a public display setup, which has already been running since several months in the entrance hall of the faculty building. The public display setup has consistently attracted new and returning users to participate. 
-	A descriptive research type was chosen as the study type. Our aim is to describe and observe how users react to the new display setup. Only one study prototype is deployed, without varying any variables. The goal was to get first feedback on how people perceive filling in questionnaires on digital signage in public, before getting into more fine-grained research (see chapter \ref{chapter:future-work}). 
+	We deployed the \textit{PDSurvey} platform to a public display setup, which has already been running since several months in the entrance hall of the faculty building. The public display setup consistently attracted new and returning users to participate. A descriptive research type was chosen as the study type. Our aim is to describe and observe how users react to the new display setup. Only one study prototype is deployed, without varying any variables. The goal was to get first feedback on how people perceive filling in questionnaires on digital signage in public, before getting into more fine-grained research (see chapter \ref{chapter:future-work}). 
 	Both quantitative and qualitative data was collected as part of the field study. Quantitative data was obtained through the \textit{PDSurvey} system and qualitative data was collected through semi-structured interviews.
 	The distribution of the preferred feedback channel was logged inside of the Balloon Shooter game (see section \ref{chapter:field-study:apparatus}) and asked in all semi-structured interviews.
 
@@ -85,7 +68,7 @@
 	% Goal: Which Feedback Channel
 	Our primary goal was to find out which feedback channel users preferred to respond to surveys in public. Each user had the choice to respond to the questionnaire on a TV display (1), on a tablet (2) to the right of the TV screen, via their own smartphone (3) or via email (4). The order of all four feedback options was randomized.
 	After completing the Balloon Shooter game on the primary TV screen, each participant was confronted with an options panel (see figure \ref{fig:5-feedback-options}), asking the user to support our research and to respond to a short questionnaire. The feedback channel chosen was logged and the user next had the opportunity to respond to the same questionnaire on all four feedback channels. 
-	We displayed the same five questions (see table \ref{table:5-questions-asked}) and chose to limit the number to five questions, to avoid low participation rate and low response rate.
+	We displayed the same five questions (see table \ref{table:questions-asked}) and chose to limit the number to five questions, to avoid low participation rate and low response rate.
 
 	\begin{figure}
 	    \begin{center}
@@ -96,12 +79,12 @@
 	\end{figure}
 
 	% Table: Questions asked on PDClient
-	\begin{table}[h]
-		\label{table:5-questions-asked}
+	\begin{table}[b]
 		\small
 		\center
 		\input{tables/5-questions-asked}
 		\caption[Questions asked]{Questions asked on all four feedback channels}
+		\label{table:questions-asked}
 	\end{table}
 
 	% I: QUESTIONNAIRE
@@ -125,7 +108,7 @@
 		In total 57 questionnaires were submitted and 28 semi-structured interviews were conducted during the two week study period. As for the study size, we took the findings from Alt et al.\cite{Alt2012HowToEvaluate} as a rough guide, for how many participants to include four our study. According to Alt et al. most field studys have an average of 26.9 interviews and 38.4 questionnaire responses.
 		Information about the background of the participants was assessed both in the questionnaire and in semi-structured interviews (see table \ref{table:demographics}). Due to the limited number of questions in the questionnaire, only one the age of the participant was asked. In the semi-structured interviews information regarding the participants' age, gender, and working/study area were asked.
 
-		Based on the fourth question (``In which area do you study / work?'') we can draw a conclusion about the study field of the survey participants. As far as indicated all people responding to the \textit{questionnaire} installed on the public display setup were students. Out of 57 responses, 42 could be assigned to a study field. The remaining 12 submissions consisted of responses such as \textit{bavaria, bib, home, munich, muc} or were left empty. The study fields most frequently represented were Computer Science (23,8\%), followed by Political Science (14.3\%), Japanese Studies (11.9\%), and Anthropology (11.9\%), Cultural Science (9.5\%), and Business (9.5\%). Other study fields mentioned were Physics, Sociology, Ethnology, Communication Science, Sports, and Science \& Technology. 
+		Based on the fourth question (``In which area do you study / work?'') we can draw a conclusion about the study field of the survey participants. As far as indicated all people responding to the \textit{questionnaire} installed on the public display setup were students. Out of 57 responses, 42 could be assigned to a study field. The remaining 12 submissions consisted of responses such as \textit{bavaria, bib, home, munich, muc} or were left empty. The study fields most frequently represented were Computer Science (23.8\%), followed by Political Science (14.3\%), Japanese Studies (11.9\%), and Anthropology (11.9\%), Cultural Science (9.5\%), and Business (9.5\%). Other study fields mentioned were Physics, Sociology, Ethnology, Communication Science, Sports, and Science \& Technology. 
 
 		For the \textit{semi-structured interviews} we collected more detailed information about the participants' background. Out of the 28 participants, 72.4\% were male and 28.6\% were female. The average age was 31 years, with an age distribution ranging from 20 years up to 69 years (median=25, SD=13.2). Due to the wide variety of faculties and a library being located in the same building, various technical backgrounds were present. What they all had in common was their affiliation to LMU Munich, either because of being a student themselves, working at the university or being otherwise related to the university. In total 23 students, three employees, and two retirees were interviewed. The study fields which were most frequently represented are Computer Science (16.7\%), Japanese Studies (16.7\%), Ethnology (12.5\%), and Political Science (12.5\%). Other areas mentioned were Sociology, Communication Science, Law, Physics and Engineering. 
 		% Participants vs Passer-by
@@ -178,7 +161,7 @@
 		% II) SEMI STRUCTURED INTERVIEW
 		For conducting the \textit{semi-structured interviews}, two questionnaires were used as a rough guidance, one for participants, and one for passerby. A voice-recorder (smartphone) was used additionally to record the interviews, to be able transcribe and code all of conducted interviews. Each semi-structured interview loosely followed the outline presented on page \pageref{appendix:semi-structured-interview}. Audio recordings and transcriptions are on the attached CD.
 		% III) BALLOON SHOOTER GAME
-		The main application installed on the public display was a game called \textit{Balloon Shooter} developed and run by Jiamin Shi, a PhD student at the Group for Media Informatics at LMU Munich. It was first installed on January 7th 2015 and has been running in different versions since then. Public audience was already used to it for roughly two months and adapted to it well. In 2,5 weeks in February\footnote{Based on the evaluation of log data from 05/02/2015 to 23/02/2015, reported by Jiamin Shi.} usage statistics reported that the game was played a total of 305 times.
+		The main application installed on the public display was a game called \textit{Balloon Shooter} developed and run by Jiamin Shi, a PhD student at the Group for Media Informatics at LMU Munich. It was first installed on January 7th 2015 and has been running in different versions since then. Public audience was already used to it for roughly two months and adapted to it well. In 2.5 weeks in February\footnote{Based on the evaluation of log data from 05/02/2015 to 23/02/2015, reported by Jiamin Shi.} usage statistics reported that the game was played a total of 305 times.
 
 
 
@@ -265,7 +248,7 @@
 
 	% LOG data / little bit distorted ...
 	When evaluating all logged responses, the same sequence can be seen. The majority of the surveys were completed through the tablet, followed by the TV screen, smartphone, and email. The ratio, however, is highly distorted for this scenario. This is due to the tablets sole purpose to be used to fill in surveys in our setup, and the additional intrinsic motivation given directly on the tablet's start screen (see section \ref{chapter:field-study:design}). The following ratio has to be treated with caution. In total 57 responses were made on all four feedback channels, 50 originated directly from the tablet (87.72\%). Four responses were recorded on the TV screen (7.02\%), two via smartphone (3.51\%), and one via email (1.75\%). Since this listing only contains the number of responses, it should not be taken as a base for the comparison of the feedback channels' popularity. %% = interpretation! 
-	For a comparison of the \textbf{feedback channels} the log data from the option panel and the responses of the semi-structured interviews are more suitable (see table \ref{table:5-feedback-channel}).
+	For a comparison of the feedback channels the log data from the option panel and the responses of the semi-structured interviews are more suitable (see table \ref{table:5-feedback-channel}).
 
 
 
@@ -341,19 +324,17 @@
 \clearpage
 \subsection{Discussion}
 % here you tell them what it actually means for your research question
-
+% for inspiration: http://www.ldeo.columbia.edu/~martins/sen_sem/thesis_org.html#Discussion
 
 
 	% I) SUMMARY: a brief recapitulation
-	\textbf{TODO make room for a brief summary}
-		% http://www.ldeo.columbia.edu/~martins/sen_sem/thesis_org.html
+	In the field study we assessed which feedback channel users preferred, why users approached the display setup, and for which reason they made which choice. A vast majority of users preferred to respond directly in the public setting to the questionnaire. The tablet turned out to be the most popular feedback channel in the display setup, followed by the TV screen. Options email and smartphone accounted for only around a quarter of the total. Reasons for approaching the public displays were curiosity, novelty, for fun, mental balance, and pastime.
 
+%The option email was chosen for better warranty of privacy, having more time and for a more private setting. The reasons stated for smartphone was chosen because of habit. 
 
 	% II) Now allowing room for interpretation and personal opinions
-
-
 	% > Feedback Channel
-	It is interesting to see that the tablet is the most popular \textbf{feedback channel} in all scenarios, although responding via the TV screen would be more a more direct approach and not require moving to another device. 
+	It is interesting to see that the tablet is the most popular \textit{feedback channel} in all scenarios, although responding via the TV screen would be more a more direct approach and not require moving to another device. 
 	Nevertheless all offered feedback channels were present in the evaluation and during the semi-structured interviews for each channel a good reason was given. What can be said is that the crowd usually distinguishes into three groups. The first (and slightly larger) group preferring the option of \textit{direct response}. They are not as considerate about answering questions in public and their privacy aspect. For them it is more important to complete the survey as quick as possible and not having to think about it later, as long as nothing too private or personal gets asked. One person said ``If something too private would be asked, I would simply abort and go away from the display''. The second group is more \textit{privacy} concerned, often older of age, or actually wanting to take the time to think about all of their responses in depth in order to give high-quality responses. This group prefers to take the questionnaire away from the public setting into their home. The third group chose the feedback channel purely based on their \textit{habit} and what they are accustomed to. Two ladies in their mid-twenties responded immediately ``on my smartphone, because I am most used to it''.
 	These observations go along well with the five adaptation factors stated by Huang et al. \cite{Huang2004}: task specificity and deep integration, tool flexibility and generality, visibility and exposure to others' interaction, low barriers to use, dedicated core group of users.
 
@@ -361,8 +342,8 @@
 	Another assumption we had was encouraged by our observations and the semi-structured interviews: the smaller the display, the safer and more private the users feel. An exception to this finding could be old people. Once people become short-sighted or more insecure and uncertain with using new devices, they prefer having a large input surface. But for the majority of younger people this held true.
 
 	% > Interaction Time
-	Additionally we made the observation that questionnaires on public displays are best suited for quantitative surveys. Users want a short interaction time, not having to think much about their answers and for roughly XXXXX percent of the participants it holds true, that they do not like being observed while making responses in public.
-	From this observation, the implication for the \textbf{question types} can be derived: question types ideally with a single-click interaction are preferred (e.g. Likert scale, multiple choice with all options given, yes/no-questions). Then followed by numeric, dropdown and multiple choice questions with one option for open-end responses. For these question types the user has to think a little bit more, he has to assess more precisely in order to make his response. One example stated by a participant, in regards to the numeric question `\textit{How often have you used this display before?}', was that ``It would be great if you had the possibility to choose from a predefined range, because typing is not always optimal. I would prefer if areas would be given instead of oneself having to think about the exact number.'' Last, being no big surprise, are text fields combined with open-ended questions. As a take away for text fields: wherever possible rephrase the question so that you can respond to it as short as possible.
+	Additionally, we made the observation that questionnaires on public displays are best suited for quantitative surveys. Users want a short interaction time, not having to think much about their answers and for roughly 25\% of the participants it holds true, that they do not like being observed while making responses in public.
+	From this observation, the implication for the \textit{question types} can be derived: question types ideally with a single-click interaction are preferred (e.g. Likert scale, multiple choice with all options given, yes/no-questions). Then followed by numeric, dropdown and multiple choice questions with one option for open-end responses. For these question types the user has to think a little bit more, he has to assess more precisely in order to make his response. One example stated by a participant, in regards to the numeric question `\textit{How often have you used this display before?}', was that ``It would be great if you had the possibility to choose from a predefined range, because typing is not always optimal. I would prefer if areas would be given instead of oneself having to think about the exact number.'' Last, being no big surprise, are text fields combined with open-ended questions. As a take away for text fields: wherever possible rephrase the question so that you can respond to it as short as possible.
 
 	% >> DRAWBACKS / FEARS
 
