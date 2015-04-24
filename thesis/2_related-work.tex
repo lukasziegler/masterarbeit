@@ -102,22 +102,31 @@ The demand for extensive evaluation of the new economy was met with emerging onl
 		> Alternative: polleverywhere.com (only for groups up to 40 students for free)
 
 
+
+
 	\subsection{Distinguishing Features}
+
 	% What makes our platform unique
 	The key difference between our approach and the already existing evaluation platforms, is the ability to associate each survey with the display on which the survey is carried out on, and that the platform is tailored specifically for public display evaluation.
 	By default \textit{PDSurvey} asks the display operator to specify the context of every display connected to the platform. When enough context data is specified, this will allow for a thorough evaluation and comparison of public display installations.
-	Further technical differences, which are not yet standard on all of the free and commercial solutions yet, is the ability to conduct surveys across a broad number of devices and platforms, due to its modular and RESTful architecture. The benefit is that the whole platform retrieves all data via a RESTful API, as of now allowing for the greatest possible coverage of end consumer devices. Additionally we offer a range of standardized questionnaires, simplifying the evaluation of public displays. These questionnaires used for evaluation will be introduced in section \ref{section:questionnaires:categorization}.
 
+
+		\textbf{TODO: split long sentences, write shorter and more meaningful sentences}
+		% Technical differences
+		Further technical differences, which are not yet standard on all of the free and commercial solutions yet, is the ability to conduct surveys across a broad number of devices and platforms, due to its modular and RESTful architecture. The benefit is that the whole platform retrieves all data via a RESTful API, as of now allowing for the greatest possible coverage of end consumer devices. Additionally we offer a range of standardized questionnaires, simplifying the evaluation of public displays. These questionnaires used for evaluation will be introduced in section \ref{section:questionnaires:categorization}.
+
+		% REST API is missing, not designed for use on public displays. Thus no overlay and seamless integration into public display applications is possible. The only exception so far might be Qualtrics, based assessing their Site Intercept demo.
+
+	% Limitation and optimization for Touch
+	Some question types from traditional web-based questionnaires are not well-suited for large displays. By limiting ourselves specifically to the evaluation of public displays, we can work much more fine-grained and deliver better results. As an example, not all question types are well suited for touch-based or gesture-based input devices. 
+
+	% Trend towards touch
+	With the introduction of the iPhone in 2007 and the iPad in 2010 users became much more accustomed to using screens with touch support. The increasing acceptance of touch screens combined with more sophisticated touch screen technology opens the path for interactive questionnaires in public settings. 
+
+	% Conclusion
 	These measures allow for a simplified evaluation of public displays. Standardized questionnaires useful for public display evaluation are already implemented by default.
 
-	% REST API is missing, not designed for use on public displays. Thus no overlay and seamless integration into public display applications is possible. The only exception so far might be Qualtrics, based assessing their Site Intercept demo.
 
-	> NEW: by having a clear focus on public display evaluation, this also allows us tweak and modify the question types to better be suited for public displays. Some question types from traditional web-based questionnaires are not well-suited for large displays.
-
-
-
-	> NEW: % Development in the last years (TODO, maybe leave it out)
-	Already in 1983 a study was conducted by Sproull and Kiesler, comparing email with traditional mail surveys. Their findings were a faster and cheaper conduction of surveys via email, with less social desirability. Possible restrictions were the limited spread of computers and thus a distorted population \cite{sproull1986reducing}. In 1999 commercial companies like SurveyMonkey were founded, providing first online survey platforms. The same counts for surveys being conducted on public displays, which opens up a whole new feedback channel. With the introduction of the iPhone in 2007 and the iPad in 2010 users became much more accustomed to using screens with touch support. The increasing acceptance of touch screens combined with more sophisticated touch screen technology opens the path for interactive questionnaires in public settings. 
 
 
 
@@ -128,5 +137,3 @@ The demand for extensive evaluation of the new economy was met with emerging onl
 	% 1. give an overview of related work
 	% 2. give background information to this thesis
 	% 3. describe the work of others, what have they done so far?
-
-	% The goal of the literature review was to find out how other researchers evaluate public displays. The aim was to identify important aspects of public display deployments - both from a researcher's as well form a practitioner's perspective. Furthermore it was of interest to develop an understanding of how these aspects could be addressed through surveys. 

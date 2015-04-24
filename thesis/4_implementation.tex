@@ -13,7 +13,7 @@
 \subsection{Requirements}
 \label{chapter:implementation:requirements}
 
-	Initial requirements were set by the problem statement of the thesis\footnote{\url{http://www.medien.ifi.lmu.de/lehre/arbeiten/detail.xhtml-php?pub=alt_pdsurvey} (last accessed on March 24, 2015)} (page \pageref{aufgabenstellung}). These requirements were also a trigger for further literature review and talks with people from the industry. The full listing of the initial problem statement is as follows.
+	Initial requirements were set by the problem statement of the thesis\footnote{\url{http://www.medien.ifi.lmu.de/lehre/arbeiten/detail.xhtml-php?pub=alt_pdsurvey} (last accessed on March 24, 2015)}. These requirements were also a trigger for further literature review and talks with people from the industry. The full listing of the initial problem statement is as follows.
 
 	% Official Problem statement
 	\begin{enumerate}[itemsep=0pt] 
@@ -30,13 +30,14 @@
 	\begin{itemize}[itemsep=0pt] 
 	\item easy \textit{embedding of questionnaires} on websites of public display owners (provide API / embed code)
 	\item support of \textit{various devices}: public displays of all sizes, tablets, phablets, smartphones, desktop devices (responsive web design)
-	\item allow for both \textit{quantitative and qualitative} methods of data collection
 	\item easy \textit{scalability} of platform; host on a cloud platform
-	\item use a \textit{modular approach}, allowing successors to extend and further refine the platform
+	\item use a \textit{modular} approach for development, allowing successors to extend and further refine the platform
+	\item support \textit{non web-based platforms}, which are not capable of embedding a website or making REST calls
 	\item focus on \textit{public display evaluation}, take the context into account for evaluation
 	\end{itemize}
 
-	These requirements combined with knowledge from literature review, are what makes this platform unique. The long term goal is to create a research platform, optimized for public display evaluation, delivering new insights into how users react to public display setups. Additionally, the requirements mentioned by Huang et al. \cite{huang2008overcoming} and Jacucci et al. \cite{jacucci2010worldsofinformation} also influenced the concept and development of the survey platform. All of the mentioned requirements had an impact on the chosen architecture, which will be discussed in the next section.
+
+	These requirements combined with knowledge from literature review (see section \ref{section:questionnaires:findings}), are what makes this platform unique. The long term goal is to create a research platform, optimized for public display evaluation, delivering new insights into how users react to public display setups. Additionally, the requirements mentioned by Huang et al. \cite{huang2008overcoming} and Jacucci et al. \cite{jacucci2010worldsofinformation} also influenced the concept and development of the survey platform. All of the mentioned requirements had an impact on the chosen architecture, which will be discussed in the next section.
 
 
 
@@ -104,10 +105,10 @@
 \subsection{Modeling}
 \label{chapter:implementation:modeling}
 
-	The development process of the PDSurvey platform was inspired and influenced by the concept of extreme programing\footnote{\url{http://www.extremeprogramming.org/rules.html} (last accessed on April 10, 2015)}, making iterative improvements, and working agile and user centered. First user stories were written and assessed in a small group\footnote{\url{http://www.tigertech.de/wie-schreibe-ich-eine-gute-user-story-und-was-ist-das-uberhaupt/} (last accessed April 10, 2015)}. The next step was to transfer these stories to user models, describing in detail which functionality the stakeholders of PDSurvey are supposed to have. Later a first software architecture and software model was built. Dependencies between models were defined and the model was continuously refined and improved throughout the development phase. The last phase included screen designs, getting a clear view of what the interface might look like.
+	The development process of the \textit{PDSurvey} platform was inspired and influenced by the concept of extreme programing\footnote{\url{http://www.extremeprogramming.org/rules.html} (last accessed on April 10, 2015)}, making iterative improvements, and working agile and user-centered. First user stories were written and assessed in a small group\footnote{\url{http://www.tigertech.de/wie-schreibe-ich-eine-gute-user-story-und-was-ist-das-uberhaupt/} (last accessed April 10, 2015)}. The next step was to transfer these stories to user models, describing in detail which functionality the stakeholders of \textit{PDSurvey} are supposed to have. Later a first software architecture and software model was built. Dependencies between models were defined and the model was continuously refined and improved throughout the development phase. The last phase included screen designs, getting a clear view of what the interface should later look like.
 
 	% REST API
-	The development of the REST API was influenced by current best practices \cite{Sahni2015RESTAPI, TutsPlus2015RESTAPI, hughes2012einfuhrung}. The API is separated into logical resources, while each resource gets manipulated through an HTTP request. For public access GET and POST is defined, for authenticated users also PUT and DELETE. For a more information about PDSurvey's REST API refer to the documentation (see Appendix \ref{appendix:cd-contents}).
+	The development of the REST API was influenced by current best practices \cite{Sahni2015RESTAPI, TutsPlus2015RESTAPI, hughes2012einfuhrung}. The API is separated into logical resources, while each resource gets manipulated through an HTTP request. For public access GET and POST methods are defined, for authenticated users also PUT and DELETE methods. For a more information about PDSurvey's REST API refer to the documentation (see Appendix \ref{appendix:cd-contents}).
 	% Mongoose + REST API
 	The model for the \textit{PDSurvey} platform is maintained with Mongoose. Angular.js builds its model from the REST API, and maps all changes via dynamic two-way-binding to it's scope. The REST API is provided by the Node.js server, which maps all incoming requests through an Express router to the corresponding Mongoose models. Thus all changes to the model originate from Mongoose.
 	% Our Software Model
@@ -129,7 +130,7 @@
 \end{figure}
 
 
-	\paragraph{Surveys:} Questionnaires are the foundation of PDSurvey, consisting of multiple sections, which in turn are made up of multiple questions. Each question is of a corresponding question type and every questionnaire belongs to a category. This allows questionnaires to be filtered based on certain research questions. Additionally we added the ability to set surveys \textit{private} (by default), \textit{shared} (for sharing with other users), \textit{standardized} (scientifically recognized), or \textit{pending} (waiting for review, to be shared). Every survey is assigned to an individual user of the platform, with the aim of reuse and standardization of questionnaires.
+	\paragraph{Surveys:} Surveys are the foundation of PDSurvey. In the current version of \textit{PDSurvey} questionnaires are implemented as one possible method for assessing the users' opinion. The `Survey' model consists of multiple sections, which in turn are made up of multiple questions. Each question is of a corresponding question type and every questionnaire belongs to a category. This allows questionnaires to be filtered based on certain research questions. Additionally we added the ability to set surveys \textit{private} (by default), \textit{shared} (for sharing with other users), \textit{standardized} (scientifically recognized), or \textit{pending} (waiting for review, to be shared). Every survey is assigned to an individual user of the platform, with the aim of reuse and standardization of questionnaires.
 
 	\paragraph{Display:} In the display collection all displays connected to the PDSurvey platform are contained. To allow evaluation across multiple display models and based on the context of the displays, the display model and a static and/or dynamic context is assigned to it.
 
