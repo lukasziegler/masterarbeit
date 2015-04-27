@@ -1,0 +1,135 @@
+\section{Literature Review}
+\label{chapter:literature-review}
+
+	Our research is based on an extensive literature review of over 100 articles. This has led to the development of the public display survey platform (see chapter \ref{chapter:implementation}) and the categorization of standardized questionnaires (see section \ref{section:questionnaires:categorization}). A side effect of the literature review was, besides getting a better understanding of how public displays were evaluated, getting an overview of the questions asked to evaluate public displays and their applications. This turned out to be a quite valuable approach, since we haven't seen any compilation of questionnaires used for public display evaluation so far. The goal was to find patterns and to build clusters of questionnaires being useful for the evaluation through automated public survey display platforms.
+
+	% Overview of this chapter
+	In the following we will first describe our methodology for gathering the information (section \ref{section:questionnaires:methodology}), followed by a categorization of standardized questionnaires (section \ref{section:questionnaires:categorization}), rounded off with results drawn from the literature review (section \ref{section:questionnaires:findings}). The categorization of the standardized questionnaires can be found in table \ref{table:standardized-questionnaires} on page \pageref{table:standardized-questionnaires}.
+
+
+
+\subsection{Methodology}
+\label{section:questionnaires:methodology}
+% My Process: Approach for Collecting Information
+
+	The procedure for the selection of papers to review, was as follows. As a starting point all papers from the appendix of the doctoral thesis by Alt \cite{alt2013thesis} were read. Afterwards, interesting related work and citations were examined based on the papers from the previous step. This was supplemented with targeted research on Google Scholar and the APM Digital Library. To round off the literature review, publications of two authors whom are very active in this field, were reviewed. 
+	%A full list of all papers reviewed can be found in Appendix \ref{appendix:papers}.
+
+	% 1) Appendix
+	The first step was fairly straight forward. The papers from the appendix were read, in order to get a first overview of the current state of research. 
+	% 2) Related Work / Citations
+	The second step, pursuing related work and citations of interest, was carried out in a more subjective manner. Whenever interesting papers or projects were mentioned, the cited paper was also taken into account. 
+	% 3) Google Scholar Search + ACM
+	In a third step, a more strategic approach was used. Based on the insights gained from the previous steps, Google Scholar and APM was checked for literature relevant to our research question. The keywords used amongst others for the research in these online libraries were: \textit{standardized surveys for usability}, \textit{standardized surveys for user experience}, \textit{user satisfaction questionnaire}, \textit{public display evaluation}, and \textit{standardized public display evaluation}.
+	% 4) Individual AUTHORS keywoard research
+	The last step for collecting relevant papers consisted of profiling publications of two relevant authors in the area of public display research, namely J\"org M\"uller and Marcus Foth. The process started out by first finding a list of their publications. Since the literature review made by Alt (see first step) already covered papers up to 2011, only ones published between 2012 and 2014 were viewed. 
+	% procedure
+	On each opened paper from this time frame a keyword search was carried out in order to see whether it contained an evaluation which might be relevant for us. These keywords were: \textit{questionnaire}, \textit{survey}, \textit{question}, \textit{interview}, \textit{(field) study}, and \textit{evaluation}. If none of these words could be found, the headlines and the abstract was skimmed through. All papers containing a reference to an evaluation of public displays were saved and analyzed in more detail.
+	% authors
+	For M\"uller the best list of his publications were found on his personal website\footnote{\url{http://joergmueller.info/publications.html} (last accessed on November 17, 2014)}, and for Foth two websites were evaluated \footnote{\url{http://www.vrolik.de/publications/} (last accessed on November 18, 2014) and \url{http://eprints.qut.edu.au/view/person/Foth,_Marcus.html} (last accessed on November 18, 2014)}. 
+
+	% 5) Conference Proceedings
+	% didn't have time for this step yet
+
+
+
+
+\clearpage
+
+\subsection{Standardized Questionnaires}
+\label{section:questionnaires:categorization}
+
+	% During the literature review phase a comprehensive list of widely used questionnaires was assessed. 
+
+	As a result of the literature review process, a overview of questionnaires arose, which can be seen in table \ref{table:standardized-questionnaires}. All questionnaires found during the literature review phase were categorized into a scheme inspired by the research questions introduced in chapter 2.8.2 of Alt's doctoral thesis \cite{alt2013thesis}. Alt listed eight research categories for public displays: audience behavior, user experience, user acceptance, user performance, display effectiveness, privacy, and social impact. These categories served as a guideline for our classification of standardized questionnaires. We extended the prior categorization with findings from literature review and added four new categories: \textit{usability}, \textit{context}, \textit{demographics}, and category for \textit{miscellaneous} questions. In the case that no questionnaire was found for a research category introduced by Alt \cite{alt2013thesis}, individual research was done on the web. It can be seen based on the rightmost column of the table whether the questionnaire has been used by other researchers for the evaluation of public displays or not.
+
+	% UiX vs UX
+	A change that has been made to our categorization is the distinction between \textit{user experience} and \textit{usability}. In literature different opinions exist for this subject. For our approach, however, we will list usability as it's own research category. Both can be evaluated using questionnaires. However, usability can be measured based on hard facts such as response time, number of clicks, number of errors and has more to do with the effectiveness and efficiency \cite{bevan2009difference}.
+
+	% Display Effectiveness
+	Furthermore, the \textit{display effectiveness} is considered as a separate research category by Alt \cite{alt2013thesis}, aiming to measure the effectiveness of public displays from an economic perspective. Here we combined this category with user experience.
+	% Context
+	One newly introduced category is the evaluation of the \textit{context}. Once detailed information regarding the context is logged, the differences can be evaluated with knowledge discovery algorithms for big data, a whole research field for itself. So far, no previous works are known for a context-based evaluation approach for public display research.
+	Other research questions which came up during literature review were user goals, aspects of collaboration, and user awareness of the display setup.
+
+
+	% Other people's collections
+	A list of other people's collections of standardized questionnaires can be found in the bibliography. Lewis and Sauro \cite{Lewis2013HCI} list 19 questionnaires at the HCI conference. Garcia \cite{Garcia2013UXResearch} describes the SUMI, PSSUQ, and SUS questionnaire. The Universit{\'e} de Gen{\`e}ve \cite{Geneve2014Wiki} gives an overview of usability and user experience surveys. HTW Chur \cite{Chur2014Questionnaires} provides an overview of ISONorm 110, ISOMetrics, AttrakDiff, UEQ, QUIS, and SUMI. For further information regarding standardized usability questionnaires and evaluation methods for multimodal systems the book by Wechsung and Naumann \cite{wechsung2008evaluation} can be used. 
+
+
+	% % % % % % % % % % % % % % % % %
+	%%%    TABLE WITH OVERVIEW    %%%
+	% % % % % % % % % % % % % % % % %
+
+		\begin{table}[p]
+			\small
+			\center
+			\begin{adjustwidth}{-1.5cm}{}
+			    \input{tables/3-categorization}
+			    \caption[Standardized Questionnaires]{Overview of Standardized Questionnaires}
+			\label{table:standardized-questionnaires}
+			            \end{adjustwidth}
+
+		\end{table}
+
+	% % % % % % % % % % % % % %
+	%%%    END OF TABLE    %%%%
+	% % % % % % % % % % % % % %
+
+	
+
+\clearpage
+% Explanation of the Table
+
+
+	% User Experience
+	\textbf{User experience} describes the overall satisfaction and experience the user has with a display. Standardized questionnaires used for evaluating user experience are UEQ, QUIS, and AttrakDiff. In the publication by Beyer et al. \cite{Beyer2011} AttrakDiff had been used for evaluating the user experience of two public display setups.
+	% Usability
+	For measuring the \textbf{usability} of an application a large number of questionnaires are available. The most popular ones are SUS (System Usability Scale), USE (Usefulness, Satisfaction, and Ease of Use), and SUM (Summative Usability Evaluations). SUS is the questionnaire most used for measuring perceptions of usability and was created in 1986 by John Brooke \cite{SUSQuestionnaire}. In public display evaluation SUS has already been used by Alt et al. \cite{alt2011digifieds}. For all other questionnaires no information could be found, whether they are also suited for public display evaluation.
+	% User acceptance
+	\textbf{User acceptance} analyzes user's motives and incentives for approaching the display. The evaluation can be carried out qualitatively (subjective feedback, focus groups) or quantitatively (questionnaires). To this category we added questionnaires related to expectations, user goals, and motivating factors for approaching the display. One such questionnaire taking a look at the user's motives for approaching the display is IMI, used by Jacucci et al. \cite{jacucci2010worldsofinformation}.
+	% Privacy
+	Although the topic of \textbf{privacy} has already been examined by Alt et al. \cite{alt2011digifieds}, no standardized questionnaires were used. One questionnaire for measuring perceptions of privacy is the Privacy Attitudes Questionnaire (PAQ), developed by Chignell et al. \cite{chignell2003privacy}. Another survey found online was is from TRUSTe\footnote{\url{http://www.cc.gatech.edu/gvu/user_surveys/survey-1998-04/questions/privacy.html} (last accessed on April 23, 2015)}, which takes a look at the users privacy concerns.
+	% Social Impact
+		The category \textbf{social impact} considers everything related to social behavior, the influence on social interaction and communities, as well as social effects.
+	%	\TODOTODO
+
+	% Context
+	\textbf{Context} is a category that was newly added for this work. For most evaluations of classic computer applications, the context changes infrequently. However, for the evaluation of public displays, especially when multiple displays are deployed in different locations running the same application, it is important to also assess the context of the display setup. External influences can be of static and dynamic nature. Influences such as weather, time of day, or special circumstances in the displays' environment count as \textit{dynamic context}. Parameters like display size, display type, position on wall, position in room, or size of the room count are referred to as \textit{static context}. These characteristics can vary between display setups and can influence how the public display application is perceived. Since the evaluation of context differs in between research areas, no questionnaires designed specifically for determining the context of a public display in a standardized way were found. 
+	% Demographics
+	\textbf{Demographic} background information gets evaluated in most surveys. These questions range from general (gender, age, religion, education), to more personal questions (relationship status, family, children, country of origin). Often times also character traits, skills, personal beliefs, or political affiliation are of interest.
+	Three detailed background questionnaires which weren't used, but might serve as inspiration are the Adult Literacy and Lifeskills Survey (ALL) \footnote{\url{http://nces.ed.gov/surveys/all/} (last accessed on April 1, 2015)}, the PIAAC Conceptual Framework of the Background Questionnaire Main Survey \footnote{\url{http://www.oecd.org/site/piaac/PIAAC(2011_11)MS_BQ_ConceptualFramework_1 Dec 2011.pdf} (last accessed on April 1, 2015)} and a Police Background Questionnaire \footnote{\url{http://www.slmpd.org/images/hr_forms/commissioned/BackgroundQuestionnaire.pdf} (last accessed on April 1, 2015)}.
+	% Miscellaneous
+	\textbf{Miscellaneous} contains all questions and questionnaires, which can not be assigned to any of the previous categories. As an example, Cheverst et al. \cite{cheverst2005hermes} asked for recommendations for possible new features and whether there were any previous experience with Bluetooth. Alt et al. evaluated more detailed usage patterns regarding mobile phone usage, ``e.g., how often they used it, if it had a touch screen, if they used it to surf the web, and if they had installed third party apps'' \cite{alt2011digifieds}. These types of questions do not directly belong to demographic survey, but are part of many questionnaires. Some of the mentioned questionnaires were used in literature \cite{Huang2004, jacucci2010worldsofinformation, ojala2010ubi}.
+
+
+
+
+
+
+
+
+\subsection{Findings}
+\label{section:questionnaires:findings}
+
+	The following results were drawn from the literature review, which can be turned into requirements for our or future survey platforms (see chapter \ref{chapter:implementation}).
+
+
+	\begin{enumerate}
+		\item Support both \textit{quantitative} and \textit{qualitative} methods for data collection, since not all research questions can be evaluated only with questionnaires. In the long term it will be necessary to support logging, observations, and/or interviews.
+
+		\item Support \textit{multiple} sections. Many questionnaires are built up of different sections. These can either be displayed all at once, be spread across multiple pages, or possibly even be spread across multiple users (see chapter \ref{chapter:future-work}, future work).
+
+		\item Support various \textit{question types}. The analyzed questionnaires use a variety of question types for evaluation. Amongst others, 5-point Likert scale, 7-point Likert scale, multiple choice responses, numeric answers, text fields, yes-no questions.
+
+		\item Evaluate not only the application running on the display, but also the \textit{entire environment}. Differences in the context of the public display often result in different perceptions and user interaction.
+
+		\item One constraint of public display research represents the \textit{opportunistic nature} of the setups and the discrepancy between lab studies and field studies \cite{Ojala2011}. Thus there is an additional demand for evaluating each public display setup individually and if possible directly in the field.
+
+		\item Additionally, a \textit{larger number of devices}, platforms and form factors needs to be supported, to cover the whole range of public displays.
+	\end{enumerate}
+
+
+	% Transfer
+	These findings from literature review bring us to the next chapter, the development of the survey platform.
+

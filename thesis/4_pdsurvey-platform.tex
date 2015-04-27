@@ -8,10 +8,9 @@
 
 	\begin{figure}[btph]
 	    \begin{center}
-	        % \includegraphics[width=.7\columnwidth]{img/4_implementation/4-overview}
-	        \includegraphics[width=.7\columnwidth]{img/screenshots/pdsurvey-overview/pdsurvey-platform.png}
+	        \includegraphics[width=.8\columnwidth]{img/screenshots/pdsurvey-overview/pdsurvey-platform.png}
 	    \end{center}
-	 \caption[Overview of the PDSurvey platform]{Overview of the PDSurvey platform: (a) PDServer containing the Node.js server, (b) PDBackend is the entry point for administrators and (c) PDClient the interface included on public displays and optimized for mobile devices.}
+	 \caption[Overview of the \textit{PDSurvey} platform]{Overview of the PDSurvey platform: (a) PDClient contains the responsive interface for PDs, (b) PDBackend is the entry point for administrators, (c) PDServer consists of Node.js and provides a REST API. }
 	 \label{fig:4-pdsurvey-platform}
 	\end{figure}
 
@@ -19,7 +18,7 @@
 
 	\subsubsection{PDAdmin}
 
-		For administrative purposes an admin interface was created, enabling display providers to create, manage and distribute surveys to public displays. Display providers have the ability to create their own questionnaires or to select from a list of standardized questionnaires (chapter \ref{chapter:literature-evaluation}).
+		For administrative purposes an admin interface was created, enabling display providers to create, manage and distribute surveys to public displays. Display providers have the ability to create their own questionnaires or to select from a list of standardized questionnaires (chapter \ref{chapter:literature-review}).
 		The entry point for PDAdmin is the dashboard (see figure \ref{fig:pdadmin-dashobard}). There users get an overview of all relevant information such as how their campaigns are running, and how many responses have been submitted already. 
 		% Wizard
 		For new users, who haven't created any campaigns, questionnaires or displays yet, the \textit{Wizard} (see figure \ref{fig:pdadmin-wizard}) will be the best place to get started with the survey platform. Users get guided through the creation process of campaigns step by step.
@@ -29,23 +28,43 @@
 		Administrators of the survey platform additionally have the ability to add new \textit{Users}, \textit{Question Types}, or research \textit{Categories}.
 
 
-	\begin{figure}%[btph]
-	    \begin{center}
-	        \includegraphics[width=.8\columnwidth]{img/screenshots/pdadmin/dashboard.png}
-	    \end{center}
-	 \caption[PDAdmin Dashboard]{Dashboard of PDAdmin}
-	 \label{fig:pdadmin-dashobard}
-	\end{figure}
+	% \begin{figure}%[btph]
+	%     \begin{center}
+	%         \includegraphics[width=.8\columnwidth]{img/screenshots/pdadmin/dashboard.png}
+	%     \end{center}
+	%  \caption[PDAdmin Dashboard]{Dashboard for PDAdmin}
+	%  \label{fig:pdadmin-dashobard}
+	% \end{figure}
 
-	\begin{figure}%[btph]
-	    \begin{center}
-	        \includegraphics[width=.8\columnwidth]{img/screenshots/pdadmin/wizard-display_selected.png}
-	    \end{center}
-	 \caption[PDAdmin Wizard]{Wizard for PDAdmin}
-	 \label{fig:pdadmin-wizard}
-	\end{figure}
+	% \begin{figure}%[btph]
+	%     \begin{center}
+	%         \includegraphics[width=.8\columnwidth]{img/screenshots/pdadmin/wizard-display_selected.png}
+	%     \end{center}
+	%  \caption[PDAdmin Wizard]{Wizard for PDAdmin}
+	%  \label{fig:pdadmin-wizard}
+	% \end{figure}
 
 
+
+
+		\begin{figure}
+		    \centering
+		    \begin{subfigure}[b]{0.7\textwidth}
+		        \centering
+		        \includegraphics[width=\textwidth]{img/screenshots/pdadmin/dashboard}
+		        \caption{Dashboard}
+				\label{fig:pdadmin-dashobard}
+		    \end{subfigure}
+		    \hfill
+		    \begin{subfigure}[b]{0.7\textwidth}
+		        \centering
+		        \includegraphics[width=\textwidth]{img/screenshots/pdadmin/wizard-display_selected.png}
+		        \caption{Wizard}
+		        \label{fig:pdadmin-wizard}
+		    \end{subfigure}
+		    \caption{Overview of PDAdmin}
+		\end{figure}
+		
 
 
 	\subsubsection{PDServer}
@@ -94,11 +113,16 @@
 
 	\subsubsection{EmbedCode}
 
-		Offering an embed code for surveys, turned out to be a pure proof-of-concept. The problem was that the Balloon Shooter game, on which \textit{PDSurvey} should be integrated, did not support any HTTP calls or overlays. Thus, we had to fall back on another solution. This embed code was intended to be used by display operators, wanting to include questionnaires hovering over their web-based public display applications. The technical realization was inspired by Web Bug \footnote{\url{http://en.wikipedia.org/wiki/Web_bug} (last accessed on November 26, 2014)}, and the embed code offered by Google Analytics\footnote{\url{https://developers.google.com/analytics/resources/concepts/gaConceptsTrackingOverview} (last accessed on November 26, 2014)}.
+		Offering an embed code for surveys, turned out to be a pure proof-of-concept. The problem was that the Balloon Shooter game, on which \textit{PDSurvey} should be integrated, did not support any HTTP calls or overlays. Thus, we had to fall back on another solution. This embed code was intended to be used by display operators, wanting to include questionnaires hovering over their web-based public display applications (see figure \ref{fig:4-embed-code}). The technical realization was inspired by Web Bug \footnote{\url{http://en.wikipedia.org/wiki/Web_bug} (last accessed on November 26, 2014)}, and the embed code offered by Google Analytics\footnote{\url{https://developers.google.com/analytics/resources/concepts/gaConceptsTrackingOverview} (last accessed on November 26, 2014)}.
 
 		% Implementation
-		One minified line of JavaScript code needs to be added before the closing HTML <body>-tag. This minified line creates a <script>-tag in the the Document Object Model (DOM) of the HTML page, injecting a JavaScript file from the \textit{PDSurvey} platform. This personalized scripts first loads jQuery and/or Angular.js asynchronously, creates another instance of PDClient inside of the primary website's DOM. All questions for the questionnaire get loaded via PDServer's RESTful API and the responses get sent back to the server for logging. To avoid conflicts caused through the code injection, all classes and files are prefixed with a unique namespace.
+		One minified line of JavaScript code needs to be added before the closing HTML <body>-tag. This minified line creates a <script>-tag in the Document Object Model (DOM) of the HTML page and injects a JavaScript file from the \textit{PDSurvey} platform. This personalized scripts first loads jQuery and/or Angular.js asynchronously, creates an instance of PDClient inside of the primary website's DOM. All questions for the questionnaire get loaded via PDServer's RESTful API and the responses get sent back to the server for logging. To avoid conflicts caused through the code injection, all classes and files are prefixed with a unique namespace. Depending on the type of implementation it is better to use jQuery or Angular.js \cite{AirPair2014jQueryAngular}. In the current prototype the full version of PDClient is not mirrored yet entirely to the browsers DOM.
 
 
-
-
+	\begin{figure}
+	    \begin{center}
+	   \includegraphics[width=.8\columnwidth]{img/screenshots/pdsurvey-overview/injection.png}
+	    \end{center}
+	 \caption[Embed Code]{Embed Code: Prototype for injecting a questionnaire on a remote website.}
+	 \label{fig:4-embed-code}
+	\end{figure}
