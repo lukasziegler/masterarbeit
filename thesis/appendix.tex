@@ -3,17 +3,24 @@
 
 
     \begin{enumerate}
-    \item $/docs/$ - Documentation of the PDSurvey platform
-    \item $/pdsurvey/$ - Source Code for the PDSurvey platform
-    \item $/pdemail/$ - Python Script for sending Emails from the Balloon Shooter Game
-    \item $/pdclient-static/$ - A copy of PDClient, the interface users saw
-    \item Google Docs - 
-    \item $/interviews/$ - The audio recordings of all interviews conducted during the field study, including a transcribed version
-    \item $/thesis/$ - LaTeX version of the thesis
-    \item \textbf{TODO} noch einige Ordner mehr...
+    \item $/documents/$ - Documents which were made during the Master thesis
+    \item $/evaluation/$ - Raw data for the fields study (semi-structured interviews and questionnaires)
+    \item $/evaluation/interviews/$ - The audio recordings of all interviews conducted during the field study, including a transcribed version
+    
+    \item $/misc/$ - 
+    \item $/papers/$ - All scientific articles read for this work.
+    \item $/presentation/$ - Presentations held in German: `Antrittsvortrag' and `Abschlussvortrag'.
+
+    \item $/repository/$ - A copy of the GitHub repository:
+    \item $/repository/pdclient-static/$ - Static version of PDClient
+    \item $/repository/pdemail/$ - Python Script for sending Emails from the Balloon Shooter Game
+    \item $/repository/pdsurvey/$ - Source Code for the \textit{PDSurvey} platform
+
+    \item $/thesis/$ - LaTeX version of the thesis.
+
     \end{enumerate}
 
-  The source code and the documentation of the PDSurvey platform can also be found in the GitHub repository: \url{https://github.com/lukasziegler/masterarbeit/tree/master/docs}
+  \textit{PDSurvey}'s source code and documentation can also be found in the following GitHub repository: \url{https://github.com/lukasziegler/masterarbeit/tree/master/docs}
 
 
 
@@ -22,32 +29,10 @@
 \section{Evaluation of Public Displays}
 \label{appendix:evaluation-of-PDs}
 
-  \paragraph{Reasons stated for and against each feedback channel}
-
-  \begin{table}[h]
-    \input{tables/5-interview-coding--pro-con}
-    \caption{Reasons stated for or again each feedack channel}
-    \label{table:feedback-channels--pro-con}
-  \end{table}
-
-% \clearpage
-
-%   \paragraph{List of relevant papers} 
-
-%     Which include an evaluation of public displays.
-
-%     TABLE: 1st column (paper), 2nd column evaluation (quantitative, qualitative, no evaluation)
-
-%   \textbf{TODO}
-
-%   \textbf{TODO}
-
-%   \textbf{TODO}
+  Reasons stated in the semi-structured interviews for and against each feedback channel.
 
 
-
-
-
+      \input{tables/5-interview-coding--pro-con.tex}
 
 
 
@@ -75,88 +60,93 @@
 
 
 
-
-\paragraph{PDAdmin}
-
-
- \label{screenshot:pdadmin-displays}
-    \begin{center}
-        \includegraphics[width=\columnwidth]{img/screenshots/pdadmin/displays.png}
-    \end{center}
-
-
- \label{screenshot:pdadmin-campaigns}
-    \begin{center}
-        \includegraphics[width=\columnwidth]{img/screenshots/pdadmin/campaigns.png}
-    \end{center}
-
-
- \label{screenshot:pdadmin-surveys}
-    \begin{center}
-        \includegraphics[width=\columnwidth]{img/screenshots/pdadmin/surveys.png}
-    \end{center}
-
-
-
-
+\paragraph{Balloon Shooter Game}
 
 
 \label{appendix:screenshots-balloon-shooter}
 
 The following screenshots originate from the Balloon Shooter game developed by Jiamin Shi.
+Each user first saw the options panel (see figure \ref{screenshot:options}) after completing a game of Balloon Shooter. Four channels were offered for completing the questionnaire. The order was randomized. \\
 
 
-\paragraph{Options panel}
-Each user saw this options panel after completing the Balloon Shooter game. Four channels were offered for completing the questionnaire. The order was randomized.
-\label{screenshot:options}
-    \begin{center}
+
+
+   \begin{figure}[hb]
+        \centering
+        \begin{subfigure}{0.7\textwidth}
+            \centering
         \includegraphics[width=\columnwidth]{img/screenshots/balloon-game/options-overview.jpg}
-    \end{center}
-
-
-
-
-\paragraph{Option: TV-Screen}
-directly answering on the TV screen. Here you see a sample question getting asked on the interactive display.
- \label{screenshot:tv-option}
-
-\begin{center}
+            \caption{\textbf{Options panel} - Four feedback channels are offered in a randomized order for responding to the questionnaire. \\}
+            \label{screenshot:options}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}{0.7\textwidth}
+            \centering
     \includegraphics[width=\columnwidth]{img/screenshots/balloon-game/option-tv.jpg}
-\end{center}
+            \caption{\textbf{TV Screen option} - directly answering on the TV screen. Here you see a sample question getting asked on the interactive display. \\}
+            \label{screenshot:tv-option}
+        \end{subfigure}
+    \end{figure}
 
 
 
 
-\clearpage
 
-\paragraph{Option: Tablet}
-\label{screenshot:tablet-option}
-Option 2, the screen the user sees when choosing to complete the survey on the tablet
-
-\begin{center}
-    \includegraphics[width=\columnwidth]{img/screenshots/balloon-game/option-tablet.jpg}
-\end{center}
-
-
-
-\paragraph{Option: Smartphone}
-\label{screenshot:smartphone-option}
-Option 3, participating with your own smartphone, either by scanning the QR code or by typing the URL in the mobile browser
-
-\begin{center}
-    \includegraphics[width=\columnwidth]{img/screenshots/balloon-game/option-smartphone.jpg}
-\end{center}
-
-
-
-
-\clearpage
-\paragraph{Option: Email}
-\label{screenshot:email-option}
-Option 4, submitting ones email address and getting the survey link to participate in response.
-
-\begin{center}
+    \begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.7\textwidth}
+            \centering
+            \includegraphics[width=\columnwidth]{img/screenshots/balloon-game/option-tablet.jpg}
+            \caption{\textbf{Tablet option} - The screen the user sees when choosing to complete the survey on the tablet. \\}
+            \label{screenshot:tablet-option}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.7\textwidth}
+            \centering
+            \includegraphics[width=\columnwidth]{img/screenshots/balloon-game/option-smartphone.jpg}
+            \caption{\textbf{Smartphone option} - participating with your own smartphone, either by scanning the QR code or by typing the URL in the mobile browser. \\}
+            \label{screenshot:smartphone-option}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.7\textwidth}
+            \centering
     \includegraphics[width=\columnwidth]{img/screenshots/balloon-game/option-email.jpg}
-\end{center}
+            \caption{\textbf{Email option} - submitting ones email address and getting the survey link to participate in response.}
+            \label{screenshot:email-option}
+        \end{subfigure}
+        \caption{Further screenshots from PDAdmin}
+    \end{figure}
+
+
+
+
+\clearpage
+
+\paragraph{PDAdmin}
+
+    \begin{figure}[h]
+        \centering
+        \begin{subfigure}{0.55\textwidth}
+            \centering
+            \includegraphics[width=\columnwidth]{img/screenshots/pdadmin/displays.png}
+            \caption{Displays list view}
+            \label{screenshot:pdadmin-displays}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}{0.55\textwidth}
+            \centering
+            \includegraphics[width=\columnwidth]{img/screenshots/pdadmin/campaigns.png}
+            \caption{Campaigns list view}
+            \label{screenshot:pdadmin-campaigns}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}{0.55\textwidth}
+            \centering
+            \includegraphics[width=\columnwidth]{img/screenshots/pdadmin/surveys.png}
+            \caption{Survey edit page}
+            \label{screenshot:pdadmin-surveys}
+        \end{subfigure}
+        \caption{Further screenshots from PDAdmin}
+    \end{figure}
 
 
