@@ -4,5 +4,6 @@ theme: readthedocs
 pages:
 - ['index.md', 'PDSurvey']
 - ['developer/index.md', 'Developers']
+- ['developer/architecture.md', 'Architecture']
 - ['maintenance/index.md', 'Maintenance']
 - ['user/index.md', 'Users']
