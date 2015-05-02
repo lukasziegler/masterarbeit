@@ -43,16 +43,27 @@ app.use('/jquery-approach', express.static(__dirname + '/client/jquery-approach'
 app.use('/admin', express.static(__dirname + '/backend/public'));
 app.use('/tracking', express.static(__dirname + '/backend/public/tracking'));
 
+// CSV-Export
+var csvExport = express.Router();
+csvExport.route('/responses')
+  .get(function (req, res, next) {
+    require('./server/csv').getResponsesCSV(req, res);
+  });
+app.use('/csv', csvExport); // register routes
+
+
 // HTML5 mode support for Angular
 app.all('/*', function(req, res, next) {
 	// exclude the API (probably a dirty workaround)
-	if (req.url.substring(0,4) == '/api') return next();
+  if (req.url.substring(0,4) == '/api') return next();
+  if (req.url.substring(0,4) == '/csv') return next();
 	// Allow Angular to support HTML5 mode
   if (req.url.substring(0,6) == '/admin')
     res.sendFile('/backend/public/index.html', { root: __dirname });
   else
     res.sendFile('/client/index.html', { root: __dirname });
 });
+
 
 
 // Bootstrap Error Handling
