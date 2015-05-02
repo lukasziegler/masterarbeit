@@ -183,6 +183,10 @@ app.config(function($routeProvider, $httpProvider, $locationProvider, $modalProv
 			templateUrl: "/admin/app/campaigns/templates/edit.html",
 			controller: "CampaignEditController"
 		})
+		.when("/campaigns/:id/responses", {
+			templateUrl: "/admin/app/campaigns/templates/responses.html",
+			controller: "CampaignResponseController"
+		})
 
 		/* DISPLAY MODELS */
 		.when("/displayModels", {

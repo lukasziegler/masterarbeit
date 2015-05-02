@@ -2,7 +2,7 @@ var Response = Schema.ResponseModel;
  
 /* Script from: https://gist.github.com/killercup/8538011 */
 
-module.exports.getResponsesCSV = function (req, res) {
+module.exports.getResponsesCSV = function (req, res, campaignId) {
   function CSVEscape(field) {
     return '"' + String(field || "").replace(/\"/g, '""') + '"';
   }
@@ -41,17 +41,17 @@ module.exports.getResponsesCSV = function (req, res) {
     started = true;
   }
  
-  Response.find()
-  .sort('timestamp')
-  .stream()
-  .on('data', function (response) {
-    if (!started) { start(res); }
-    res.write(docToCSV(response) + '\n');
-  })
-  .on('close', function () {
-    res.end();
-  })
-  .on('error', function (err) {
-    res.send(500, {err: err, msg: "Failed to get responses from db"});
-  });
+  Response.find({ 'campaign': campaignId })
+    .sort('timestamp')
+    .stream()
+    .on('data', function (response) {
+      if (!started) { start(res); }
+      res.write(docToCSV(response) + '\n');
+    })
+    .on('close', function () {
+      res.end();
+    })
+    .on('error', function (err) {
+      res.send(500, {err: err, msg: "Failed to get responses from db"});
+    });
 };

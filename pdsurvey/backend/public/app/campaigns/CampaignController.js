@@ -119,3 +119,30 @@ app.controller("CampaignEditController", function($scope, $rootScope, $location,
 		});
 	};
 });
+
+
+
+/** RESPONSES (+CSV Export) **/
+
+app.controller("CampaignResponseController", function($scope, $routeParams, Campaign, CampaignResponse) {
+	
+	var id = $routeParams.id;
+
+	// Load Campaign details
+	Campaign.get( {id: id}, function(data) {
+		$scope.campaign = data;
+	}, function(err) {
+		$scope.error = err;
+	});
+
+	// Load all Responses
+	CampaignResponse.query( {id: id}, function(data) {
+		$scope.responses = data;
+	}, function(err) {
+		$scope.error = err;
+	});
+
+});
+
+
+

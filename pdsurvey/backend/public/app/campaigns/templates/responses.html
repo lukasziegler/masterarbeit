@@ -1,0 +1,55 @@
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Responses</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-12" >
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Responses for Campaign "{{campaign.name}}"
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped table-v-centered">
+                                    <thead>
+                                        <tr>
+                                            <th>Answer</th>
+                                            <th>Question</th>
+                                            <th>Display</th>
+                                            <!-- <th>Session</th> -->
+                                            <th>Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="response in responses | orderBy : '-timestamp'">
+                                            <td>{{response.answer}}</td>
+                                            <td>{{response.question.wording}}</td>
+                                            <td>{{response.display.name}}</td>
+                                            <!-- <td>{{response.session}}</td> -->
+                                            <td>{{response.timestamp | date:'H:mm - dd.MM.yyyy'}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+
+
+                            <a href="../api/campaigns/{{campaign._id}}/responses/csv" class="btn btn-primary">CSV Export</a>
+
+                            <a href="campaigns" class="btn btn-default">Back</a>
+
+
+                        </div>
+                        <!-- /.panel-body -->
+
+                    </div>
+                    <!-- /.panel -->
+
+                </div>
+            </div>
