@@ -39,6 +39,25 @@ router.route('/responses')
 	})
 
 
+
+router.route('/responses/count')
+	// Number of Responses per Campaign
+	.get(function (req, res, next) {
+		Response.aggregate(
+			{ $group: 
+				{ _id: '$campaign', responses: { $sum: 1 } } 
+			},
+			function (err, result) {
+				if (err) return next(err);
+				res.send(result);
+			}
+		)
+	})
+
+
+
+
+
 router.route('/responses/:id')
 
 	// GET single element
@@ -85,3 +104,12 @@ router.route('/responses/:id')
 			res.send({ message: 'Successfully deleted' });
 		});
 	})
+
+
+
+
+
+
+
+
+
