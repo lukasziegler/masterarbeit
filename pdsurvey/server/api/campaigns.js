@@ -142,7 +142,6 @@ router.route('/campaigns/:id/responses/count')
 	.get(function (req, res, next) {
 		Response.find({ 'campaign': req.params.id }).count(function (err, size) {
 			if (err) return next(err);
-
 		    // res.status(200);
 			res.send(size.toString());
 		});
