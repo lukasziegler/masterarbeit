@@ -1,5 +1,7 @@
 var Campaign = Schema.CampaignModel;
 var Survey = Schema.SurveyModel;
+var Response = Schema.ResponseModel;
+
 
 /** 
  * CAMPAIGNS
@@ -110,8 +112,7 @@ router.route('/campaigns/:id')
 
 
 router.route('/campaigns/:id/questions')
-
-	// GET all Surveys (with Questions) for the specified Campaign
+	// GET all Surveys (with Questions) for specified Campaign
 	.get(function (req, res, next) {
 		// Load Campaign (with SurveyIDs)
 		Campaign.findOne({ '_id': req.params.id })
@@ -121,6 +122,37 @@ router.route('/campaigns/:id/questions')
 			if (err || !campaign) return next(err);
 			res.send(campaign);
 		});
+	})
+
+
+router.route('/campaigns/:id/responses')
+	// GET all Responses for specified Campaign
+	.get(function (req, res, next) {
+		// Load Campaign (with SurveyIDs)
+		Response.find({ 'campaign': req.params.id })
+		// .select('surveys')
+		// .populate('surveys')	// populate with Questions
+		.exec(function (err, campaign) {
+			if (err || !campaign) return next(err);
+			res.send(campaign);
+		});
+	})
+
+router.route('/campaigns/:id/responses/count')
+	.get(function (req, res, next) {
+		Response.find({ 'campaign': req.params.id }).count(function (err, size) {
+			if (err) return next(err);
+		    // res.status(200);
+			res.send(size.toString());
+		});
+	})
+
+router.route('/campaigns/:id/responses/csv')
+	// CSV-Export of all Responses for specified Campaign
+	.get(function (req, res, next) {
+
+	    require('../csv-export').getResponsesCSV(req, res, req.params.id);
+
 	})
 
 

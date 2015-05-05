@@ -61,6 +61,12 @@ var app = angular.module('pdsurvey')
 	    	});
 	})
 
+	// CampaignResponse
+	.factory('CampaignResponse', function($resource) {
+	    return $resource('/api/campaigns/:id/responses', { id: '@_id' },
+	    	{ });
+	})
+
 	// Campaign
 	.factory('Campaign', function($resource, config) {
 

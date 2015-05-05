@@ -43,7 +43,9 @@
                                                 <a class="btn btn-success btn-sm" ng-if="campaign.launched" ng-click="toggleCampaignLaunched(campaign)">live</a>
                                             </td>
 
-                                            <td class="text-center"><a href="{{frontendURL}}/campaign/{{campaign._id}}" target="_blank" class="btn btn-default btn-sm">Preview</a></td>
+                                            <td class="text-left"><a href="{{frontendURL}}/campaign/{{campaign._id}}" target="_blank" class="btn btn-default btn-sm">Preview</a>
+
+                                            <a href="campaigns/{{campaign._id}}/responses" class="btn btn-default btn-sm" ng-if="responsesAvailable(campaign._id)">Responses</a></td>
 
                                             <td class="nowrap text-right"><a href="campaigns/{{campaign._id}}/edit" class="btn btn-default btn-sm" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
                                             <a href="" ng-click="deleteCampaign(campaign)" class="btn btn-danger btn-sm" title="Delete (permanent)"><i class="fa fa-trash"></i></a></td>

@@ -13,7 +13,7 @@ var session = require('express-session');
 app = express();
 
 // Database connection
-require('./server/db');
+require('./pdserver/db');
 
 // Logging of HTTP requests
 if (app.get('env') == 'development') app.use(logger('dev'));
@@ -32,31 +32,33 @@ app.use(function (req, res, next) {
 
 // Routing
 router = express.Router();
-require('./server/routes');
+require('./pdserver/routes');
 app.use('/api', router); // register routes
 
 // Routing of static files
-app.use('/app', express.static(__dirname + '/client/app'));
-app.use('/css', express.static(__dirname + '/client/css'));
-app.use('/lib', express.static(__dirname + '/client/lib'));
-app.use('/jquery-approach', express.static(__dirname + '/client/jquery-approach'));
-app.use('/admin', express.static(__dirname + '/backend/public'));
-app.use('/tracking', express.static(__dirname + '/backend/public/tracking'));
+app.use('/app', express.static(__dirname + '/pdclient/app'));
+app.use('/css', express.static(__dirname + '/pdclient/css'));
+app.use('/lib', express.static(__dirname + '/pdclient/lib'));
+app.use('/jquery-approach', express.static(__dirname + '/pdclient/jquery-approach'));
+app.use('/admin', express.static(__dirname + '/pdadmin/public'));
+app.use('/tracking', express.static(__dirname + '/pdadmin/public/tracking'));
+
 
 // HTML5 mode support for Angular
 app.all('/*', function(req, res, next) {
 	// exclude the API (probably a dirty workaround)
-	if (req.url.substring(0,4) == '/api') return next();
+  if (req.url.substring(0,4) == '/api') return next();
 	// Allow Angular to support HTML5 mode
   if (req.url.substring(0,6) == '/admin')
-    res.sendFile('/backend/public/index.html', { root: __dirname });
+    res.sendFile('/pdadmin/public/index.html', { root: __dirname });
   else
-    res.sendFile('/client/index.html', { root: __dirname });
+    res.sendFile('/pdclient/index.html', { root: __dirname });
 });
 
 
+
 // Bootstrap Error Handling
-require('./server/error-handling');
+require('./pdserver/error-handling');
 
 /** Launch server **/
 var port = process.env.PORT || 3000;

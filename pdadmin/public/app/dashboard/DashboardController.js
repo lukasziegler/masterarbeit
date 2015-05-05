@@ -26,6 +26,13 @@ app.controller("DashboardController", function($scope, Response, Display, Campai
 		$scope.error = err;
 	});
 
+	// Load number of responses per Campaign
+	Response.query( {id: 'count'}, function(data) {
+		$scope.campaignResponses = data;
+	}, function(err) {
+		$scope.error = err;
+	});
+
 	// Load Surveys
 	Survey.query(function(data) {
 		$scope.surveys = data;

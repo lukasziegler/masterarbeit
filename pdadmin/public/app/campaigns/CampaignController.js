@@ -3,9 +3,10 @@ var app = angular.module("pdsurvey");
 
 /** LIST **/
 
-app.controller("CampaignListController", function($scope, Campaign, config) {
+app.controller("CampaignListController", function($scope, Campaign, Response, config) {
 
 	$scope.frontendURL = config.frontend;
+	$scope.campaignResponses = [];
 
 	// Load all entries
 	Campaign.query(function(data) {
@@ -13,6 +14,14 @@ app.controller("CampaignListController", function($scope, Campaign, config) {
 	}, function(err) {
 		$scope.error = err;
 	});
+
+	// Load number of responses
+	Response.query( {id: 'count'}, function(data) {
+		$scope.campaignResponses = data;
+	}, function(err) {
+		$scope.error = err;
+	});
+
 
 	// Delete selected entry
 	$scope.deleteCampaign = function(campaign) {
@@ -38,6 +47,25 @@ app.controller("CampaignListController", function($scope, Campaign, config) {
 			$scope.error = err;
 		});
 	}
+
+	// Check if 
+	$scope.responsesAvailable = function(campaignId) {
+		// console.log("ID",id);
+		// var index = $scope.campaignResponses.indexOf(id);
+		// return true;
+
+		// var found = false;
+		for(var i = 0; i < $scope.campaignResponses.length; i++) {
+		    if ($scope.campaignResponses[i]._id == campaignId) {
+		        // found = true;
+		        // break;
+		        if ($scope.campaignResponses[i].responses > 0)
+		        	return true;
+		        else
+		        	return false;
+		    }
+		}
+	};
 
 });
 
@@ -119,3 +147,30 @@ app.controller("CampaignEditController", function($scope, $rootScope, $location,
 		});
 	};
 });
+
+
+
+/** RESPONSES (+CSV Export) **/
+
+app.controller("CampaignResponseController", function($scope, $routeParams, Campaign, CampaignResponse) {
+	
+	var id = $routeParams.id;
+
+	// Load Campaign details
+	Campaign.get( {id: id}, function(data) {
+		$scope.campaign = data;
+	}, function(err) {
+		$scope.error = err;
+	});
+
+	// Load all Responses
+	CampaignResponse.query( {id: id}, function(data) {
+		$scope.responses = data;
+	}, function(err) {
+		$scope.error = err;
+	});
+
+});
+
+
+
