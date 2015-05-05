@@ -9,9 +9,13 @@ Not really sure if this one is needed, since for this project the developer will
 
 ## Deployment
 
-* Practical deployment, best practices, how I proceeded, and why
-* 1 running a GitHub Repo
-* 2 Deployment to Heroku
+The _PDSurvey_ repository is hosted in GitHub and was deployed to Heroku, using the provided [git client](https://devcenter.heroku.com/articles/git).
+
+    heroku login
+    git add .     # git status (to check what has been added)
+    git commit -m "Demo"
+    git push heroku master
+    heroku open
 
 
 
