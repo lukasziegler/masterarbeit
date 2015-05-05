@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introduction - PDSurvey Platform</title>
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script>
+
+  <style>
+    body {font-size: 90%;}
+    pre, code {font-size: 100%;}
+    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+  </style> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> PDSurvey Platform</a>
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+      <ul class="current">
+    
+        
+        <span>Development</span>
+            
+                <li class="toctree-l1 current">
+                    <a class="current" href=".">Introduction</a>
+                    
+                        <ul>
+                        
+                            <li class="toctree-l2"><a href="#development-environment">Development Environment</a></li>
+                            
+                        
+                            <li class="toctree-l2"><a href="#rest-api">REST API</a></li>
+                            
+                        
+                            <li class="toctree-l2"><a href="#links">Links</a></li>
+                            
+                        
+                            <li class="toctree-l2"><a href="#future-work">Future Work</a></li>
+                            
+                        
+                        </ul>
+                    
+                </li>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="architecture">Architecture</a>
+                    
+                </li>
+            
+        
+
+    
+        
+        <span>Maintenance</span>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../maintenance">Home</a>
+                    
+                </li>
+            
+        
+
+    
+        
+        <span>Users</span>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../user">Home</a>
+                    
+                </li>
+            
+        
+
+    
+</ul>
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href=".."></a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    <li>Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="https://github.com/lukasziegler/masterarbeit/" class="icon icon-github"> Edit on GitHub</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              <h1 id="development-environment">Development Environment</h1>
+<p><strong>Sublime</strong></p>
+<ul>
+<li>Install <a href="https://sublime.wbond.net/installation">package manager</a></li>
+<li>Install <a href="http://emmet.io/">Emmet</a></li>
+<li>Install <a href="https://sublime.wbond.net/packages/AngularJS">AngularJS Sublime-Plugin</a></li>
+</ul>
+<p><strong>Package Managers</strong></p>
+<ul>
+<li>using NPM and Bower (were chosen, instead of Browserify)</li>
+<li>Reasons, why I did / didn't check in the code for npm / bower components: http://addyosmani.com/blog/checking-in-front-end-dependencies/</li>
+<li>
+<blockquote>
+<p>to be independent of other services and thus to garantee a longer life for the tool</p>
+</blockquote>
+</li>
+<li>benefits of package managers: "prevent bad dependencies from breaking their app" + "the longevity of package managers and their tooling"</li>
+</ul>
+<p><strong>Database / MongoDB</strong></p>
+<ul>
+<li><a href="http://blog.mongodb.org/post/52299826008/the-mean-stack-mistakes-youre-probably-making">The MEAN Stack: Mistakes You’re Probably Making With MongooseJS, And How To Fix Them</a></li>
+<li>
+<p><a href="http://blog.modulus.io/getting-started-with-mongoose">node.js and mongo (using mongoose) tutorial</a></p>
+</li>
+<li>
+<p><a href="http://stackoverflow.com/questions/9230932/file-structure-of-mongoose-nodejs-project?answertab=votes#tab-top">File Structure of Mongoose &amp; NodeJS Project</a></p>
+</li>
+<li><a href="http://stackoverflow.com/questions/21243502/saving-nested-objects-in-mongoose">Saving nested objects in mongoose</a></li>
+</ul>
+<h1 id="rest-api">REST API</h1>
+<p>The REST API is defined in <code>pdsurvey/pdserver/api/</code> with Node.js and Express.js. Each model has its own file, where the REST API is defined in, e.g. <code>pdsurvey/pdserver/api/campaigns.js</code>.</p>
+<p><strong>Campaign</strong></p>
+<ul>
+<li><strong>GET</strong> <code>/api/campaigns</code>: returns all campaigns found on the platform.</li>
+<li><strong>POST</strong> <code>/api/campaigns</code>: creates a new campaign</li>
+<li><strong>GET</strong> <code>/api/campaigns/:id</code>: returns the specified campaign. The fields <em>surveys</em> and <em>displays</em> are populated.</li>
+<li><strong>PUT</strong> <code>/api/campaigns/:id</code>: updates the specified campaign</li>
+<li>
+<p><strong>DELETE</strong> <code>/api/campaigns/:id</code>: deletes the specified campaign</p>
+</li>
+<li>
+<p><strong>GET</strong> <code>/api/campaigns/:id/questions</code>: returns all of the questions, specified for the campaign.</p>
+</li>
+<li><strong>GET</strong> <code>/api/campaigns/:id/responses</code>: returns all results found for the specified campaign.</li>
+<li><strong>GET</strong> <code>/api/campaigns/:id/responses/count</code>: lists the number of responses found for the specified campaign. The result is a plain integer / string.</li>
+<li><strong>GET</strong> <code>/api/campaigns/:id/responses/csv</code>: provides a CSV file, with all the responses for the specified campaign (:id).</li>
+</ul>
+<p><strong>Category</strong></p>
+<p><strong>Context</strong></p>
+<p><strong>DisplayModel</strong></p>
+<p><strong>Display</strong></p>
+<p><strong>Question</strong></p>
+<p><strong>QuestionType</strong></p>
+<p><strong>Response</strong></p>
+<p><strong>Survey</strong></p>
+<p><strong>User</strong></p>
+<p><strong>Optional</strong></p>
+<ul>
+<li>/api/nextQuestion/</li>
+</ul>
+<h1 id="links">Links</h1>
+<p><strong>Help to get started</strong></p>
+<ul>
+<li><a href="http://www.sitepoint.com/javascript-internet-things/">Which IDE to choose</a> + <a href="http://www.javaworld.com/article/2094847/enterprise-java/review-10-javascript-editors-and-ides-put-to-the-test.html">Review of 10 JavaScript editors</a></li>
+<li><a href="https://www.totaljs.com/tools/">Node.js Tools</a></li>
+<li><a href="http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js">How do I get started with Node.js?</a></li>
+<li><a href="http://code.tutsplus.com/tutorials/restful-api-design-with-nodejs-restify--cms-22637">RESTful API Design</a></li>
+</ul>
+<p><strong>Links for usability-field</strong></p>
+<ul>
+<li><a href="http://www.nngroup.com/articles/usability-101-introduction-to-usability/">Usability 101: Introduction to Usability (by Jakob Nielsen)</a></li>
+<li><a href="http://usabilitygeek.com/the-difference-between-usability-and-user-experience/">The Difference (and Relationship) Between Usability and User Experience</a></li>
+</ul>
+<p><strong>Other useful links</strong></p>
+<ul>
+<li><a href="https://developers.google.com/web/fundamentals/">Web Development Fundamentals</a></li>
+</ul>
+<p><strong>Cool Tools</strong></p>
+<ul>
+<li><a href="https://www.firebase.com/">Firebase</a> - Build Realtime Apps, an API to store and sync data</li>
+</ul>
+<h1 id="future-work">Future Work</h1>
+<ul>
+<li>evaluation of the results</li>
+<li>deal with reliability and validity in my tool, discuss and display both values</li>
+<li>make sure all questions contribute to each scale/category with equal weight</li>
+<li>add the /nextQuestion functionality in <code>/server/api/nextQuestion.js</code></li>
+</ul>
+<p><strong>Authentication</strong></p>
+<ol>
+<li>Login mechanisms: good explanation of the differences for Single-Page Applications (SPA) = https://vickev.com/#!/article/authentication-in-single-page-applications-node-js-passportjs-angularjs</li>
+<li>
+<ul>
+<li>for more information, see Weeks 14 + 16 + 17</li>
+</ul>
+</li>
+</ol>
+<p>During the prototyping phase we also</p>
+<p>For authentication there are the following common approaches, suited for RESTful web services.</p>
+<ol>
+<li>Token-based authentication: JSON Web Token (JWT)</li>
+<li>Cookie-based authentication</li>
+</ol>
+<p><strong>Nice to haves</strong></p>
+<ul>
+<li>
+<p>Das <a href="http://startbootstrap.com/template-overviews/sb-admin-2/">SB Admin 2</a> Template durch dessen Angular-Variante <a href="https://github.com/ardeearam/angular-bp-sbadmin2">angular-bp-sbadmin2</a>, dadurch sind dann alle MorrisChart Themes automatisch wieder funktionsfähig! Aktuell kommt es zu Konflikten zwischen jQuery, AngularJS und MorrisJS</p>
+</li>
+<li>
+<p>Konfigurations-Infos im Backend verwalten</p>
+</li>
+<li>neue DIV Layer mit z-index 1</li>
+<li>Versuchen so viel wie möglich bereits im Backend speichern und basierend auf der ID bereits ausliefern: Position, Farbe, Anzahl der Fragen, usw. der Umfrage</li>
+<li>einmal beim Erstellen des Embed Codes angeben und dann automatisch so ausliefern, aber die Möglichkeit bieten das über zusätzliche Parameter zu überschreiben</li>
+<li>manuelle Überschreibungsmöglichkeit über Parameter beim client-seitigen Aufruf: <script src=”.../survey.js?size=X&color=X”> → das ist deutlich besser für das Debugging!</li>
+</ul>
+
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="architecture" class="btn btn-neutral float-right" title="Architecture"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="PDSurvey"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    <!-- Copyright etc -->
+    </p>
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        
+            <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+        
+      <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="architecture" style="color: #fcfcfc">Next &raquo;</a></span>
+    </span>
+</div>
+</body>
+</html>

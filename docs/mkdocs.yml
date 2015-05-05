@@ -1,0 +1,11 @@
+site_name: PDSurvey Platform
+site_author: Lukas Ziegler
+repo_name: 'GitHub'
+repo_url: 'https://github.com/lukasziegler/masterarbeit/'
+theme: readthedocs
+pages:
+- ['index.md', 'PDSurvey']
+- ['developer/index.md', 'Development', 'Introduction']
+- ['developer/architecture.md', 'Development', 'Architecture']
+- ['maintenance/index.md', 'Maintenance']
+- ['user/index.md', 'Users']

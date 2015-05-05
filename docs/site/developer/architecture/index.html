@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Architecture - PDSurvey Platform</title>
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script>
+
+  <style>
+    body {font-size: 90%;}
+    pre, code {font-size: 100%;}
+    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+  </style> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> PDSurvey Platform</a>
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+      <ul class="current">
+    
+        
+        <span>Development</span>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="..">Introduction</a>
+                    
+                </li>
+            
+                <li class="toctree-l1 current">
+                    <a class="current" href=".">Architecture</a>
+                    
+                        <ul>
+                        
+                            <li class="toctree-l2"><a href="#pdserver">PDServer</a></li>
+                            
+                        
+                            <li class="toctree-l2"><a href="#pdserver_1">PDServer</a></li>
+                            
+                        
+                            <li class="toctree-l2"><a href="#pdclient">PDClient</a></li>
+                            
+                        
+                            <li class="toctree-l2"><a href="#other">Other</a></li>
+                            
+                        
+                        </ul>
+                    
+                </li>
+            
+        
+
+    
+        
+        <span>Maintenance</span>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../../maintenance">Home</a>
+                    
+                </li>
+            
+        
+
+    
+        
+        <span>Users</span>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../../user">Home</a>
+                    
+                </li>
+            
+        
+
+    
+</ul>
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="../.."></a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    <li>Architecture</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="https://github.com/lukasziegler/masterarbeit/" class="icon icon-github"> Edit on GitHub</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              <h1 id="pdserver">PDServer</h1>
+<h1 id="pdserver_1">PDServer</h1>
+<h1 id="pdclient">PDClient</h1>
+<h1 id="other">Other</h1>
+<p><strong>Embed Code</strong></p>
+<ul>
+<li>
+<p>One important aspect is to prefix all classes and files with a unique namespace, to prevent any sort of collisions with the main program, where the code gets injected into. For this prototype all CSS Bootstrap classes were prefixed with $pd-$.</p>
+</li>
+<li>
+<p>Useful links for the development of this prototype were Google Analytics concept of tracking\footnote{\url{https://developers.google.com/analytics/resources/concepts/gaConceptsTrackingOverview} (last accessed on November 26, 2014)}, Wikipedia describing the Web Bug \footnote{\url{http://en.wikipedia.org/wiki/Web_bug} (last accessed on November 26, 2014)}, and a Stackoverflow discussion regarding embed codes \footnote{\url{http://stackoverflow.com/questions/3534524/how-does-the-embedded-google-analytics-javascript-work} (last accessed on November 26, 2014)}.</p>
+</li>
+</ul>
+
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../maintenance" class="btn btn-neutral float-right" title="Home"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    <!-- Copyright etc -->
+    </p>
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        
+            <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+        
+      <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="../../maintenance" style="color: #fcfcfc">Next &raquo;</a></span>
+    </span>
+</div>
+</body>
+</html>

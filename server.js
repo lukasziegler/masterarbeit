@@ -38,6 +38,7 @@ app.use('/api', router); // register routes
 // Routing of static files
 app.use('/app', express.static(__dirname + '/pdclient/app'));
 app.use('/css', express.static(__dirname + '/pdclient/css'));
+app.use('/docs', express.static(__dirname + '/docs/site'));
 app.use('/lib', express.static(__dirname + '/pdclient/lib'));
 app.use('/jquery-approach', express.static(__dirname + '/pdclient/jquery-approach'));
 app.use('/admin', express.static(__dirname + '/pdadmin/public'));
