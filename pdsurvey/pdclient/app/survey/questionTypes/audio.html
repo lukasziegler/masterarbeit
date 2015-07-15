@@ -2,7 +2,10 @@
 
 <i>Audio Recording</i>
 
-<textarea id="results" cols="80" rows="5" ng-model="response.answer"></textarea> <br />
-<input type="Button" value="start listening" onclick="startButton(event)" />
+<textarea id="results" cols="80" rows="5" ng-model="response.answer" ng-change='alert("changed!")'></textarea> <br />
 
-{{response.answer}}
+<input type="Button" value="1: listen" onclick="startButton(event)" />
+
+<!-- <button ng-click='response.answer = "new value"'>2: update</button> -->
+
+Check: {{response.answer}}
