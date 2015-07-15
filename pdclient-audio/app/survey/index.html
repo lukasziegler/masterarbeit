@@ -1,0 +1,30 @@
+	<div class="row" ng-hide="error || completed">
+      <div class="jumbotron col-lg-10 co-lg-offset-1 col-md-10 col-md-offset-1">
+	        <h1>{{currentQuestion.question}}</h1>
+	        
+	        <div class="form-group">
+	        	<form ng-submit="submit()">
+
+					<div ng-include="questionTypeTemplate"></div>
+
+	        	</form>
+	        </div>
+
+	        <div>
+				 <!-- <a class="btn btn-lg btn-primary btn-reduced" ng-click="determineNextQuestion()" style="visibility: hidden" role="button">Skip Question</a> -->
+	        	<a class="btn btn-lg btn-success pull-right" ng-click="submit()" role="button">Continue</a>
+			</div>
+      </div>
+    </div>
+
+    <div class="row" ng-show="completed">
+      	<div class="jumbotron col-lg-10 co-lg-offset-1 col-md-10 col-md-offset-1">
+    		<h3>Thanks for participating.</h3>
+		</div>
+    </div>
+
+    <div class="row" ng-if="error">
+      	<div class="alert col-lg-10 co-lg-offset-1 col-md-10 col-md-offset-1">
+    		<strong>Error:</strong> {{error}}
+		</div>
+    </div>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>PDClient</title>
+    <base href="/">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body ng-app="pdclient" class="ng-scope">
+
+    <div class="container">
+
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" ng-class="getClass('/survey')"><a href="1.html">Survey</a>
+                    </li>
+                    <li role="presentation" ng-class="getClass('/about')"><a href="about.html">About</a>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted"><a href="/">PDSurvey</a></h3>
+        </div>
+
+        <!-- ngView:  -->
+        <div class="content ng-scope" ng-view="">
+            <div class="row ng-scope" ng-hide="error || completed">
+                <div class="jumbotron col-lg-10 co-lg-offset-1 col-md-10 col-md-offset-1">
+                    <h1 class="ng-binding">Which devices do you possess or use regularly?</h1>
+
+                    <div class="form-group">
+                        <form ng-submit="submit()" class="ng-dirty ng-valid">
+
+                            <!-- ngInclude: questionTypeTemplate -->
+                            <div ng-include="questionTypeTemplate" class="ng-scope">
+                                <!-- MULTIPLE CHOICE -->
+
+                                <input type="hidden" ng-model="response.answer" value="option values" class="ng-pristine ng-untouched ng-valid ng-scope">
+
+                                <!-- ngRepeat: option in currentQuestion.options track by $index -->
+                                <label class="radio-inline label-checkbox ng-scope" ng-repeat-start="option in currentQuestion.options track by $index">
+                                    <input type="checkbox" id="answer0" ng-model="response.options[option]" value="Smartphone" ng-checked="response.options.indexOf(option) > -1" ng-click="toggleSelection(option)" class="ng-pristine ng-untouched ng-valid">
+                                </label>
+
+                                <label for="answer0" class="ng-binding ng-scope">Smartphone</label>
+                                <br ng-repeat-end="" class="ng-scope">
+                                <!-- end ngRepeat: option in currentQuestion.options track by $index -->
+                                <label class="radio-inline label-checkbox ng-scope" ng-repeat-start="option in currentQuestion.options track by $index">
+                                    <input type="checkbox" id="answer1" ng-model="response.options[option]" value="Mobile phone (without touch screen)" ng-checked="response.options.indexOf(option) > -1" ng-click="toggleSelection(option)" class="ng-pristine ng-untouched ng-valid">
+                                </label>
+
+                                <label for="answer1" class="ng-binding ng-scope">Mobile phone (without touch screen)</label>
+                                <br ng-repeat-end="" class="ng-scope">
+                                <!-- end ngRepeat: option in currentQuestion.options track by $index -->
+                                <label class="radio-inline label-checkbox ng-scope" ng-repeat-start="option in currentQuestion.options track by $index">
+                                    <input type="checkbox" id="answer2" ng-model="response.options[option]" value="Tablet/iPad" ng-checked="response.options.indexOf(option) > -1" ng-click="toggleSelection(option)" class="ng-pristine ng-untouched ng-valid">
+                                </label>
+
+                                <label for="answer2" class="ng-binding ng-scope">Tablet/iPad</label>
+                                <br ng-repeat-end="" class="ng-scope">
+                                <!-- end ngRepeat: option in currentQuestion.options track by $index -->
+                                <label class="radio-inline label-checkbox ng-scope" ng-repeat-start="option in currentQuestion.options track by $index">
+                                    <input type="checkbox" id="answer3" ng-model="response.options[option]" value="Laptop" ng-checked="response.options.indexOf(option) > -1" ng-click="toggleSelection(option)" class="ng-pristine ng-untouched ng-valid">
+                                </label>
+
+                                <label for="answer3" class="ng-binding ng-scope">Laptop</label>
+                                <br ng-repeat-end="" class="ng-scope">
+                                <!-- end ngRepeat: option in currentQuestion.options track by $index -->
+                                <label class="radio-inline label-checkbox ng-scope" ng-repeat-start="option in currentQuestion.options track by $index">
+                                    <input type="checkbox" id="answer4" ng-model="response.options[option]" value="PC/Mac" ng-checked="response.options.indexOf(option) > -1" ng-click="toggleSelection(option)" class="ng-pristine ng-untouched ng-valid">
+                                </label>
+
+                                <label for="answer4" class="ng-binding ng-scope">PC/Mac</label>
+                                <br ng-repeat-end="" class="ng-scope">
+                                <!-- end ngRepeat: option in currentQuestion.options track by $index -->
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div>
+                        <!-- <a class="btn btn-lg btn-primary btn-reduced" ng-click="determineNextQuestion()" style="visibility: hidden" role="button">Skip Question</a> -->
+                        <a class="btn btn-lg btn-success pull-right" href="4.html" role="button">Next</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ngIf: error -->
+        </div>
+
+        <footer class="footer">
+            <p>© LMU Munich 2015</p>
+        </footer>
+    </div>
+    <!-- /container -->
+
+</body>
+
+</html>
