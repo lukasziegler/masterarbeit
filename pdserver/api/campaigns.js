@@ -71,6 +71,8 @@ router.route('/campaigns/:id')
 				return next(err);
 			}
 
+			console.log("DEBUG", req.body.displays);
+
 			// update object
 			campaign.name = req.body.name,
 			campaign.launched = req.body.launched,
@@ -79,8 +81,10 @@ router.route('/campaigns/:id')
 			campaign.endDate = req.body.endDate,
 			campaign.content = req.body.content,
 			campaign.location = req.body.location,
-			campaign.displays = req.body.displays,
-			campaign.surveys = req.body.surveys,
+
+			// campaign.displays = req.body.displays,
+			// campaign.surveys = req.body.surveys,
+			
 			campaign.contextDynamic = req.body.contextDynamic,
 			campaign.minResponses = req.body.minResponses,
 			campaign.numQuestionsPerPage = req.body.numQuestionsPerPage,

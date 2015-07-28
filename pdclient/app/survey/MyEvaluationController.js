@@ -5,6 +5,7 @@ var app = angular.module("pdclient")
 
 	var campaignId = "54f32bfffbf2d90e000a2cbf";
 	$scope.completed = false;
+	$scope.isRecording = "";
 
 	// counters for survey (i), section (j) and question (k)
 	var i = 0;	// survey
@@ -180,11 +181,16 @@ var app = angular.module("pdclient")
 	};
 
 
+
 	// Submit Response
 	$scope.submit = function() {
 
 		if( $scope.response.options.length > 0) {
 			$scope.response.answer = stringifyCheckboxes();
+		}
+
+		if ($scope.currentQuestionType.params.type == "audio") {
+			$scope.response.answer = $scope.audioResponse;
 		}
 		
 		// if( $scope.response.answer == '') {
@@ -204,4 +210,30 @@ var app = angular.module("pdclient")
 			});
 	}
 
+	//// PLAN B: AnnYang for audio recording, supports Angular
+	// var commands = {};
+	// annyang.debug();
+	// annyang.setLanguage("de-DE");
+	// annyang.start();
 })
+
+
+
+app.controller('ImageToggleCtrl', function($scope) {
+  $scope.state = '';
+  $scope.toggleImage = function() { 
+  	// alert("clicked")
+  	if ($scope.state == '') {
+  		startRecording(event)
+  		$scope.state = '-active';
+  	}
+  	else {
+  		stopRecording();
+  		$scope.state = '';
+  	}
+  };
+});
+
+
+
+

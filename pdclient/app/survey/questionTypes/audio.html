@@ -1,11 +1,17 @@
-<!-- NUMBER -->
+<!-- Audio Recording -->
 
-<i>Audio Recording</i>
+<center>
 
-<textarea id="results" cols="80" rows="5" ng-model="response.answer" ng-change='alert("changed!")'></textarea> <br />
+	<img src="img/recording{{state}}.png" ng-click="toggleImage()" style="
+	cursor:pointer" ng-controller="ImageToggleCtrl" />
 
-<input type="Button" value="1: listen" onclick="startButton(event)" />
+	<br><br>
 
-<!-- <button ng-click='response.answer = "new value"'>2: update</button> -->
+<span ng-show="audioResponse != null">Your feedback has been recorded.<br>To provide more feedback, simply keep on talking.</span>
 
-Check: {{response.answer}}
+</center>
+
+<textarea style="display:none" id="results" cols="80" rows="5" ng-model="response.answer"></textarea> <br />
+
+
+
