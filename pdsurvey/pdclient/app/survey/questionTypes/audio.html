@@ -1,11 +1,16 @@
-<!-- NUMBER -->
+<!-- Audio Recording -->
 
-<i>Audio Recording</i>
+<center>
+
+	<img src="img/recording.png" onclick="startButton(event)" style="cursor:pointer" />
+
+</center>
 
 <textarea id="results" cols="80" rows="5" ng-model="response.answer" ng-change='alert("changed!")'></textarea> <br />
 
 <input type="Button" value="1: listen" onclick="startButton(event)" />
 
-<!-- <button ng-click='response.answer = "new value"'>2: update</button> -->
+Check: {{audioResponse}} <br>
+    You are {{msg}}
 
-Check: {{response.answer}}
+

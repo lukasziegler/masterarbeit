@@ -191,6 +191,8 @@ var app = angular.module("pdclient")
 		if ($scope.currentQuestionType.params.type == "audio") {
 			// WORKAROUND (WIP TODO)
 			$scope.response.answer += " ";
+
+			$scope.msg = "test";
 		}
 		
 		// if( $scope.response.answer == '') {
@@ -210,4 +212,23 @@ var app = angular.module("pdclient")
 			});
 	}
 
+	// $scope.change = function() {
+	//     var scope = angular.element($("#outer")).scope();
+	//     scope.$apply(function(){
+	//         scope.msg = 'Superhero';
+	//     })
+	// }
+
+
+	// PLAN B: AnnYang for audio recording, supports Angular
+
+	// var commands = {};
+	// annyang.debug();
+	// annyang.setLanguage("de-DE");
+	// annyang.start();
 })
+
+
+
+
+

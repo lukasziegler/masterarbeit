@@ -1,12 +1,12 @@
 
 /*1/we test if the API is supported by the browser*/
-  /*
+
   if (!('webkitSpeechRecognition' in window))
   {
-    upgrade();
+    alert("Speech recognition not supported")
+    // upgrade();
   }
-  else {alert("youpi");}
-  */
+
 
 /*2/Using of the API*/
   /*2.1/SpeechSynthesis*/
@@ -16,30 +16,38 @@
   /*  msg.lang='en-US'; /*definition of the language which gonna be used*/
   /*  window.speechSynthesis.speak(msg); /*once configurate we can say it out loud*/
   
+
   /*2.2/SpeechRecognition*/
 
   var recognition = new webkitSpeechRecognition(); /*instance of SpeechRecognition*/
-  recognition.continuous = false; /*defines if it records continuously or not*/
+  recognition.continuous = true; /*defines if it records continuously or not*/
   recognition.interimResults = true;
   recognition.lang='de'; /*choose of the language used for the recognition*/
   
-  /*definition of the fonction, of the attribut onresult from recognition*/
-    recognition.onresult = function (e) {
-        var textarea = document.querySelector('#results');
-        for (var i = e.resultIndex; i < e.results.length; ++i) {
-            if (e.results[i].isFinal) {
-                textarea.value += e.results[i][0].transcript;
-            }
-        }
-    }
- 
-    // start listening
-    //recognition.start();
-  
-  function startButton(event){
-  
-  // start listening
-    recognition.start();
-  
+  recognition.onresult = function (e) {
+      var textarea = document.querySelector('#results');
+      for (var i = e.resultIndex; i < e.results.length; ++i) {
+          if (e.results[i].isFinal) {
+              textarea.value += e.results[i][0].transcript;
+              console.log(e.results[i][0].transcript)
+          }
+      }
+
+      changeDOM(textarea.value);
   }
-/**/
+   
+  // start listening
+  function startButton(event){  
+      recognition.start();
+  }
+
+// $(function () {
+  function changeDOM(val) {
+    var scope = angular.element($("#ctrl")).scope();
+    scope.$apply(function(){
+        scope.msg = 'Superhero';
+        scope.audioResponse = val;
+    })
+  }
+// });
+
