@@ -119,6 +119,8 @@ app.controller("CampaignEditController", function($scope, $rootScope, $location,
 	Campaign.get( {id: id}, function(data) {
 		$scope.campaign = data;
 
+		console.log($scope.campaign.displays[0]._id);
+
 		// copy values to temporary 
 		$scope.contextDynamic = $scope.campaign.contextDynamic;
 		$scope.campaign.contextDynamic = $scope.campaign.contextDynamic._id;

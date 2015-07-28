@@ -35,47 +35,37 @@
 
 
 	<div class="form-group">
-		<label for="campaign.startDate" class="col-sm-2 control-label"><i class="fa fa-calendar"></i> Date range</label>
-		<div class="col-sm-5">
-			<input type="text" class="form-control" ng-model="campaign.startDate" data-max-date="{{campaign.endDate}}" placeholder="From" bs-datepicker>
-		</div>
-		<div class="col-sm-5">
-			<input type="text" class="form-control" ng-model="campaign.endDate" data-min-date="{{campaign.startDate}}" placeholder="Until" bs-datepicker>
-		</div>
-	</div>
-
-
-	<div class="form-group">
-		<label for="campaign.content" class="col-sm-2 control-label">Description of Content</label>
-		<div class="col-sm-10">
-			<input id="campaign.content" class="form-control" placeholder="" type="text" ng-model="campaign.content">
-		</div>
-	</div>
-
-
-	<div class="form-group">
-		<label for="campaign.location" class="col-sm-2 control-label">Description of Location</label>
-		<div class="col-sm-10">
-			<input id="campaign.location" class="form-control" placeholder="" type="text" ng-model="campaign.location">
-		</div>
-	</div>
-
-
-	<hr>
-
-
-	<div class="form-group">
 		<label for="campaign.display" class="col-sm-2 control-label">Display</label>
 		<div class="col-sm-10">
-			<input id="campaign.display" class="form-control" placeholder="TODO Dropdown" ng-model="campaign.display">
+
+			<div class="input-group" ng-repeat="display in campaign.displays">
+				<a class="btn btn-default">{{display.name}}</a><br />
+			</div>
+
 		</div>
 	</div>
+
+<!-- 	<div class="form-group" ng-repeat="display in campaign.displays">
+		<div class="col-sm-2 text-right">{{display.name}}</div>
+    	<div class="col-sm-6">
+			<div class="input-group">
+			    <span class="input-group-btn">
+ 					<button pd-remove-context-dynamic></button>
+				</span>
+				<input class="form-control" placeholder="" ng-model="display.name">
+			</div>
+    	</div>
+	</div>	 -->
 
 
 	<div class="form-group">
 		<label for="campaign.survey" class="col-sm-2 control-label">Survey</label>
 		<div class="col-sm-10">
-			<input id="campaign.survey" class="form-control" placeholder="TODO Dropdown" ng-model="campaign.survey">
+
+			<div class="input-group" ng-repeat="survey in campaign.surveys">
+				<a class="btn btn-default">{{survey.name}}</a><br />
+			</div>
+
 		</div>
 	</div>
 
@@ -104,7 +94,7 @@
     	</div>
 	</div>
 
-
+<!-- 
 	<div class="form-group">
 		<label for="campaign.minResponses" class="col-sm-2 control-label">NumResponses</label>
 		<div class="col-sm-5">
@@ -119,6 +109,6 @@
 			<input id="campaign.createdBy" class="form-control" placeholder="TODO autofill with session data" ng-model="campaign.createdBy" disabled>
 		</div>
 	</div>
-
+ -->
 </div>
 

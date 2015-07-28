@@ -180,11 +180,17 @@ var app = angular.module("pdclient")
 	};
 
 
+
 	// Submit Response
 	$scope.submit = function() {
 
 		if( $scope.response.options.length > 0) {
 			$scope.response.answer = stringifyCheckboxes();
+		}
+
+		if ($scope.currentQuestionType.params.type == "audio") {
+			// WORKAROUND (WIP TODO)
+			$scope.response.answer += " ";
 		}
 		
 		// if( $scope.response.answer == '') {
