@@ -28,7 +28,7 @@
       var textarea = document.querySelector('#results');
       for (var i = e.resultIndex; i < e.results.length; ++i) {
           if (e.results[i].isFinal) {
-              textarea.value += e.results[i][0].transcript;
+              textarea.value += e.results[i][0].transcript+";";
               console.log(e.results[i][0].transcript)
           }
       }
@@ -37,17 +37,19 @@
   }
    
   // start listening
-  function startButton(event){  
+  function startRecording(event){  
       recognition.start();
   }
 
-// $(function () {
   function changeDOM(val) {
     var scope = angular.element($("#ctrl")).scope();
     scope.$apply(function(){
-        scope.msg = 'Superhero';
         scope.audioResponse = val;
     })
   }
-// });
+
+  function stopRecording(event) {
+    // webkitSpeechRecognition.stop();
+      recognition.stop();
+  }
 

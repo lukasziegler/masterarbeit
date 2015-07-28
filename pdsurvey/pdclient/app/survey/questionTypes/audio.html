@@ -2,15 +2,16 @@
 
 <center>
 
-	<img src="img/recording.png" onclick="startButton(event)" style="cursor:pointer" />
+	<img src="img/recording{{state}}.png" ng-click="toggleImage()" style="
+	cursor:pointer" ng-controller="ImageToggleCtrl" />
+
+	<br><br>
+
+<span ng-show="audioResponse != null">Your feedback has been recorded.<br>To provide more feedback, simply keep on talking.</span>
 
 </center>
 
-<textarea id="results" cols="80" rows="5" ng-model="response.answer" ng-change='alert("changed!")'></textarea> <br />
+<textarea style="display:none" id="results" cols="80" rows="5" ng-model="response.answer"></textarea> <br />
 
-<input type="Button" value="1: listen" onclick="startButton(event)" />
-
-Check: {{audioResponse}} <br>
-    You are {{msg}}
 
 

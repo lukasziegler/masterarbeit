@@ -5,6 +5,7 @@ var app = angular.module("pdclient")
 
 	var campaignId = "54f32bfffbf2d90e000a2cbf";
 	$scope.completed = false;
+	$scope.isRecording = "";
 
 	// counters for survey (i), section (j) and question (k)
 	var i = 0;	// survey
@@ -189,10 +190,7 @@ var app = angular.module("pdclient")
 		}
 
 		if ($scope.currentQuestionType.params.type == "audio") {
-			// WORKAROUND (WIP TODO)
-			$scope.response.answer += " ";
-
-			$scope.msg = "test";
+			$scope.response.answer = $scope.audioResponse;
 		}
 		
 		// if( $scope.response.answer == '') {
@@ -212,22 +210,29 @@ var app = angular.module("pdclient")
 			});
 	}
 
-	// $scope.change = function() {
-	//     var scope = angular.element($("#outer")).scope();
-	//     scope.$apply(function(){
-	//         scope.msg = 'Superhero';
-	//     })
-	// }
-
-
-	// PLAN B: AnnYang for audio recording, supports Angular
-
+	//// PLAN B: AnnYang for audio recording, supports Angular
 	// var commands = {};
 	// annyang.debug();
 	// annyang.setLanguage("de-DE");
 	// annyang.start();
 })
 
+
+
+app.controller('ImageToggleCtrl', function($scope) {
+  $scope.state = '';
+  $scope.toggleImage = function() { 
+  	// alert("clicked")
+  	if ($scope.state == '') {
+  		startRecording(event)
+  		$scope.state = '-active';
+  	}
+  	else {
+  		stopRecording();
+  		$scope.state = '';
+  	}
+  };
+});
 
 
 
