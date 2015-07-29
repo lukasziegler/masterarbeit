@@ -190,8 +190,8 @@ var app = angular.module("pdclient")
 		}
 
 		if ($scope.currentQuestionType.params.type == "audio") {
-			$scope.response.answer = "[rec] " + $scope.audioResponse;
 			if (isRecording == true) {
+				$scope.response.answer = "[rec] " + $scope.audioResponse;
 				stopRecording();
 			}
 		}
