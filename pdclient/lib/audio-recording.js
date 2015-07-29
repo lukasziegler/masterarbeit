@@ -19,6 +19,8 @@
 
   /*2.2/SpeechRecognition*/
 
+  var isRecording = false;
+
   var recognition = new webkitSpeechRecognition(); /*instance of SpeechRecognition*/
   recognition.continuous = true; /*defines if it records continuously or not*/
   recognition.interimResults = true;
@@ -38,7 +40,11 @@
    
   // start listening
   function startRecording(event){  
+    if (isRecording == false) {
       recognition.start();
+      isRecording = true;
+    }
+
   }
 
   function changeDOM(val) {
@@ -49,7 +55,7 @@
   }
 
   function stopRecording(event) {
-    // webkitSpeechRecognition.stop();
       recognition.stop();
+      isRecording = false;
   }
 
