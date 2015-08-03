@@ -316,5 +316,7 @@ app.controller("SurveyRandomController", function($scope, $http, $rootScope) {
 				alert("Error submitting response");
 			});
 	};
+
+
 })
 

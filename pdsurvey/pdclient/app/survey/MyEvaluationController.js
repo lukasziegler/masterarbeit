@@ -34,6 +34,13 @@ var app = angular.module("pdclient")
 		$scope.questionTypes = response;
 	}).error(function(err) {
 		$scope.error = err;
+	});	
+
+	// load Campaign
+	$http.get($rootScope.restApi + "/campaigns/"+campaignId).success(function(response) {
+		$scope.campaign = response;
+	}).error(function(err) {
+		$scope.error = err;
 	});
 
 
@@ -47,8 +54,12 @@ var app = angular.module("pdclient")
 			$scope.error = "No surveys found";
 		}
 		else {
+	    	// randomize question order (per section)
+	    	if ($scope.campaign.randomized == true) {
+				$scope.randomizeQuestionnaire( );
+	    	}
+
 			// start with first question
-// console.log("$scope.surveys",response)
 			$scope.loadNextQuestion();
 		}
 
@@ -68,6 +79,16 @@ var app = angular.module("pdclient")
 
         // update Question object ViewModel
     	$scope.currentQuestion = $scope.surveys[i].sections[j].questions[k];
+
+
+    	// randomize question order (per section)
+
+		// __testing__
+	        // var a = ["1", "2", "3"];
+	        // console.log("normal order:",a);
+	        // var b = shuffle(a);
+	        // console.log("randomized:",b);
+
 
     	// find corresponding questionType
 		var newQuesitonType = $scope.questionTypes.filter(function( obj ) {
@@ -190,7 +211,10 @@ var app = angular.module("pdclient")
 		}
 
 		if ($scope.currentQuestionType.params.type == "audio") {
-			$scope.response.answer = $scope.audioResponse;
+			if (isRecording == true) {
+				$scope.response.answer = "[rec] " + $scope.audioResponse;
+				stopRecording();
+			}
 		}
 		
 		// if( $scope.response.answer == '') {
@@ -210,11 +234,24 @@ var app = angular.module("pdclient")
 			});
 	}
 
-	//// PLAN B: AnnYang for audio recording, supports Angular
-	// var commands = {};
-	// annyang.debug();
-	// annyang.setLanguage("de-DE");
-	// annyang.start();
+	$scope.randomizeQuestionnaire = function() {
+		var a = $scope.surveys[i].sections[j].questions;
+        console.log("normal order:",a);
+        var b = shuffle(a);
+		console.log("randomized:",b);
+        $scope.surveys[i].sections[j].questions = b;
+	}
+
+	$scope.restart = function() {
+
+    	if ($scope.campaign.randomized == true) {
+			$scope.randomizeQuestionnaire( );
+		}
+
+		console.log("RESTART")
+		$scope.completed = false;
+		$scope.loadNextQuestion();
+	}
 })
 
 
@@ -234,6 +271,25 @@ app.controller('ImageToggleCtrl', function($scope) {
   };
 });
 
+
+	function shuffle(array) {
+	  var currentIndex = array.length, temporaryValue, randomIndex ;
+
+	  // While there remain elements to shuffle...
+	  while (0 !== currentIndex) {
+
+	    // Pick a remaining element...
+	    randomIndex = Math.floor(Math.random() * currentIndex);
+	    currentIndex -= 1;
+
+	    // And swap it with the current element.
+	    temporaryValue = array[currentIndex];
+	    array[currentIndex] = array[randomIndex];
+	    array[randomIndex] = temporaryValue;
+	  }
+
+	  return array;
+	}
 
 
 

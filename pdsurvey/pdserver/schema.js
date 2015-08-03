@@ -109,6 +109,7 @@ var CampaignSchema = mongoose.Schema({
     contextDynamic: [mongoose.Schema.Types.Mixed],
     minResponses: Number,
     numQuestionsPerPage: Number,
+    randomized: { type: Boolean, default: false },
     launched: { type: Boolean, default: false },
     createdBy: { type: ObjectId, ref: 'User' },
     dateCreated: { type: Date, default: Date.now }

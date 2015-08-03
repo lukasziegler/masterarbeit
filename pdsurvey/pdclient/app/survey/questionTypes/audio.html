@@ -2,16 +2,30 @@
 
 <center>
 
-	<img src="img/recording{{state}}.png" ng-click="toggleImage()" style="
-	cursor:pointer" ng-controller="ImageToggleCtrl" />
+	<div class="row">
+		<div class="col-sm-5">
+			<span style="font-size: 18px; font-weight:500; color: grey">Provide answer using audio<br>(through built-in microphone)</span>
 
-	<br><br>
+			<br>
 
-<span ng-show="audioResponse != null">Your feedback is being recorded.<br>To provide more feedback, simply keep on talking.</span>
+			<img src="img/recording{{state}}.png" ng-click="toggleImage()" style="cursor:pointer" ng-controller="ImageToggleCtrl" width="175" />
+
+			<br><br>
+
+			<span ng-show="audioResponse != null">Your feedback is being recorded.<br>To provide more feedback, simply keep on talking.</span>
+		</div>
+		<div class="col-sm-2">
+			<span style="font-size: 18px; font-weight:500; color: grey">OR</span>
+		</div>
+		<div class="col-sm-5">
+			<span style="font-size: 18px; font-weight:500; color: grey">Provide answer as text<br>(using on-screen keyboard)</span>
+			<br><br>
+			<textarea id="results" rows="6" ng-model="response.answer" style="width:100%"></textarea>
+		</div>
+	</div>
 
 </center>
 
-<textarea style="display:none" id="results" cols="80" rows="5" ng-model="response.answer"></textarea> <br />
 
 
 
