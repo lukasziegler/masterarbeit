@@ -6,6 +6,7 @@ var app = angular.module("pdclient")
 	var campaignId = "54f32bfffbf2d90e000a2cbf";
 	$scope.completed = false;
 	$scope.isRecording = "";
+	$scope.campaign.randomized = false;
 
 	// counters for survey (i), section (j) and question (k)
 	var i = 0;	// survey
