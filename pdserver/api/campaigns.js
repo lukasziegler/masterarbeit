@@ -35,6 +35,7 @@ router.route('/campaigns')
 			contextDynamic: req.body.contextDynamic,
 			minResponses: req.body.minResponses,
 			numQuestionsPerPage: req.body.numQuestionsPerPage,
+			randomized: req.body.randomized,
 			createdBy: req.body.createdBy,
 			dateCreated: new Date().toISOString()
 		});
@@ -88,6 +89,7 @@ router.route('/campaigns/:id')
 			campaign.contextDynamic = req.body.contextDynamic,
 			campaign.minResponses = req.body.minResponses,
 			campaign.numQuestionsPerPage = req.body.numQuestionsPerPage,
+			campaign.randomized = req.body.randomized,
 			
 			campaign.launched = req.body.launched
 
